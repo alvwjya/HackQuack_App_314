@@ -1,3 +1,4 @@
 # CSIT314-LAB-PROJECT
 
-#Welcome to hell, try not to cry
+#Coding will only stop in case of emergancy
+#Crying is not an emergancy
