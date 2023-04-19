@@ -7,7 +7,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/", methods=['GET'])
 def hello():
-    return jsonify("Hello World")
+    return jsonify("Hello World!")
 
 
 if __name__ == '__main__':
