@@ -1,54 +1,94 @@
 import React from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
 function ProfessionalSignup() {
   return (
-    <>
-      <form action="action_page.php">
-        <div class="container">
-          <h1>Professional Log In</h1>
-          <p>Headline</p>
+    <Container className="py-5">
+      <Form>
+        <h1>Professional Log In</h1>
+        <p>Headline</p>
 
-          <hr/>
+        <hr />
 
-          <label for="fname"><b>First Name</b></label>
-          <input type="text" placeholder="Enter first name" name="fname" id="fname" required></input>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Row>
+            <Col>
+              <Form.Label>First Name</Form.Label>
+            </Col>
+            <Col>
+              <Form.Label>Last Name</Form.Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Control type="text" placeholder="Enter first name" />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Enter last name" />
+            </Col>
+          </Row>
+        </Form.Group>
 
-          <label for="lname"><b>Last Name</b></label>
-          <input type="text" placeholder="Enter last name" name="lname" id="lname" required></input>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="text" placeholder="Enter email" />
+        </Form.Group>
 
-          <label for="email"><b>Enter Email</b></label>
-          <input type="text" placeholder="Enter email" name="email" id="email" required></input>
+        <Form.Group className="mb-3" controlId="formBasicAddress_1">
+          <Form.Label>Address</Form.Label>
+          <Form.Control type="text" placeholder="Enter address" />
+        </Form.Group>
 
-          <label for="address"><b>Address</b></label>
-          <input type="text" placeholder="Enter address" name="address" id="address" required></input>
+        <Form.Group className="mb-3" controlId="formBasicAddress_2">
+          <Row>
+            <Col>
+              <Form.Label>Suburn</Form.Label>
+            </Col>
+            <Col>
+              <Form.Label>State</Form.Label>
+            </Col>
+            <Col>
+              <Form.Label>Postcode</Form.Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Control type="text" placeholder="Enter suburn" />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Enter state" />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Enter postcode" />
+            </Col>
+          </Row>
+        </Form.Group>
 
-          <label for="suburn"><b>Suburn</b></label>
-          <input type="text" placeholder="Enter suburn" name="suburn" id="suburn" required></input>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter password" />
+        </Form.Group>
 
-          <label for="state"><b>State</b></label>
-          <input type="text" placeholder="Enter state" name="state" id="state" required></input>
+        <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter confirm Password" />
+        </Form.Group>
 
-          <label for="postcode"><b>Postcode</b></label>
-          <input type="text" placeholder="Enter postcode" name="postcode" id="postcode" required></input>
+        <hr />
 
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter password" name="psw" id="psw" required></input>
+        <p>
+          By creating an account you agree to our{" "}
+          <a href="#">Terms & Privacy</a>.
+        </p>
 
-          <label for="psw-repeat"><b>Confirm Password</b></label>
-          <input type="password" placeholder="Enter confirm Password" name="psw-repeat" id="psw-repeat" required></input>
 
-          <hr/>
-
-          <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-          
-          <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Sign Up</button>
-          </div>
+        <div className="d-grid gap-2">
+          <Button variant="primary" size="lg">Sign Up</Button>
+          <Button variant="secondary" size="lg">Cancel</Button>
         </div>
-      </form> 
-    </>
+
+      </Form>
+    </Container>
   );
 }
 
