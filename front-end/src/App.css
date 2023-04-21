@@ -13,3 +13,12 @@
 .App {
     background: #FEF7FF;
 }
+
+/*
+$theme-colors: (
+  'primary': tomato,
+  'secondary': teal,
+);
+
+@import '~bootstrap/scss/bootstrap';
+*/
