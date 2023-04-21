@@ -8,8 +8,6 @@ function ProfessionalSignUp() {
         <h1>Professional Log In</h1>
         <p>Headline</p>
 
-        <hr />
-
         <Form.Group className="mb-3" controlId="formBasicName">
           <Row>
             <Col>
@@ -73,14 +71,6 @@ function ProfessionalSignUp() {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control type="password" placeholder="Enter confirm Password" />
         </Form.Group>
-
-        <hr />
-
-        <p>
-          By creating an account you agree to our{" "}
-          <a href="#">Terms & Privacy</a>.
-        </p>
-
 
         <div className="d-grid gap-2">
           <Button variant="primary" size="lg">Sign Up</Button>
