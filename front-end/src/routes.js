@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import { USER_TYPE } from "./constants/userTypes";
 import AuthContext from "./contexts/AuthContext";
-import CustomerSignup from "./pages/customer/CustomerSignup";
+import CustomerSignUp from "./pages/customer/CustomerSignUp";
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import CustomerSettings from "./pages/customer/CustomerSettings";
 import CustomerViewRequest from "./pages/customer/CustomerViewRequest";
 import NewRequest from "./pages/customer/NewRequest";
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 import ProfessionalSettings from "./pages/professional/ProfessionalSettings";
-import ProfessionalSignup from "./pages/professional/ProfessionalSignup";
+import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
 import ProfessionalViewRequest from "./pages/professional/ProfessionalViewRequest";
 import ProfessionalViewHistory from "./pages/professional/ProfessionalViewHistory";
 import Welcome from "./pages/Welcome";
@@ -75,11 +75,11 @@ const router = createBrowserRouter([
           },
           {
             path: "customer-sign-up",
-            element: <CustomerSignup />,
+            element: <CustomerSignUp />,
           },
           {
             path: "professional-sign-up",
-            element: <ProfessionalSignup />,
+            element: <ProfessionalSignUp />,
           },
         ],
       },

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
-function ProfessionalSignup() {
+function ProfessionalSignUp() {
   return (
     <Container className="py-5">
       <Form>
@@ -92,4 +92,4 @@ function ProfessionalSignup() {
   );
 }
 
-export default ProfessionalSignup;
+export default ProfessionalSignUp;
