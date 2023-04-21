@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
-function CustomerSignUp() {
+function ProfessionalSignUpTwo() {
   return (
     <Container className="py-5">
       <Form>
-        <h1>Customer Sign Up</h1>
+        <h1>Professional Sign Up</h1>
         <p>Headline</p>
 
         <Form.Group className="mb-3" controlId="formBasicName">
@@ -82,4 +82,4 @@ function CustomerSignUp() {
   );
 }
 
-export default CustomerSignUp;
+export default ProfessionalSignUpTwo;

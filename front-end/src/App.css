@@ -12,8 +12,9 @@
 
 /*
 $theme-colors: (
-  'primary': tomato,
-  'secondary': teal,
+  'primary'    : #951ABE,
+  'secondary'  : #FF9300,
+  'background' : #FEF7FF
 );
 
 @import '~bootstrap/scss/bootstrap';
