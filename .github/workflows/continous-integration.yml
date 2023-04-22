@@ -31,7 +31,6 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
         with:
           args: >
-            run
             --name mysql-container
             -e MYSQL_ROOT_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
             -e MYSQL_USER=${{ secrets.DATABASE_USER }}
