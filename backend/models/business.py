@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date
 from database import Base
 
+
 class Business(Base):
     __tablename__ = "business"
 
@@ -21,3 +22,6 @@ class Business(Base):
         self.card_number = card_number
         self.card_security_num = card_security_num
         self.card_expiry_date = card_expiry_date
+
+    def __repr__(self) -> str:
+        return f"id={self.id}, ibn={self.ibn}, password={self.password}, location={self.location}, card_number={self.card_number}, card_security_num={self.card_security_num}, card_expiry_date{self.card_expiry_date}"
