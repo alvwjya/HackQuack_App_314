@@ -4,16 +4,17 @@ import { Container, Button, Image } from "react-bootstrap";
 function Welcome() {
   return (
     <Container>
-      <h1 style={{ display: "flex", justifyContent: "center" }}>Welcome</h1>
+      <br/><h1 style={{ display: "flex", justifyContent: "center" }}>Welcome</h1>
       
       <Container style={{ display: "flex", justifyContent: "center" }}>
         <Image
-          src="/favicon.ico"
+          src="/newlogo.ico"
           roundedCircle
           style={{ display: "flex", justifyContent: "center" }}
         />
       </Container>
 
+      <br/>
       <div className="d-grid gap-2">
         <Button href="/customer-sign-up" variant="primary">
           Sign up Customer
@@ -21,10 +22,12 @@ function Welcome() {
         <Button href="/professional-sign-up" variant="primary">
           Sign up Professional
         </Button>
-        <Button href="/login" variant="primary">
+        <Button href="/login" variant="secondary">
           Log in
         </Button>
       </div>
+      <br/><br/><br/><br/><br/><br/>
+      <div style={{ display: "flex", justifyContent: "center" }} >HackQuack Enterprises 2023 (TM)</div>
     </Container>
   );
 }
