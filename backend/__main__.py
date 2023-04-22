@@ -12,7 +12,7 @@ def create_tables():
     session.commit()
     session.close()
 
-
+#
 def get_business():
     session = session_factory()
     business_query = session.query(Business)
