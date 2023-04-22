@@ -1,7 +1,7 @@
 Flask==2.2.3
 python-dotenv==0.21.0
 mysql-connector-python==8.0.18
-mysqlclient==2.1.1
+# mysqlclient==2.1.1
 protobuf==3.6.0
 PyMySQL==1.0.3
 SQLAlchemy==2.0.10
