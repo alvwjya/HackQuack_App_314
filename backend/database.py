@@ -10,10 +10,10 @@ load_dotenv(find_dotenv())
 # host = os.environ.get("DATABASE_URL")
 # database = os.environ.get("DATABASE_SCHEMA")
 
-user = os.environ["DATABASE_USER"]
-password = os.environ["DATABASE_PASSWORD"]
-host = os.environ["DATABASE_URL"]
-database = os.environ["DATABASE_SCHEMA"]
+user = os.environ.getenv("DATABASE_USER")
+password = os.environ.getenv("DATABASE_PASSWORD")
+host = os.environ.getenv("DATABASE_URL")
+database = os.environ.getenv("DATABASE_SCHEMA")
 
 engine = create_engine(
     f"mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8mb4")
