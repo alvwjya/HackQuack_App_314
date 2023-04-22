@@ -46,4 +46,4 @@ jobs:
         mysql root password: ${{ secrets.DATABASE_PASSWORD }}
     - name: Test with pytest
       run: |
-        pytest __main__.py
+        pytest
