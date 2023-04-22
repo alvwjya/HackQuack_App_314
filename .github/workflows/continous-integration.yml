@@ -3,10 +3,14 @@ name: Continous Integration Workflow
 on:
   push:
     branches:
-      - Back-End-Branch/*
-      - Front-End-Branch/*
+      - main
+      - Back-End-Branch
+      - Front-End-Branch
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - Back-End-Branch
+      - Front-End-Branch
 
 permissions:
   contents: read
