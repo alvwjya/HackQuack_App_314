@@ -40,18 +40,18 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Setup MySQL
-        uses: docker://mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          MYSQL_USER: ${{ secrets.DATABASE_USER }}
-          MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
-        with:
-          args: >
-            --name mysql-container
-            -e MYSQL_ROOT_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
-            -e MYSQL_USER=${{ secrets.DATABASE_USER }}
-            -e MYSQL_DATABASE=${{ secrets.DATABASE_SCHEMA }}
-            -p 3306:3306
+      uses: docker://mysql:8.0
+      env:
+        MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        MYSQL_USER: ${{ secrets.DATABASE_USER }}
+        MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
+      with:
+        args: >
+          --name mysql-container
+          -e MYSQL_ROOT_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+          -e MYSQL_USER=${{ secrets.DATABASE_USER }}
+          -e MYSQL_DATABASE=${{ secrets.DATABASE_SCHEMA }}
+          -p 3306:3306
     - name: Test with pytest
       env:
         DATABASE_SCHEMA: ${{ secrets.DATABASE_SCHEMA }}
