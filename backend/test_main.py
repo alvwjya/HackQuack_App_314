@@ -1,6 +1,6 @@
-import __main__
+import main
 
 def test_my_function():
-    __main__.create_tables()
-    result = __main__.get_business()
+    main.create_tables()
+    result = main.get_business()
     assert len(result) > 0
