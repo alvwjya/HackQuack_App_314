@@ -1,6 +1,6 @@
 ﻿from .models.business import Business
 from .models.client import Client
-from database import session_factory
+from .database import session_factory
 from datetime import date
 
 
