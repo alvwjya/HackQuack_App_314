@@ -18,60 +18,44 @@ permissions:
 jobs:
   backend:
     runs-on: ubuntu-latest
-    services:
-      mysql-master:
-        image: mysql:8.0
-        ports:
-          - 3306/tcp
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup MySQL
+        uses: docker://mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           MYSQL_USER: ${{ secrets.DATABASE_USER }}
           MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
-        options: >-
-          --name=mysql-master
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-    defaults:
-      run:
-        working-directory: ./backend
-
-    # steps:
-    # - uses: actions/checkout@v3
-    # - name: Setup MySQL
-    #   uses: docker://mysql:8.0
-    #   env:
-    #     MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-    #     MYSQL_USER: ${{ secrets.DATABASE_USER }}
-    #     MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
-    #   with:
-    #     args: >
-    #       --name mysql-container
-    #       -e MYSQL_ROOT_PASSWORD="alvianWijaya"
-    #       -e MYSQL_USER="root"
-    #       -e MYSQL_DATABASE="CSIT314"
-    #       -p 3306:3306
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.7"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      env:
-        DATABASE_SCHEMA: ${{ secrets.DATABASE_SCHEMA }}
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        DATABASE_USER: ${{ secrets.DATABASE_USER }}
-        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-      run: |
-        pytest
+        with:
+          args: >
+            run
+            --name mysql-container
+            -e MYSQL_ROOT_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+            -e MYSQL_USER=${{ secrets.DATABASE_USER }}
+            -e MYSQL_DATABASE=${{ secrets.DATABASE_SCHEMA }}
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.7"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Test with pytest
+        env:
+          DATABASE_SCHEMA: ${{ secrets.DATABASE_SCHEMA }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        run: |
+          pytest
