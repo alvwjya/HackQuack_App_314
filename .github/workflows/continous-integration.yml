@@ -24,17 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup MySQL
-        uses: docker://mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          MYSQL_USER: ${{ secrets.DATABASE_USER }}
-          MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
+        uses: mirromutth/mysql-action@v1.1
         with:
-          args: >
-            --name mysql-container
-            -e MYSQL_ROOT_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
-            -e MYSQL_USER=${{ secrets.DATABASE_USER }}
-            -e MYSQL_DATABASE=${{ secrets.DATABASE_SCHEMA }}
+          mysql version: "5.7"
+          mysql database: ${{ secrets.DATABASE_SCHEMA }}
+          mysql root password: ${{ secrets.DATABASE_PASSWORD }}
+          mysql user: ${{ secrets.DATABASE_USER}}
       - name: Set up Python 3.7
         uses: actions/setup-python@v3
         with:
