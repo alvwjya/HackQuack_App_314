@@ -20,7 +20,5 @@ def get_business():
 
 
 if __name__ == "__main__":
-    def test_my_function():
-        create_tables()
-        result = get_business()
-        assert len(result) > 0
+    create_tables()
+    print(len(get_business()))
