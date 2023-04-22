@@ -43,8 +43,7 @@ jobs:
       uses: docker://mysql:8.0
       with:
         env:
-        MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-        mysql database: ${{ secrets.DATABASE_SCHEMA }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
     - name: Create Database
       run: |
         mysql --host 127.0.0.1 --port 3306 --user=${{ secrets.DATABASE_USER }} --password=${{ secrets.DATABASE_PASSWORD }} -e "CREATE DATABASE CSIT314;"
