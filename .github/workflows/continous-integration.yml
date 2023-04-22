@@ -3,10 +3,14 @@ name: Continous Integration Workflow
 on:
   push:
     branches:
-      - Back-End-Branch/*
-      - Front-End-Branch/*
+      - main
+      - Back-End-Branch
+      - Front-End-Branch
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - Back-End-Branch
+      - Front-End-Branch
 
 permissions:
   contents: read
@@ -14,12 +18,12 @@ permissions:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
 
     steps:
     - uses: actions/checkout@v3
-    - name: Go to backend path
-      run: |
-        cd backend
     - name: Set up Python 3.7
       uses: actions/setup-python@v3
       with:
@@ -36,11 +40,10 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Set up MySQL
-      uses: mysql/setup-mysql@v2
+      uses: mirromutth/mysql-action@v1.1
       with:
-        mysql-version: '8.0'
         mysql database: ${{ secrets.DATABASE_SCHEMA }}
-        password: ${{ secrets.DATABASE_PASSWORD }}
+        mysql root password: ${{ secrets.DATABASE_PASSWORD }}
     - name: Test with pytest
       run: |
-        pytest
+        pytest __main__.py

@@ -1,25 +1,7 @@
-autopep8 @ file:///opt/conda/conda-bld/autopep8_1650463822033/work
-certifi @ file:///croot/certifi_1671487769961/work/certifi
-cffi @ file:///croot/cffi_1670423208954/work
-click @ file:///tmp/build/80754af9/click_1646056591685/work
-cryptography @ file:///croot/cryptography_1677533068310/work
-Flask @ file:///croot/flask_1671217343254/work
-Flask-SQLAlchemy @ file:///croot/flask-sqlalchemy_1671219118085/work
-greenlet @ file:///croot/greenlet_1670513226095/work
-importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1648562407465/work
-itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
-Jinja2 @ file:///croot/jinja2_1666908132255/work
-MarkupSafe @ file:///opt/conda/conda-bld/markupsafe_1654597864307/work
+Flask==2.2.3
 mysql-connector-python==8.0.18
 mysqlclient==2.1.1
 protobuf==3.6.0
-pycodestyle @ file:///croot/pycodestyle_1674267221883/work
-pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
 PyMySQL==1.0.3
-python-dotenv @ file:///croot/python-dotenv_1669132557191/work
-six @ file:///tmp/build/80754af9/six_1644875935023/work
 SQLAlchemy==2.0.10
-toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 typing_extensions==4.5.0
-Werkzeug @ file:///croot/werkzeug_1671215996852/work
-zipp @ file:///croot/zipp_1672387121353/work
