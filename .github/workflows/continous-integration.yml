@@ -18,25 +18,40 @@ permissions:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    services:
+      mysql-master:
+        image: mysql:5.7
+        ports:
+          - 3306/tcp
+        env:
+        MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        MYSQL_USER: ${{ secrets.DATABASE_USER }}
+        MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
+        options: >-
+          --name=mysql-master
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     defaults:
       run:
         working-directory: ./backend
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup MySQL
-      uses: docker://mysql:8.0
-      env:
-        MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-        MYSQL_USER: ${{ secrets.DATABASE_USER }}
-        MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
-      with:
-        args: >
-          --name mysql-container
-          -e MYSQL_ROOT_PASSWORD="alvianWijaya"
-          -e MYSQL_USER="root"
-          -e MYSQL_DATABASE="CSIT314"
-          -p 3306:3306
+    # steps:
+    # - uses: actions/checkout@v3
+    # - name: Setup MySQL
+    #   uses: docker://mysql:8.0
+    #   env:
+    #     MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+    #     MYSQL_USER: ${{ secrets.DATABASE_USER }}
+    #     MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
+    #   with:
+    #     args: >
+    #       --name mysql-container
+    #       -e MYSQL_ROOT_PASSWORD="alvianWijaya"
+    #       -e MYSQL_USER="root"
+    #       -e MYSQL_DATABASE="CSIT314"
+    #       -p 3306:3306
     - name: Set up Python 3.7
       uses: actions/setup-python@v3
       with:
