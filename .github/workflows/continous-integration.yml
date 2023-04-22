@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Setup MySQL
-      uses: docker://mysql:5.7
+      uses: docker://mysql:8.0
       env:
         MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         MYSQL_USER: ${{ secrets.DATABASE_USER }}
@@ -33,9 +33,9 @@ jobs:
       with:
         args: >
           --name mysql-container
-          -e MYSQL_ROOT_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
-          -e MYSQL_USER=${{ secrets.DATABASE_USER }}
-          -e MYSQL_DATABASE=${{ secrets.DATABASE_SCHEMA }}
+          -e MYSQL_ROOT_PASSWORD="alvianWijaya"
+          -e MYSQL_USER="root"
+          -e MYSQL_DATABASE="CSIT314"
           -p 3306:3306
     - name: Set up Python 3.7
       uses: actions/setup-python@v3
