@@ -20,13 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql-master:
-        image: mysql:5.7
+        image: mysql:8.0
         ports:
           - 3306/tcp
         env:
-        MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-        MYSQL_USER: ${{ secrets.DATABASE_USER }}
-        MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          MYSQL_USER: ${{ secrets.DATABASE_USER }}
+          MYSQL_DATABASE: ${{ secrets.DATABASE_SCHEMA }}
         options: >-
           --name=mysql-master
           --health-cmd="mysqladmin ping"
