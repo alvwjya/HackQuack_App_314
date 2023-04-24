@@ -4,12 +4,14 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 function PaymentMethod() {
   return (
     <Container className="py-5">
-      <Form>
-        <h1>Payment</h1>
+      <h1>PAYMENT</h1>
 
+      <hr />
+
+      <Form>
         <Form.Group className="mb-3" controlId="formBasicTotal">
           <Form.Label>Total</Form.Label>
-          <Form.Control type="text" placeholder="$ amount" />
+          <Form.Control type="text" placeholder="$ amount" disable />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicCardNumber">
@@ -38,16 +40,18 @@ function PaymentMethod() {
           <Form.Label>Billing Email</Form.Label>
           <Form.Control type="text" placeholder="Enter billing email" />
         </Form.Group>
-
-        <div className="d-grid gap-2">
-          <Button variant="primary" size="lg">
-            Confirm
-          </Button>
-          <Button variant="secondary" size="lg">
-            Cancel
-          </Button>
-        </div>
       </Form>
+
+      <div className="d-grid gap-2">
+        <Button variant="primary" size="lg">
+          Confirm
+        </Button>
+        <Button variant="secondary" size="lg">
+          Cancel
+        </Button>
+      </div>
+
+      <hr />
     </Container>
   );
 }

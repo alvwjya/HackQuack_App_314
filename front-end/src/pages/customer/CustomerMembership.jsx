@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Button, Form } from "react-bootstrap";
 
 function CustomerMembership() {
   return (
@@ -9,9 +10,19 @@ function CustomerMembership() {
       <hr />
 
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicTaxNumber">
-          <Form.Label>Tax Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter tax number" />
+        <Form.Group className="mb-3" controlId="formBasicMembershipStartDate">
+          <Form.Label>Start Date</Form.Label>
+          <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicMembershipEndDate">
+          <Form.Label>End Date</Form.Label>
+          <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPrice">
+          <Form.Label>Price</Form.Label>
+          <Form.Control type="text" placeholder="$ amount" disable />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicABN">
@@ -20,7 +31,7 @@ function CustomerMembership() {
         </Form.Group>
 
         <Button variant="primary" size="lg">
-          Add Payment Method
+          Edit Payment Method
         </Button>
       </Form>
 

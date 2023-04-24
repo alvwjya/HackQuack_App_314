@@ -4,7 +4,7 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 function CustomerAccount() {
   return (
     <Container className="py-5">
-      <h1>ACCOUNT SETTING</h1>
+      <h1>CUSTOMER ACCOUNT</h1>
 
       <hr />
 
@@ -30,7 +30,7 @@ function CustomerAccount() {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Email" />
+          <Form.Control type="text" placeholder="Email" disable />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_1">
