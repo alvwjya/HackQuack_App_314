@@ -17,6 +17,7 @@ import CustomerMembership from "./pages/customer/CustomerMembership";
 import ProfessionalAccount from "./pages/professional/ProfessionalAccount";
 
 import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
+import ProfessionalSignUpTwo from "./pages/professional/ProfessionalSignUpTwo";
 
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 import ProfessionalServiceBoard from "./pages/professional/ProfessionalServiceBoard";
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
             path: "professional-sign-up",
             element: <ProfessionalSignUp />,
           },
+          {
+            path: "professional-sign-up-two",
+            element: <ProfessionalSignUpTwo />,
+          },
         ],
       },
       {
@@ -121,7 +126,7 @@ const router = createBrowserRouter([
         element: <AuthorizedRoute userTypes={[USER_TYPE.PROFESSIONAL]} />,
         children: [
           {
-            path: "professional-dashbord",
+            path: "professional-dashboard",
             element: <ProfessionalDashboard />,
           },
           {

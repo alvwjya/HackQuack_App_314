@@ -78,7 +78,7 @@ function ProfessionalSignUp() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+        <Button href="/professional-sign-up-two" variant="primary" size="lg">
           Next
         </Button>
         <Button variant="secondary" size="lg">
