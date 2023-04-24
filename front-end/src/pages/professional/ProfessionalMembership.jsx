@@ -1,7 +1,7 @@
 import React from "react";
 
-function ProfessionalViewHistory() {
+function ProfessionalMembership() {
   return <div>Professional View Service History</div>;
 }
 
-export default ProfessionalViewHistory;
+export default ProfessionalMembership;

@@ -4,23 +4,24 @@ import { USER_TYPE } from "./constants/userTypes";
 import AuthContext from "./contexts/AuthContext";
 
 /*Customer*/
+import CustomerAccount from "./pages/customer/CustomerAccount";
+
 import CustomerSignUp from "./pages/customer/CustomerSignUp";
 
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
-import CustomerSettings from "./pages/customer/CustomerSettings";
+import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
 
-import CustomerViewRequest from "./pages/customer/CustomerViewRequest";
-import NewRequest from "./pages/customer/NewRequest";
+import CustomerMembership from "./pages/customer/CustomerMembership";
 
 /*Professional*/
+import ProfessionalAccount from "./pages/professional/ProfessionalAccount";
+
 import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
-import ProfessionalSignUpTwo from "./pages/professional/ProfessionalSignUpTwo";
 
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
-import ProfessionalSettings from "./pages/professional/ProfessionalSettings";
+import ProfessionalServiceBoard from "./pages/professional/ProfessionalServiceBoard";
 
-import ProfessionalViewRequest from "./pages/professional/ProfessionalViewRequest";
-import ProfessionalViewHistory from "./pages/professional/ProfessionalViewHistory";
+import ProfessionalMembership from "./pages/professional/ProfessionalMembership";
 
 /*HACKQUACK*/
 import Welcome from "./pages/Welcome";
@@ -103,16 +104,16 @@ const router = createBrowserRouter([
             element: <CustomerDashboard />,
           },
           {
-            path: "customer-setting",
-            element: <CustomerSettings />,
+            path: "customer-account",
+            element: <CustomerAccount />,
           },
           {
-            path: "new-request",
-            element: <NewRequest />,
+            path: "customer-create-new-request",
+            element: <CustomerCreateNewRequest />,
           },
           {
-            path: "customer-view-request",
-            element: <CustomerViewRequest />,
+            path: "customer-membership",
+            element: <CustomerMembership />,
           },
         ],
       },
@@ -124,16 +125,16 @@ const router = createBrowserRouter([
             element: <ProfessionalDashboard />,
           },
           {
-            path: "professional-view-request",
-            element: <ProfessionalViewRequest />,
+            path: "professional-service-board",
+            element: <ProfessionalServiceBoard />,
           },
           {
-            path: "professional-settings",
-            element: <ProfessionalSettings />,
+            path: "professional-account",
+            element: <ProfessionalAccount />,
           },
           {
-            path: "professional-view-history",
-            element: <ProfessionalViewHistory />,
+            path: "professional-membership",
+            element: <ProfessionalMembership />,
           },
         ],
       },

@@ -1,11 +1,16 @@
 import React from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
-function Payment() {
+function PaymentMethod() {
   return (
     <Container className="py-5">
       <Form>
         <h1>Payment</h1>
+
+        <Form.Group className="mb-3" controlId="formBasicTotal">
+          <Form.Label>Total</Form.Label>
+          <Form.Control type="text" placeholder="$ amount" />
+        </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicCardNumber">
           <Form.Label>Card Number</Form.Label>
@@ -18,7 +23,7 @@ function Payment() {
               <Form.Label>Expiry</Form.Label>
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="MM YY" />
+              <Form.Control type="text" placeholder="MM/YYYY" />
             </Col>
             <Col>
               <Form.Label>CCV</Form.Label>
@@ -47,4 +52,4 @@ function Payment() {
   );
 }
 
-export default Payment;
+export default PaymentMethod;

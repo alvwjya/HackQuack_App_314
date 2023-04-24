@@ -1,43 +1,90 @@
 import React from "react";
-import { Container, Button, Form, Row, Col, Image } from "react-bootstrap";
+import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
 function ProfessionalSignUp() {
   return (
     <Container className="py-5">
+      <h1>PROFESSIONAL SIGN UP</h1>
+      <p>Headline</p>
+
+      <hr />
+
       <Form>
-        <h1>Professional Sign Up</h1>
-        <p>Headline</p>
-
-        <Form.Group className="mb-3" controlId="formBasicIndustry">
-          <Form.Label>Industry</Form.Label>
-          <Form.Control type="text" placeholder="Enter industry" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicNameCompany">
-          <Form.Label>Name of your company</Form.Label>
-          <Form.Control type="text" placeholder="Enter name of your company" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formLogo">
+        <Form.Group className="mb-3" controlId="formBasicName">
           <Row>
-            <Col align = "center">
-              <Image src="/favicon.ico" roundedCircle/>
+            <Col>
+              <Form.Label>First Name</Form.Label>
             </Col>
             <Col>
-              <Row>
-                <Button variant="primary" className = "mt-5" size="lg">Change</Button>
-                <Button variant="primary" className = "mt-5" size="lg">Remove</Button>
-              </Row>
+              <Form.Label>Last Name</Form.Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Control type="text" placeholder="Enter first name" />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Enter last name" />
             </Col>
           </Row>
         </Form.Group>
 
-        <div className="d-grid gap-2">
-          <Button variant="primary" size="lg">Continue</Button>
-          <Button variant="secondary" size="lg">Cancel</Button>
-        </div>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="text" placeholder="Enter email" />
+        </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicAddress_1">
+          <Form.Label>Address</Form.Label>
+          <Form.Control type="text" placeholder="Enter address" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicAddress_2">
+          <Row>
+            <Col>
+              <Form.Label>Suburb</Form.Label>
+            </Col>
+            <Col>
+              <Form.Label>State</Form.Label>
+            </Col>
+            <Col>
+              <Form.Label>Postcode</Form.Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Control type="text" placeholder="Enter suburb" />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Enter state" />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Enter postcode" />
+            </Col>
+          </Row>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter password" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter confirm Password" />
+        </Form.Group>
       </Form>
+
+      <hr />
+
+      <div className="d-grid gap-2">
+        <Button variant="primary" size="lg">
+          Next
+        </Button>
+        <Button variant="secondary" size="lg">
+          Cancel
+        </Button>
+      </div>
     </Container>
   );
 }

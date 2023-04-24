@@ -1,7 +1,6 @@
 import React from "react";
-import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
-function ProfessionalSignUpTwo() {
+function CustomerMembership() {
   return (
     <Container className="py-5">
       <h1>Professional Sign Up</h1>
@@ -39,4 +38,4 @@ function ProfessionalSignUpTwo() {
   );
 }
 
-export default ProfessionalSignUpTwo;
+export default CustomerMembership;
