@@ -8,6 +8,8 @@ function CustomerSignUp() {
         <h1>Customer Sign Up</h1>
         <p>Headline</p>
 
+        <hr />
+
         <Form.Group className="mb-3" controlId="formBasicName">
           <Row>
             <Col>
@@ -73,11 +75,16 @@ function CustomerSignUp() {
         </Form.Group>
 
         <div className="d-grid gap-2">
-          <Button variant="primary" size="lg">Sign Up</Button>
-          <Button variant="secondary" size="lg">Cancel</Button>
+          <Button variant="primary" size="lg">
+            Sign Up
+          </Button>
+          <Button variant="secondary" size="lg">
+            Cancel
+          </Button>
         </div>
-
       </Form>
+
+      <hr />
     </Container>
   );
 }

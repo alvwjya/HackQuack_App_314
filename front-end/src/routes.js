@@ -2,16 +2,27 @@ import { useContext } from "react";
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import { USER_TYPE } from "./constants/userTypes";
 import AuthContext from "./contexts/AuthContext";
+
+/*Customer*/
 import CustomerSignUp from "./pages/customer/CustomerSignUp";
+
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import CustomerSettings from "./pages/customer/CustomerSettings";
+
 import CustomerViewRequest from "./pages/customer/CustomerViewRequest";
 import NewRequest from "./pages/customer/NewRequest";
+
+/*Professional*/
+import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
+import ProfessionalSignUpTwo from "./pages/professional/ProfessionalSignUpTwo";
+
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 import ProfessionalSettings from "./pages/professional/ProfessionalSettings";
-import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
+
 import ProfessionalViewRequest from "./pages/professional/ProfessionalViewRequest";
 import ProfessionalViewHistory from "./pages/professional/ProfessionalViewHistory";
+
+/*HACKQUACK*/
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 
