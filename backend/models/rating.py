@@ -12,9 +12,6 @@ class Rating(Base):
     rating = Column(Float)
     review = Column(String(1000))
 
-    client = relationship("Client", back_populates="ratings")
-    business = relationship("Business", back_populates="ratings")
-
     def __init__(self, client_id, business_id, rating, review):
         self.client_id = client_id
         self.business_id = business_id
