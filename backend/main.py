@@ -2,7 +2,8 @@
 from models.client import Client
 from models.rating import Rating
 from models.businessServiceRequest import BusinessServiceRequest
-from models.transaction import Transaction 
+from models.transaction import Transaction
+from models.serviceRequest import ServiceRequest
 from database import session_factory
 from datetime import date
 
