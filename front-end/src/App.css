@@ -7,14 +7,14 @@
 #C7594B
 #E17327
 #FF9300
-#FEF7FF Background
+#FEF7FF
 */
 
 /*
 $theme-colors: (
-  'primary'    : #951ABE,
-  'secondary'  : #FF9300,
-  'background' : #FEF7FF
+  'professional': #951ABE,
+  'customer': #FF9300,
+  'background': #FEF7FF
 );
 
 @import '~bootstrap/scss/bootstrap';

@@ -1,11 +1,10 @@
 import React from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
-function CustomerSignUp() {
+function ProfessionalSettings() {
   return (
     <Container className="py-5">
-      <h1>Customer Sign Up</h1>
-      <p>Headline</p>
+      <h1>PROFESSIONAL ACCOUNT</h1>
 
       <hr />
 
@@ -31,7 +30,7 @@ function CustomerSignUp() {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Enter email" />
+          <Form.Control type="text" placeholder="Email" disabled />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_1">
@@ -79,7 +78,7 @@ function CustomerSignUp() {
 
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg">
-          Sign Up
+          Next
         </Button>
         <Button variant="secondary" size="lg">
           Cancel
@@ -89,4 +88,4 @@ function CustomerSignUp() {
   );
 }
 
-export default CustomerSignUp;
+export default ProfessionalSettings;

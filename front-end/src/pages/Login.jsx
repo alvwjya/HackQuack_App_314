@@ -1,31 +1,42 @@
-import React from 'react';
-import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import React from "react";
+import { Container, Button, Form } from "react-bootstrap";
 
 function Login() {
-    return (
-      <Container>
-         <br/><h1 style={{ display: "flex", justifyContent: "center" }}>Login</h1>
+  return (
+    <Container>
+      <br />
+      <h1>Login</h1>
 
-         <div className="d-grid gap-2">
-            <Form.Group className="login" controlId="login-username">
-               <Form.Label>Username</Form.Label>
-               <Form.Control type="password" placeholder="Enter username"/>
-            </Form.Group><br/>
+      <hr />
 
-            <Form.Group className="login" controlId="login-password">
-               <Form.Label>Password</Form.Label>
-               <Form.Control type="password" placeholder="Enter password"/>
-            </Form.Group><br/>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="text" placeholder="Email" />
+        </Form.Group>
 
-            {/*Button functionality yet to be implemented*/}
-            <div className="d-grid gap-2">
-               <Button variant="primary" size="lg">Login</Button>
-               <Button variant="secondary" size="lg">Back</Button>
-            </div>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter password" />
+        </Form.Group>
+      </Form>
 
-         </div>
+      <hr />
+
+      {/*Button functionality yet to be implemented*/}
+      <div className="d-grid gap-2">
+        <Button variant="primary" size="lg">
+          Login Customer
+        </Button>
+        <Button variant="primary" size="lg">
+          Login Professional
+        </Button>
+        <Button variant="secondary" size="lg">
+          Back
+        </Button>
+      </div>
     </Container>
-    );
+  );
 }
 
 export default Login;
