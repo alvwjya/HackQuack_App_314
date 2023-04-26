@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
 
 function ProfessionalServiceBoardRequest() {
   const data = [1, 2, 3, 4, 5];
@@ -9,29 +9,51 @@ function ProfessionalServiceBoardRequest() {
 
       <hr />
 
-      {data.map((data) => (
-        <Card>
-          <Card.Header>Service Title</Card.Header>
-          <Card.Body>
-            <Card.Title>Type of Issue</Card.Title>
-            <Card.Subtitle></Card.Subtitle>
-            <Card.Text>Information</Card.Text>
+      <Nav
+        className="justify-content-center"
+        variant="tabs"
+        defaultActiveKey="/professional-service-board-request"
+      >
+        <Nav.Item>
+          <Nav.Link href="/professional-service-board-request">
+            Request(s)
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/professional-service-board-offer">Offer(s)</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/professional-service-board-active-service">
+            Active Service(s)
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/professional-service-board-past-service">
+            Past Service(s)
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
 
-            <Row>
-              <Col xs={10}>
-                <Button variant="primary">Learn more</Button>
-              </Col>
-              <Col xs={1}>
-                <Button variant="primary">Decline</Button>
-              </Col>
-              <Col xs={1}>
-                <Button variant="primary">Accept</Button>
-              </Col>
-            </Row>
-          </Card.Body>
-          <Card.Footer>Location</Card.Footer>
-          <Card.Footer>Time</Card.Footer>
-        </Card>
+      {data.map((data) => (
+        <div class="container py-3">
+          <Card>
+            <Card.Header>Service Title</Card.Header>
+            <Card.Body>
+              <Card.Title>Type of Issue</Card.Title>
+              <Card.Text>Information</Card.Text>
+              <Button
+                href="/customer-service-board-request-offer"
+                variant="primary"
+              >
+                Offer(s)
+              </Button>{" "}
+              <Button variant="primary">Cancel Request</Button>
+            </Card.Body>
+
+            <Card.Footer>Location</Card.Footer>
+            <Card.Footer>Time</Card.Footer>
+          </Card>
+        </div>
       ))}
 
       <hr />
