@@ -10,13 +10,15 @@ import CustomerSignUp from "./pages/customer/CustomerSignUp";
 
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 
-import CustomerServiceBoardRequest from "./pages/customer/CustomerServiceBoardRequest";
-import CustomerServiceBoardOffer from "./pages/customer/CustomerServiceBoardOffer";
-import CustomerOfferProfessionalDetails from "./pages/customer/CustomerOfferProfessionalDetail";
-import CustomerServiceBoardHistory from "./pages/customer/CustomerServiceBoardHistory";
-
 import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
 
+import CustomerServiceBoardRequest from "./pages/customer/CustomerServiceBoardRequest";
+import CustomerServiceBoardRequestOffer from "./pages/customer/CustomerServiceBoardRequestOffer";
+import CustomerOfferProfessionalDetails from "./pages/customer/CustomerServiceBoardRequestOfferDetail";
+
+import CustomerServiceBoardActiveService from "./pages/customer/CustomerServiceBoardActiveService";
+
+import CustomerServiceBoardPastService from "./pages/customer/CustomerServiceBoardPastService";
 
 
 import CustomerMembership from "./pages/customer/CustomerMembership";
@@ -137,17 +139,22 @@ const router = createBrowserRouter([
             element: <CustomerServiceBoardRequest />,
           },
           {
-            path: "customer-service-board-offer",
-            element: <CustomerServiceBoardOffer />,
+            path: "customer-service-board-request-offer",
+            element: <CustomerServiceBoardRequestOffer />,
+          },
+          {
+            path: "customer-service-board-active-service",
+            element: <CustomerServiceBoardActiveService />,
+          },
+          {
+            path: "customer-service-board-past-service",
+            element: <CustomerServiceBoardPastService />,
           },
           {
             path: "customer-offer-professional-details",
             element: <CustomerOfferProfessionalDetails />,
           },
-          {
-            path: "customer-service-board-history",
-            element: <CustomerServiceBoardHistory />,
-          },
+          
           {
             path: "customer-membership",
             element: <CustomerMembership />,

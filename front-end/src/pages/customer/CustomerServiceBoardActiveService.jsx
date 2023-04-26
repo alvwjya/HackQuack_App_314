@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
 
-function CustomerServiceBoardRequest() {
+function CustomerServiceBoardActive() {
   const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
@@ -12,7 +12,7 @@ function CustomerServiceBoardRequest() {
       <Nav
         className="justify-content-center"
         variant="tabs"
-        defaultActiveKey="/customer-service-board-request"
+        defaultActiveKey="/customer-service-board-active-service"
       >
         <Nav.Item>
           <Nav.Link href="/customer-service-board-request">Request(s)</Nav.Link>
@@ -36,13 +36,6 @@ function CustomerServiceBoardRequest() {
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
               <Card.Text>Information</Card.Text>
-              <Button
-                href="/customer-service-board-request-offer"
-                variant="primary"
-              >
-                Offer(s)
-              </Button>{" "}
-              <Button variant="primary">Cancel Request</Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>
@@ -56,4 +49,4 @@ function CustomerServiceBoardRequest() {
   );
 }
 
-export default CustomerServiceBoardRequest;
+export default CustomerServiceBoardActive;
