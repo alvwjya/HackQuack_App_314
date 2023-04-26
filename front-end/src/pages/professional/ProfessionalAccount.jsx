@@ -39,7 +39,6 @@ function ProfessionalSettings() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_2">
-          <h2>PRICE AND DETAIL</h2>
           <Row>
             <Col>
               <Form.Label>Suburb</Form.Label>

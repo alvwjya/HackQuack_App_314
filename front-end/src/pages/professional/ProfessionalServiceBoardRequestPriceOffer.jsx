@@ -68,6 +68,7 @@ function ProfessionalPriceOffer() {
         <Col>
           <Form>
             <FormGroup className="py-3" controlId="formBasicPriceOffer">
+              <Form.Label>PRICE AND DETAIL</Form.Label>
               <Row>
                 <Col>
                   <Form.Label>Service Price</Form.Label>
