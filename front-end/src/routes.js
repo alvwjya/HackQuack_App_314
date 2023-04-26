@@ -110,6 +110,7 @@ const router = createBrowserRouter([
           },
         ],
       },*/
+
       {
         /*element: <AuthorizedRoute userTypes={[USER_TYPE.CUSTOMER]} />,*/
         element: <GuestRoute />,
@@ -139,7 +140,7 @@ const router = createBrowserRouter([
             element: <CustomerServiceBoardRequest />,
           },
           {
-            path: "customer-service-board-request-offer",
+            path: "customer-service-board-offer",
             element: <CustomerServiceBoardRequestOffer />,
           },
           {
@@ -161,9 +162,14 @@ const router = createBrowserRouter([
           },
         ],
       },
+      
       {
         element: <AuthorizedRoute userTypes={[USER_TYPE.PROFESSIONAL]} />,
         children: [
+          {
+            index: true,
+            element: <ProfessionalDashboard />,
+          },
           {
             path: "professional-dashboard",
             element: <ProfessionalDashboard />,
