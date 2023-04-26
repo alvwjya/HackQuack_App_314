@@ -13,7 +13,7 @@ function ProfessionalDashboard() {
         <Button href="/professional-service-board" variant="primary" size="lg">
           Service Board
         </Button>
-        <Button variant="primary" size="lg">
+        <Button href="/professional-account" variant="primary" size="lg">
           Account
         </Button>
       </div>
