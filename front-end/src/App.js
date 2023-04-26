@@ -14,11 +14,14 @@ function App() {
       token: String
     }
   */
-  const [user, setUser] = useState({
-    username: "",
-    userType: USER_TYPE.PROFESSIONAL,
-    token: ""
-  });
+
+//    const [user, setUser] = useState({
+//    username: "",
+//    userType: USER_TYPE.PROFESSIONAL,
+//    token: ""
+//  });
+
+  const [user, setUser] = useState(null);
 
   const authContext = useMemo(
     () => ({

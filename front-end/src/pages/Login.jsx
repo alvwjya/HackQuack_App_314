@@ -1,40 +1,51 @@
 import React from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Button, Form, Card } from "react-bootstrap";
 
 function Login() {
   return (
-    <Container>
-      <br />
-      <h1>Login</h1>
+    <Container style={{backgroundColor : "#CDBFA0"}}>
 
-      <hr />
+      <br/>
 
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Email" />
-        </Form.Group>
+      <Card className="mx-auto" style={{backgroundColor : "lightslategray", width: 500 }}>
+        <Card.Body>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter password" />
-        </Form.Group>
-      </Form>
+          <h1>Login</h1>
 
-      <hr />
+          <hr />
 
-      {/*Button functionality yet to be implemented*/}
-      <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
-          Login Customer
-        </Button>
-        <Button variant="primary" size="lg">
-          Login Professional
-        </Button>
-        <Button variant="secondary" size="lg">
-          Back
-        </Button>
-      </div>
+          <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="text" placeholder="Email" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Enter password" />
+            </Form.Group>
+          </Form>
+
+          <hr />
+
+          {/*Button functionality yet to be implemented*/}
+          <div className="d-grid gap-2">
+            <Button variant="primary" size="lg">
+              Login Customer
+            </Button>
+            <Button variant="primary" size="lg">
+              Login Professional
+            </Button>
+            <Button variant="secondary" size="lg">
+              Back
+            </Button>
+          </div>
+
+        </Card.Body>
+      </Card>
+
+      <br/><br/><br/><br/>
+      
     </Container>
   );
 }
