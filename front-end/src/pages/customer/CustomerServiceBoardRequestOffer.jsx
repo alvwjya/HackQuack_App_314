@@ -68,7 +68,7 @@ function CustomerServiceBoardOffer() {
                 <Card.Footer>Reviews</Card.Footer>
               </Card>
             </div>
-          ))}{" "}
+          ))}
         </Col>
       </Row>
 

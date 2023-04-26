@@ -8,6 +8,7 @@ import {
   Row,
   Col,
   FormGroup,
+  Table,
 } from "react-bootstrap";
 
 function ProfessionalPriceOffer() {
@@ -20,18 +21,23 @@ function ProfessionalPriceOffer() {
       <Nav
         className="justify-content-center"
         variant="tabs"
-        defaultActiveKey="/customer-service-board-request"
+        defaultActiveKey="/professional-service-board-request"
       >
         <Nav.Item>
-          <Nav.Link href="/customer-service-board-request">Request(s)</Nav.Link>
+          <Nav.Link href="/professional-service-board-request">
+            Request(s)
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/customer-service-board-active-service">
+          <Nav.Link href="/professional-service-board-offer">Offer(s)</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/professional-service-board-active-service">
             Active Service(s)
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/customer-service-board-past-service">
+          <Nav.Link href="/professional-service-board-past-service">
             Past Service(s)
           </Nav.Link>
         </Nav.Item>
@@ -59,7 +65,6 @@ function ProfessionalPriceOffer() {
                   Offer Service
                 </Button>
               </Card.Body>
-
               <Card.Footer>Location</Card.Footer>
               <Card.Footer>Time</Card.Footer>
             </Card>
@@ -69,16 +74,40 @@ function ProfessionalPriceOffer() {
           <Form>
             <FormGroup className="py-3" controlId="formBasicPriceOffer">
               <Form.Label>PRICE AND DETAIL</Form.Label>
-              <Row>
-                <Col>
-                  <Form.Label>Service Price</Form.Label>
-                </Col>
-                <Col>
-                  <Form.Control type="text" placeholder="Enter price" />
-                </Col>
-              </Row>
+              <Table>
+                <tr>
+                  <td>
+                    <Form.Label>Service Price</Form.Label>
+                  </td>
+                  <td>
+                    <Form.Control type="text" placeholder="Enter price" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Form.Label>Comission Fee</Form.Label>
+                  </td>
+                  <td>
+                    <Form.Control type="text" placeholder="Enter price" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Form.Label>Tax</Form.Label>
+                  </td>
+                  <td>
+                    <Form.Control type="text" placeholder="Enter price" />
+                  </td>
+                </tr>
+              </Table>
+
+              <div className="d-grid gap-2">
+                <Button variant="primary" size="lg">
+                  Send Offer
+                </Button>
+              </div>
             </FormGroup>
-          </Form>
+          </Form>{" "}
         </Col>
       </Row>
 

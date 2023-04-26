@@ -32,9 +32,9 @@ import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
 import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
 import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
-import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardRequest";
-import ProfessionalServiceBoardActiveService from "./pages/professional/ProfessionalServiceBoardRequest";
-import ProfessionalServiceBoardPastService from "./pages/professional/ProfessionalServiceBoardRequest";
+import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardOffer";
+import ProfessionalServiceBoardActiveService from "./pages/professional/ProfessionalServiceBoardActiveService";
+import ProfessionalServiceBoardPastService from "./pages/professional/ProfessionalServiceBoardPastService";
 
 import ProfessionalMembership from "./pages/professional/ProfessionalMembership";
 

@@ -34,7 +34,7 @@ function Login() {
             <Button href="/customer-dashboard" variant="primary" size="lg">
               Login Customer
             </Button>
-            <Button variant="primary" size="lg">
+            <Button href="/professional-dashboard" variant="primary" size="lg">
               Login Professional
             </Button>
             <Button variant="secondary" size="lg">
