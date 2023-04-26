@@ -83,7 +83,13 @@ function CustomerAccount() {
 
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg">
-          View Membership
+          Membership
+        </Button>
+        <Button variant="primary" size="lg">
+          Cancel
+        </Button>
+        <Button variant="primary" size="lg">
+          Save
         </Button>
       </div>
     </Container>
