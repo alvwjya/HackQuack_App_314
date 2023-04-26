@@ -1,12 +1,11 @@
 import React from "react";
-import { Container, Button, Card, Row, Col } from "react-bootstrap";
+import { Nav, Container, Button, Card, Row, Col } from "react-bootstrap";
 
-function CustomerHistoryService() {
+function CustomerServiceBoardOffer() {
   const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
-      <Button variant="danger">Cencel Request</Button>
-      <h1>OFFER REQUEST LIST</h1>
+      <h1>SERVICE BOARD</h1>
 
       <hr />
 
@@ -40,4 +39,4 @@ function CustomerHistoryService() {
   );
 }
 
-export default CustomerHistoryService;
+export default CustomerServiceBoardOffer;

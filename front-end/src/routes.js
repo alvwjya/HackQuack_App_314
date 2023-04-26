@@ -10,13 +10,14 @@ import CustomerSignUp from "./pages/customer/CustomerSignUp";
 
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 
-import CustomerServiceBoard from "./pages/customer/CustomerServiceBoardRequest";
+import CustomerServiceBoardRequest from "./pages/customer/CustomerServiceBoardRequest";
+import CustomerServiceBoardOffer from "./pages/customer/CustomerServiceBoardOffer";
+import CustomerOfferProfessionalDetails from "./pages/customer/CustomerOfferProfessionalDetail";
+import CustomerServiceBoardHistory from "./pages/customer/CustomerServiceBoardHistory";
 
 import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
-import CustomerOfferServiceList from "./pages/customer/CustomerOfferServiceList";
-import CustomerOfferProfessionalDetails from "./pages/customer/CustomerOfferProfessionalDetails";
 
-import CustomerHistoryService from "./pages/customer/CustomerHistoryService";
+
 
 import CustomerMembership from "./pages/customer/CustomerMembership";
 
@@ -115,33 +116,37 @@ const router = createBrowserRouter([
             index: true,
             element: <CustomerDashboard />,
           },
+          // Dashboard
           {
             path: "customer-dashboard",
             element: <CustomerDashboard />,
           },
+          // Account
           {
             path: "customer-account",
             element: <CustomerAccount />,
           },
+          // Create New Request
           {
             path: "customer-create-new-request",
             element: <CustomerCreateNewRequest />,
           },
+          // Service Board
           {
-            path: "customer-offer-service-list",
-            element: <CustomerOfferServiceList />,
+            path: "customer-service-board-request",
+            element: <CustomerServiceBoardRequest />,
+          },
+          {
+            path: "customer-service-board-offer",
+            element: <CustomerServiceBoardOffer />,
           },
           {
             path: "customer-offer-professional-details",
             element: <CustomerOfferProfessionalDetails />,
           },
           {
-            path: "customer-service-board",
-            element: <CustomerServiceBoard />,
-          },
-          {
-            path: "customer-history-service",
-            element: <CustomerHistoryService />,
+            path: "customer-service-board-history",
+            element: <CustomerServiceBoardHistory />,
           },
           {
             path: "customer-membership",

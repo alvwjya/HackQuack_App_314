@@ -4,7 +4,8 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 function CustomerAccount() {
   return (
     <Container className="py-5">
-      <h1>CUSTOMER ACCOUNT</h1>
+      <h1>ACCOUNT SETTINGS</h1>
+      <h2>Customer Account</h2>
 
       <hr />
 
@@ -30,7 +31,11 @@ function CustomerAccount() {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Email" disable />
+          <Form.Control
+            type="text"
+            placeholder="johndoe@gmail.com"
+            disabled="disabled"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_1">
@@ -79,12 +84,6 @@ function CustomerAccount() {
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg">
           View Membership
-        </Button>
-        <Button variant="primary" size="lg">
-          Sign Up
-        </Button>
-        <Button variant="secondary" size="lg">
-          Cancel
         </Button>
       </div>
     </Container>

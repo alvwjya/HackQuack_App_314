@@ -10,10 +10,17 @@ function CustomerDashboard() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button href="/customer-service-board" variant="primary" size="lg">
+        <Button href="/customer-create-new-request" variant="primary" size="lg">
+          Create New Request
+        </Button>
+        <Button
+          href="/customer-service-board-request"
+          variant="primary"
+          size="lg"
+        >
           Service Board
         </Button>
-        <Button variant="primary" size="lg">
+        <Button href="/customer-account" variant="primary" size="lg">
           Account
         </Button>
       </div>

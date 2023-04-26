@@ -2,19 +2,19 @@ import React from "react";
 import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
 
 function CustomerServiceBoard() {
-  const data = [1, 2, 3, 4, 5];
+  const data = [1];
   return (
     <Container className="py-5">
       <h1>SERVICE BOARD</h1>
 
       <hr />
 
-      <Nav variant="tabs" defaultActiveKey="/home">
+      <Nav variant="tabs" defaultActiveKey="/customer-service-board-request">
         <Nav.Item>
-          <Nav.Link href="/home">Request(s)</Nav.Link>
+          <Nav.Link href="/customer-service-board-request">Request(s)</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">Offer(s)</Nav.Link>
+          <Nav.Link href="/customer-service-board-offer">Offer(s)</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-1">Active Service(s)</Nav.Link>
@@ -31,22 +31,9 @@ function CustomerServiceBoard() {
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
               <Card.Text>Information</Card.Text>
-              <Row>
-                <Col xs={10}>
-                  <Button
-                    href="/customer-offer-professional-details"
-                    variant="primary"
-                  >
-                    Learn more
-                  </Button>
-                </Col>
-                <Col xs={1}>
-                  <Button variant="primary">Decline</Button>
-                </Col>
-                <Col xs={1}>
-                  <Button variant="primary">Accept</Button>
-                </Col>
-              </Row>
+              <Button variant="primary" align="right">
+                Cancel Request
+              </Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

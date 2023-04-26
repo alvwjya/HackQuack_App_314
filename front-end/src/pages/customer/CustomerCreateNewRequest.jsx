@@ -29,6 +29,8 @@ function CustomerCreateNewRequest() {
           </Form.Select>
         </Form.Group>
 
+        <hr />
+
         <div className="d-grid gap-2">
           <Button variant="primary" size="lg">
             Make Request
@@ -38,8 +40,6 @@ function CustomerCreateNewRequest() {
           </Button>
         </div>
       </Form>
-
-      <hr />
     </Container>
   );
 }
