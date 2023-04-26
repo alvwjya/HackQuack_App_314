@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Button, Row, Col } from "react-bootstrap";
+import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
 
 function CustomerServiceBoard() {
   const data = [1, 2, 3, 4, 5];
@@ -9,18 +9,36 @@ function CustomerServiceBoard() {
 
       <hr />
 
+      <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link href="/home">Request(s)</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1">Offer(s)</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1">Active Service(s)</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1">Past Service(s)</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
       {data.map((data) => (
-        <Container class="container p-3 my-3 border">
+        <div class="container p-3">
           <Card>
             <Card.Header>Service Title</Card.Header>
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
-              <Card.Subtitle></Card.Subtitle>
               <Card.Text>Information</Card.Text>
-
               <Row>
                 <Col xs={10}>
-                  <Button variant="primary">Learn more</Button>
+                  <Button
+                    href="/customer-offer-professional-details"
+                    variant="primary"
+                  >
+                    Learn more
+                  </Button>
                 </Col>
                 <Col xs={1}>
                   <Button variant="primary">Decline</Button>
@@ -30,10 +48,11 @@ function CustomerServiceBoard() {
                 </Col>
               </Row>
             </Card.Body>
+
             <Card.Footer>Location</Card.Footer>
             <Card.Footer>Time</Card.Footer>
           </Card>
-        </Container>
+        </div>
       ))}
 
       <hr />

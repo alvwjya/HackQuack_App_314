@@ -10,11 +10,11 @@ import CustomerSignUp from "./pages/customer/CustomerSignUp";
 
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
 
-import CustomerServiceBoard from "./pages/customer/CustomerServiceBoard";
+import CustomerServiceBoard from "./pages/customer/CustomerServiceBoardRequest";
 
 import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
 import CustomerOfferServiceList from "./pages/customer/CustomerOfferServiceList";
-import CustomerOfferProfessionalDetail from "./pages/customer/CustomerOfferProfessionalDetails";
+import CustomerOfferProfessionalDetails from "./pages/customer/CustomerOfferProfessionalDetails";
 
 import CustomerHistoryService from "./pages/customer/CustomerHistoryService";
 
@@ -132,8 +132,8 @@ const router = createBrowserRouter([
             element: <CustomerOfferServiceList />,
           },
           {
-            path: "customer-offer-professional-detail",
-            element: <CustomerOfferProfessionalDetail />,
+            path: "customer-offer-professional-details",
+            element: <CustomerOfferProfessionalDetails />,
           },
           {
             path: "customer-service-board",
