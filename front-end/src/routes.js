@@ -31,7 +31,7 @@ import ProfessionalSignUpTwo from "./pages/professional/ProfessionalSignUpTwo";
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
 import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
-
+import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardRequest";
 import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
 
 import ProfessionalMembership from "./pages/professional/ProfessionalMembership";
