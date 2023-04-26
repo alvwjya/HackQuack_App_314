@@ -9,7 +9,14 @@ import CustomerAccount from "./pages/customer/CustomerAccount";
 import CustomerSignUp from "./pages/customer/CustomerSignUp";
 
 import CustomerDashboard from "./pages/customer/CustomerDashboard";
+
 import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
+import CustomerOfferServiceList from "./pages/customer/CustomerOfferServiceList";
+import CustomerOfferProfessionalDetail from "./pages/customer/CustomerOfferProfessionalDetails";
+
+import CustomerServiceBoard from "./pages/customer/CustomerServiceBoard";
+
+import CustomerHistoryService from "./pages/customer/CustomerHistoryService";
 
 import CustomerMembership from "./pages/customer/CustomerMembership";
 
@@ -115,6 +122,18 @@ const router = createBrowserRouter([
           {
             path: "customer-create-new-request",
             element: <CustomerCreateNewRequest />,
+          },
+          {
+            path: "customer-offer-service-list",
+            element: <CustomerOfferServiceList />,
+          },
+          {
+            path: "customer-offer-professional-detail",
+            element: <CustomerOfferProfessionalDetail />,
+          },
+          {
+            path: "customer-history-service",
+            element: <CustomerHistoryService />,
           },
           {
             path: "customer-membership",

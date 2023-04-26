@@ -4,8 +4,7 @@ import { Container, Button, Form } from "react-bootstrap";
 function CustomerMembership() {
   return (
     <Container className="py-5">
-      <h1>Professional Sign Up</h1>
-      <p>Headline</p>
+      <h1>CUSTOMER MEMBERSHIP</h1>
 
       <hr />
 

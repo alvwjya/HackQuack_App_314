@@ -3,19 +3,20 @@ import { Container, Button, Form, Card } from "react-bootstrap";
 
 function Login() {
   return (
-    <Container style={{backgroundColor : "#CDBFA0"}}>
+    <Container style={{ backgroundColor: "#CDBFA0" }}>
+      <br />
 
-      <br/>
-
-      <Card className="mx-auto" style={{backgroundColor : "lightslategray", width: 500 }}>
+      <Card
+        className="mx-auto"
+        style={{ backgroundColor: "lightslategray", width: 500 }}
+      >
         <Card.Body>
-
           <h1>Login</h1>
 
           <hr />
 
           <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="text" placeholder="Email" />
             </Form.Group>
@@ -40,12 +41,13 @@ function Login() {
               Back
             </Button>
           </div>
-
         </Card.Body>
       </Card>
 
-      <br/><br/><br/><br/>
-      
+      <br />
+      <br />
+      <br />
+      <br />
     </Container>
   );
 }

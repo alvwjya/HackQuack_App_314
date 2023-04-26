@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
 
-function ProfessionalServiceBoard() {
+function CustomerServiceBoard() {
   const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
@@ -39,4 +39,4 @@ function ProfessionalServiceBoard() {
   );
 }
 
-export default ProfessionalServiceBoard;
+export default CustomerServiceBoard;
