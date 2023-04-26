@@ -10,7 +10,7 @@ function CustomerDashboard() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+        <Button href="/customer-service-board" variant="primary" size="lg">
           Service Board
         </Button>
         <Button variant="primary" size="lg">

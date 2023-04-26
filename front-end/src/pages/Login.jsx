@@ -31,7 +31,7 @@ function Login() {
 
           {/*Button functionality yet to be implemented*/}
           <div className="d-grid gap-2">
-            <Button variant="primary" size="lg">
+            <Button href="/customer-dashboard" variant="primary" size="lg">
               Login Customer
             </Button>
             <Button variant="primary" size="lg">

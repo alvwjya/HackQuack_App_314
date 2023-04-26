@@ -10,28 +10,30 @@ function CustomerServiceBoard() {
       <hr />
 
       {data.map((data) => (
-        <Card>
-          <Card.Header>Service Title</Card.Header>
-          <Card.Body>
-            <Card.Title>Type of Issue</Card.Title>
-            <Card.Subtitle></Card.Subtitle>
-            <Card.Text>Information</Card.Text>
+        <Container class="container p-3 my-3 border">
+          <Card>
+            <Card.Header>Service Title</Card.Header>
+            <Card.Body>
+              <Card.Title>Type of Issue</Card.Title>
+              <Card.Subtitle></Card.Subtitle>
+              <Card.Text>Information</Card.Text>
 
-            <Row>
-              <Col xs={10}>
-                <Button variant="primary">Learn more</Button>
-              </Col>
-              <Col xs={1}>
-                <Button variant="primary">Decline</Button>
-              </Col>
-              <Col xs={1}>
-                <Button variant="primary">Accept</Button>
-              </Col>
-            </Row>
-          </Card.Body>
-          <Card.Footer>Location</Card.Footer>
-          <Card.Footer>Time</Card.Footer>
-        </Card>
+              <Row>
+                <Col xs={10}>
+                  <Button variant="primary">Learn more</Button>
+                </Col>
+                <Col xs={1}>
+                  <Button variant="primary">Decline</Button>
+                </Col>
+                <Col xs={1}>
+                  <Button variant="primary">Accept</Button>
+                </Col>
+              </Row>
+            </Card.Body>
+            <Card.Footer>Location</Card.Footer>
+            <Card.Footer>Time</Card.Footer>
+          </Card>
+        </Container>
       ))}
 
       <hr />
