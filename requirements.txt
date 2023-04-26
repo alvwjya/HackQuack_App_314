@@ -1,2 +1,0 @@
-Requirements are:
-GUI: django 
