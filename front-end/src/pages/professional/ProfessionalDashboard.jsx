@@ -10,7 +10,11 @@ function ProfessionalDashboard() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button href="/professional-service-board" variant="primary" size="lg">
+        <Button
+          href="/professional-service-board-request"
+          variant="primary"
+          size="lg"
+        >
           Service Board
         </Button>
         <Button href="/professional-account" variant="primary" size="lg">

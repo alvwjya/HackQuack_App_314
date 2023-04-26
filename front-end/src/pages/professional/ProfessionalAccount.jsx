@@ -30,7 +30,7 @@ function ProfessionalSettings() {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Email" disabled />
+          <Form.Control type="text" placeholder="johndoe@gmail.com" disabled />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_1">
@@ -78,10 +78,13 @@ function ProfessionalSettings() {
 
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg">
-          Next
+          Membership
         </Button>
-        <Button variant="secondary" size="lg">
+        <Button variant="primary" size="lg">
           Cancel
+        </Button>
+        <Button variant="primary" size="lg">
+          Save
         </Button>
       </div>
     </Container>

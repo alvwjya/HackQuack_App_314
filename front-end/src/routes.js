@@ -14,12 +14,11 @@ import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest"
 
 import CustomerServiceBoardRequest from "./pages/customer/CustomerServiceBoardRequest";
 import CustomerServiceBoardRequestOffer from "./pages/customer/CustomerServiceBoardRequestOffer";
-import CustomerOfferProfessionalDetails from "./pages/customer/CustomerServiceBoardRequestOfferDetail";
+import CustomerServiceBoardRequestOfferDetail from "./pages/customer/CustomerServiceBoardRequestOfferDetail";
 
 import CustomerServiceBoardActiveService from "./pages/customer/CustomerServiceBoardActiveService";
 
 import CustomerServiceBoardPastService from "./pages/customer/CustomerServiceBoardPastService";
-
 
 import CustomerMembership from "./pages/customer/CustomerMembership";
 
@@ -31,9 +30,9 @@ import ProfessionalSignUpTwo from "./pages/professional/ProfessionalSignUpTwo";
 
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
-import ProfessionalServiceBoard from "./pages/professional/ProfessionalServiceBoard";
+import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
 
-import ProfessionalPriceOffer from "./pages/professional/ProfessionalPriceOffer";
+import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
 
 import ProfessionalMembership from "./pages/professional/ProfessionalMembership";
 
@@ -112,8 +111,37 @@ const router = createBrowserRouter([
       },*/
 
       {
-        /*element: <AuthorizedRoute userTypes={[USER_TYPE.CUSTOMER]} />,*/
+        /*element: <AuthorizedRoute userTypes={[USER_TYPE.PROFESSIONAL]} />,*/
         element: <GuestRoute />,
+        children: [
+          {
+            index: true,
+            element: <ProfessionalDashboard />,
+          },
+          // Dashboard
+          {
+            path: "professional-dashboard",
+            element: <ProfessionalDashboard />,
+          },
+          // Account
+          {
+            path: "professional-account",
+            element: <ProfessionalAccount />,
+          },
+          {
+            path: "professional-membership",
+            element: <ProfessionalMembership />,
+          },
+          // Service Board
+          {
+            path: "professional-service-board-request",
+            element: <ProfessionalServiceBoardRequest />,
+          },
+        ],
+      },
+
+      {
+        element: <AuthorizedRoute userTypes={[USER_TYPE.CUSTOMER]} />,
         children: [
           {
             index: true,
@@ -129,6 +157,10 @@ const router = createBrowserRouter([
             path: "customer-account",
             element: <CustomerAccount />,
           },
+          {
+            path: "customer-membership",
+            element: <CustomerMembership />,
+          },
           // Create New Request
           {
             path: "customer-create-new-request",
@@ -140,7 +172,7 @@ const router = createBrowserRouter([
             element: <CustomerServiceBoardRequest />,
           },
           {
-            path: "customer-service-board-offer",
+            path: "customer-service-board-request-offer",
             element: <CustomerServiceBoardRequestOffer />,
           },
           {
@@ -152,42 +184,12 @@ const router = createBrowserRouter([
             element: <CustomerServiceBoardPastService />,
           },
           {
-            path: "customer-offer-professional-details",
-            element: <CustomerOfferProfessionalDetails />,
-          },
-          
-          {
-            path: "customer-membership",
-            element: <CustomerMembership />,
+            path: "customer-service-board-request-offer-detail",
+            element: <CustomerServiceBoardRequestOfferDetail />,
           },
         ],
       },
-      
-      {
-        element: <AuthorizedRoute userTypes={[USER_TYPE.PROFESSIONAL]} />,
-        children: [
-          {
-            index: true,
-            element: <ProfessionalDashboard />,
-          },
-          {
-            path: "professional-dashboard",
-            element: <ProfessionalDashboard />,
-          },
-          {
-            path: "professional-service-board",
-            element: <ProfessionalServiceBoard />,
-          },
-          {
-            path: "professional-account",
-            element: <ProfessionalAccount />,
-          },
-          {
-            path: "professional-membership",
-            element: <ProfessionalMembership />,
-          },
-        ],
-      },
+
     ],
   },
 ]);
