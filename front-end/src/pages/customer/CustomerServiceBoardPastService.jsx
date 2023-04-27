@@ -36,6 +36,7 @@ function CustomerServiceBoardPastService() {
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
               <Card.Text>Information</Card.Text>
+              <Button variant="primary">Rating and Review</Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>
