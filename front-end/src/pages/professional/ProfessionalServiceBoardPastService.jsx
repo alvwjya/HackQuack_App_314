@@ -34,6 +34,22 @@ function ProfessionalServicePastService() {
         </Nav.Item>
       </Nav>
 
+      {data.map((data) => (
+        <div class="container py-3">
+          <Card>
+            <Card.Header>Service Title</Card.Header>
+            <Card.Body>
+              <Card.Title>Type of Issue</Card.Title>
+              <Card.Subtitle>Customer Name</Card.Subtitle>
+              <Card.Text>Information</Card.Text>
+            </Card.Body>
+
+            <Card.Footer>Location</Card.Footer>
+            <Card.Footer>Time</Card.Footer>
+          </Card>
+        </div>
+      ))}
+
       <hr />
     </Container>
   );

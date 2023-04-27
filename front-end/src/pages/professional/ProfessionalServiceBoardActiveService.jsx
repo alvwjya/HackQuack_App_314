@@ -42,19 +42,7 @@ function ProfessionalServiceActiveService() {
               <Card.Title>Type of Issue</Card.Title>
               <Card.Subtitle>Customer Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
-              <Button
-                href="/professional-service-board-request-detail"
-                variant="primary"
-              >
-                Learn More
-              </Button>{" "}
-              <Button variant="primary">Decline Request</Button>{" "}
-              <Button
-                href="/professional-service-board-request-price-offer"
-                variant="primary"
-              >
-                Offer Service
-              </Button>
+              <Button variant="primary">Finish Service</Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

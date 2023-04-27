@@ -82,7 +82,7 @@ function CustomerAccount() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+        <Button href="/customer-membership" variant="primary" size="lg">
           Membership
         </Button>
         <Button variant="primary" size="lg">
