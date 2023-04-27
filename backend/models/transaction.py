@@ -11,8 +11,8 @@ class Transaction(Base):
     total_cost = Column(Float)
     transaction_time = Column(DateTime, default = datetime.utcnow)
 
-    # service_request = relationship('ServiceRequest', back_populates = 'transaction')
-    # business = relationship('Business', back_populates = 'transaction')
+    service_request = relationship('ServiceRequest', back_populates = 'transaction')
+    business = relationship('Business', back_populates = 'transaction')
 
     def __init__(self, service_request_id, business_id, total_cost, transaction_time):
         self.service_request_id = service_request_id
