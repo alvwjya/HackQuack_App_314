@@ -7,7 +7,12 @@ function Welcome() {
       <Container className="py-5">
         <Card className="mx-auto" style={{ width: 500 }}>
           <Card.Body>
-            <h1 style={{ display: "flex", justifyContent: "center" }}>
+            <h1
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               Welcome
             </h1>
 
@@ -21,15 +26,9 @@ function Welcome() {
 
             {/*Button*/}
             <div className="d-grid gap-2">
-              <Button href="/customer-sign-up" variant="primary">
-                Sign up Customer
-              </Button>
-              <Button href="/professional-sign-up" variant="primary">
-                Sign up Professional
-              </Button>
-              <Button href="/login" variant="primary">
-                Log in
-              </Button>
+              <Button href="/customer-sign-up">Sign up Customer</Button>
+              <Button href="/professional-sign-up">Sign up Professional</Button>
+              <Button href="/login">Log in</Button>
             </div>
           </Card.Body>
         </Card>
