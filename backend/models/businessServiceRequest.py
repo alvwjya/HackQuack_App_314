@@ -8,8 +8,8 @@ class BusinessServiceRequest(Base):
     service_request_id = Column(Integer, ForeignKey('service_request.id'))
     business_id = Column(Integer, ForeignKey('business.id'))
 
-    # service_request = relationship('ServiceRequest', back_populates = 'business_service_request')
-    # business = relationship('Business', back_populates = 'business_service_request')
+    service_request = relationship('ServiceRequest', back_populates = 'business_service_requests')
+    business = relationship('Business', back_populates = 'business_service_requests')
 
     def __init__(self, service_request_id, business_id):
         self.service_request_id = service_request_id
