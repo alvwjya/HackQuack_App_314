@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date
 from database import Base
-
+from sqlalchemy.orm import relationship
 
 class Business(Base):
     __tablename__ = "business"
@@ -13,6 +13,9 @@ class Business(Base):
     card_number = Column(String(255))
     card_security_num = Column(String(255))
     card_expiry_date = Column(Date)
+    
+    business_service_requests = relationship('BusinessServiceRequest', back_populates = 'business')
+    transaction = relationship('Transaction', back_populates = 'business')
 
     def __init__(self, business_name, ibn, password, location, card_number, card_security_num, card_expiry_date):
         self.business_name = business_name
