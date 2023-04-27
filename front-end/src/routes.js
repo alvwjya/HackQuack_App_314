@@ -98,6 +98,10 @@ const router = createBrowserRouter([
             element: <Login />,
           },
           {
+            path: "add-payment-method",
+            element: <PaymentMethod />,
+          },
+          {
             path: "customer-sign-up",
             element: <CustomerSignUp />,
           },
