@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey, String, DateTime#, Time
 from datetime import datetime
 from database import Base
+from sqlalchemy.orm import relationship
 
 class ServiceRequest(Base):
     __tablename__ = "service_request"
