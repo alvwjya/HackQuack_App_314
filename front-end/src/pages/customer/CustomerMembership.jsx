@@ -25,7 +25,7 @@ function CustomerMembership() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPrice">
-          <Card className="mx-auto" style={{ width: 400 }}>
+          <Card className="mx-auto" style={{ width: 350 }}>
             <Card.Header>
               <h4>Customer Membership</h4>
               <p>billed anually</p>
@@ -35,11 +35,6 @@ function CustomerMembership() {
               <p>&#9989; Unlimited Assistance Callouts</p>
             </Card.Body>
           </Card>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicABN">
-          <Form.Label>ABN</Form.Label>
-          <Form.Control type="text" placeholder="Enter ABN" />
         </Form.Group>
 
         <Button variant="primary" size="lg">

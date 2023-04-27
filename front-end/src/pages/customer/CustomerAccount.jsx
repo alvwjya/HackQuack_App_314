@@ -4,8 +4,16 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 function CustomerAccount() {
   return (
     <Container className="py-5">
-      <h1>ACCOUNT SETTINGS</h1>
+      <h1>ACCOUNT</h1>
       <h2>Customer Account</h2>
+
+      <hr />
+
+      <div className="d-grid gap-2">
+        <Button href="/customer-membership" variant="primary" size="lg">
+          Membership
+        </Button>
+      </div>
 
       <hr />
 
@@ -82,9 +90,6 @@ function CustomerAccount() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button href="/customer-membership" variant="primary" size="lg">
-          Membership
-        </Button>
         <Button variant="primary" size="lg">
           Cancel
         </Button>

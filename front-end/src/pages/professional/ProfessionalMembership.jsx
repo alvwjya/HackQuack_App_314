@@ -6,6 +6,8 @@ function ProfessionalMembership() {
     <Container className="py-5">
       <h1>PROFESSIONAL MEMBERSHIP</h1>
 
+      <hr />
+
       <Form>
         <Form.Group className="mb-3" controlId="formBasicMembershipStartDate">
           <Form.Label>Start Date</Form.Label>
@@ -20,11 +22,6 @@ function ProfessionalMembership() {
         <Form.Group className="mb-3" controlId="formBasicPrice">
           <Form.Label>Price</Form.Label>
           <Form.Control type="text" placeholder="$ amount" disable />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicABN">
-          <Form.Label>ABN</Form.Label>
-          <Form.Control type="text" placeholder="Enter ABN" />
         </Form.Group>
 
         <Button variant="primary" size="lg">
