@@ -19,10 +19,17 @@ function CustomerMembership() {
           <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicMembershipEndDate">
+          <Form.Label>Status</Form.Label>
+          <Form.Control type="text" placeholder="Inactive" disabled />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPrice">
           <Card className="mx-auto" style={{ width: 500 }}>
             <Card.Header>
-              <Form.Label>Professional Membership</Form.Label>
+              <h2>Professional Membership</h2>
+              <p>billed anually</p>
+              <h2>$/year</h2>
             </Card.Header>
             <Card.Body>
               <Form.Label>Price</Form.Label>
