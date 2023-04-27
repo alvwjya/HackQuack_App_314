@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Button, Form, Card } from "react-bootstrap";
 
 function CustomerMembership() {
   return (
@@ -20,8 +20,14 @@ function CustomerMembership() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPrice">
-          <Form.Label>Price</Form.Label>
-          <Form.Control type="text" placeholder="$ amount" disable />
+          <Card className="mx-auto" style={{ width: 500 }}>
+            <Card.Header>
+              <Form.Label>Professional Membership</Form.Label>
+            </Card.Header>
+            <Card.Body>
+              <Form.Label>Price</Form.Label>
+            </Card.Body>
+          </Card>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicABN">
