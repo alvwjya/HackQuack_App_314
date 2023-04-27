@@ -10,12 +10,10 @@
 #FEF7FF
 */
 
-/*
-$theme-colors: (
+/*.theme-colors (
   'professional': #951ABE,
   'customer': #FF9300,
   'background': #FEF7FF
-);
+);*/
 
-@import '~bootstrap/scss/bootstrap';
-*/
+/*@import '~bootstrap/scss/bootstrap';*/
