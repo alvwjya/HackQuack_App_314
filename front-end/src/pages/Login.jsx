@@ -3,13 +3,10 @@ import { Container, Button, Form, Card } from "react-bootstrap";
 
 function Login() {
   return (
-    <Container style={{ backgroundColor: "#CDBFA0" }}>
+    <Container style={{}}>
       <br />
 
-      <Card
-        className="mx-auto"
-        style={{ backgroundColor: "lightslategray", width: 500 }}
-      >
+      <Card className="mx-auto" style={{ width: 500 }}>
         <Card.Body>
           <h1>Login</h1>
 

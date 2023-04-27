@@ -3,13 +3,10 @@ import { Container, Button, Image, Card } from "react-bootstrap";
 
 function Welcome() {
   return (
-    <Container style={{ backgroundColor: "#CDBFA0" }}>
+    <Container style={{}}>
       <br />
 
-      <Card
-        className="mx-auto"
-        style={{ backgroundColor: "lightslategray", width: 500 }}
-      >
+      <Card className="mx-auto" style={{ width: 500 }}>
         <Card.Body>
           <br />
           <h1 style={{ display: "flex", justifyContent: "center" }}>Welcome</h1>
@@ -33,7 +30,7 @@ function Welcome() {
               Sign up Professional
             </Button>
 
-            <Button href="/login" variant="secondary">
+            <Button href="/login" variant="primary">
               Log in
             </Button>
           </div>
