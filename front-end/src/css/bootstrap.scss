@@ -1,8 +1,8 @@
 $theme-colors: (
     "black": #000000,
-    "grey": #666666,
 
-    "default": #3508CD,
+    "primary": #3508CD,
+    "cancel": #666666,
     
     "professional": #932191,
     "professional-tab": #E07AFF,
@@ -17,7 +17,5 @@ $theme-colors: (
     
     "background": #FEF7FF
 ) !default;
-
-
 
 @import 'node_modules/bootstrap/scss/bootstrap';

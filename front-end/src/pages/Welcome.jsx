@@ -26,8 +26,15 @@ function Welcome() {
 
             {/*Button*/}
             <div className="d-grid gap-2">
-              <Button href="/customer-sign-up">Sign up Customer</Button>
-              <Button href="/professional-sign-up">Sign up Professional</Button>
+              <Button className="btn-customer-button" href="/customer-sign-up">
+                Sign up Customer
+              </Button>
+              <Button
+                className="btn-professional-button"
+                href="/professional-sign-up"
+              >
+                Sign up Professional
+              </Button>
               <Button href="/login">Log in</Button>
             </div>
           </Card.Body>
