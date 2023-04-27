@@ -32,7 +32,7 @@ function CustomerDashboard() {
 
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/customer-account">
-              John Doe
+              John Doe{" "}
               <Image
                 src="/newlogo.ico"
                 width="30"
@@ -47,7 +47,7 @@ function CustomerDashboard() {
 
       <Container className="py-5">
         <h1>Welcome, John Doe!</h1>
-        <h2>Customer Account</h2>
+        <h3>Customer Account</h3>
 
         <hr />
 

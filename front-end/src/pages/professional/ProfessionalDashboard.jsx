@@ -4,8 +4,8 @@ import { Container, Button } from "react-bootstrap";
 function ProfessionalDashboard() {
   return (
     <Container className="py-5">
-      <h1>DASHBOARD</h1>
-      <h2>Professional Account</h2>
+      <h1>Welcome, John Doe!</h1>
+      <h3>Professional Account</h3>
 
       <hr />
 
