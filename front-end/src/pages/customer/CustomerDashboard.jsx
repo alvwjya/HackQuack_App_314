@@ -13,7 +13,7 @@ import {
 function CustomerDashboard() {
   return (
     <div>
-      <Navbar bg="primary" variant="light">
+      <Navbar bg="primary" variant="dark">
         <Container>
           <Navbar.Brand href="/customer-dashboard">
             <Image
