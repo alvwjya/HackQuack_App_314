@@ -1,0 +1,20 @@
+$theme-colors: (
+    'black': #000000,
+    'grey': #666666,
+    'default': #3508CD,
+
+    'professional': #932191,
+    'professional-tab': #E07AFF,
+    'professional-button': #951ABE,
+
+    'customer': #C7594B,
+    'customer-tab': #F6D110,
+    'customer-button': #FF9300,
+
+    'warning': red,
+    'info': teal,
+
+    'background': #FEF7FF
+);
+
+@import '~bootstrap/scss/bootstrap';

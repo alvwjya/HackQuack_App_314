@@ -4,7 +4,7 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 function PaymentMethod() {
   return (
     <Container className="py-5">
-      <h1>PAYMENT</h1>
+      <h1>Payment Method</h1>
 
       <hr />
 
@@ -42,6 +42,8 @@ function PaymentMethod() {
         </Form.Group>
       </Form>
 
+      <hr />
+
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg">
           Confirm
@@ -50,8 +52,6 @@ function PaymentMethod() {
           Cancel
         </Button>
       </div>
-
-      <hr />
     </Container>
   );
 }

@@ -20,7 +20,7 @@ function ProfessionalSignUpTwo() {
           <Form.Control type="text" placeholder="Enter ABN" />
         </Form.Group>
 
-        <Button variant="primary" size="lg">
+        <Button href="/add-payment-method" variant="primary" size="lg">
           Add Payment Method
         </Button>
       </Form>

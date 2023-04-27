@@ -4,7 +4,7 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 function ProfessionalSignUp() {
   return (
     <Container className="py-5">
-      <h1>PROFESSIONAL SIGN UP</h1>
+      <h1>Professional Sign Up</h1>
       <p>Headline</p>
 
       <hr />
