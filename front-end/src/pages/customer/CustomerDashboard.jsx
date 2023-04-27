@@ -12,12 +12,16 @@ import {
 function CustomerDashboard() {
   return (
     <div>
-      <Navbar className="p-2" bg="primary">
-        <Navbar.Brand href="/customer-dashboard">Navbar Offcanvas</Navbar.Brand>
+      <Navbar className="p-3" bg="primary">
+        <Navbar.Brand href="/customer-dashboard">HACKQUACK</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Nav.Link href="/customer-service-board-request">
+          Service Board
+        </Nav.Link>
       </Navbar>
 
       <Container className="py-5">
-        <h1>DASHBOARD</h1>
+        <h1>Welcome, John Doe!</h1>
         <h2>Customer Account</h2>
 
         <hr />
