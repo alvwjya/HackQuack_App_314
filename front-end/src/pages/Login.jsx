@@ -3,8 +3,8 @@ import { Container, Button, Form, Card } from "react-bootstrap";
 
 function Login() {
   return (
-    <Container>
-      <Container className="py-3">
+    <div>
+      <Container className="py-5">
         <Card className="mx-auto" style={{ width: 500 }}>
           <Card.Body>
             <h1>Login</h1>
@@ -43,7 +43,7 @@ function Login() {
           </Card.Body>
         </Card>
       </Container>
-    </Container>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import { Container, Button, Image, Card } from "react-bootstrap";
 function Welcome() {
   return (
     <div>
-      <Container className="py-3">
+      <Container className="py-5">
         <Card className="mx-auto" style={{ width: 500 }}>
           <Card.Body>
             <h1 style={{ display: "flex", justifyContent: "center" }}>

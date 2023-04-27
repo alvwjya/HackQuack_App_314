@@ -7,22 +7,47 @@ import {
   Form,
   Container,
   Button,
+  Image,
 } from "react-bootstrap";
 
 function CustomerDashboard() {
   return (
     <div>
-      <Navbar className="p-3" bg="primary">
-        <Navbar.Brand href="/customer-dashboard">HACKQUACK</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Nav.Link href="/customer-service-board-request">
-          Service Board
-        </Nav.Link>
+      <Navbar bg="primary" variant="light">
+        <Container>
+          <Navbar.Brand href="/customer-dashboard">
+            <Image
+              src="/favicon.ico"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt=""
+            />{" "}
+            HACKQUACK
+          </Navbar.Brand>
+
+          <Nav.Link href="/customer-service-board-request">
+            Service Board
+          </Nav.Link>
+
+          <Navbar.Collapse className="justify-content-end">
+            <Nav.Link href="/customer-account">
+              John Doe{" "}
+              <Image
+                src="/newlogo.ico"
+                width="30"
+                height="30"
+                class="d-inline-block align-top"
+                alt=""
+              />
+            </Nav.Link>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
 
       <Container className="py-5">
         <h1>Welcome, John Doe!</h1>
-        <h2>Customer Account</h2>
+        <h3>Customer Account</h3>
 
         <hr />
 
