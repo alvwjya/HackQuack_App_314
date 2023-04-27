@@ -16,6 +16,8 @@ class Business(Base):
     
     business_service_requests = relationship('BusinessServiceRequest', back_populates = 'business')
     transaction = relationship('Transaction', back_populates = 'business')
+    ratings = relationship("Rating", back_populates="business")
+
 
     def __init__(self, business_name, ibn, password, location, card_number, card_security_num, card_expiry_date):
         self.business_name = business_name
