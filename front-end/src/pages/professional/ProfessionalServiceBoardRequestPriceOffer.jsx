@@ -50,6 +50,7 @@ function ProfessionalPriceOffer() {
               <Card.Header>Service Title</Card.Header>
               <Card.Body>
                 <Card.Title>Type of Issue</Card.Title>
+                <Card.Subtitle>Customer Name</Card.Subtitle>
                 <Card.Text>Information</Card.Text>
                 <Button
                   href="/professional-service-board-request-detail"
