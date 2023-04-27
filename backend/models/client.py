@@ -14,6 +14,8 @@ class Client(Base):
     location = Column(String(255))
     card_number = Column(String(255))
     card_expiry_date = Column(Date)
+    ratings = relationship("Rating", back_populates="client")
+
 
     def __init__(self, id, first_name, last_name, email, phone, password, location, credit_card_number, credit_card_expiry_date):
         self.id = id
