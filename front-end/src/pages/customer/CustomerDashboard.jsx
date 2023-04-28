@@ -66,7 +66,12 @@ function CustomerDashboard() {
           >
             Service Board
           </Button>
-          <Button href="/customer-account" variant="primary" size="lg">
+          <Button
+            href="/customer-account"
+            className="btn-customer-button"
+            variant="primary"
+            size="lg"
+          >
             Account
           </Button>
         </div>

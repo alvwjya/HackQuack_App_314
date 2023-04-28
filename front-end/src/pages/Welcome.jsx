@@ -7,10 +7,6 @@ function Welcome() {
       <Container className="py-5">
         <Card className="shadow-lg mx-auto" style={{ width: 500 }}>
           <Card.Body>
-            <Row>
-              <Col></Col>
-              <Col></Col>
-            </Row>
             <h1
               style={{
                 display: "flex",
