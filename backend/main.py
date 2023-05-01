@@ -5,6 +5,7 @@ from models.rating import Rating
 from models.professionalServiceRequest import ProfessionalServiceRequest
 from models.transaction import Transaction
 from models.serviceRequest import ServiceRequest
+from models.membership import Membership
 from database import session_factory
 from datetime import date
 

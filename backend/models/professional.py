@@ -20,11 +20,11 @@ class Professional(Base):
     card_security_num = Column(String(255))
     card_expiry_date = Column(Date)
     service_type_id = Column(Integer, ForeignKey("service_type.id"))
-    service_type = relationship("ServiceType", back_populates="professional")
     
-    professional_service_requests = relationship('ProfessionalServiceRequest', back_populates = 'professional')
-    transactions = relationship('Transaction', back_populates = 'professional')
-    ratings = relationship("Rating", back_populates="professional")
+    service_type = relationship("ServiceType", back_populates="professional")
+    professional_service_request = relationship('ProfessionalServiceRequest', back_populates = 'professional')
+    transaction = relationship('Transaction', back_populates = 'professional')
+    membership = relationship("Membership", back_populates="professional")
 
 
     def __init__(self, first_name, last_name, abn, password, suburb, state, poscode, card_number, card_security_num, card_expiry_date, service_type_id):
@@ -41,4 +41,4 @@ class Professional(Base):
         self.service_type_id = service_type_id
 
     def __repr__(self) -> str:
-        return f"id={self.id}, ibn={self.ibn}, password={self.password}, location={self.location}, card_number={self.card_number}, card_security_num={self.card_security_num}, card_expiry_date{self.card_expiry_date}"
+        return f"id={self.id}, abn={self.abn}, password={self.password}, suburb={self.suburb}, state={self.state}, postcode={self.postcode}, card_number={self.card_number}, card_security_num={self.card_security_num}, card_expiry_date{self.card_expiry_date}, service_type_id={self.service_type_id}"

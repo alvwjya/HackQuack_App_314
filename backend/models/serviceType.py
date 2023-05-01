@@ -13,10 +13,12 @@ class ServiceType(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     service_type_name = Column(String(255))
-    professional = relationship("Professional", back_populates="service_type")
     
-    def __init__(self, service_type, cost_per_service):
-        self.service_type = service_type
+    professional = relationship("Professional", back_populates="service_type")
+    service_request = relationship("ServiceRequest", back_populates="service_type")
+    
+    def __init__(self, service_type_name):
+        self.service_type_name = service_type_name
 
     def __repr__(self) -> str:
-        return f"id={self.id}, service_type={self.service_type}, cost_per_service={self.cost_per_service}"
+        return f"id={self.id}, service_type_name={self.service_type_name}"
