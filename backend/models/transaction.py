@@ -12,13 +12,13 @@ class Transaction(Base):
     transaction_time = Column(DateTime, default = datetime.utcnow)
 
     service_request = relationship('ServiceRequest', back_populates = 'transactions')
-    professional = relationship('Business', back_populates = 'transactions')
+    professional = relationship('Professional', back_populates = 'transactions')
 
-    def __init__(self, service_request_id, business_id, total_cost, transaction_time):
+    def __init__(self, service_request_id, professional_id, total_cost, transaction_time):
         self.service_request_id = service_request_id
-        self.business_id = business_id
+        self.professional_id = professional_id
         self.total_cost = total_cost
         self.transaction_time = transaction_time
 
     def __repr__(self) -> str:
-        return f"id={self.id}, service_request_id={self.service_request_id}, business_id={self.business_id}, total_cost={self.total_cost}, transaction_time={self.transaction_time}"
+        return f"id={self.id}, service_request_id={self.service_request_id}, business_id={self.professional_id}, total_cost={self.total_cost}, transaction_time={self.transaction_time}"
