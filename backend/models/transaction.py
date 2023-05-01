@@ -21,4 +21,4 @@ class Transaction(Base):
         self.transaction_time = transaction_time
 
     def __repr__(self) -> str:
-        return f"id={self.id}, service_request_id={self.service_request_id}, business_id={self.professional_id}, total_cost={self.total_cost}, transaction_time={self.transaction_time}"
+        return f"id={self.id}, service_request_id={self.service_request_id}, professional_id={self.professional_id}, total_cost={self.total_cost}, transaction_time={self.transaction_time}"
