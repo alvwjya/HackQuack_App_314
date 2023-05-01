@@ -22,9 +22,9 @@ class Professional(Base):
     service_type_id = Column(Integer, ForeignKey("service_type.id"))
     service_type = relationship("ServiceType", back_populates="professional")
     
-    business_service_requests = relationship('BusinessServiceRequest', back_populates = 'business')
-    transaction = relationship('Transaction', back_populates = 'business')
-    ratings = relationship("Rating", back_populates="business")
+    professional_service_requests = relationship('ProfessionalServiceRequest', back_populates = 'professional')
+    transactions = relationship('Transaction', back_populates = 'professional')
+    ratings = relationship("Rating", back_populates="professional")
 
 
     def __init__(self, first_name, last_name, abn, password, suburb, state, poscode, card_number, card_security_num, card_expiry_date, service_type_id):
