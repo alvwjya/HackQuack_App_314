@@ -11,8 +11,8 @@ class ServiceRequest(Base):
     request_time = Column(DateTime, default = datetime.utcnow)
     description = Column(String(1000))
     
-    business_service_requests = relationship('BusinessServiceRequest', back_populates = 'service_request')
-    transaction = relationship('Transaction', back_populates = 'service_request')
+    professional_service_requests = relationship('ProfessionalServiceRequest', back_populates = 'service_request')
+    transactions = relationship('Transaction', back_populates = 'service_request')
     
     def __init__(self, client_id, service_id, request_time, description):
         self.client_id = client_id
