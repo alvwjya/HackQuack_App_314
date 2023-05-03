@@ -26,5 +26,6 @@
       DATABASE_USERNAME=<INSERT THE DATABASE USERNAME HERE>
       DATABASE_PASSWORD=<THE DATABASE PASSWORD HERE>
    ```
-13.  Go to `__main__.py` to run the code
-14.  Remember to push every changes [how-to](https://youtu.be/8Dd7KRpKeaE)
+13.  [Getting started with Python in VSCode](https://youtu.be/q8yyjhxSPdI)
+14.  Go to `__main__.py` to run the code
+15.  Remember to push every changes [how-to](https://youtu.be/8Dd7KRpKeaE)
