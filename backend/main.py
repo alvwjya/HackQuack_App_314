@@ -10,6 +10,7 @@ from database import session_factory
 from datetime import date
 from flaskConfig import app
 import controller.Authentication.SignUpCustomer
+import controller.CustomerNewRequest
 
 @app.route("/")
 def index():
