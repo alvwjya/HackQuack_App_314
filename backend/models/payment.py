@@ -28,12 +28,13 @@ class Payment:
         self.payment_type = payment_type
         
         # expected behaviour is for it to determin if its a subscription payment and if 
-        # so finish the initiliation here 
-        # honestly dont even know if this works
+        # so finish the initiliation here
         
         if payment_type == "membership":
-                return
+            return
         
+         #just going to make the code do a non-applicable instead
+
         self.profesional_id = profesional_id
         self.transaction_id = transaction_id   
         
