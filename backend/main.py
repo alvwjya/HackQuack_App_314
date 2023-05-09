@@ -8,7 +8,13 @@ from models.serviceRequest import ServiceRequest
 from models.membership import Membership
 from database import session_factory
 from datetime import date
+from flaskConfig import app
+import controller.Authentication.SignUpCustomer
+import controller.CustomerNewRequest
 
+@app.route("/")
+def index():
+    return "Welcome to HackQuack"
 
 def create_tables():
     session = session_factory()
@@ -29,3 +35,5 @@ def get_business():
 if __name__ == "__main__":
     create_tables()
     print(len(get_business()))
+
+    app.run()
