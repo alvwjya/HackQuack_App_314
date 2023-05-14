@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, Float, DateTime, ForeignKey
 from datetime import datetime
 from database import Base
 from sqlalchemy.orm import relationship
+from payment import Payment
 
 class Transaction(Base):
     __tablename__ = "transaction"
@@ -24,4 +25,6 @@ class Transaction(Base):
         self.transaction_time = transaction_time
 
     def __repr__(self) -> str:
+        #am trying to make it so that when transaction is called it creates an instance of payment class dont know if this is correct
+        payment = Payment()
         return f"id={self.id}, service_request_id={self.service_request_id}, professional_id={self.professional_id}, total_cost={self.total_cost}, transaction_time={self.transaction_time}"

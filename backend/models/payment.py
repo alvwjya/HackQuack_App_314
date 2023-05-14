@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, ForeignKey, String, Double
 from datetime import datetime
 from database import Base
-from sqlalchemy.orm import relationship
-    
+from sqlalchemy.orm import relationship    
+        
 # Creates a table to save a payment transaction
 class Payment:
     __tablename__ = "payment"
@@ -30,4 +30,6 @@ class Payment:
         def __repr__(self) -> str:
             return f"id={self.id}, client_id={self.payment_id}, total_cost={self.total_cost}, payment_type={self.payment_type}, professional_id={self.professional_id}, transaction_id={self.transaction_id}"
        
-        
+    def createPayment(payment_id, client_id, amount, payment_type, profesional_id, transaction_id):
+        standin = Payment(payment_id, client_id, amount, payment_type, profesional_id, transaction_id)
+    
