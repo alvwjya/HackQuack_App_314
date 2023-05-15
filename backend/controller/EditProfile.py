@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
+from flaskConfig import app
 
 from sqlalchemy.orm import sessionmaker
 from database import Base, engine
