@@ -1,3 +1,6 @@
+from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
+
 from sqlalchemy.orm import sessionmaker
 from database import Base, engine
 from models import Professional
@@ -6,6 +9,7 @@ import re
 
 Session = sessionmaker(bind=engine)
 session = Session()
+
 
 def update_professional_profile(professional_id, first_name, last_name, abn, email, business_name, suburb, state, postcode):
     professional = session.query(Professional).get(professional_id)
@@ -53,6 +57,23 @@ def update_professional_profile(professional_id, first_name, last_name, abn, ema
 
     return {"status": "success", "message": "Profile updated successfully"}
 
+@app.route("/update-professional", methods=["POST"])
+@cross_origin()
+def updateProfessional():
+    body = request.get_json()
+    professional_id = body.get('professional_id')
+    first_name = body.get('first_name')
+    last_name = body.get('last_name')
+    abn = body.get('abn')
+    email = body.get('email')
+    business_name = body.get('business_name')
+    suburb = body.get('suburb')
+    state = body.get('state')
+    postcode = body.get('postcode')
+
+    result = update_professional_profile(professional_id, first_name, last_name, abn, email, business_name, suburb, state, postcode)
+    return jsonify(result)
+
 def record_failed_update(professional_id):
     professional = session.query(Professional).get(professional_id)
     if not professional:
@@ -76,3 +97,11 @@ def record_failed_update(professional_id):
         return {"status": "error", "message": "You have failed to update your profile 3 times. Please try again after 10 minutes."}
 
     return {"status": "success", "message": "Failed update recorded"}
+
+@app.route("/record-failed-update", methods=["POST"])
+@cross_origin()
+def recordFailedUpdate():
+    body = request.get_json()
+    professional_id = body.get('professional_id')
+    result = record_failed_update(professional_id)
+    return jsonify(result)
