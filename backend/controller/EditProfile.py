@@ -1,16 +1,18 @@
+from models import Professional
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from flaskConfig import app
 
 from sqlalchemy.orm import sessionmaker
 from database import Base, engine
-from models import Professional
 from datetime import datetime, timedelta
 import re
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
+CORS(app)
 
 def update_professional_profile(professional_id, first_name, last_name, abn, email, business_name, suburb, state, postcode):
     professional = session.query(Professional).get(professional_id)
