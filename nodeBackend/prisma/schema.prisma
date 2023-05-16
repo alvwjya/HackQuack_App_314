@@ -79,9 +79,12 @@ model professional {
   service_type                 service_type?                  @relation(fields: [service_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "professional_ibfk_1")
   professional_service_request professional_service_request[]
   transaction                  transaction[]
+  failed_update_count          Int                            @default(0)
+  failed_update_timestamp      DateTime?                      @default(now())
 
   @@index([service_type_id], map: "service_type_id")
 }
+
 
 model professional_service_request {
   id                 Int              @id @default(autoincrement())
