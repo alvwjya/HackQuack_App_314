@@ -11,7 +11,7 @@ router.post("/signuo/professional", async function (req, res) {
         dinner: false,
         snack: false
     }
-    res.status(200).json({})
+    res.status(200).json({dailyAssess})
 })
 
 module.exports = router;
