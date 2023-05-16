@@ -1,5 +1,15 @@
 // ProfessionalServiceBoardRequest => ProfessionalServiceBoardRequestPriceOffer
+const express = require('express');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient()
+const router = express.Router();
 
-function ProfessionalAcceptRequest() {
-    
-}
+
+router.post(
+    "/professional-accept-service-request",
+    async function (req, res) {
+
+    }
+  );
+
+module.exports = router;
