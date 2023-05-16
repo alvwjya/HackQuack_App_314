@@ -1,4 +1,4 @@
-// FrontEnd: ProfessionalServiceBoardRequest => ProfessionalServiceBoardRequestPriceOffer
+// Front End: ProfessionalServiceBoardRequest => ProfessionalServiceBoardRequestPriceOffer
 
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
