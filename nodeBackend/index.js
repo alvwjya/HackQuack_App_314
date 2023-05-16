@@ -1,18 +1,14 @@
 const express = require('express');
-// import { PrismaClient } from '@prisma/client'
-const PrismaClient = require("prisma-client")
+const app = express();
+const port = process.env.PORT || 4000;
+const { PrismaClient } = require('@prisma/client');
 
+app.use(express.json())
 const prisma = new PrismaClient()
-const app = express()
 
 app.get('/', (req, res) => {
-    console.log("Welcome to Redgram");
+    console.log("Welcome to Hackquack");
     res.send("Hello World!!!");
-})
-
-app.get('/about', customMiddleware, (req, res) => {
-    console.log("about page");
-    res.send("About");
 })
 
 // This is used to show the port of the server.
