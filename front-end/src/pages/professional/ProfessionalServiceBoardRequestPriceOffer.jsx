@@ -89,15 +89,15 @@ function ProfessionalPriceOffer() {
                     <Form.Label>Comission Fee</Form.Label>
                   </td>
                   <td>
-                    <Form.Control type="text" placeholder="Enter price" />
+                    <Form.Control type="text" placeholder="" disabled />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <Form.Label>Tax</Form.Label>
+                    <Form.Label>Total Price</Form.Label>
                   </td>
                   <td>
-                    <Form.Control type="text" placeholder="Enter price" />
+                    <Form.Control type="text" placeholder="" disabled />
                   </td>
                 </tr>
               </Table>
