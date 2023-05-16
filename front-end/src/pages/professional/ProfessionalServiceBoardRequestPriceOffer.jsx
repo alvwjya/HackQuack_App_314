@@ -73,7 +73,7 @@ function ProfessionalPriceOffer() {
         </Col>
         <Col>
           <Form>
-            <FormGroup className="py-3" controlId="formBasicPriceOffer">
+            <FormGroup className="py-3" controlId="formPriceOffer">
               <Form.Label>PRICE AND DETAIL</Form.Label>
               <Table>
                 <tr>
