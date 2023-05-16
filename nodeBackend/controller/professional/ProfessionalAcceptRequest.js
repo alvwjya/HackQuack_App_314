@@ -30,7 +30,6 @@ router.post("/professional-accept-request", async function (req, res) {
     },
   });
 
-  
   res.json(table);
 });
 
