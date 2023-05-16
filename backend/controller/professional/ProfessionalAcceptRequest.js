@@ -1,5 +1,0 @@
-// ProfessionalServiceBoardRequestPriceOffer
-
-function ProfessionalAcceptRequest() {
-    
-}
