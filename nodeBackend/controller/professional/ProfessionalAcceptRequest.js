@@ -17,7 +17,7 @@ router.post("/professional-accept-request", async function (req, res) {
     transaction,
   } = req.body;
 
-  const table = await prisma.professional_service_request.create({
+  const acceptRequest = await prisma.professional_service_request.create({
     data: {
       id,
       acceptance,
@@ -29,6 +29,7 @@ router.post("/professional-accept-request", async function (req, res) {
       transaction,
     },
   });
+
   res.json(table);
 });
 

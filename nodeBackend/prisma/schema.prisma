@@ -150,12 +150,12 @@ model transaction {
   @@index([service_request_id], map: "service_request_id")
 }
 
-model payment{
-  id                           Int                            @id @default(autoincrement())
-  payment_time                 DateTime?                      @db.DateTime(0)
-  amount                       Int?
-  transaction_id               Int?
-  transaction                  transaction?                   @relation(fields: [transaction_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "payment_ibfk_1")
+model payment {
+  id             Int          @id @default(autoincrement())
+  payment_time   DateTime?    @db.DateTime(0)
+  amount         Int?
+  transaction_id Int?
+  transaction    transaction? @relation(fields: [transaction_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "payment_ibfk_1")
 
   @@index([transaction_id], map: "transaction_id")
 }
