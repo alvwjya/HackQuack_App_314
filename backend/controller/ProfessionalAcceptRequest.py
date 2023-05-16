@@ -14,4 +14,5 @@ def professional_accept_request(id):
         return {"status": "error", "message": "Professional service request not found"}
     data = request.get_json()
     professionalServiceRequest.cost = data['cost']
+    professionalServiceRequest.acceptance = 1
     return jsonify({'message': 'Professional accept request successfully!'})
