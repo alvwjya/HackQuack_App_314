@@ -1,10 +1,23 @@
-from sqlalchemy import Column, Integer, ForeignKey, String, Double, DateTime
-from datetime import datetime
-from database import Base
-from sqlalchemy.orm import relationship    
-        
-# Creates a table to save a payment transaction
-class Payment:
+import { express } from "express";
+import { PrismaClient } from "@prisma/client";
+
+//Creates a table to save a payment transaction
+class Payment{
+    constructor(id, transactionTime, amount, transactionID, transaction){
+        this.id = id;
+        this.transactionTime = transactionTime;
+        this.amount = amount;
+        this.transactionID = transactionID;
+    }
+
+    id = Column(Integer, primary_key=True);
+    transactionTime = Column(DateTime, default = datetime.utcnow);
+    amount = 0;
+    transactionID Column(Integer, ForeignKey('transaction.id'));
+    
+}
+
+/* vvv OLD PYTHON CODE vvvvs Payment:
     __tablename__ = "payment"
     id = Column(Integer, primary_key=True)
     transaction_time = Column(DateTime, default = datetime.utcnow)
@@ -32,4 +45,4 @@ class Payment:
        
     def createPayment(payment_id, client_id, amount, payment_type, profesional_id, transaction_id):
         standin = Payment(payment_id, client_id, amount, payment_type, profesional_id, transaction_id)
-    
+    */
