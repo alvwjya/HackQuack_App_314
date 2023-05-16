@@ -31,8 +31,8 @@ router.post("/signup/professional", async function (req, res) {
       card_number,
       card_security_num,
       card_expiry_date,
-    //   service_type: { connect: { service_type_id: service_type_id } },
-    service_type:{connect:service_type_id}
+      //   service_type: { connect: { service_type_id: service_type_id } },
+      service_type: { connect: service_type_id },
     },
   });
 
