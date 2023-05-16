@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, String, Double
+from sqlalchemy import Column, Integer, ForeignKey, String, Double, DateTime
 from datetime import datetime
 from database import Base
 from sqlalchemy.orm import relationship    
@@ -6,8 +6,8 @@ from sqlalchemy.orm import relationship
 # Creates a table to save a payment transaction
 class Payment:
     __tablename__ = "payment"
-    
-    payment_id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
+    transaction_time = Column(DateTime, default = datetime.utcnow)
     client_id = Column(Integer, ForeignKey('client.id'))
     payment_type = Column(String(255))
     amount = Column(Double, ForeignKey('membership.cost'))
