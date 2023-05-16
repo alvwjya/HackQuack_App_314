@@ -143,8 +143,19 @@ model transaction {
   service_request              service_request?              @relation(fields: [service_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_1")
   professional                 professional?                 @relation(fields: [professional_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_2")
   professional_service_request professional_service_request? @relation(fields: [professional_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_3")
+  payment                      payment[]
 
   @@index([professional_id], map: "professional_id")
   @@index([professional_request_id], map: "professional_request_id")
   @@index([service_request_id], map: "service_request_id")
+}
+
+model payment{
+  id                           Int                            @id @default(autoincrement())
+  payment_time                 DateTime?                      @db.DateTime(0)
+  amount                       Int?
+  transaction_id               Int?
+  transaction                  transaction?                   @relation(fields: [transaction_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "payment_ibfk_1")
+
+  @@index([transaction_id], map: "transaction_id")
 }
