@@ -1,4 +1,4 @@
-// ProfessionalServiceBoardRequestPriceOffer
+// ProfessionalServiceBoardRequest => ProfessionalServiceBoardRequestPriceOffer
 
 function ProfessionalAcceptRequest() {
     
