@@ -1,21 +1,15 @@
-const express = require('express');
-// import { PrismaClient } from '@prisma/client'
-const PrismaClient = require("prisma-client")
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 4000;
 
-const prisma = new PrismaClient()
-const app = express()
-
-app.get('/', (req, res) => {
-    console.log("Welcome to Redgram");
-    res.send("Hello World!!!");
-})
-
-app.get('/about', customMiddleware, (req, res) => {
-    console.log("about page");
-    res.send("About");
-})
+app.use(express.json());
+app.use(require("./controller/SignUp"))
+app.get("/", (req, res) => {
+  console.log("Welcome to Hackquack");
+  res.send("Hello World!!!");
+});
 
 // This is used to show the port of the server.
 app.listen(port, () => {
-    console.log("Server is running on port: ", port);
-})
+  console.log("Server is running on port: ", port);
+});
