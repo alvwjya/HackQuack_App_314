@@ -3,8 +3,15 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 const router = express.Router();
 
-router.get('/test', (req, res) => {
-    res.send("Hello");
-});
+router.post("/signuo/professional", async function (req, res) {
+    const userId = req.params.userId;
+    let dailyAssess = {
+        breakfast: false,
+        lunch: false,
+        dinner: false,
+        snack: false
+    }
+    res.status(200).json({})
+})
 
 module.exports = router;
