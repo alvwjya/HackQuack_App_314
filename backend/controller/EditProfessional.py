@@ -1,12 +1,20 @@
+# Import necessary modules and objects
+from models import Professional
+
+from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
+from flaskConfig import app
+
 from sqlalchemy.orm import sessionmaker
 from database import Base, engine
-from models import Professional
 from datetime import datetime, timedelta
 import re
 
+# Set up a sessionmaker bound to the engine
 Session = sessionmaker(bind=engine)
 session = Session()
 
+# Define a function to update a professional's profile
 def update_professional_profile(professional_id, first_name, last_name, abn, email, business_name, suburb, state, postcode):
     professional = session.query(Professional).get(professional_id)
     if not professional:
@@ -53,6 +61,25 @@ def update_professional_profile(professional_id, first_name, last_name, abn, ema
 
     return {"status": "success", "message": "Profile updated successfully"}
 
+# Define a route to handle update requests
+@app.route("/update-professional", methods=["POST"])
+@cross_origin()
+def updateProfessional():
+    body = request.get_json()
+    professional_id = body.get('professional_id')
+    first_name = body.get('first_name')
+    last_name = body.get('last_name')
+    abn = body.get('abn')
+    email = body.get('email')
+    business_name = body.get('business_name')
+    suburb = body.get('suburb')
+    state = body.get('state')
+    postcode = body.get('postcode')
+
+    result = update_professional_profile(professional_id, first_name, last_name, abn, email, business_name, suburb, state, postcode)
+    return jsonify(result)
+
+# Define a function to record failed update attempts
 def record_failed_update(professional_id):
     professional = session.query(Professional).get(professional_id)
     if not professional:
@@ -76,3 +103,12 @@ def record_failed_update(professional_id):
         return {"status": "error", "message": "You have failed to update your profile 3 times. Please try again after 10 minutes."}
 
     return {"status": "success", "message": "Failed update recorded"}
+
+# Define a route to handle failed update recording requests
+@app.route("/record-failed-update", methods=["POST"])
+@cross_origin()
+def recordFailedUpdate():
+    body = request.get_json()
+    professional_id = body.get('professional_id')
+    result = record_failed_update(professional_id)
+    return jsonify(result)
