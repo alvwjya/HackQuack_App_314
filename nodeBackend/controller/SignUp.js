@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.post("/signup/professional", async function (req, res) {
-  const userId = req.params.userId;
   const {
     first_name,
     last_name,
@@ -32,7 +31,8 @@ router.post("/signup/professional", async function (req, res) {
       card_number,
       card_security_num,
       card_expiry_date,
-      service_type_id,
+    //   service_type: { connect: { service_type_id: service_type_id } },
+    service_type:{connect:service_type_id}
     },
   });
 
