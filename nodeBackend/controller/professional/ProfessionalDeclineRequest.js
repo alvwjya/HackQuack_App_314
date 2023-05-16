@@ -1,4 +1,4 @@
-// Front End: ProfessionalServiceBoardRequest
+/* Front End: ProfessionalServiceBoardRequest */
 
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
@@ -16,6 +16,7 @@ router.post("/professional-decline-request", async function (req, res) {
     professional,
     transaction,
   } = req.body;
+
   const table = await prisma.professional_service_request.create({
     data: {
       id,
