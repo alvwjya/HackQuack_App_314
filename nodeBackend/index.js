@@ -4,6 +4,8 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(require("./controller/SignUp"))
+app.use(require("./controller/ProfessionalViewActiveServiceRequest"));
+
 app.get("/", (req, res) => {
   console.log("Welcome to Hackquack");
   res.send("Hello World!!!");
