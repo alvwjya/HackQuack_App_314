@@ -1,21 +1,25 @@
-import { express } from "express";
-import { PrismaClient } from "@prisma/client";
+const express = require('express');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient()
+const router = express.Router();
 
-//Creates a table to save a payment transaction
-class Payment{
-    constructor(id, transactionTime, amount, transactionID, transaction){
-        this.id = id;
-        this.transactionTime = transactionTime;
-        this.amount = amount;
-        this.transactionID = transactionID;
-    }
+router.post("/payment", 
+            async function(req, res){
+            const{id, paymentTime, amount, transactionID } = req.body;
+            const table = await prisma.payment.create({
+                data:{
+                    id,
+                    paymentTime,
+                    amount,
+                    transactionID
+                },
+              });
+            res.json(table);
+        }
+        );
 
-    id = Column(Integer, primary_key=True);
-    transactionTime = Column(DateTime, default = datetime.utcnow);
-    amount = 0;
-    transactionID Column(Integer, ForeignKey('transaction.id'));
-    
-}
+module.exports = router;
+
 
 /* vvv OLD PYTHON CODE vvvvs Payment:
     __tablename__ = "payment"
