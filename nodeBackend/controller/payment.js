@@ -37,7 +37,7 @@ async function membershippayment(params) {
     const payment = await prisma.payment.create({
         data:{
             payment_time: Date(),
-            amount: 300,
+            amount: 240,
             customer_id: client.id
         }
     })
