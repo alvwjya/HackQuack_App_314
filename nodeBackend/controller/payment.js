@@ -27,10 +27,20 @@ router.post("/payment", async function(req, res){
  * The only thing it does is get check to see if the due date for the membership payment is due
  * pushes a new entry into the payment table then sets the due date to when it is next due
 */
+async function membershippayment(params) {
 
-function membershippayment(params) {
+    let client = findUserName();
+    if (client===null) {
+        return;
+    }
 
-    
+    const payment = await prisma.payment.create({
+        data:{
+            payment_time: Date(),
+            amount: 300,
+            customer_id: client.id
+        }
+    })
 
 }
 
@@ -38,9 +48,40 @@ function membershippayment(params) {
  * is meant to be called at the end of a transaction function call and does the same as
  * mebership payment but also pushes the information for the proffesional involved as well 
  */        
-function jobPayment(Client, Professional) {
-        
+async function jobPayment(clientID, proffesionalID,  transactionCost, transactionID) {
 
+    //Grabs the correct Client
+    const getClient = await prisma.client.findUnique({
+        where:{
+            id: clientID
+        }
+    })
+
+    //Grabs the correct proffesional
+    const getProffesional = await prisma.client.findUnique({
+        where:{
+            id: proffesionalID
+        }
+    })
+
+    const getTransactiion = await prisma.client.findUnique({
+        where:{
+            id: transactionID
+        }
+    })
+
+    //Creates and saves the payment
+    //https://www.prisma.io/docs/concepts/components/prisma-schema/data-model was the website page i was using to figure out the
+    //Syntax
+    const payment = await prisma.payment.create({
+        data:{
+            payment_time: Date(),
+            amount: transactionCost,
+            transactionID: getTransactiion.id,
+            customer_id: clientID,
+            transaction: getTransactiion
+        }
+    })
 
 }
 
