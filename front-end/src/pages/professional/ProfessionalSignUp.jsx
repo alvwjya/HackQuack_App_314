@@ -1,31 +1,46 @@
 import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import axios from "axios";
+
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
+
 
 function ProfessionalSignUp() {
-  const service_type = ["One", "Two", "Three", "Four", "Five"];
+  const service_type = [1, 2, 3, 4, 5];
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    address: "",
+    abn: "",
+    tfn: "",
+    password: "",
+    confirm_password: "",
     suburb: "",
+    address: "",
     state: "",
     postcode: "",
-    serviceType: 0,
-    password: "",
-    confirmedPassword: "",
-    taxNumber: "",
-    ABN: "",
+    service_type_id: 0,
   });
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    console.log(API_ENDPOINT)
+    const url = `${API_ENDPOINT}/signup/professional`;
+
+    if (form.password !== form.confirm_password) {
+      console.log("Password don't match");
+      return;
+    }
+
+    const res = await axios.post(url, form);
+    console.log(res);
+  }
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, firstName: event.target.value });
+    setForm({ ...form, first_name: event.target.value });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, lastName: event.target.value });
+    setForm({ ...form, last_name: event.target.value });
   }
 
   function handleEmailChange(event) {
@@ -49,7 +64,7 @@ function ProfessionalSignUp() {
   }
 
   function handleServiceTypeChange(event) {
-    setForm({ ...form, serviceType: event.target.value });
+    setForm({ ...form, service_type_id: event.target.value });
   }
 
   function handlePasswordChange(event) {
@@ -57,20 +72,18 @@ function ProfessionalSignUp() {
   }
 
   function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirmedPassword: event.target.value });
+    setForm({ ...form, confirm_password: event.target.value });
   }
 
   function handleTaxNumber(event) {
-    setForm({ ...form, taxNumber: event.target.value });
+    setForm({ ...form, tfn: event.target.value });
   }
 
   function handleABN(event) {
-    setForm({ ...form, ABN: event.target.value });
+    setForm({ ...form, abn: event.target.value });
   }
 
   console.log(form);
-
-  async function handleSubmit() {}
 
   return (
     <Container className="py-5">
@@ -230,7 +243,7 @@ function ProfessionalSignUp() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+        <Button variant="primary" size="lg" onClick={handleSubmit}>
           Sign Up
         </Button>
         <Button variant="cancel" size="lg">
