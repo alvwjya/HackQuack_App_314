@@ -67,6 +67,10 @@ function CustomerDashboard() {
           </Button>
         </div>
 
+        <Card>
+          <Image className="h-100" src="/dashboard banner.png"></Image>
+        </Card>
+
         <hr />
 
         <div className="d-grid gap-2">
