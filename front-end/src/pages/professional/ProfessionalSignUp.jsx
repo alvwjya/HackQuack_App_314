@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
 function ProfessionalSignUp() {
+  const service_type = ["One", "Two", "Three", "Four", "Five"];
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -45,6 +46,10 @@ function ProfessionalSignUp() {
 
   function handlePostcodeChange(event) {
     setForm({ ...form, postcode: event.target.value });
+  }
+
+  function handleServiceTypeChange(event) {
+    setForm({ ...form, serviceType: event.target.value });
   }
 
   function handlePasswordChange(event) {
@@ -138,40 +143,74 @@ function ProfessionalSignUp() {
           </Row>
           <Row>
             <Col>
-              <Form.Control type="text" placeholder="Enter suburb" />
+              <Form.Control
+                type="text"
+                placeholder="Enter suburb"
+                value={form.suburb}
+                onChange={handleSuburbChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="Enter state" />
+              <Form.Control
+                type="text"
+                placeholder="Enter state"
+                value={form.state}
+                onChange={handleStateChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="Enter postcode" />
+              <Form.Control
+                type="text"
+                placeholder="Enter postcode"
+                value={form.postcode}
+                onChange={handlePostcodeChange}
+              />
             </Col>
           </Row>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicServiceType">
           <Form.Label>Service Type</Form.Label>
-          <Form.Select aria-label="selectServiceType">
-            <option>Please select</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <Form.Select
+            aria-label="selectServiceType"
+            value={form.serviceType}
+            onChange={handleServiceTypeChange}
+          >
+            <option value="">Please select</option>
+            {service_type.map((item, index) => {
+              return <option value={index}>{item}</option>;
+            })}
           </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter password" />
+          <Form.Control
+            type="password"
+            placeholder="Enter password"
+            value={form.password}
+            onChange={handlePasswordChange}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter confirm Password" />
+          <Form.Control
+            type="password"
+            placeholder="Enter confirm Password"
+            value={form.confirmedPassword}
+            onChange={handleConfirmedPasswordChange}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicTaxNumber">
           <Form.Label>Tax Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter tax number" />
+          <Form.Control
+            type="text"
+            placeholder="Enter tax number"
+            value={form.taxNumber}
+            onChange={handleTaxNumber}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicABN">
