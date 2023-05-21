@@ -6,6 +6,7 @@ app.use(express.json());
 app.use(require("./controller/SignUp"));
 app.use(require("./controller/professional/ProfessionalViewActiveServiceRequests"));
 app.use(require("./controller/payment"));
+app.use(require("./controller/client-new-request"));
 
 app.get("/", (req, res) => {
   console.log("Welcome to Hackquack");
