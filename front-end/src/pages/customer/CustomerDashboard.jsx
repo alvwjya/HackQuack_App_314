@@ -67,6 +67,7 @@ function CustomerDashboard() {
           </Button>
         </div>
 
+        <br />
         <Card>
           <Image className="h-100" src="/dashboard banner.png"></Image>
         </Card>
