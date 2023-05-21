@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Button, Form, Card } from "react-bootstrap";
 
 function CustomerMembership() {
+  const membershipAnuallyCost = 1000;
   return (
     <Container className="py-5">
       <h1>CUSTOMER MEMBERSHIP</h1>
@@ -29,7 +30,7 @@ function CustomerMembership() {
             <Card.Header>
               <h4>Customer Membership</h4>
               <p>billed anually</p>
-              <h2>$/year</h2>
+              <h2>{membershipAnuallyCost} AUD/year</h2>
             </Card.Header>
             <Card.Body>
               <p>&#9989; Unlimited Assistance Callouts</p>
@@ -37,7 +38,7 @@ function CustomerMembership() {
           </Card>
         </Form.Group>
 
-        <Button variant="primary" size="lg">
+        <Button href="/add-payment-method" variant="primary" size="lg">
           Edit Payment Method
         </Button>
       </Form>
@@ -48,7 +49,7 @@ function CustomerMembership() {
         <Button variant="primary" size="lg">
           Sign Up
         </Button>
-        <Button variant="secondary" size="lg">
+        <Button variant="cancel" size="lg">
           Cancel
         </Button>
       </div>

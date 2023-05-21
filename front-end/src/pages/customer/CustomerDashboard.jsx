@@ -44,6 +44,14 @@ function CustomerDashboard() {
 
         <div className="d-grid gap-2">
           <Button
+            href="/customer-account"
+            className="btn-customer-button"
+            variant="primary"
+            size="lg"
+          >
+            Account
+          </Button>
+          <Button
             href="/customer-create-new-request"
             variant="primary"
             size="lg"
@@ -57,17 +65,15 @@ function CustomerDashboard() {
           >
             Service Board
           </Button>
-          <Button
-            href="/customer-account"
-            className="btn-customer-button"
-            variant="primary"
-            size="lg"
-          >
-            Account
-          </Button>
         </div>
 
         <hr />
+
+        <div className="d-grid gap-2">
+          <Button href="/" variant="warning" size="lg">
+            Log Out
+          </Button>
+        </div>
       </Container>
     </div>
   );
