@@ -26,7 +26,6 @@ import CustomerMembership from "./pages/customer/CustomerMembership";
 import ProfessionalAccount from "./pages/professional/ProfessionalAccount";
 
 import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
-import ProfessionalSignUpTwo from "./pages/professional/ProfessionalSignUpTwo";
 
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
@@ -109,10 +108,6 @@ const router = createBrowserRouter([
             path: "professional-sign-up",
             element: <ProfessionalSignUp />,
           },
-          {
-            path: "professional-sign-up-two",
-            element: <ProfessionalSignUpTwo />,
-          },
         ],
       },
 
@@ -149,7 +144,7 @@ const router = createBrowserRouter([
           },
           {
             path: "professional-service-board-offer",
-            element: <ProfessionalServiceBoardOffer/>,
+            element: <ProfessionalServiceBoardOffer />,
           },
           {
             path: "professional-service-board-active-service",
@@ -211,7 +206,6 @@ const router = createBrowserRouter([
           },
         ],
       },
-
     ],
   },
 ]);
