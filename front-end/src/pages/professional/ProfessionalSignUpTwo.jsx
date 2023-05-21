@@ -10,19 +10,7 @@ function ProfessionalSignUpTwo() {
       <hr />
 
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicTaxNumber">
-          <Form.Label>Tax Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter tax number" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicABN">
-          <Form.Label>ABN</Form.Label>
-          <Form.Control type="text" placeholder="Enter ABN" />
-        </Form.Group>
-
-        <Button href="/add-payment-method" variant="primary" size="lg">
-          Add Payment Method
-        </Button>
+        
       </Form>
 
       <hr />
