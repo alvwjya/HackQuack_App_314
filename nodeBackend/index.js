@@ -3,8 +3,12 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(require("./controller/SignUp"));
-app.use(require("./controller/professional/ProfessionalViewActiveServiceRequests"));
+app.use(require("./controller/professional/ProfessionalSignUp"));
+app.use(require("./controller/client/ClientSignUp"));
+
+app.use(
+  require("./controller/professional/ProfessionalViewActiveServiceRequests")
+);
 app.use(require("./controller/payment"));
 
 app.get("/", (req, res) => {

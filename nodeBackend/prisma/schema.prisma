@@ -7,29 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model business {
-  id                       Int                        @id @default(autoincrement())
-  business_name            String?                    @db.VarChar(255)
-  ibn                      String?                    @db.VarChar(255)
-  password                 String?                    @db.VarChar(255)
-  location                 String?                    @db.VarChar(255)
-  card_number              String?                    @db.VarChar(255)
-  card_security_num        String?                    @db.VarChar(255)
-  card_expiry_date         DateTime?                  @db.Date
-  business_service_request business_service_request[]
-}
-
-model business_service_request {
-  id                 Int              @id @default(autoincrement())
-  service_request_id Int?
-  business_id        Int?
-  service_request    service_request? @relation(fields: [service_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "business_service_request_ibfk_1")
-  business           business?        @relation(fields: [business_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "business_service_request_ibfk_2")
-
-  @@index([business_id], map: "business_id")
-  @@index([service_request_id], map: "service_request_id")
-}
-
 model client {
   id                Int               @id @default(autoincrement())
   first_name        String?           @db.VarChar(255)
@@ -120,7 +97,6 @@ model service_request {
   description                  String?                        @db.VarChar(1000)
   client_id                    Int?
   service_type_id              Int?
-  business_service_request     business_service_request[]
   professional_service_request professional_service_request[]
   client                       client?                        @relation(fields: [client_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "service_request_ibfk_1")
   service_type                 service_type?                  @relation(fields: [service_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "service_request_ibfk_2")

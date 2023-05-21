@@ -1,29 +1,4 @@
 -- CreateTable
-CREATE TABLE `business` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `business_name` VARCHAR(255) NULL,
-    `ibn` VARCHAR(255) NULL,
-    `password` VARCHAR(255) NULL,
-    `location` VARCHAR(255) NULL,
-    `card_number` VARCHAR(255) NULL,
-    `card_security_num` VARCHAR(255) NULL,
-    `card_expiry_date` DATE NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `business_service_request` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `service_request_id` INTEGER NULL,
-    `business_id` INTEGER NULL,
-
-    INDEX `business_id`(`business_id`),
-    INDEX `service_request_id`(`service_request_id`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `client` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(255) NULL,
@@ -63,12 +38,15 @@ CREATE TABLE `professional` (
     `abn` VARCHAR(255) NULL,
     `password` VARCHAR(255) NULL,
     `suburb` VARCHAR(255) NULL,
+    `tfn` VARCHAR(255) NULL,
     `state` VARCHAR(255) NULL,
     `postcode` VARCHAR(255) NULL,
     `card_number` VARCHAR(255) NULL,
     `card_security_num` VARCHAR(255) NULL,
     `card_expiry_date` DATE NULL,
     `service_type_id` INTEGER NULL,
+    `failed_update_count` INTEGER NOT NULL DEFAULT 0,
+    `failed_update_timestamp` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     INDEX `service_type_id`(`service_type_id`),
     PRIMARY KEY (`id`)
@@ -145,12 +123,6 @@ CREATE TABLE `payment` (
     INDEX `transaction_id`(`transaction_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- AddForeignKey
-ALTER TABLE `business_service_request` ADD CONSTRAINT `business_service_request_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `service_request`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE `business_service_request` ADD CONSTRAINT `business_service_request_ibfk_2` FOREIGN KEY (`business_id`) REFERENCES `business`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
 ALTER TABLE `membership` ADD CONSTRAINT `membership_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
