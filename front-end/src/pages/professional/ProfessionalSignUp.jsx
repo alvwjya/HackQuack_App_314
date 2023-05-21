@@ -64,6 +64,16 @@ function ProfessionalSignUp() {
           </Row>
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicServiceType">
+          <Form.Label>Service Type</Form.Label>
+          <Form.Select aria-label="selectServiceType">
+            <option>Please select</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </Form.Select>
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter password" />
