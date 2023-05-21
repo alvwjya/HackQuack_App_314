@@ -174,7 +174,11 @@ function CustomerSignUp() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button className="btn-customer-button" size="lg">
+        <Button
+          href="/customer-dashboard"
+          className="btn-customer-button"
+          size="lg"
+        >
           Sign Up
         </Button>
         <Button variant="cancel" size="lg">
