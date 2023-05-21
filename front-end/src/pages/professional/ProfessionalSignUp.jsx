@@ -15,7 +15,7 @@ function ProfessionalSignUp() {
     password: "",
     confirmedPassword: "",
     taxNumber: "",
-    ABN: 0,
+    ABN: "",
   });
 
   async function handleSubmit() {}
@@ -75,7 +75,6 @@ function ProfessionalSignUp() {
   return (
     <Container className="py-5">
       <h1>Professional Sign Up</h1>
-      <p>Headline</p>
 
       <hr />
 
@@ -174,10 +173,9 @@ function ProfessionalSignUp() {
           <Form.Select
             aria-label="selectServiceType"
             value={form.serviceType}
-            defaultValue={""}
             onChange={handleServiceTypeChange}
           >
-            <option value="">Please select</option>
+            <option>Please select</option>
             {service_type.map((item, index) => {
               return <option value={index}>{item}</option>;
             })}

@@ -1,7 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
 function CustomerAccount() {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    suburb: "",
+    state: "",
+    postcode: "",
+    password: "",
+    confirmedPassword: "",
+  });
+
+  async function handleSubmit() {}
+
+  function handleFirstNameChange(event) {
+    setForm({ ...form, firstName: event.target.value });
+  }
+
+  function handleLastNameChange(event) {
+    setForm({ ...form, lastName: event.target.value });
+  }
+
+  function handleEmailChange(event) {
+    setForm({ ...form, email: event.target.value });
+  }
+
+  function handleAddressChange(event) {
+    setForm({ ...form, address: event.target.value });
+  }
+
+  function handleSuburbChange(event) {
+    setForm({ ...form, suburb: event.target.value });
+  }
+
+  function handleStateChange(event) {
+    setForm({ ...form, state: event.target.value });
+  }
+
+  function handlePostcodeChange(event) {
+    setForm({ ...form, postcode: event.target.value });
+  }
+
+  function handlePasswordChange(event) {
+    setForm({ ...form, password: event.target.value });
+  }
+
+  function handleConfirmedPasswordChange(event) {
+    setForm({ ...form, confirmedPassword: event.target.value });
+  }
+
+  console.log(form);
+
   return (
     <Container className="py-5">
       <h1>ACCOUNT</h1>

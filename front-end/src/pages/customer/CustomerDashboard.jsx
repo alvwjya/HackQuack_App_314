@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Nav,
-  Navbar,
-  NavDropdown,
-  Offcanvas,
-  Form,
-  Container,
-  Button,
-  Image,
-} from "react-bootstrap";
+import { Nav, Navbar, Container, Button, Image, Card } from "react-bootstrap";
 
 function CustomerDashboard() {
   return (

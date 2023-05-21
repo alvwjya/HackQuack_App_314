@@ -57,7 +57,6 @@ function CustomerSignUp() {
   return (
     <Container className="py-5">
       <h1>Customer Sign Up</h1>
-      <p>Headline</p>
 
       <hr />
 
