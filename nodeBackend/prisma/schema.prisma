@@ -94,6 +94,7 @@ model rating {
 model service_request {
   id                           Int                            @id @default(autoincrement())
   request_time                 DateTime?                      @db.DateTime(0)
+  request_title                String?                        @db.VarChar(255)
   description                  String?                        @db.VarChar(1000)
   client_id                    Int?
   service_type_id              Int?
