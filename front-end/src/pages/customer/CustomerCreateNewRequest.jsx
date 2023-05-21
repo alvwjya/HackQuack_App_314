@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 
 function CustomerCreateNewRequest() {
+  const service_type = ["One", "Two", "Three", "Four", "Five"];
+  const [form, setForm] = useState({
+    taskTitle: "",
+    taskDescription: "",
+    serviceType: 0,
+  });
+
+  async function handleSubmit() {}
+
+  function handleTaskTitleChange(event) {
+    setForm({ ...form, taskTitle: event.target.value });
+  }
+
+  function handleTaskDescriptionChage(event) {
+    setForm({ ...form, taskDescription: event.target.value });
+  }
+
+  function handleServiceTypeChange(event) {
+    setForm({ ...form, serviceType: event.target.value });
+  }
+
+  console.log(form);
+
   return (
     <Container className="py-5">
       <Form>
@@ -11,21 +34,35 @@ function CustomerCreateNewRequest() {
 
         <Form.Group className="mb-3" controlId="formBasicTaskTitle">
           <Form.Label>Task Title</Form.Label>
-          <Form.Control type="text" placeholder="Enter task title" />
+          <Form.Control
+            type="text"
+            placeholder="Enter task title"
+            value={form.taskTitle}
+            onChange={handleTaskTitleChange}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicTaskDescription">
           <Form.Label>Task Description</Form.Label>
-          <Form.Control type="text" placeholder="Enter task description" />
+          <Form.Control
+            type="text"
+            placeholder="Enter task description"
+            value={form.taskDescription}
+            onChange={handleTaskDescriptionChage}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicServiceType">
           <Form.Label>Service Type</Form.Label>
-          <Form.Select aria-label="selectServiceType">
-            <option>Please select</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <Form.Select
+            aria-label="selectServiceType"
+            value={form.serviceType}
+            onChange={handleServiceTypeChange}
+          >
+            <option value="">Please select</option>
+            {service_type.map((item, index) => {
+              return <option value={index}>{item}</option>;
+            })}
           </Form.Select>
         </Form.Group>
 

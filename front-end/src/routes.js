@@ -86,7 +86,6 @@ const router = createBrowserRouter([
     path: "/",
     children: [
       {
-        // element: <GuestRoute />,
         children: [
           {
             index: true,
@@ -112,8 +111,6 @@ const router = createBrowserRouter([
       },
 
       {
-        /*element: <AuthorizedRoute userTypes={[USER_TYPE.PROFESSIONAL]} />,*/
-        // element: <GuestRoute />,
         children: [
           {
             index: true,
@@ -158,7 +155,6 @@ const router = createBrowserRouter([
       },
 
       {
-        // element: <AuthorizedRoute userTypes={[USER_TYPE.CUSTOMER]} />,
         children: [
           {
             index: true,

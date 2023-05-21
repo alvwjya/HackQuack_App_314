@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Alert,
   Container,
@@ -12,6 +12,28 @@ import {
 } from "react-bootstrap";
 
 function Login() {
+  const [form, setForm] = useState({
+    loginUserType: 0,
+    loginEmail: "",
+    loginPassword: "",
+  });
+
+  async function handleSubmit() {}
+
+  function handleTaskUserTypeChange(event) {
+    setForm({ ...form, loginUserType: event.target.value });
+  }
+
+  function handleEmailChange(event) {
+    setForm({ ...form, loginEmail: event.target.value });
+  }
+
+  function handlePasswordChange(event) {
+    setForm({ ...form, loginPassword: event.target.value });
+  }
+
+  console.log(form);
+
   return (
     <div>
       <Container className="py-5">
@@ -59,13 +81,20 @@ function Login() {
                 <Form>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" placeholder="Email" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Email"
+                      value={form.loginEmail}
+                      onChange={handleEmailChange}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       type="password"
                       placeholder="Enter password"
+                      value={form.loginPassword}
+                      onChange={handlePasswordChange}
                     />
                   </Form.Group>
                 </Form>
@@ -91,7 +120,7 @@ function Login() {
 
               <div className="py-2 d-flex justify-content-center">
                 <text>New Duckie?&nbsp;</text>
-                <Alert.Link href="#">Sign Up</Alert.Link>
+                <Alert.Link href="/">Sign Up</Alert.Link>
               </div>
             </Card.Body>
           </Card>
