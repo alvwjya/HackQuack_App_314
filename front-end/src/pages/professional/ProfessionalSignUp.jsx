@@ -174,6 +174,7 @@ function ProfessionalSignUp() {
           <Form.Select
             aria-label="selectServiceType"
             value={form.serviceType}
+            defaultValue={""}
             onChange={handleServiceTypeChange}
           >
             <option value="">Please select</option>
