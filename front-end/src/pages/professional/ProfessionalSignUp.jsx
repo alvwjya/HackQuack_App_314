@@ -215,7 +215,12 @@ function ProfessionalSignUp() {
 
         <Form.Group className="mb-3" controlId="formBasicABN">
           <Form.Label>ABN</Form.Label>
-          <Form.Control type="text" placeholder="Enter ABN" />
+          <Form.Control
+            type="text"
+            placeholder="Enter ABN"
+            value={form.ABN}
+            onChange={handleABN}
+          />
         </Form.Group>
 
         <Button href="/add-payment-method" variant="primary" size="lg">
