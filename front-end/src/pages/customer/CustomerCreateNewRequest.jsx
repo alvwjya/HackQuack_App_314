@@ -15,7 +15,7 @@ function CustomerCreateNewRequest() {
     setForm({ ...form, taskTitle: event.target.value });
   }
 
-  function handleTaskDescriptionChage(event) {
+  function handleTaskDescriptionChange(event) {
     setForm({ ...form, taskDescription: event.target.value });
   }
 
@@ -48,7 +48,7 @@ function CustomerCreateNewRequest() {
             type="text"
             placeholder="Enter task description"
             value={form.taskDescription}
-            onChange={handleTaskDescriptionChage}
+            onChange={handleTaskDescriptionChange}
           />
         </Form.Group>
 
@@ -72,7 +72,7 @@ function CustomerCreateNewRequest() {
           <Button variant="primary" size="lg">
             Make Request
           </Button>
-          <Button variant="secondary" size="lg">
+          <Button variant="cancel" size="lg">
             Cancel
           </Button>
         </div>

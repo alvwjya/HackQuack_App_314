@@ -1,7 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
 function ProfessionalSignUp() {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    suburb: "",
+    state: "",
+    postcode: "",
+    serviceType: 0,
+    password: "",
+    confirmedPassword: "",
+    taxNumber: "",
+    ABN: 0,
+  });
+
+  async function handleSubmit() {}
+
+  function handleFirstNameChange(event) {
+    setForm({ ...form, firstName: event.target.value });
+  }
+
+  function handleLastNameChange(event) {
+    setForm({ ...form, lastName: event.target.value });
+  }
+
+  function handleEmailChange(event) {
+    setForm({ ...form, email: event.target.value });
+  }
+
+  function handleAddressChange(event) {
+    setForm({ ...form, address: event.target.value });
+  }
+
+  function handleSuburbChange(event) {
+    setForm({ ...form, suburb: event.target.value });
+  }
+
+  function handleStateChange(event) {
+    setForm({ ...form, state: event.target.value });
+  }
+
+  function handlePostcodeChange(event) {
+    setForm({ ...form, postcode: event.target.value });
+  }
+
+  function handlePasswordChange(event) {
+    setForm({ ...form, password: event.target.value });
+  }
+
+  function handleConfirmedPasswordChange(event) {
+    setForm({ ...form, confirmedPassword: event.target.value });
+  }
+
+  function handleTaxNumber(event) {
+    setForm({ ...form, taxNumber: event.target.value });
+  }
+
+  function handleABN(event) {
+    setForm({ ...form, ABN: event.target.value });
+  }
+
+  console.log(form);
+
+  async function handleSubmit() {}
+
   return (
     <Container className="py-5">
       <h1>Professional Sign Up</h1>
@@ -21,22 +86,42 @@ function ProfessionalSignUp() {
           </Row>
           <Row>
             <Col>
-              <Form.Control type="text" placeholder="Enter first name" />
+              <Form.Control
+                type="text"
+                placeholder="Enter first name"
+                value={form.firstName}
+                onChange={handleFirstNameChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="Enter last name" />
+              <Form.Control
+                type="text"
+                placeholder="Enter last name"
+                value={form.lastName}
+                onChange={handleLastNameChange}
+              />
             </Col>
           </Row>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="Enter email" />
+          <Form.Control
+            type="text"
+            placeholder="Enter email"
+            value={form.email}
+            onChange={handleEmailChange}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_1">
           <Form.Label>Address</Form.Label>
-          <Form.Control type="text" placeholder="Enter address" />
+          <Form.Control
+            type="text"
+            placeholder="Enter address"
+            value={form.address}
+            onChange={handleAddressChange}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_2">
@@ -105,7 +190,7 @@ function ProfessionalSignUp() {
         <Button variant="primary" size="lg">
           Sign Up
         </Button>
-        <Button variant="secondary" size="lg">
+        <Button variant="cancel" size="lg">
           Cancel
         </Button>
       </div>

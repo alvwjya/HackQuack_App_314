@@ -13,15 +13,16 @@ import {
 
 function Login() {
   const [form, setForm] = useState({
-    loginUserType: 0,
+    loginUserType: "",
     loginEmail: "",
     loginPassword: "",
   });
 
   async function handleSubmit() {}
 
-  function handleTaskUserTypeChange(event) {
-    setForm({ ...form, loginUserType: event.target.value });
+  function handleUserTypeChange(event) {
+    console.log(event);
+    setForm({ ...form, loginUserType: event });
   }
 
   function handleEmailChange(event) {
@@ -57,18 +58,21 @@ function Login() {
                   type="radio"
                   name="options"
                   defaultValue={"customer"}
+                  onChange={handleUserTypeChange}
                 >
                   <ToggleButton
                     id="customer"
-                    value={"customer"}
+                    value="customer"
+                    checked={form.loginUserType === "customer"}
                     className="btn-customer-button"
                   >
                     Customer
                   </ToggleButton>
                   <ToggleButton
                     id="professional"
-                    value={2}
+                    value="professional"
                     className="btn-professional-button"
+                    checked={form.loginUserType === "customer"}
                   >
                     Professional
                   </ToggleButton>
