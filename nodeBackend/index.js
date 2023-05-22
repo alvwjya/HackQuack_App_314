@@ -34,6 +34,7 @@ app.use(
 app.use(require("./controller/updateProfile/ClientUpdate"));
 app.use(require("./controller/updateProfile/ProfessionalUpdate"));
 app.use(require("./controller/authentication/SignIn"));
+app.use(require("./controller/serviceRequest/ClientViewAllRequest"))
 
 // Port
 app.listen(port, () => {

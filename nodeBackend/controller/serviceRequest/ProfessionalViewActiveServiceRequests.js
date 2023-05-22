@@ -7,7 +7,7 @@ router.get(
   "/professional-view-active-service-requests/:professional_id",
   async function (req, res) {
     try {
-      const professional_id = req.params;
+      const {professional_id} = req.params;
 
       const getProfessionalServiceTypeId = await prisma.professional.findFirst({
         where: {
