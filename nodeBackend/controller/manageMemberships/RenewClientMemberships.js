@@ -3,12 +3,12 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.put("/renew-memberships/professional", async function (req, res) {
-  const { professional_id } = req.body;
+router.put("/renew-memberships/client", async function (req, res) {
+  const { client_id } = req.body;
 
   try {
     const getCurrentDueDate = await prisma.membership.findFirst({
-      where: { professional_id: parseInt(professional_id) },
+      where: { client_id: parseInt(client_id) },
     });
 
     const updateDueDate = new Date(
@@ -17,15 +17,15 @@ router.put("/renew-memberships/professional", async function (req, res) {
       )
     );
 
-    const renewProfessionalMembership = await prisma.membership.update({
+    const renewCLientMembership = await prisma.membership.update({
       where: {
-        id: getCurrentDueDate.id, // The ID of the professional
+        id: getCurrentDueDate.id,
       },
       data: {
         due_date: updateDueDate,
       },
     });
-    res.status(200).json(renewProfessionalMembership);
+    res.status(200).json(renewCLientMembership);
   } catch (err) {
     res.status(500).json(err);
   }

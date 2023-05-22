@@ -20,6 +20,9 @@ app.use(require("./controller/manageMemberships/SubscribeClientMemberships"));
 app.use(
   require("./controller/manageMemberships/SubscibeProfessionalMemberships")
 );
+app.use(require("./controller/manageMemberships/RenewProfessionalMemberships"));
+app.use(require("./controller/manageMemberships/RenewClientMemberships"));
+app.use(require("./controller/manageMemberships/CancelClientMemberships"))
 
 // Port
 app.listen(port, () => {
