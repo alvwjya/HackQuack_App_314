@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
+
 function CustomerCreateNewRequest() {
   const service_type = ["One", "Two", "Three", "Four", "Five"];
   const [form, setForm] = useState({
@@ -9,7 +11,10 @@ function CustomerCreateNewRequest() {
     serviceType: 0,
   });
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    console.log(API_ENDPOINT);
+    const url = `${API_ENDPOINT}/signup/client`;
+  }
 
   function handleTaskTitleChange(event) {
     setForm({ ...form, taskTitle: event.target.value });
@@ -72,7 +77,7 @@ function CustomerCreateNewRequest() {
           <Button variant="primary" size="lg" onClick={handleSubmit}>
             Make Request
           </Button>
-          <Button href = "/" variant="cancel" size="lg">
+          <Button href="/" variant="cancel" size="lg">
             Cancel
           </Button>
         </div>
