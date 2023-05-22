@@ -24,7 +24,14 @@ router.post("/signin", async function (req, res) {
         res.status(403).json({ message: "Invalid credentials" });
       }
 
-      res.status(200).json({ userId: signinCustomer.id, userType: 0 });
+      res
+        .status(200)
+        .json({
+          userId: signinCustomer.id,
+          userType: 0,
+          firstName: signinCustomer.first_name,
+          lastname: signinCustomer.last_name,
+        });
     }
 
     if (loginUserType === "professional") {
@@ -37,7 +44,12 @@ router.post("/signin", async function (req, res) {
       if (!signinProfessional) {
         res.status(403).json({ message: "Invalid credentials" });
       }
-      res.status(200).json({ userId: signinProfessional.id, userType: 1 });
+      res.status(200).json({
+        userId: signinProfessional.id,
+        userType: 1,
+        firstName: signinProfessional.first_name,
+        lastName: signinProfessional.last_name,
+      });
     }
 
     res.status(404).json({ message: "User type invalid" });
