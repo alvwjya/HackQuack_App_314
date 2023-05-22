@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function ProfessionalSignUp() {
-  const navigate = useNavigate();
-
   const service_type = [1, 2, 3, 4, 5];
 
   const [form, setForm] = useState({
@@ -39,11 +36,8 @@ function ProfessionalSignUp() {
     }
 
     const res = await axios.post(url, form);
+
     console.log(res);
-
-    console.log("Professional - Create account sucessfully!");
-
-    navigate("/professional-dashboard");
   }
 
   function handleFirstNameChange(event) {
