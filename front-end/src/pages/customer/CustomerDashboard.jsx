@@ -70,7 +70,7 @@ function CustomerDashboard() {
             Service Board
           </Button>
 
-          <Button href="/" className="btn-primary" size="lg">
+          <Button href="/payment-transaction" className="btn-primary" size="lg">
             Payment Transaction
           </Button>
         </div>

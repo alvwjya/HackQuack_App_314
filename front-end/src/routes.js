@@ -43,6 +43,7 @@ import ProfessionalMembership from "./pages/professional/ProfessionalMembership"
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import PaymentMethod from "./pages/PaymentMethod";
+import PaymentTransaction from "./pages/PaymentTransaction";
 import Receipt from "./pages/Receipt";
 
 const AuthorizedRoute = ({ userTypes }) => {
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
           {
             path: "receipt",
             element: <Receipt />,
+          },
+          {
+            path: "payment-transaction",
+            element: <PaymentTransaction />,
           },
         ],
       },
