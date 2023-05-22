@@ -5,7 +5,8 @@ import AuthContext from "../../contexts/AuthContext";
 function ProfessionalDashboard() {
   const { user } = useContext(AuthContext);
 
-  console.log(user)
+  console.log(user);
+
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
