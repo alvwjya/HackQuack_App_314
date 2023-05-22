@@ -50,6 +50,14 @@ function ProfessionalSignUp() {
     setForm({ ...form, email: event.target.value });
   }
 
+  function handleABN(event) {
+    setForm({ ...form, abn: event.target.value });
+  }
+
+  function handleTaxNumber(event) {
+    setForm({ ...form, tax_number: event.target.value });
+  }
+
   function handleAddressChange(event) {
     setForm({ ...form, address: event.target.value });
   }
@@ -76,14 +84,6 @@ function ProfessionalSignUp() {
 
   function handleConfirmedPasswordChange(event) {
     setForm({ ...form, confirm_password: event.target.value });
-  }
-
-  function handleTaxNumber(event) {
-    setForm({ ...form, tax_number: event.target.value });
-  }
-
-  function handleABN(event) {
-    setForm({ ...form, abn: event.target.value });
   }
 
   console.log(form);

@@ -6,15 +6,15 @@ const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerSignUp() {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     address: "",
     suburb: "",
     state: "",
     postcode: "",
     password: "",
-    confirmed_password: "",
+    confirm_password: "",
   });
 
   async function handleSubmit() {
@@ -22,7 +22,7 @@ function CustomerSignUp() {
     const url = `${API_ENDPOINT}/signup/customer`;
 
     if (form.password !== form.confirm_password) {
-      console.log("Password don't match");
+      console.log("Password and confirm password don't match");
       return;
     }
 
@@ -31,11 +31,11 @@ function CustomerSignUp() {
   }
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, firstName: event.target.value });
+    setForm({ ...form, first_name: event.target.value });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, lastName: event.target.value });
+    setForm({ ...form, last_name: event.target.value });
   }
 
   function handleEmailChange(event) {
@@ -63,7 +63,7 @@ function CustomerSignUp() {
   }
 
   function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirmed_password: event.target.value });
+    setForm({ ...form, confirm_password: event.target.value });
   }
 
   console.log(form);
@@ -89,7 +89,7 @@ function CustomerSignUp() {
               <Form.Control
                 type="text"
                 placeholder="Enter first name"
-                value={form.firstName}
+                value={form.first_name}
                 onChange={handleFirstNameChange}
               />
             </Col>
@@ -97,7 +97,7 @@ function CustomerSignUp() {
               <Form.Control
                 type="text"
                 placeholder="Enter last name"
-                value={form.lastName}
+                value={form.last_name}
                 onChange={handleLastNameChange}
               />
             </Col>
@@ -179,7 +179,7 @@ function CustomerSignUp() {
           <Form.Control
             type="password"
             placeholder="Enter confirm Password"
-            value={form.confirmed_password}
+            value={form.confirm_password}
             onChange={handleConfirmedPasswordChange}
           />
         </Form.Group>

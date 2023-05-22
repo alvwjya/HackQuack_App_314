@@ -6,8 +6,8 @@ const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerAccount() {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     address: "",
     suburb: "",
@@ -20,11 +20,11 @@ function CustomerAccount() {
   async function handleSubmit() {}
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, firstName: event.target.value });
+    setForm({ ...form, first_name: event.target.value });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, lastName: event.target.value });
+    setForm({ ...form, last_name: event.target.value });
   }
 
   function handleAddressChange(event) {
@@ -83,7 +83,7 @@ function CustomerAccount() {
               <Form.Control
                 type="text"
                 placeholder="Enter first name"
-                value={form.firstName}
+                value={form.first_name}
                 onChange={handleFirstNameChange}
               />
             </Col>
@@ -91,7 +91,7 @@ function CustomerAccount() {
               <Form.Control
                 type="text"
                 placeholder="Enter last name"
-                value={form.lastName}
+                value={form.last_name}
                 onChange={handleLastNameChange}
               />
             </Col>
