@@ -12,7 +12,7 @@ function ProfessionalSignUp() {
     email: "",
 
     abn: "",
-    tax_number: "",
+    tfn: "",
 
     address: "",
     suburb: "",
@@ -55,7 +55,7 @@ function ProfessionalSignUp() {
   }
 
   function handleTaxNumber(event) {
-    setForm({ ...form, tax_number: event.target.value });
+    setForm({ ...form, tfn: event.target.value });
   }
 
   function handleAddressChange(event) {
@@ -139,7 +139,7 @@ function ProfessionalSignUp() {
           <Form.Control
             type="text"
             placeholder="Enter tax number"
-            value={form.tax_number}
+            value={form.tfn}
             onChange={handleTaxNumber}
           />
         </Form.Group>
