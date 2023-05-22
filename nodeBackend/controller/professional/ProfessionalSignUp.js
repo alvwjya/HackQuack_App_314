@@ -11,6 +11,7 @@ router.post("/signup/professional", async function (req, res) {
       abn,
       password,
       suburb,
+      email,
       state,
       tfn,
       postcode,
@@ -24,6 +25,7 @@ router.post("/signup/professional", async function (req, res) {
       data: {
         first_name,
         last_name,
+        email,
         abn,
         tfn,
         password,

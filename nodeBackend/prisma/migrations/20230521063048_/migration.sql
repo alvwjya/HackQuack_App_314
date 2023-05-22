@@ -35,6 +35,7 @@ CREATE TABLE `professional` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(255) NULL,
     `last_name` VARCHAR(255) NULL,
+    `email` VARCHAR(255) NULL,
     `abn` VARCHAR(255) NULL,
     `password` VARCHAR(255) NULL,
     `suburb` VARCHAR(255) NULL,
@@ -82,6 +83,7 @@ CREATE TABLE `rating` (
 CREATE TABLE `service_request` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `request_time` DATETIME(0) NULL,
+    `request_title` VARCHAR(255) NULL,
     `description` VARCHAR(1000) NULL,
     `client_id` INTEGER NULL,
     `service_type_id` INTEGER NULL,
