@@ -23,13 +23,17 @@ app.use(
 );
 app.use(require("./controller/manageMemberships/RenewProfessionalMemberships"));
 app.use(require("./controller/manageMemberships/RenewClientMemberships"));
-app.use(require("./controller/manageMemberships/CancelClientMemberships"))
-app.use(require("./controller/manageMemberships/CancelProfessionalMemberships"))
-app.use(require("./controller/serviceRequest/ProfessionalAcceptRequest"))
-app.use(require("./controller/serviceRequest/ProfessionalViewActiveServiceRequests"))
-app.use(require("./controller/updateProfile/ClientUpdate"))
-app.use(require("./controller/updateProfile/ProfessionalUpdate"))
-
+app.use(require("./controller/manageMemberships/CancelClientMemberships"));
+app.use(
+  require("./controller/manageMemberships/CancelProfessionalMemberships")
+);
+app.use(require("./controller/serviceRequest/ProfessionalAcceptRequest"));
+app.use(
+  require("./controller/serviceRequest/ProfessionalViewActiveServiceRequests")
+);
+app.use(require("./controller/updateProfile/ClientUpdate"));
+app.use(require("./controller/updateProfile/ProfessionalUpdate"));
+app.use(require("./controller/authentication/SignIn"));
 
 // Port
 app.listen(port, () => {
