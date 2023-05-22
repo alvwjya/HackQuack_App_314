@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
 
-function Receipt() {
+function PaymentTransaction() {
+  const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
       <div class="container py-3">
@@ -55,4 +56,4 @@ function Receipt() {
   );
 }
 
-export default Receipt;
+export default PaymentTransaction;

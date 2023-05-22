@@ -33,8 +33,10 @@ function CustomerServiceBoardActive() {
         <div class="container py-3">
           <Card>
             <Card.Header>Service Title</Card.Header>
+
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
+              <Card.Subtitle>Professional Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
             </Card.Body>
 

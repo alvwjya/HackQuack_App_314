@@ -2,6 +2,7 @@ import React from "react";
 import { Nav, Navbar, Container, Button, Image, Card } from "react-bootstrap";
 
 function CustomerDashboard() {
+  const customerName = "John Doe";
   return (
     <div>
       <Navbar bg="customer-tab" variant="light">
@@ -37,7 +38,8 @@ function CustomerDashboard() {
       </Navbar>
 
       <Container className="py-5">
-        <h1>Welcome, John Doe!</h1>
+        <h1>Welcome, {customerName}!</h1>
+
         <h3>Customer Account</h3>
 
         <hr />
@@ -51,6 +53,7 @@ function CustomerDashboard() {
           >
             Account
           </Button>
+
           <Button
             href="/customer-create-new-request"
             variant="primary"
@@ -58,6 +61,7 @@ function CustomerDashboard() {
           >
             Create New Request
           </Button>
+
           <Button
             href="/customer-service-board-request"
             variant="primary"
@@ -65,12 +69,11 @@ function CustomerDashboard() {
           >
             Service Board
           </Button>
-        </div>
 
-        <br />
-        <Card>
-          <Image className="h-100" src="/dashboard banner.png"></Image>
-        </Card>
+          <Button href="/" className="btn-primary" size="lg">
+            Payment Transaction
+          </Button>
+        </div>
 
         <hr />
 

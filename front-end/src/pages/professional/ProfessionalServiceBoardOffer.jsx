@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
+import { Nav, Container, Card, Button } from "react-bootstrap";
 
 function ProfessionalServiceBoardOffer() {
   const data = [1, 2, 3, 4, 5];
@@ -44,11 +44,11 @@ function ProfessionalServiceBoardOffer() {
               <Card.Text>Information</Card.Text>
               <Button
                 href="/professional-service-board-request-detail"
-                variant="primary"
+                className="btn-info"
               >
                 Learn More
               </Button>{" "}
-              <Button variant="primary">Cancel Offer</Button>{" "}
+              <Button className="btn-warning">Cancel Offer</Button>{" "}
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

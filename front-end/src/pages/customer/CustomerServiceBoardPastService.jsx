@@ -38,11 +38,14 @@ function CustomerServiceBoardPastService() {
             <Card.Header>Service Title</Card.Header>
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
+              <Card.Subtitle>Professional Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
               <Button variant="primary" href="/customer-rating-and-review">
                 Rating and Review
               </Button>{" "}
-              <Button variant="primary">Receipt</Button>
+              <Button href="receipt" variant="primary">
+                Receipt
+              </Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

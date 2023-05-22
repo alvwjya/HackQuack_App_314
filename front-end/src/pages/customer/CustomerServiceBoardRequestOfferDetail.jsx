@@ -1,39 +1,42 @@
 import React from "react";
-import { Container, Button, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Form } from "react-bootstrap";
 
 function CustomerOfferProfessionalDetails() {
   const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
-      <h1>PROFESSIONAL INFORMATION</h1>
-
-      <hr />
-
-      <div class="container p-3">
+      <div class="container py-3">
         <Card>
-          <Card.Header>Professional Name</Card.Header>
           <Card.Body>
-            <Card.Text>Information</Card.Text>
-            <Card.Text>Price</Card.Text>
+            <h1>Professional Name</h1>
 
-            <Row>
-              <Col xs={10}>
-                <Button variant="primary">Learn more</Button>
-              </Col>
-              <Col xs={1}>
-                <Button variant="primary">Decline</Button>
-              </Col>
-              <Col xs={1}>
-                <Button variant="primary">Accept</Button>
-              </Col>
-            </Row>
+            <hr />
+            <Form.Group className="mb-3" controlId="formBasicInformation">
+              <Form.Label>Information</Form.Label>
+              <Form.Control type="text" placeholder="Information" disable />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPrice">
+              <Form.Label>Price</Form.Label>
+              <Form.Control type="text" placeholder="AUD" disable />
+            </Form.Group>
+
+            <hr />
           </Card.Body>
           <Card.Footer>Location</Card.Footer>
-          <Card.Footer>Ratings and Reviews</Card.Footer>
+          <Card.Footer>
+            Ratings and Reviews{" "}
+            {data.map((data) => (
+              <div class="container py-3">
+                <Card>
+                  <Card.Header>Customer name</Card.Header>
+                  <Card.Body></Card.Body>
+                </Card>
+              </div>
+            ))}
+          </Card.Footer>
         </Card>
       </div>
-
-      <hr />
     </Container>
   );
 }

@@ -31,6 +31,7 @@ import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
 import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
+import ProfessionalServiceBoardRequestDetail from "./pages/professional/ProfessionalServiceBoardRequestDetail";
 import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
 import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardOffer";
 import ProfessionalServiceBoardActiveService from "./pages/professional/ProfessionalServiceBoardActiveService";
@@ -140,6 +141,10 @@ const router = createBrowserRouter([
           {
             path: "professional-service-board-request",
             element: <ProfessionalServiceBoardRequest />,
+          },
+          {
+            path: "professional-service-board-request-detail",
+            element: <ProfessionalServiceBoardRequestDetail />,
           },
           {
             path: "professional-service-board-request-price-offer",
