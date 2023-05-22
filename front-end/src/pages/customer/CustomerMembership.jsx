@@ -1,10 +1,16 @@
 import React from "react";
 import { Container, Button, Form, Card } from "react-bootstrap";
+import axios from "axios";
+
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerMembership() {
   const membershipAnuallyCost = 1000;
 
-  function handleSignUpMembershipOnClick(event) {}
+  function handleSignUpMembershipOnClick(event) {
+    console.log(API_ENDPOINT);
+    const url = `${API_ENDPOINT}/subscribe-memberships/client`;
+  }
 
   return (
     <Container className="py-5">
@@ -49,11 +55,15 @@ function CustomerMembership() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+        <Button
+          className="btn-customer-button"
+          onClick={handleSignUpMembershipOnClick}
+          size="lg"
+        >
           Sign Up
         </Button>
-        <Button variant="cancel" size="lg">
-          Cancel
+        <Button className="btn-cancel" size="lg">
+          Cancel Membership
         </Button>
       </div>
     </Container>

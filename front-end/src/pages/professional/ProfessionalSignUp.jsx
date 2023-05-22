@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function ProfessionalSignUp() {
+  const navigate = useNavigate();
+
   const service_type = [1, 2, 3, 4, 5];
   const [form, setForm] = useState({
     first_name: "",
@@ -36,6 +39,10 @@ function ProfessionalSignUp() {
 
     const res = await axios.post(url, form);
     console.log(res);
+
+    console.log("Professional - Create account sucessfully!");
+
+    navigate("/professional-dashboard");
   }
 
   function handleFirstNameChange(event) {
@@ -90,7 +97,7 @@ function ProfessionalSignUp() {
 
   return (
     <Container className="py-5">
-      <h1>Professional Sign Up</h1>
+      <h1>PROFESSIONAL SIGN UP</h1>
 
       <hr />
 
@@ -247,14 +254,13 @@ function ProfessionalSignUp() {
 
       <div className="d-grid gap-2">
         <Button
-          
           className="btn-professional-button"
           size="lg"
           onClick={handleSubmit}
         >
           Sign Up
         </Button>
-        <Button variant="cancel" size="lg">
+        <Button href="/" className="btn-cancel" size="lg">
           Cancel
         </Button>
       </div>

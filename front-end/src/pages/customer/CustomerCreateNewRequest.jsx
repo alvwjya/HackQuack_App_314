@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
@@ -13,7 +14,7 @@ function CustomerCreateNewRequest() {
 
   async function handleSubmit() {
     console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/signup/client`;
+    const url = `${API_ENDPOINT}/create-new-request/client`;
   }
 
   function handleTaskTitleChange(event) {

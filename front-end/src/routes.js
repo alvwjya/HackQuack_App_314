@@ -17,6 +17,7 @@ import CustomerServiceBoardRequestOffer from "./pages/customer/CustomerServiceBo
 import CustomerServiceBoardRequestOfferDetail from "./pages/customer/CustomerServiceBoardRequestOfferDetail";
 
 import CustomerServiceBoardActiveService from "./pages/customer/CustomerServiceBoardActiveService";
+import CustomerRatingAndReview from "./pages/customer/CustomerRatingAndReview";
 
 import CustomerServiceBoardPastService from "./pages/customer/CustomerServiceBoardPastService";
 
@@ -41,6 +42,7 @@ import ProfessionalMembership from "./pages/professional/ProfessionalMembership"
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import PaymentMethod from "./pages/PaymentMethod";
+import Receipt from "./pages/Receipt";
 
 const AuthorizedRoute = ({ userTypes }) => {
   const { user } = useContext(AuthContext);
@@ -106,6 +108,10 @@ const router = createBrowserRouter([
           {
             path: "professional-sign-up",
             element: <ProfessionalSignUp />,
+          },
+          {
+            path: "receipt",
+            element: <Receipt />,
           },
         ],
       },
@@ -199,6 +205,10 @@ const router = createBrowserRouter([
           {
             path: "customer-service-board-request-offer-detail",
             element: <CustomerServiceBoardRequestOfferDetail />,
+          },
+          {
+            path: "customer-rating-and-review",
+            element: <CustomerRatingAndReview />,
           },
         ],
       },

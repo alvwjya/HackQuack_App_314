@@ -32,7 +32,7 @@ function CustomerSignUp() {
     const res = await axios.post(url, form);
     console.log(res);
 
-    console.log("Create account sucessfully!");
+    console.log("Customer - Create account sucessfully!");
 
     navigate("/customer-dashboard");
   }
@@ -77,7 +77,7 @@ function CustomerSignUp() {
 
   return (
     <Container className="py-5">
-      <h1>Customer Sign Up</h1>
+      <h1>CUSTOMER SIGN UP</h1>
 
       <hr />
 

@@ -13,7 +13,7 @@ function Welcome() {
                 justifyContent: "center",
               }}
             >
-              Hackquack Tradies
+              HACKQUACK TRADIES
             </h1>
 
             <Container style={{ display: "flex", justifyContent: "center" }}>
