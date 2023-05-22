@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AuthContext from "../contexts/AuthContext";
+import { USER_TYPE } from "../constants/userTypes";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function ProfessionalSignUp() {
   const navigate = useNavigate();
 
-  const service_type = [1, 2, 3, 4, 5];
+  const {service_type} = [1, 2, 3, 4, 5];
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
