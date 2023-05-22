@@ -10,15 +10,19 @@ function ProfessionalSignUp() {
     first_name: "",
     last_name: "",
     email: "",
+
     abn: "",
-    tfn: "",
-    password: "",
-    confirm_password: "",
-    suburb: "",
+    tax_number: "",
+
     address: "",
+    suburb: "",
     state: "",
     postcode: "",
+
     service_type_id: 0,
+
+    password: "",
+    confirm_password: "",
   });
 
   async function handleSubmit() {
@@ -26,7 +30,7 @@ function ProfessionalSignUp() {
     const url = `${API_ENDPOINT}/signup/professional`;
 
     if (form.password !== form.confirm_password) {
-      console.log("Password don't match");
+      console.log("Password and confirm password don't match");
       return;
     }
 
@@ -75,7 +79,7 @@ function ProfessionalSignUp() {
   }
 
   function handleTaxNumber(event) {
-    setForm({ ...form, tfn: event.target.value });
+    setForm({ ...form, tax_number: event.target.value });
   }
 
   function handleABN(event) {
@@ -105,7 +109,7 @@ function ProfessionalSignUp() {
               <Form.Control
                 type="text"
                 placeholder="Enter first name"
-                value={form.firstName}
+                value={form.first_name}
                 onChange={handleFirstNameChange}
               />
             </Col>
@@ -113,7 +117,7 @@ function ProfessionalSignUp() {
               <Form.Control
                 type="text"
                 placeholder="Enter last name"
-                value={form.lastName}
+                value={form.last_name}
                 onChange={handleLastNameChange}
               />
             </Col>
@@ -127,6 +131,26 @@ function ProfessionalSignUp() {
             placeholder="Enter email"
             value={form.email}
             onChange={handleEmailChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicTaxNumber">
+          <Form.Label>Tax Number</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter tax number"
+            value={form.tax_number}
+            onChange={handleTaxNumber}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicABN">
+          <Form.Label>ABN</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter ABN"
+            value={form.abn}
+            onChange={handleABN}
           />
         </Form.Group>
 
@@ -209,28 +233,8 @@ function ProfessionalSignUp() {
           <Form.Control
             type="password"
             placeholder="Enter confirm Password"
-            value={form.confirmedPassword}
+            value={form.confirm_password}
             onChange={handleConfirmedPasswordChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicTaxNumber">
-          <Form.Label>Tax Number</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter tax number"
-            value={form.taxNumber}
-            onChange={handleTaxNumber}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicABN">
-          <Form.Label>ABN</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter ABN"
-            value={form.ABN}
-            onChange={handleABN}
           />
         </Form.Group>
 

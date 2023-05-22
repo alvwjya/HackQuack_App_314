@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import axios from "axios";
+
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerAccount() {
   const [form, setForm] = useState({

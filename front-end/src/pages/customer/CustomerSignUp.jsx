@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import axios from "axios";
+
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerSignUp() {
   const [form, setForm] = useState({
@@ -11,10 +14,21 @@ function CustomerSignUp() {
     state: "",
     postcode: "",
     password: "",
-    confirmedPassword: "",
+    confirmed_password: "",
   });
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    console.log(API_ENDPOINT);
+    const url = `${API_ENDPOINT}/signup/customer`;
+
+    if (form.password !== form.confirm_password) {
+      console.log("Password don't match");
+      return;
+    }
+
+    const res = await axios.post(url, form);
+    console.log(res);
+  }
 
   function handleFirstNameChange(event) {
     setForm({ ...form, firstName: event.target.value });
@@ -49,7 +63,7 @@ function CustomerSignUp() {
   }
 
   function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirmedPassword: event.target.value });
+    setForm({ ...form, confirmed_password: event.target.value });
   }
 
   console.log(form);
@@ -165,7 +179,7 @@ function CustomerSignUp() {
           <Form.Control
             type="password"
             placeholder="Enter confirm Password"
-            value={form.confirmedPassword}
+            value={form.confirmed_password}
             onChange={handleConfirmedPasswordChange}
           />
         </Form.Group>
