@@ -16,9 +16,6 @@ router.post("/signup/professional", async function (req, res) {
       state,
       tfn,
       postcode,
-      card_number,
-      card_security_num,
-      card_expiry_date,
       service_type_id,
     } = req.body;
 
@@ -33,14 +30,9 @@ router.post("/signup/professional", async function (req, res) {
         suburb,
         state,
         postcode,
-        card_number,
-        card_security_num,
-        card_expiry_date: new Date(card_expiry_date),
         service_type: { connect: { id: parseInt(service_type_id) } },
       },
     });
-    console.log("HASJKDJHASJD")
-    console.log(signupProfessional)
     res.status(200).json({ signupProfessional });
   } catch (err) {
     res.status(500).json(err);

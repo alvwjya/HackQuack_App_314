@@ -6,8 +6,6 @@ const app = express();
 
 // ---Middleware---
 app.use(cors());
-app.use(express.json({limit: '10mb'}));
-
 
 // ---Routes---
 app.get("/", function (req, res) {
@@ -17,7 +15,11 @@ app.get("/", function (req, res) {
 app.use(express.json());
 app.use(require("./controller/professional/ProfessionalSignUp"));
 app.use(require("./controller/client/ClientSignUp"));
-app.use(require("./controller/client/ClientSignUp"));
+app.use(require("./controller/GetAllServiceTypes"));
+app.use(require("./controller/manageMemberships/SubscribeClientMemberships"));
+app.use(
+  require("./controller/manageMemberships/SubscibeProfessionalMemberships")
+);
 
 // Port
 app.listen(port, () => {
