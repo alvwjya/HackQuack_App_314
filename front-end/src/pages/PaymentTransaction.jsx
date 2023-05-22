@@ -48,14 +48,6 @@ function PaymentTransaction() {
                   </Row>
                 </Form.Group>
               </Form>
-
-              <hr />
-
-              <div className="d-grid gap-2">
-                <Button className="btn-primary" size="lg">
-                  Done
-                </Button>
-              </div>
             </Card.Body>
           </Card>
         </div>
