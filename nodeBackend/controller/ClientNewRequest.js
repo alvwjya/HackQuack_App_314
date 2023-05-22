@@ -3,7 +3,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 const router = express.Router();
 
-router.post("/client-new-request", async function(req, res){
+router.post("/ClientNewRequest", async function(req, res){
     const{
         id,
         client_id,
