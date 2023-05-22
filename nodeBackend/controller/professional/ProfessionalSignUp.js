@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.post("/signup/professional", async function (req, res) {
-  console.log(req.body)
+  console.log(req.body);
   try {
     const {
       first_name,
