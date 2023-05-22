@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Button, Navbar, Nav, Image } from "react-bootstrap";
+import AuthContext from "../../contexts/AuthContext";
 
 function ProfessionalDashboard() {
+  const { user } = useContext(AuthContext);
+
+  console.log(user)
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
@@ -23,7 +27,7 @@ function ProfessionalDashboard() {
 
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/professional-account">
-              John Doe{" "}
+              {user.firstName} {user.lastName}
               <Image
                 src="/newlogo.ico"
                 width="30"

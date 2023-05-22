@@ -46,9 +46,11 @@ import Receipt from "./pages/Receipt";
 
 const AuthorizedRoute = ({ userTypes }) => {
   const { user } = useContext(AuthContext);
+
   if (!user) {
     return <Navigate to="/" replace />;
   }
+
   let authorized = false;
   for (let i = 0; i < userTypes.length; i++) {
     if (userTypes[i] === user.userType) {
@@ -56,9 +58,11 @@ const AuthorizedRoute = ({ userTypes }) => {
       break;
     }
   }
+
   if (!authorized) {
     return <Navigate to="/" replace />;
   }
+
   return <Outlet />;
 };
 
@@ -88,6 +92,7 @@ const router = createBrowserRouter([
     path: "/",
     children: [
       {
+        element: <GuestRoute />,
         children: [
           {
             index: true,
@@ -117,11 +122,9 @@ const router = createBrowserRouter([
       },
 
       {
+        element: <AuthorizedRoute userTypes={[USER_TYPE.PROFESSIONAL]} />,
+
         children: [
-          {
-            index: true,
-            element: <ProfessionalDashboard />,
-          },
           // Dashboard
           {
             path: "professional-dashboard",
@@ -161,11 +164,8 @@ const router = createBrowserRouter([
       },
 
       {
+        element: <AuthorizedRoute userTypes={[USER_TYPE.CUSTOMER]} />,
         children: [
-          {
-            index: true,
-            element: <CustomerDashboard />,
-          },
           // Dashboard
           {
             path: "customer-dashboard",

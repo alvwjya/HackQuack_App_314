@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Alert,
   Container,
@@ -11,10 +11,14 @@ import {
   Image,
 } from "react-bootstrap";
 import axios from "axios";
+import AuthContext from "../contexts/AuthContext";
+import { USER_TYPE } from "../constants/userTypes";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function Login() {
+  const { setUser } = useContext(AuthContext);
+
   const [form, setForm] = useState({
     loginUserType: "",
     loginEmail: "",
@@ -23,7 +27,7 @@ function Login() {
 
   async function handleSubmit() {
     console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/login`;
+    const url = `${API_ENDPOINT}/signin`;
 
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match");
@@ -31,7 +35,16 @@ function Login() {
     }
 
     const res = await axios.post(url, form);
-    console.log(res);
+    if (res.status === 200) {
+      setUser({
+        userId: res.data.userId,
+        userType: res.data.userType,
+        firstName: res.data.firstName,
+        lastName: res.data.lastName,
+      });
+    } else {
+      console.log(res);
+    }
   }
 
   function handleUserTypeChange(event) {
@@ -46,8 +59,6 @@ function Login() {
   function handlePasswordChange(event) {
     setForm({ ...form, loginPassword: event.target.value });
   }
-
-  console.log(form);
 
   return (
     <div>
@@ -121,19 +132,7 @@ function Login() {
               <hr />
 
               <div className="d-grid gap-2">
-                <Button
-                  className="btn-customer-button"
-                  href="/customer-dashboard"
-                >
-                  Login Customer
-                </Button>
-                <Button
-                  className="btn-professional-button"
-                  href="/professional-dashboard"
-                >
-                  Login Professional
-                </Button>
-                <Button>Login</Button>
+                <Button onClick={handleSubmit}>Login</Button>
               </div>
 
               <div className="py-2 d-flex justify-content-center">
