@@ -5,27 +5,38 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 // Route handler for updating professional information
-router.put("/update-professional/:id", async function (req, res, next) {
-
+router.put("/update-profile/professional/:id", async function (req, res, next) {
   // Destructure and extract necessary data from request body
-  const { 
-    first_name, 
-    last_name, 
-    abn, 
-    password, 
-    suburb, 
-    state, 
-    postcode, 
-    card_number, 
-    card_security_num, 
-    card_expiry_date, 
-    service_type_id 
+  const {
+    first_name,
+    last_name,
+    abn,
+    password,
+    suburb,
+    state,
+    postcode,
+    card_number,
+    card_security_num,
+    card_expiry_date,
+    service_type_id,
   } = req.body;
 
   // Validate inputs: all fields are required
-  if (!first_name || !last_name || !abn || !password || !suburb || !state || !postcode || !card_number || !card_security_num || !card_expiry_date || !service_type_id) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+  // if (
+  //   !first_name ||
+  //   !last_name ||
+  //   !abn ||
+  //   !password ||
+  //   !suburb ||
+  //   !state ||
+  //   !postcode ||
+  //   !card_number ||
+  //   !card_security_num ||
+  //   !card_expiry_date ||
+  //   !service_type_id
+  // ) {
+  //   return res.status(400).json({ error: "All fields are required" });
+  // }
 
   // Parse and validate the id parameter
   const id = parseInt(req.params.id, 10);
@@ -41,14 +52,19 @@ router.put("/update-professional/:id", async function (req, res, next) {
 
     // If the professional does not exist, return an error
     if (!professional) {
-      return res.status(404).json({ status: "error", message: "Professional not found" });
+      return res
+        .status(404)
+        .json({ status: "error", message: "Professional not found" });
     }
 
     // Check for failed update attempts
     const now = new Date();
 
     // Reset failed update count if it's been more than 10 minutes
-    if (!professional.failed_update_timestamp || now - new Date(professional.failed_update_timestamp) > 10 * 60 * 1000) {
+    if (
+      !professional.failed_update_timestamp ||
+      now - new Date(professional.failed_update_timestamp) > 10 * 60 * 1000
+    ) {
       professional.failed_update_count = 0;
     }
 
@@ -68,7 +84,8 @@ router.put("/update-professional/:id", async function (req, res, next) {
 
       return res.status(400).json({
         status: "error",
-        message: "You have failed to update your profile 3 times. Please try again after 10 minutes.",
+        message:
+          "You have failed to update your profile 3 times. Please try again after 10 minutes.",
       });
     }
 
@@ -97,8 +114,8 @@ router.put("/update-professional/:id", async function (req, res, next) {
   } catch (error) {
     // If any error happens, pass it to the error handling middleware
     next(error);
- }
+  }
 });
 
 // Export the router
-module.exports = router
+module.exports = router;

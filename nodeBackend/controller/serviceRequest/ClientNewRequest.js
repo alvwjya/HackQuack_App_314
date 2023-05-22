@@ -21,7 +21,6 @@ router.post("/client-new-request", async function (req, res) {
 
     res.json(clientNewRequest);
   } catch (err) {
-    throw err
     res.status(500).json(err);
   }
 });

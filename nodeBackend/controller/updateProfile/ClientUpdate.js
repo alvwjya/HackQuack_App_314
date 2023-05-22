@@ -3,7 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.put("/updateClient/:id", async function (req, res) {
+router.put("/update-profile/client/:id", async function (req, res) {
   const { id } = req.params;
   const {
     first_name,
