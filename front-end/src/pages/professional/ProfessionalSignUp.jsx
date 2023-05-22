@@ -247,7 +247,7 @@ function ProfessionalSignUp() {
 
       <div className="d-grid gap-2">
         <Button
-          href="/professional-dashboard"
+          
           className="btn-professional-button"
           size="lg"
           onClick={handleSubmit}
