@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerSignUp() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -19,15 +22,19 @@ function CustomerSignUp() {
 
   async function handleSubmit() {
     console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/signup/customer`;
+    const url = `${API_ENDPOINT}/signup/client`;
 
     if (form.password !== form.confirm_password) {
-      console.log("Password and confirm password don't match");
+      console.log("Password and confirm password don't match!");
       return;
     }
 
     const res = await axios.post(url, form);
     console.log(res);
+
+    console.log("Create account sucessfully!");
+
+    navigate("/customer-dashboard");
   }
 
   function handleFirstNameChange(event) {
@@ -189,14 +196,13 @@ function CustomerSignUp() {
 
       <div className="d-grid gap-2">
         <Button
-          href="/customer-dashboard"
           className="btn-customer-button"
           size="lg"
           onClick={handleSubmit}
         >
           Sign Up
         </Button>
-        <Button href="/" variant="cancel" size="lg">
+        <Button href="/" className="btn-cancel" size="lg">
           Cancel
         </Button>
       </div>
