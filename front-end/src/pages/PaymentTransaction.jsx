@@ -6,11 +6,13 @@ function PaymentTransaction() {
   return (
     <Container className="py-5">
       <h1>PAYMENT TRANSACTION</h1>
+
+      <hr />
       {data.map((data) => (
         <div class="container py-3">
           <Card>
             <Card.Body>
-              <h1>Receipt</h1>
+              <h3>Receipt</h3>
 
               <hr />
 
@@ -58,6 +60,7 @@ function PaymentTransaction() {
           </Card>
         </div>
       ))}
+      <hr />
     </Container>
   );
 }

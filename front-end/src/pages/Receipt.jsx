@@ -7,7 +7,7 @@ function Receipt() {
       <div class="container py-3">
         <Card>
           <Card.Body>
-            <h1>Receipt</h1>
+            <h3>Receipt</h3>
 
             <hr />
 
