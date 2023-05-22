@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AuthContext from "../../contexts/AuthContext";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 

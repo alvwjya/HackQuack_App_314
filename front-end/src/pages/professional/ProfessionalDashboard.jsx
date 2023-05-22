@@ -28,7 +28,7 @@ function ProfessionalDashboard() {
 
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/professional-account">
-              {user.firstName} {user.lastName}
+              {user.firstName} {user.lastName}{" "}
               <Image
                 src="/newlogo.ico"
                 width="30"

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
+import { Container, Form, Row, Col, Card } from "react-bootstrap";
 
 function PaymentTransaction() {
   const data = [1, 2, 3, 4, 5];

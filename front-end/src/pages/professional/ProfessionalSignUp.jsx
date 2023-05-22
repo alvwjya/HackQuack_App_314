@@ -1,10 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import AuthContext from "../../contexts/AuthContext";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function ProfessionalSignUp() {
+  const { setUser } = useContext(AuthContext);
+  const [serviceTypes, setServiceTypes] = useState([]);
+
+  const url = `${API_ENDPOINT}/get-service-types`;
+
+  useEffect(() => {
+    const res = axios.get(url);
+    setServiceTypes(res.data);
+  },[url]);
+
+  console.log(serviceTypes)
+
   const service_type = [1, 2, 3, 4, 5];
 
   const [form, setForm] = useState({

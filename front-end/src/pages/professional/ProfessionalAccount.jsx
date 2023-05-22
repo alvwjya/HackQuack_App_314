@@ -3,26 +3,32 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 
 function ProfessionalAccount() {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+
+    abn: "",
+    tfn: "",
+
     address: "",
     suburb: "",
     state: "",
     postcode: "",
+
+    service_type_id: 0,
+
     password: "",
     confirmedPassword: "",
-    taxNumber: "",
-    ABN: "",
   });
 
   async function handleSubmit() {}
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, firstName: event.target.value });
+    setForm({ ...form, first_name: event.target.value });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, lastName: event.target.value });
+    setForm({ ...form, last_name: event.target.value });
   }
 
   function handleAddressChange(event) {
@@ -47,14 +53,6 @@ function ProfessionalAccount() {
 
   function handleConfirmedPasswordChange(event) {
     setForm({ ...form, confirmedPassword: event.target.value });
-  }
-
-  function handleTaxNumber(event) {
-    setForm({ ...form, taxNumber: event.target.value });
-  }
-
-  function handleABN(event) {
-    setForm({ ...form, ABN: event.target.value });
   }
 
   console.log(form);
@@ -99,7 +97,7 @@ function ProfessionalAccount() {
               <Form.Control
                 type="text"
                 placeholder="Enter last name"
-                value={form.lastName}
+                value={form.last_name}
                 onChange={handleLastNameChange}
               />
             </Col>
@@ -159,6 +157,16 @@ function ProfessionalAccount() {
               />
             </Col>
           </Row>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicTaxNumber">
+          <Form.Label>Tax Number</Form.Label>
+          <Form.Control type="text" placeholder="Enter tax number" disabled />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicABN">
+          <Form.Label>ABN</Form.Label>
+          <Form.Control type="text" placeholder="Enter ABN" disabled />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">

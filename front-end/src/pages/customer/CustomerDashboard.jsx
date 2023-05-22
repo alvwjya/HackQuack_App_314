@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Nav, Navbar, Container, Button, Image, Card } from "react-bootstrap";
+import AuthContext from "../../contexts/AuthContext";
 
 function CustomerDashboard() {
-  const customerName = "John Doe";
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
+
   return (
     <div>
       <Navbar bg="customer-tab" variant="light">
@@ -24,7 +28,7 @@ function CustomerDashboard() {
 
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/customer-account">
-              John Doe{" "}
+              {user.firstName} {user.lastName}{" "}
               <Image
                 src="/newlogo.ico"
                 width="30"
@@ -38,7 +42,9 @@ function CustomerDashboard() {
       </Navbar>
 
       <Container className="py-5">
-        <h1>Welcome, {customerName}!</h1>
+        <h1>
+          Welcome, {user.firstName} {user.lastName}!
+        </h1>
 
         <h3>Customer Account</h3>
 

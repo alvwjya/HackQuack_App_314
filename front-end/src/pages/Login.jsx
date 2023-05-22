@@ -12,7 +12,6 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import AuthContext from "../contexts/AuthContext";
-import { USER_TYPE } from "../constants/userTypes";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
