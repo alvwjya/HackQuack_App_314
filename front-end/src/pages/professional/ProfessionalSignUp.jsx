@@ -2,23 +2,25 @@ import React, { useEffect, useState, useContext } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function ProfessionalSignUp() {
-  const { setUser } = useContext(AuthContext);
   const [serviceTypes, setServiceTypes] = useState([]);
+  const navigate = useNavigate();
 
   const url = `${API_ENDPOINT}/get-service-types`;
 
   useEffect(() => {
-    const res = axios.get(url);
-    setServiceTypes(res.data);
-  },[url]);
+    async function fetchData() {
+      const res = await axios.get(url);
+      setServiceTypes(res.data);
+    }
+    fetchData();
+  }, [url]);
 
-  console.log(serviceTypes)
-
-  const service_type = [1, 2, 3, 4, 5];
+  const service_type = serviceTypes;
 
   const [form, setForm] = useState({
     first_name: "",
@@ -40,7 +42,6 @@ function ProfessionalSignUp() {
   });
 
   async function handleSubmit() {
-    console.log(API_ENDPOINT);
     const url = `${API_ENDPOINT}/signup/professional`;
 
     if (form.password !== form.confirm_password) {
@@ -48,9 +49,12 @@ function ProfessionalSignUp() {
       return;
     }
 
-    const res = await axios.post(url, form);
-
-    console.log(res);
+    const res = await axios.post(url, form);  
+    if (res.status === 200) {
+      return navigate("/");
+    } else {
+      return alert(JSON.stringify(res.data));
+    }
   }
 
   function handleFirstNameChange(event) {
@@ -100,8 +104,6 @@ function ProfessionalSignUp() {
   function handleConfirmedPasswordChange(event) {
     setForm({ ...form, confirm_password: event.target.value });
   }
-
-  console.log(form);
 
   return (
     <Container className="py-5">
@@ -228,7 +230,7 @@ function ProfessionalSignUp() {
           >
             <option>Please select</option>
             {service_type.map((item, index) => {
-              return <option value={index}>{item}</option>;
+              return <option value={item.id}>{item.service_type_name}</option>;
             })}
           </Form.Select>
         </Form.Group>
