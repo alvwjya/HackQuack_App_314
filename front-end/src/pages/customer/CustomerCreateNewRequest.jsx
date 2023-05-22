@@ -69,10 +69,10 @@ function CustomerCreateNewRequest() {
         <hr />
 
         <div className="d-grid gap-2">
-          <Button variant="primary" size="lg">
+          <Button variant="primary" size="lg" onClick={handleSubmit}>
             Make Request
           </Button>
-          <Button variant="cancel" size="lg">
+          <Button href = "/" variant="cancel" size="lg">
             Cancel
           </Button>
         </div>

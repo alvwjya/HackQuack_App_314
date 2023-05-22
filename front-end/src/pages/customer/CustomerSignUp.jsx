@@ -196,7 +196,7 @@ function CustomerSignUp() {
         >
           Sign Up
         </Button>
-        <Button variant="cancel" size="lg">
+        <Button href="/" variant="cancel" size="lg">
           Cancel
         </Button>
       </div>

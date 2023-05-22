@@ -192,7 +192,7 @@ function CustomerAccount() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+        <Button variant="primary" size="lg" onClick={handleSubmit}>
           Save
         </Button>
         <Button variant="cancel" size="lg">
