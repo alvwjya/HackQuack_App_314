@@ -31,6 +31,7 @@ import ProfessionalSignUp from "./pages/professional/ProfessionalSignUp";
 import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
 import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
+import ProfessionalServiceBoardRequestDetail from "./pages/professional/ProfessionalServiceBoardRequestDetail";
 import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
 import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardOffer";
 import ProfessionalServiceBoardActiveService from "./pages/professional/ProfessionalServiceBoardActiveService";
@@ -42,6 +43,7 @@ import ProfessionalMembership from "./pages/professional/ProfessionalMembership"
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import PaymentMethod from "./pages/PaymentMethod";
+import PaymentTransaction from "./pages/PaymentTransaction";
 import Receipt from "./pages/Receipt";
 
 const AuthorizedRoute = ({ userTypes }) => {
@@ -118,6 +120,10 @@ const router = createBrowserRouter([
             path: "receipt",
             element: <Receipt />,
           },
+          {
+            path: "payment-transaction",
+            element: <PaymentTransaction />,
+          },
         ],
       },
 
@@ -143,6 +149,10 @@ const router = createBrowserRouter([
           {
             path: "professional-service-board-request",
             element: <ProfessionalServiceBoardRequest />,
+          },
+          {
+            path: "professional-service-board-request-detail",
+            element: <ProfessionalServiceBoardRequestDetail />,
           },
           {
             path: "professional-service-board-request-price-offer",

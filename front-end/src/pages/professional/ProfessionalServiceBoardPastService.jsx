@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
+import { Nav, Container, Card, Button } from "react-bootstrap";
 
 function ProfessionalServicePastService() {
   const data = [1, 2, 3, 4, 5];
@@ -42,7 +42,9 @@ function ProfessionalServicePastService() {
               <Card.Title>Type of Issue</Card.Title>
               <Card.Subtitle>Customer Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
-              <Button variant="primary">Receipt</Button>
+              <Button href="receipt" className="btn-primary">
+                Receipt
+              </Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>
