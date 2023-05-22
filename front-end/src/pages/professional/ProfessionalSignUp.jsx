@@ -4,7 +4,6 @@ import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
-
 function ProfessionalSignUp() {
   const service_type = [1, 2, 3, 4, 5];
   const [form, setForm] = useState({
@@ -23,7 +22,7 @@ function ProfessionalSignUp() {
   });
 
   async function handleSubmit() {
-    console.log(API_ENDPOINT)
+    console.log(API_ENDPOINT);
     const url = `${API_ENDPOINT}/signup/professional`;
 
     if (form.password !== form.confirm_password) {
