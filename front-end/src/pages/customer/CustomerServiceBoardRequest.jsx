@@ -3,6 +3,9 @@ import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
 
 function CustomerServiceBoardRequest() {
   const data = [1, 2, 3, 4, 5];
+
+  function handleCancelRequestOnClick(event) {}
+
   return (
     <Container className="py-5">
       <h1>SERVICE BOARD</h1>
@@ -42,7 +45,7 @@ function CustomerServiceBoardRequest() {
               >
                 Offer(s)
               </Button>{" "}
-              <Button variant="primary">Cancel Request</Button>
+              <Button className="btn-warning">Cancel Request</Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

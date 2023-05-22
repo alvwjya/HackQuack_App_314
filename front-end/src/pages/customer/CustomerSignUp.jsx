@@ -192,6 +192,7 @@ function CustomerSignUp() {
           href="/customer-dashboard"
           className="btn-customer-button"
           size="lg"
+          onClick={handleSubmit}
         >
           Sign Up
         </Button>

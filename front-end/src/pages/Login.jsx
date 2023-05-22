@@ -10,6 +10,9 @@ import {
   Card,
   Image,
 } from "react-bootstrap";
+import axios from "axios";
+
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function Login() {
   const [form, setForm] = useState({
@@ -18,7 +21,18 @@ function Login() {
     loginPassword: "",
   });
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    console.log(API_ENDPOINT);
+    const url = `${API_ENDPOINT}/login`;
+
+    if (form.password !== form.confirm_password) {
+      console.log("Password and confirm password don't match");
+      return;
+    }
+
+    const res = await axios.post(url, form);
+    console.log(res);
+  }
 
   function handleUserTypeChange(event) {
     console.log(event);

@@ -42,6 +42,7 @@ function ProfessionalServicePastService() {
               <Card.Title>Type of Issue</Card.Title>
               <Card.Subtitle>Customer Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
+              <Button variant="primary">Receipt</Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

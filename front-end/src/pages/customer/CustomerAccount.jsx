@@ -14,10 +14,21 @@ function CustomerAccount() {
     state: "",
     postcode: "",
     password: "",
-    confirmedPassword: "",
+    confirm_password: "",
   });
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    console.log(API_ENDPOINT);
+    const url = `${API_ENDPOINT}/account/customer`;
+
+    if (form.password !== form.confirm_password) {
+      console.log("Password and confirm password don't match");
+      return;
+    }
+
+    const res = await axios.post(url, form);
+    console.log(res);
+  }
 
   function handleFirstNameChange(event) {
     setForm({ ...form, first_name: event.target.value });
@@ -48,7 +59,7 @@ function CustomerAccount() {
   }
 
   function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirmedPassword: event.target.value });
+    setForm({ ...form, confirm_password: event.target.value });
   }
 
   console.log(form);
@@ -172,7 +183,7 @@ function CustomerAccount() {
           <Form.Control
             type="password"
             placeholder="Enter confirm Password"
-            value={form.confirmedPassword}
+            value={form.confirm_password}
             onChange={handleConfirmedPasswordChange}
           />
         </Form.Group>

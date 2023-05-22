@@ -43,12 +43,13 @@ function ProfessionalServiceBoardRequest() {
               <Card.Subtitle>Customer Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
               <Button
+                className="btn-info"
                 href="/professional-service-board-request-detail"
                 variant="primary"
               >
                 Learn More
               </Button>{" "}
-              <Button variant="primary">Decline Request</Button>{" "}
+              <Button className="btn-warning">Decline Request</Button>{" "}
               <Button
                 href="/professional-service-board-request-price-offer"
                 variant="primary"

@@ -3,6 +3,9 @@ import { Nav, Container, Button, Card, Row, Col } from "react-bootstrap";
 
 function CustomerServiceBoardOffer() {
   const data = [1, 2, 3, 4, 5];
+
+  function handleAcceptOfferOnClick(event) {}
+
   return (
     <Container className="py-5">
       <h1>SERVICE BOARD</h1>
@@ -43,7 +46,7 @@ function CustomerServiceBoardOffer() {
                 >
                   Offer(s)
                 </Button>{" "}
-                <Button variant="primary">Cancel Request</Button>
+                <Button className="btn-warning">Cancel Request</Button>
               </Card.Body>
 
               <Card.Footer>Location</Card.Footer>
@@ -59,9 +62,14 @@ function CustomerServiceBoardOffer() {
                 <Card.Body>
                   <Card.Text>Information</Card.Text>
                   <Card.Text>Price: N/A</Card.Text>
-                  <Button variant="primary">Learn more</Button>{" "}
-                  <Button variant="primary">Decline</Button>{" "}
-                  <Button variant="primary">Accept</Button>
+                  <Button
+                    href="/customer-service-board-request-offer-detail"
+                    className="btn-info"
+                  >
+                    Learn more
+                  </Button>{" "}
+                  <Button className="btn-warning">Decline</Button>{" "}
+                  <Button className="btn-primary">Accept</Button>
                 </Card.Body>
                 <Card.Footer>Location</Card.Footer>
                 <Card.Footer>Ratings</Card.Footer>

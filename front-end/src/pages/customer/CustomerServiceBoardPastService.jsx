@@ -3,6 +3,9 @@ import { Nav, Container, Button, Card, Row, Col } from "react-bootstrap";
 
 function CustomerServiceBoardPastService() {
   const data = [1, 2, 3, 4, 5];
+
+  function handleRatingAndReviewOnClick(event) {}
+
   return (
     <Container className="py-5">
       <h1>SERVICE BOARD</h1>
@@ -36,7 +39,8 @@ function CustomerServiceBoardPastService() {
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
               <Card.Text>Information</Card.Text>
-              <Button variant="primary">Rating and Review</Button>
+              <Button variant="primary">Rating and Review</Button>{" "}
+              <Button variant="primary">Receipt</Button>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

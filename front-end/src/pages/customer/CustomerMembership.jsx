@@ -3,6 +3,9 @@ import { Container, Button, Form, Card } from "react-bootstrap";
 
 function CustomerMembership() {
   const membershipAnuallyCost = 1000;
+
+  function handleSignUpMembershipOnClick(event) {}
+
   return (
     <Container className="py-5">
       <h1>CUSTOMER MEMBERSHIP</h1>
