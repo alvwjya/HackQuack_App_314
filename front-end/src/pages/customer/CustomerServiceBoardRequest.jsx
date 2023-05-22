@@ -4,7 +4,7 @@ import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
 function CustomerServiceBoardRequest() {
   const data = [1, 2, 3, 4, 5];
 
-  function handleCancelRequestOnClick(event) {}
+  async function handleCancelRequestOnClick(event) {}
 
   return (
     <Container className="py-5">
