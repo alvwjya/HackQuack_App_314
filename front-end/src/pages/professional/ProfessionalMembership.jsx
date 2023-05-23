@@ -72,7 +72,7 @@ function ProfessionalMembership() {
             <Form.Control type="text" placeholder="$ amount" disable />
           </Form.Group>
 
-          <LinkContainer to="/payment-method">
+          <LinkContainer to="/add-payment-method">
             <Button className="primary" size="lg">
               Edit Payment Method
             </Button>
