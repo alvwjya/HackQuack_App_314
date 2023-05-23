@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Button, Form, Card } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 import axios from "axios";
 
 function CustomerRatingAndReview() {
@@ -36,12 +38,16 @@ function CustomerRatingAndReview() {
             <hr />
 
             <div className="d-grid gap-2">
-              <Button className="btn-primary" size="lg">
-                Submit
-              </Button>
-              <Button href="/" className="btn-cancel" size="lg">
-                Cancel
-              </Button>
+              <LinkContainer to="">
+                <Button className="btn-primary" size="lg">
+                  Submit
+                </Button>
+              </LinkContainer>
+              <LinkContainer to="">
+                <Button href="/" className="btn-cancel" size="lg">
+                  Cancel
+                </Button>
+              </LinkContainer>
             </div>
           </Card.Body>
         </Card>

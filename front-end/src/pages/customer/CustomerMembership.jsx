@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Button, Form, Card } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
@@ -55,13 +56,16 @@ function CustomerMembership() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button
-          className="btn-customer-button"
-          onClick={handleSignUpMembershipOnClick}
-          size="lg"
-        >
-          Sign Up
-        </Button>
+        <LinkContainer to="">
+          <Button
+            className="btn-customer-button"
+            onClick={handleSignUpMembershipOnClick}
+            size="lg"
+          >
+            Sign Up
+          </Button>
+        </LinkContainer>
+
         <Button className="btn-cancel" size="lg">
           Cancel Membership
         </Button>

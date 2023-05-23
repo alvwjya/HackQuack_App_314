@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 function CustomerServiceBoardRequest() {
   const data = [1, 2, 3, 4, 5];
@@ -17,19 +18,29 @@ function CustomerServiceBoardRequest() {
         variant="tabs"
         defaultActiveKey="/customer-service-board-request"
       >
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-request">Request(s)</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-active-service">
-            Active Service(s)
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-past-service">
-            Past Service(s)
-          </Nav.Link>
-        </Nav.Item>
+        <LinkContainer to="/customer-service-board-request">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-request">
+              Request(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/customer-service-board-active-service">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-active-service">
+              Active Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/customer-service-board-past-service">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-past-service">
+              Past Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
       </Nav>
 
       {data.map((data) => (
@@ -39,13 +50,12 @@ function CustomerServiceBoardRequest() {
             <Card.Body>
               <Card.Title>Type of Issue</Card.Title>
               <Card.Text>Information</Card.Text>
-              <Button
-                href="/customer-service-board-request-offer"
-                variant="primary"
-              >
-                Offer(s)
-              </Button>{" "}
-              <Button className="btn-warning">Cancel Request</Button>
+              <LinkContainer to="/customer-service-board-request-offer">
+                <Button variant="primary">Offer(s)</Button>
+              </LinkContainer>{" "}
+              <LinkContainer to="">
+                <Button className="btn-warning">Cancel Request</Button>
+              </LinkContainer>
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

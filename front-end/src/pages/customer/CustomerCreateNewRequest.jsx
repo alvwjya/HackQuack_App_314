@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Container, Button, Form } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -105,12 +107,17 @@ function CustomerCreateNewRequest() {
         <hr />
 
         <div className="d-grid gap-2">
-          <Button variant="primary" size="lg" onClick={handleSubmit}>
-            Make Request
-          </Button>
-          <Button href="/" variant="cancel" size="lg">
-            Cancel
-          </Button>
+          <LinkContainer to="">
+            <Button variant="primary" size="lg" onClick={handleSubmit}>
+              Make Request
+            </Button>
+          </LinkContainer>
+
+          <LinkContainer to="">
+            <Button variant="cancel" size="lg">
+              Cancel
+            </Button>
+          </LinkContainer>
         </div>
       </Form>
     </Container>

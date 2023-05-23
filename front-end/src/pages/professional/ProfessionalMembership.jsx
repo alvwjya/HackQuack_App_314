@@ -44,7 +44,7 @@ function ProfessionalMembership() {
       <hr />
 
       <div className="d-grid gap-2">
-        <LinkContainer to="/payment-method">
+        <LinkContainer to="">
           <Button
             className="btn-professional-button"
             onClick={handleSignUpMembershipOnClick}
@@ -54,9 +54,11 @@ function ProfessionalMembership() {
           </Button>
         </LinkContainer>
 
-        <Button className="btn-cancel" size="lg">
-          Cancel
-        </Button>
+        <LinkContainer to="">
+          <Button className="btn-cancel" size="lg">
+            Cancel Membership
+          </Button>
+        </LinkContainer>
       </div>
     </Container>
   );

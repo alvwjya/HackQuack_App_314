@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Container, Button, Card, Row, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 function CustomerServiceBoardOffer() {
   const data = [1, 2, 3, 4, 5];
@@ -17,19 +18,29 @@ function CustomerServiceBoardOffer() {
         variant="tabs"
         defaultActiveKey="/customer-service-board-request"
       >
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-request">Request(s)</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-active-service">
-            Active Service(s)
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-past-service">
-            Past Service(s)
-          </Nav.Link>
-        </Nav.Item>
+        <LinkContainer to="/customer-service-board-request">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-request">
+              Request(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/customer-service-board-active-service">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-active-service">
+              Active Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/customer-service-board-past-service">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-past-service">
+              Past Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
       </Nav>
 
       <Row>
@@ -40,13 +51,12 @@ function CustomerServiceBoardOffer() {
               <Card.Body>
                 <Card.Title>Type of Issue</Card.Title>
                 <Card.Text>Information</Card.Text>
-                <Button
-                  href="/customer-service-board-request-offer"
-                  variant="primary"
-                >
-                  Offer(s)
-                </Button>{" "}
-                <Button className="btn-warning">Cancel Request</Button>
+                <LinkContainer to="/customer-service-board-request-offer">
+                  <Button variant="primary">Offer(s)</Button>
+                </LinkContainer>{" "}
+                <LinkContainer to="">
+                  <Button className="btn-warning">Cancel Request</Button>
+                </LinkContainer>
               </Card.Body>
 
               <Card.Footer>Location</Card.Footer>
@@ -62,14 +72,15 @@ function CustomerServiceBoardOffer() {
                 <Card.Body>
                   <Card.Text>Information</Card.Text>
                   <Card.Text>Price: N/A</Card.Text>
-                  <Button
-                    href="/customer-service-board-request-offer-detail"
-                    className="btn-info"
-                  >
-                    Learn more
-                  </Button>{" "}
-                  <Button className="btn-warning">Decline</Button>{" "}
-                  <Button className="btn-primary">Accept</Button>
+                  <LinkContainer to="customer-service-board-request-offer-detail">
+                    <Button className="btn-info">Learn more</Button>
+                  </LinkContainer>{" "}
+                  <LinkContainer to="">
+                    <Button className="btn-warning">Decline</Button>{" "}
+                  </LinkContainer>{" "}
+                  <LinkContainer to="">
+                    <Button className="btn-primary">Accept</Button>
+                  </LinkContainer>{" "}
                 </Card.Body>
                 <Card.Footer>Location</Card.Footer>
                 <Card.Footer>Ratings</Card.Footer>

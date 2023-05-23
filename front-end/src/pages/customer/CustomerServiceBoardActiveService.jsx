@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Container, Card, Button, Row, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 function CustomerServiceBoardActive() {
   const data = [1, 2, 3, 4, 5];
@@ -14,19 +15,29 @@ function CustomerServiceBoardActive() {
         variant="tabs"
         defaultActiveKey="/customer-service-board-active-service"
       >
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-request">Request(s)</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-active-service">
-            Active Service(s)
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/customer-service-board-past-service">
-            Past Service(s)
-          </Nav.Link>
-        </Nav.Item>
+        <LinkContainer to="/customer-service-board-request">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-request">
+              Request(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/customer-service-board-active-service">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-active-service">
+              Active Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/customer-service-board-past-service">
+          <Nav.Item>
+            <Nav.Link href="/customer-service-board-past-service">
+              Past Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
       </Nav>
 
       {data.map((data) => (
