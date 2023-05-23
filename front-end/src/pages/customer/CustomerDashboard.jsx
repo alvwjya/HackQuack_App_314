@@ -10,30 +10,36 @@ function CustomerDashboard() {
     <div>
       <Navbar bg="customer-tab" variant="light">
         <Container>
-          <Navbar.Brand href="/customer-dashboard">
-            <Image
-              src="/favicon.ico"
-              width="30"
-              height="30"
-              class="d-inline-block align-top"
-              alt=""
-            />{" "}
-            HACKQUACK
-          </Navbar.Brand>
-
-          <Nav.Link>Service Board</Nav.Link>
-
-          <Navbar.Collapse className="justify-content-end">
-            <Nav.Link href="/customer-account">
-              {user.firstName} {user.lastName}{" "}
+          <LinkContainer to="/customer-account">
+            <Navbar.Brand>
               <Image
-                src="/newlogo.ico"
+                src="/favicon.ico"
                 width="30"
                 height="30"
                 class="d-inline-block align-top"
                 alt=""
-              />
-            </Nav.Link>
+              />{" "}
+              HACKQUACK
+            </Navbar.Brand>
+          </LinkContainer>
+
+          <LinkContainer to="/customer-service-board-request">
+            <Nav.Link>Service Board</Nav.Link>
+          </LinkContainer>
+
+          <Navbar.Collapse className="justify-content-end">
+            <LinkContainer to="/customer-account">
+              <Nav.Link>
+                {user.firstName} {user.lastName}{" "}
+                <Image
+                  src="/newlogo.ico"
+                  width="30"
+                  height="30"
+                  class="d-inline-block align-top"
+                  alt=""
+                />
+              </Nav.Link>
+            </LinkContainer>
           </Navbar.Collapse>
         </Container>
       </Navbar>
