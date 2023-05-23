@@ -105,10 +105,6 @@ const router = createBrowserRouter([
             element: <Login />,
           },
           {
-            path: "add-payment-method",
-            element: <PaymentMethod />,
-          },
-          {
             path: "customer-sign-up",
             element: <CustomerSignUp />,
           },
@@ -116,6 +112,10 @@ const router = createBrowserRouter([
             path: "professional-sign-up",
             element: <ProfessionalSignUp />,
           },
+        ],
+      },
+      {
+        children: [
           {
             path: "receipt",
             element: <Receipt />,
@@ -123,6 +123,10 @@ const router = createBrowserRouter([
           {
             path: "payment-transaction",
             element: <PaymentTransaction />,
+          },
+          {
+            path: "add-payment-method",
+            element: <PaymentMethod />,
           },
         ],
       },

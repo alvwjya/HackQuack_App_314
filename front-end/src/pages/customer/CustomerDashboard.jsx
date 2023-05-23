@@ -54,25 +54,23 @@ function CustomerDashboard() {
             </Button>
           </LinkContainer>
 
-          <Button
-            href="/customer-create-new-request"
-            variant="primary"
-            size="lg"
-          >
-            Create New Request
-          </Button>
+          <LinkContainer to="/customer-create-new-request">
+            <Button className="btn-primary" size="lg">
+              Create New Request
+            </Button>
+          </LinkContainer>
 
-          <Button
-            href="/customer-service-board-request"
-            variant="primary"
-            size="lg"
-          >
-            Service Board
-          </Button>
+          <LinkContainer to="/customer-service-board-request">
+            <Button className="btn-primary" size="lg">
+              Service Board
+            </Button>
+          </LinkContainer>
 
-          <Button href="/payment-transaction" className="btn-primary" size="lg">
-            Payment Transaction
-          </Button>
+          <LinkContainer to="/payment-transaction">
+            <Button className="btn-primary" size="lg">
+              Payment Transaction
+            </Button>
+          </LinkContainer>
         </div>
 
         <hr />
