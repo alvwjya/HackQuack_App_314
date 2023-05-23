@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import AuthContext from "../../contexts/AuthContext";
+import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerAccount() {
+  const { user } = useContext(AuthContext);
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -72,9 +76,11 @@ function CustomerAccount() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button href="/customer-membership" variant="primary" size="lg">
-          Membership
-        </Button>
+        <LinkContainer to="/customer-membership">
+          <Button className="btn-customer-button" size="lg">
+            Membership
+          </Button>
+        </LinkContainer>
       </div>
 
       <hr />
@@ -93,7 +99,7 @@ function CustomerAccount() {
             <Col>
               <Form.Control
                 type="text"
-                placeholder="Enter first name"
+                placeholder={user.firstName}
                 value={form.first_name}
                 onChange={handleFirstNameChange}
               />
@@ -101,7 +107,7 @@ function CustomerAccount() {
             <Col>
               <Form.Control
                 type="text"
-                placeholder="Enter last name"
+                placeholder={user.lastName}
                 value={form.last_name}
                 onChange={handleLastNameChange}
               />
@@ -113,7 +119,7 @@ function CustomerAccount() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="johndoe@gmail.com"
+            placeholder={user.email}
             disabled="disabled"
           />
         </Form.Group>
@@ -122,7 +128,7 @@ function CustomerAccount() {
           <Form.Label>Address</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter address"
+            placeholder={user.address}
             value={form.address}
             onChange={handleAddressChange}
           />
