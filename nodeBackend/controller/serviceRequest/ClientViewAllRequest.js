@@ -6,6 +6,7 @@ const router = express.Router();
 router.get(
   "/view-all-active-request/client/:userId",
   async function (req, res) {
+    console.log(req.params)
     try {
       const {userId} = req.params;
       console.log(userId)
@@ -25,9 +26,17 @@ router.get(
           },
         },
       });
-      res.status(200).json(getAllActive);
+
+      const getUserLocation = await prisma.client.findUnique({
+        where:{
+          id:parseInt(userId)
+        }
+      })
+  
+      res.status(200).json({getAllActive, getUserLocation});
+
     } catch (err) {
-      throw err;
+      // throw err;
       res.status(500).json(err);
     }
   }
