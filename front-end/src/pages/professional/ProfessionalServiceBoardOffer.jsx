@@ -4,10 +4,11 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function ProfessionalServiceBoardOffer() {
   const { user } = useContext(AuthContext);
+  const API_ENDPOINT = process.env.REACT_APP_API_URL;
+  const url = `${API_ENDPOINT}/view-all-active-request/client/${user.userId}`;
+
   const data = [1, 2, 3, 4, 5];
   return (
     <div>
