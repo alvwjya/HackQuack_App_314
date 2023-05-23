@@ -42,7 +42,9 @@ function ProfessionalDashboard() {
       </Navbar>
 
       <Container className="py-5">
-        <h1>Welcome, John Doe!</h1>
+        <h1>
+          Welcome, {user.firstName} {user.lastName}!
+        </h1>
         <h3>Professional Account</h3>
 
         <hr />
@@ -61,6 +63,10 @@ function ProfessionalDashboard() {
             size="lg"
           >
             Service Board
+          </Button>
+
+          <Button href="/payment-transaction" className="btn-primary" size="lg">
+            Payment Transaction
           </Button>
         </div>
 

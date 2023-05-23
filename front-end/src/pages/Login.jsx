@@ -19,7 +19,7 @@ function Login() {
   const { setUser } = useContext(AuthContext);
 
   const [form, setForm] = useState({
-    loginUserType: "",
+    loginUserType: "customer",
     loginEmail: "",
     loginPassword: "",
   });
