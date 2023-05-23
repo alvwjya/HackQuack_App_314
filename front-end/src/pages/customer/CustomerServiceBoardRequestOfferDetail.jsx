@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Card, Form } from "react-bootstrap";
 
-function CustomerOfferProfessionalDetails() {
+function CustomerServiceBoardRequestOfferDetail() {
   const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
@@ -41,4 +41,4 @@ function CustomerOfferProfessionalDetails() {
   );
 }
 
-export default CustomerOfferProfessionalDetails;
+export default CustomerServiceBoardRequestOfferDetail;

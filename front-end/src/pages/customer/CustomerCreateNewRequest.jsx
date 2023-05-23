@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import { Navbar, Nav, Image, Container, Button, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import AuthContext from "../../contexts/AuthContext";
@@ -64,63 +64,101 @@ function CustomerCreateNewRequest() {
   console.log(form);
 
   return (
-    <Container className="py-5">
-      <Form>
-        <h1>REQUEST NEW SERVICE</h1>
-
-        <hr />
-
-        <Form.Group className="mb-3" controlId="formBasicTaskTitle">
-          <Form.Label>Task Title</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter task title"
-            value={form.taskTitle}
-            onChange={handleTaskTitleChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicTaskDescription">
-          <Form.Label>Task Description</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter task description"
-            value={form.taskDescription}
-            onChange={handleTaskDescriptionChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicServiceType">
-          <Form.Label>Service Type</Form.Label>
-          <Form.Select
-            aria-label="selectServiceType"
-            value={form.serviceType}
-            onChange={handleServiceTypeChange}
-          >
-            <option value="">Please select</option>
-            {service_type.map((item, index) => {
-              return <option value={item.id}>{item.service_type_name}</option>;
-            })}
-          </Form.Select>
-        </Form.Group>
-
-        <hr />
-
-        <div className="d-grid gap-2">
-          <LinkContainer to="">
-            <Button variant="primary" size="lg" onClick={handleSubmit}>
-              Make Request
-            </Button>
+    <div>
+      <Navbar bg="customer-tab" variant="light">
+        <Container>
+          <LinkContainer to="/customer-dashboard">
+            <Navbar.Brand>
+              <Image
+                src="/favicon.ico"
+                width="30"
+                height="30"
+                class="d-inline-block align-top"
+                alt=""
+              />{" "}
+              HACKQUACK
+            </Navbar.Brand>
           </LinkContainer>
-
-          <LinkContainer to="">
-            <Button variant="cancel" size="lg">
-              Cancel
-            </Button>
+          <LinkContainer to="/customer-service-board-request">
+            <Nav.Link>Service Board</Nav.Link>
           </LinkContainer>
-        </div>
-      </Form>
-    </Container>
+          <Navbar.Collapse className="justify-content-end">
+            <LinkContainer to="/customer-account">
+              <Nav.Link>
+                {user.firstName} {user.lastName}{" "}
+                <Image
+                  src="/newlogo.ico"
+                  width="30"
+                  height="30"
+                  class="d-inline-block align-top"
+                  alt=""
+                />
+              </Nav.Link>
+            </LinkContainer>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      <Container className="py-5">
+        <Form>
+          <h1>REQUEST NEW SERVICE</h1>
+
+          <hr />
+
+          <Form.Group className="mb-3" controlId="formBasicTaskTitle">
+            <Form.Label>Task Title</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter task title"
+              value={form.taskTitle}
+              onChange={handleTaskTitleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicTaskDescription">
+            <Form.Label>Task Description</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter task description"
+              value={form.taskDescription}
+              onChange={handleTaskDescriptionChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicServiceType">
+            <Form.Label>Service Type</Form.Label>
+            <Form.Select
+              aria-label="selectServiceType"
+              value={form.serviceType}
+              onChange={handleServiceTypeChange}
+            >
+              <option value="">Please select</option>
+              {service_type.map((item, index) => {
+                return (
+                  <option value={item.id}>{item.service_type_name}</option>
+                );
+              })}
+            </Form.Select>
+          </Form.Group>
+
+          <hr />
+
+          <div className="d-grid gap-2">
+            <LinkContainer to="">
+              <Button variant="primary" size="lg" onClick={handleSubmit}>
+                Make Request
+              </Button>
+            </LinkContainer>
+
+            <LinkContainer to="">
+              <Button variant="cancel" size="lg">
+                Cancel
+              </Button>
+            </LinkContainer>
+          </div>
+        </Form>
+      </Container>
+    </div>
   );
 }
 

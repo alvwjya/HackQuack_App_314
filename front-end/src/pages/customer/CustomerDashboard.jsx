@@ -10,7 +10,7 @@ function CustomerDashboard() {
     <div>
       <Navbar bg="customer-tab" variant="light">
         <Container>
-          <LinkContainer to="/customer-account">
+          <LinkContainer to="/customer-dashboard">
             <Navbar.Brand>
               <Image
                 src="/favicon.ico"
@@ -22,11 +22,9 @@ function CustomerDashboard() {
               HACKQUACK
             </Navbar.Brand>
           </LinkContainer>
-
           <LinkContainer to="/customer-service-board-request">
             <Nav.Link>Service Board</Nav.Link>
           </LinkContainer>
-
           <Navbar.Collapse className="justify-content-end">
             <LinkContainer to="/customer-account">
               <Nav.Link>
