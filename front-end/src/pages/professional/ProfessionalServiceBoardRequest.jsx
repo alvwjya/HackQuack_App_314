@@ -14,12 +14,14 @@ import {
 } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
   const API_ENDPOINT = process.env.REACT_APP_API_URL;
   const url = `${API_ENDPOINT}/professional-view-active-service-requests/${user.userId}`;
+  const navigate = useNavigate();
 
   const [getActive, setGetActive] = useState([]);
   const [getUserDetails, setUserDetails] = useState({});
@@ -60,15 +62,22 @@ function ProfessionalServiceBoardRequest() {
     getRequests();
   });
 
-  async function handleAcceptOfferOnClick(event) {
-    const url = `${API_ENDPOINT}/professional-accept-request`;
-    console.log(form);
-    const postData = await axios.post(url, {
-      cost: parseInt(form.cost) + parseInt(commisionFee),
+  async function handleAcceptOfferOnClick() {
+    const url = `${API_ENDPOINT}/professional-view-active-service-requests`;
+    const reqBody = {
+      cost: form.cost,
       acceptance: 1,
       professional_id: user.userId,
-      // service_request_id:,
-    });
+      service_request_id: 0,
+    };
+
+    const res = await axios.post(url, reqBody);
+
+    if (res.status === 200) {
+      navigate("/professional-service-board-offer");
+    } else {
+      alert(JSON.stringify(res.data));
+    }
   }
 
   return (
@@ -152,97 +161,99 @@ function ProfessionalServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        <Row>
-          <Col>
-            <div class="container py-3">
-              {requests.map((data) => {
+        {requests.map((data) => {
+          <Row>
+            <Col>
+              <div class="container py-3">
                 return (
-                  <Card>
-                    <Card.Header>{data.request_title}</Card.Header>
-                    <Card.Body>
-                      <Card.Title>
-                        Issue Type: {data.service_type_id}
-                      </Card.Title>
-                      <Card.Subtitle>Customer Name</Card.Subtitle>
-                      <Card.Text>Information: {data.description}</Card.Text>
-                      <LinkContainer to="/professional-service-board-request-detail">
-                        <Button className="btn-info">Learn More</Button>
-                      </LinkContainer>{" "}
-                      <LinkContainer to="">
-                        <Button className="btn-warning">Decline Request</Button>
-                      </LinkContainer>{" "}
-                      {/* <LinkContainer to="">
-                        <Button className="btn-primary">Offer Service</Button>
-                      </LinkContainer> */}
-                    </Card.Body>
-                    <Card.Footer>Location</Card.Footer>
-                    <Card.Footer>Time</Card.Footer>
-                  </Card>
+                <Card>
+                  <Card.Header>{data.request_title}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Issue Type: {data.service_type_id}</Card.Title>
+                    <Card.Subtitle>Customer Name</Card.Subtitle>
+                    <Card.Text>Information: {data.description}</Card.Text>
+                    <LinkContainer to="/professional-service-board-request-detail">
+                      <Button className="btn-info">Learn More</Button>
+                    </LinkContainer>{" "}
+                    <LinkContainer to="">
+                      <Button className="btn-warning">Decline Request</Button>
+                    </LinkContainer>{" "}
+                    <LinkContainer to="">
+                      <Button value={data.id} className="btn-primary">
+                        {" "}
+                        onClick={}
+                        Offer Service
+                      </Button>
+                    </LinkContainer>
+                  </Card.Body>
+                  <Card.Footer>Location</Card.Footer>
+                  <Card.Footer>Time</Card.Footer>
+                </Card>
                 );
-              })}
-            </div>
-          </Col>
-          <Col>
-            <Form>
-              <FormGroup className="py-3" controlId="formPriceOffer">
-                <Form.Label>PRICE AND DETAIL</Form.Label>
-                <Table>
-                  <tr>
-                    <td>
-                      <Form.Label>Service Price</Form.Label>
-                    </td>
-                    <td>
-                      <Form.Control
-                        type="text"
-                        placeholder="Enter price"
-                        value={form.cost}
-                        onChange={(e) =>
-                          setForm({ ...form, cost: e.target.value })
-                        }
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Form.Label>Comission Fee</Form.Label>
-                    </td>
-                    <td>
-                      <Form.Control
-                        value={parseInt(commisionFee)}
-                        type="text"
-                        placeholder=""
-                        disabled
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <Form.Label>Total Price</Form.Label>
-                    </td>
-                    <td>
-                      <Form.Control
-                        type="text"
-                        placeholder=""
-                        disabled
-                        value={parseInt(form.cost) + parseInt(commisionFee)}
-                      />
-                    </td>
-                  </tr>
-                </Table>
+              </div>
+            </Col>
+            <Col>
+              <Form>
+                <FormGroup className="py-3" controlId="formPriceOffer">
+                  <Form.Label>PRICE AND DETAIL</Form.Label>
+                  <Table>
+                    <tr>
+                      <td>
+                        <Form.Label>Service Price</Form.Label>
+                      </td>
+                      <td>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter price"
+                          value={form.cost}
+                          onChange={(e) =>
+                            setForm({ ...form, cost: e.target.value })
+                          }
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Form.Label>Comission Fee</Form.Label>
+                      </td>
+                      <td>
+                        <Form.Control
+                          value={parseInt(commisionFee)}
+                          type="text"
+                          placeholder=""
+                          disabled
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Form.Label>Total Price</Form.Label>
+                      </td>
+                      <td>
+                        <Form.Control
+                          type="text"
+                          placeholder=""
+                          disabled
+                          value={parseInt(form.cost) + parseInt(commisionFee)}
+                        />
+                      </td>
+                    </tr>
+                  </Table>
 
-                <div className="d-grid gap-2">
-                  <Button
-                    className="btn-primary"
-                    size="lg"
-                    onClick={handleAcceptOfferOnClick}
-                  >
-                    Send Offer
-                  </Button>
-                </div>
-              </FormGroup>
-            </Form>{" "}
-          </Col>
-        </Row>
+                  <div className="d-grid gap-2">
+                    <Button
+                      className="btn-primary"
+                      size="lg"
+                      onClick={handleAcceptOfferOnClick}
+                    >
+                      Send Offer
+                    </Button>
+                  </div>
+                </FormGroup>
+              </Form>{" "}
+            </Col>
+          </Row>;
+        })}
 
         <hr />
       </Container>
