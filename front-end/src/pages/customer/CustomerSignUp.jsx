@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../../contexts/AuthContext";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
@@ -31,11 +30,11 @@ function CustomerSignUp() {
     }
 
     const res = await axios.post(url, form);
-    console.log(res);
-
-    console.log("Customer - Create account sucessfully!");
-
-    navigate("/customer-dashboard");
+    if (res.status === 200) {
+      return navigate("/");
+    } else {
+      return alert(JSON.stringify(res.data));
+    }
   }
 
   function handleFirstNameChange(event) {
