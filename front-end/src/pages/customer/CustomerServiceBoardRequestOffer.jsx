@@ -20,7 +20,17 @@ function CustomerServiceBoardOffer() {
 
   const data = [1, 2, 3, 4, 5];
 
-  function handleAcceptOfferOnClick(event) {}
+  async function handleAcceptOfferOnClick(event) {
+    const url = `${API_ENDPOINT}/professional-accept-request`
+
+    // const body = {
+    //   acceptance:1,
+    //   cost:,
+    //   service_request_id,
+    //   professional_id,
+    // }
+    const postData = await axios.post("")
+  }
 
   return (
     <div>
