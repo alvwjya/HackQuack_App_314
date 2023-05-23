@@ -15,14 +15,29 @@ import axios from "axios";
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function CustomerMembership() {
-  const { user } = useContext(AuthContext);
-
   const membershipAnuallyCost = 1000;
 
-  function handleSignUpMembershipOnClick(event) {
-    console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/subscribe-memberships/client`;
-  }
+  const { user } = useContext(AuthContext);
+  const API_ENDPOINT = process.env.REACT_APP_API_URL;
+  const url = `${API_ENDPOINT}/subscribe-memberships/client${user.userId}`;
+
+  const [getActive, setGetActive] = useState([]);
+  const [getUserDetails, setUserDetails] = useState({});
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setUserDetails(res.data.getUserLocation);
+          setGetActive(res.data.getAllActive);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
 
   return (
     <div>
@@ -105,11 +120,7 @@ function CustomerMembership() {
 
         <div className="d-grid gap-2">
           <LinkContainer to="">
-            <Button
-              className="btn-customer-button"
-              onClick={handleSignUpMembershipOnClick}
-              size="lg"
-            >
+            <Button className="btn-customer-button" size="lg">
               Sign Up
             </Button>
           </LinkContainer>

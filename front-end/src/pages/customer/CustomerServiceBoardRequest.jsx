@@ -128,7 +128,9 @@ function CustomerServiceBoardRequest() {
               </Card.Body>
 
               <Card.Footer>Location: {getUserDetails.suburb}</Card.Footer>
-              <Card.Footer>Time: {new Date(data.request_time).toLocaleDateString()}</Card.Footer>
+              <Card.Footer>
+                Time: {new Date(data.request_time).toLocaleDateString()}
+              </Card.Footer>
             </Card>
           </div>
         ))}
