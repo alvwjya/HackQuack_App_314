@@ -26,6 +26,7 @@ function ProfessionalServiceBoardRequest() {
 
   const [getActive, setGetActive] = useState([]);
   const [getUserDetails, setUserDetails] = useState({});
+  const [serviceId, setServiceId] = useState(0);
 
   const [form, setForm] = useState({
     cost: 0,
@@ -53,21 +54,28 @@ function ProfessionalServiceBoardRequest() {
     getData();
   }, [url]);
 
+ function handleOfferRequest(event){
+  console.log(event.target.id)
+  setServiceId(event.target.id)
+ }
+
   async function handleAcceptOfferOnClick() {
-    const url = `${API_ENDPOINT}/professional-view-active-service-requests`;
+    const url = `${API_ENDPOINT}/professional-accept-request`;
     const reqBody = {
       cost: form.cost,
       acceptance: 1,
       professional_id: user.userId,
-      service_request_id: 0,
+      service_request_id: serviceId,
     };
+    console.log(reqBody)
 
     const res = await axios.post(url, reqBody);
 
     if (res.status === 200) {
+      console.log(res.data)
       navigate("/professional-service-board-offer");
     } else {
-      alert(JSON.stringify(res.data));
+      console.log(res.data)
     }
   }
 
@@ -172,7 +180,11 @@ function ProfessionalServiceBoardRequest() {
                         <Button className="btn-warning">Decline Request</Button>
                       </LinkContainer>{" "}
                       <LinkContainer to="">
-                        <Button value={data.id} className="btn-primary">
+                        <Button
+                          id={data.id}
+                          className="btn-primary"
+                          onClick={handleOfferRequest}
+                        >
                           Offer Service
                         </Button>
                       </LinkContainer>
