@@ -13,14 +13,32 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerServiceBoardRequest() {
   const { user } = useContext(AuthContext);
+  const API_ENDPOINT = process.env.REACT_APP_API_URL;
+  const url = `${API_ENDPOINT}/view-all-active-request/client/${user.userId}`;
 
-  const data = [1, 2, 3, 4, 5];
+  const [getActive, setGetActive] = useState([]);
+  const [getUserDetails, setUserDetails] = useState({});
 
   async function handleCancelRequestOnClick(event) {}
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setUserDetails(res.data.getUserLocation);
+          setGetActive(res.data.getAllActive);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
+
+  // console.log(getResult);
 
   return (
     <div>
@@ -94,13 +112,13 @@ function CustomerServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
+        {getActive.map((data) => (
           <div class="container py-3">
             <Card>
-              <Card.Header>Service Title</Card.Header>
+              <Card.Header>{data.request_title}</Card.Header>
               <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Text>Information</Card.Text>
+                <Card.Title>Issue Type: {data.service_type_id}</Card.Title>
+                <Card.Text>Information: {data.description}</Card.Text>
                 <LinkContainer to="/customer-service-board-request-offer">
                   <Button variant="primary">Offer(s)</Button>
                 </LinkContainer>{" "}
@@ -109,8 +127,8 @@ function CustomerServiceBoardRequest() {
                 </LinkContainer>
               </Card.Body>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
+              <Card.Footer>Location: {getUserDetails.suburb}</Card.Footer>
+              <Card.Footer>Time: {new Date(data.request_time).toLocaleDateString()}</Card.Footer>
             </Card>
           </div>
         ))}
