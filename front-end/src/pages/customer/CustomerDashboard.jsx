@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { Nav, Navbar, Container, Button, Image, Card } from "react-bootstrap";
+import { Nav, Navbar, Container, Button, Image } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
+import { LinkContainer } from "react-router-bootstrap";
 
 function CustomerDashboard() {
   const { user } = useContext(AuthContext);
-
-  console.log(user);
 
   return (
     <div>
@@ -22,9 +21,7 @@ function CustomerDashboard() {
             HACKQUACK
           </Navbar.Brand>
 
-          <Nav.Link href="/customer-service-board-request">
-            Service Board
-          </Nav.Link>
+          <Nav.Link>Service Board</Nav.Link>
 
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link href="/customer-account">
@@ -51,14 +48,11 @@ function CustomerDashboard() {
         <hr />
 
         <div className="d-grid gap-2">
-          <Button
-            href="/customer-account"
-            className="btn-customer-button"
-            variant="primary"
-            size="lg"
-          >
-            Account
-          </Button>
+          <LinkContainer to="/customer-account">
+            <Button className="btn-customer-button" variant="primary" size="lg">
+              Account
+            </Button>
+          </LinkContainer>
 
           <Button
             href="/customer-create-new-request"
