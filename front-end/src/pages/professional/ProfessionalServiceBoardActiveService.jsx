@@ -22,7 +22,7 @@ function ProfessionalServiceActiveService() {
     <div>
       <Navbar bg="professional-tab" variant="light">
         <Container>
-          <LinkContainer to="/professional-account">
+          <LinkContainer to="/professional-dashboard">
             <Navbar.Brand>
               <Image
                 src="/favicon.ico"

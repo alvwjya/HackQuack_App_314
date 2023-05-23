@@ -1,19 +1,66 @@
-import React, { useContext } from "react";
-import { Navbar, Nav, Image, Container, Card, Button } from "react-bootstrap";
+import React, { useContext, useState, useEffect } from "react";
+import {
+  Navbar,
+  Nav,
+  Image,
+  Container,
+  Card,
+  Button,
+  Form,
+  Row,
+  Col,
+  FormGroup,
+  Table,
+} from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
-  const data = [1, 2, 3, 4, 5];
+  const API_ENDPOINT = process.env.REACT_APP_API_URL;
+  const url = `${API_ENDPOINT}/professional-view-active-service-requests/${user.userId}`;
+
+  const [getActive, setGetActive] = useState([]);
+  const [getUserDetails, setUserDetails] = useState({});
+
+  const [form, setForm] = useState({
+    cost: 0,
+    acceptance: 0,
+    professional_id: user.userId,
+    service_request_id: 0,
+  });
+
+  const [requests, setRequests] = useState([]);
+  const commisionFee = 5;
+
+  useEffect(() => {
+    async function getRequests() {
+      const url = `${API_ENDPOINT}/professional-view-active-service-requests/${user.userId}`;
+      const res = await axios.get(url);
+      if (res.status === 200) {
+        setRequests(res.data);
+      }
+    }
+    getRequests();
+  });
+
+  async function handleAcceptOfferOnClick(event) {
+    const url = `${API_ENDPOINT}/professional-accept-request`;
+    console.log(form);
+    const postData = await axios.post(url, {
+      cost: parseInt(form.cost) + parseInt(commisionFee),
+      acceptance: 1,
+      professional_id: user.userId,
+      // service_request_id:,
+    });
+  }
+
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
         <Container>
-          <LinkContainer to="/professional-account">
+          <LinkContainer to="/professional-dashboard">
             <Navbar.Brand>
               <Image
                 src="/favicon.ico"
@@ -46,6 +93,7 @@ function ProfessionalServiceBoardRequest() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <Container className="py-5">
         <h1>SERVICE BOARD</h1>
 
@@ -89,30 +137,95 @@ function ProfessionalServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div class="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Customer Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <LinkContainer to="/professional-service-board-request-detail">
-                  <Button className="btn-info">Learn More</Button>
-                </LinkContainer>{" "}
-                <LinkContainer to="">
-                  <Button className="btn-warning">Decline Request</Button>
-                </LinkContainer>{" "}
-                <LinkContainer to="/professional-service-board-request-price-offer">
-                  <Button className="primary">Offer Service</Button>
-                </LinkContainer>
-              </Card.Body>
+        <Row>
+          <Col>
+            <div class="container py-3">
+              {requests.map((item) => {
+                return (
+                  <Card>
+                    <Card.Header>Service Title</Card.Header>
+                    <Card.Body>
+                      <Card.Title>Type of Issue</Card.Title>
+                      <Card.Subtitle>Customer Name</Card.Subtitle>
+                      <Card.Text>Information</Card.Text>
+                      <LinkContainer to="/professional-service-board-request-detail">
+                        <Button className="btn-info">Learn More</Button>
+                      </LinkContainer>{" "}
+                      <LinkContainer to="">
+                        <Button className="btn-warning">Decline Request</Button>
+                      </LinkContainer>{" "}
+                      <LinkContainer to="">
+                        <Button className="btn-primary">Offer Service</Button>
+                      </LinkContainer>
+                    </Card.Body>
+                    <Card.Footer>Location</Card.Footer>
+                    <Card.Footer>Time</Card.Footer>
+                  </Card>
+                );
+              })}
+            </div>
+          </Col>
+          <Col>
+            <Form>
+              <FormGroup className="py-3" controlId="formPriceOffer">
+                <Form.Label>PRICE AND DETAIL</Form.Label>
+                <Table>
+                  <tr>
+                    <td>
+                      <Form.Label>Service Price</Form.Label>
+                    </td>
+                    <td>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter price"
+                        value={form.cost}
+                        onChange={(e) =>
+                          setForm({ ...form, cost: e.target.value })
+                        }
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Form.Label>Comission Fee</Form.Label>
+                    </td>
+                    <td>
+                      <Form.Control
+                        value={parseInt(commisionFee)}
+                        type="text"
+                        placeholder=""
+                        disabled
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Form.Label>Total Price</Form.Label>
+                    </td>
+                    <td>
+                      <Form.Control
+                        type="text"
+                        placeholder=""
+                        disabled
+                        value={parseInt(form.cost) + parseInt(commisionFee)}
+                      />
+                    </td>
+                  </tr>
+                </Table>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                <div className="d-grid gap-2">
+                  <Button
+                    className="btn-primary"
+                    size="lg"
+                    onClick={handleAcceptOfferOnClick}
+                  >
+                    Send Offer
+                  </Button>
+                </div>
+              </FormGroup>
+            </Form>{" "}
+          </Col>
+        </Row>
 
         <hr />
       </Container>
