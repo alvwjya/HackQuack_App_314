@@ -19,6 +19,16 @@ router.post("/signup/professional", async function (req, res) {
       service_type_id,
     } = req.body;
 
+    const getEMail = await prisma.professional.findMany({
+      where: {
+        email,
+      },
+    });
+
+    if (getEMail.length !== 0) {
+      return res.status(409).json({ message: "Email already exist" });
+    }
+
     const signupProfessional = await prisma.professional.create({
       data: {
         first_name,

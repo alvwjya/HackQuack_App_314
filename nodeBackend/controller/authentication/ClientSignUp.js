@@ -16,6 +16,15 @@ router.post("/signup/client", async function (req, res) {
       postcode,
     } = req.body;
 
+    const getEmail = await prisma.client.findMany({
+      where: {
+        email,
+      },
+    });
+    if(getEmail.length !== 0 ){
+      return res.status(409).json({"message": "Email "})
+    }
+
     const signupClient = await prisma.client.create({
       data: {
         first_name,
