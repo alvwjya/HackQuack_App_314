@@ -77,6 +77,7 @@ function CustomerServiceBoardRequest() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <Container className="py-5">
         <h1>SERVICE BOARD</h1>
 
