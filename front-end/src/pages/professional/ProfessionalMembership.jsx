@@ -1,5 +1,5 @@
-import React from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container, Button, Form, Navbar, Nav, Image } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
@@ -7,60 +7,99 @@ import axios from "axios";
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function ProfessionalMembership() {
+  const { user } = useContext(AuthContext);
+
   function handleSignUpMembershipOnClick(event) {
     console.log(API_ENDPOINT);
     const url = `${API_ENDPOINT}/subscribe-memberships/professional`;
   }
 
   return (
-    <Container className="py-5">
-      <h1>PROFESSIONAL MEMBERSHIP</h1>
+    <div>
+      <Navbar bg="professional-tab" variant="light">
+        <Container>
+          <LinkContainer to="/professional-account">
+            <Navbar.Brand>
+              <Image
+                src="/favicon.ico"
+                width="30"
+                height="30"
+                class="d-inline-block align-top"
+                alt=""
+              />{" "}
+              HACKQUACK
+            </Navbar.Brand>
+          </LinkContainer>
 
-      <hr />
+          <LinkContainer to="/professional-service-board-request">
+            <Nav.Link>Service Board</Nav.Link>
+          </LinkContainer>
 
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicMembershipStartDate">
-          <Form.Label>Start Date</Form.Label>
-          <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
-        </Form.Group>
+          <Navbar.Collapse className="justify-content-end">
+            <LinkContainer to="/professional-account">
+              <Nav.Link>
+                {user.firstName} {user.lastName}{" "}
+                <Image
+                  src="/newlogo.ico"
+                  width="30"
+                  height="30"
+                  class="d-inline-block align-top"
+                  alt=""
+                />
+              </Nav.Link>
+            </LinkContainer>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Container className="py-5">
+        <h1>PROFESSIONAL MEMBERSHIP</h1>
 
-        <Form.Group className="mb-3" controlId="formBasicMembershipEndDate">
-          <Form.Label>End Date</Form.Label>
-          <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
-        </Form.Group>
+        <hr />
 
-        <Form.Group className="mb-3" controlId="formBasicPrice">
-          <Form.Label>Price</Form.Label>
-          <Form.Control type="text" placeholder="$ amount" disable />
-        </Form.Group>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicMembershipStartDate">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
+          </Form.Group>
 
-        <LinkContainer to="/payment-method">
-          <Button className="primary" size="lg">
-            Edit Payment Method
-          </Button>
-        </LinkContainer>
-      </Form>
+          <Form.Group className="mb-3" controlId="formBasicMembershipEndDate">
+            <Form.Label>End Date</Form.Label>
+            <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
+          </Form.Group>
 
-      <hr />
+          <Form.Group className="mb-3" controlId="formBasicPrice">
+            <Form.Label>Price</Form.Label>
+            <Form.Control type="text" placeholder="$ amount" disable />
+          </Form.Group>
 
-      <div className="d-grid gap-2">
-        <LinkContainer to="">
-          <Button
-            className="btn-professional-button"
-            onClick={handleSignUpMembershipOnClick}
-            size="lg"
-          >
-            Sign Up
-          </Button>
-        </LinkContainer>
+          <LinkContainer to="/payment-method">
+            <Button className="primary" size="lg">
+              Edit Payment Method
+            </Button>
+          </LinkContainer>
+        </Form>
 
-        <LinkContainer to="">
-          <Button className="btn-cancel" size="lg">
-            Cancel Membership
-          </Button>
-        </LinkContainer>
-      </div>
-    </Container>
+        <hr />
+
+        <div className="d-grid gap-2">
+          <LinkContainer to="">
+            <Button
+              className="btn-professional-button"
+              onClick={handleSignUpMembershipOnClick}
+              size="lg"
+            >
+              Sign Up
+            </Button>
+          </LinkContainer>
+
+          <LinkContainer to="">
+            <Button className="btn-cancel" size="lg">
+              Cancel Membership
+            </Button>
+          </LinkContainer>
+        </div>
+      </Container>
+    </div>
   );
 }
 
