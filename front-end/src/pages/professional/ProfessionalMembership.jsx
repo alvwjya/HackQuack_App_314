@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Button, Form } from "react-bootstrap";
+import AuthContext from "../../contexts/AuthContext";
+import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
 const API_ENDPOINT = process.env.REACT_APP_API_URL;
@@ -32,21 +34,26 @@ function ProfessionalMembership() {
           <Form.Control type="text" placeholder="$ amount" disable />
         </Form.Group>
 
-        <Button variant="primary" size="lg">
-          Edit Payment Method
-        </Button>
+        <LinkContainer to="/payment-method">
+          <Button className="primary" size="lg">
+            Edit Payment Method
+          </Button>
+        </LinkContainer>
       </Form>
 
       <hr />
 
       <div className="d-grid gap-2">
-        <Button
-          className="btn-professional-button"
-          onClick={handleSignUpMembershipOnClick}
-          size="lg"
-        >
-          Sign Up
-        </Button>
+        <LinkContainer to="/payment-method">
+          <Button
+            className="btn-professional-button"
+            onClick={handleSignUpMembershipOnClick}
+            size="lg"
+          >
+            Sign Up
+          </Button>
+        </LinkContainer>
+
         <Button className="btn-cancel" size="lg">
           Cancel
         </Button>

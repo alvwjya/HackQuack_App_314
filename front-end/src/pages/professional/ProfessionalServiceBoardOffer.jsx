@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, Container, Card, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 function ProfessionalServiceBoardOffer() {
   const data = [1, 2, 3, 4, 5];
@@ -14,24 +15,37 @@ function ProfessionalServiceBoardOffer() {
         variant="tabs"
         defaultActiveKey="/professional-service-board-offer"
       >
-        <Nav.Item>
-          <Nav.Link href="/professional-service-board-request">
-            Request(s)
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/professional-service-board-offer">Offer(s)</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/professional-service-board-active-service">
-            Active Service(s)
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/professional-service-board-past-service">
-            Past Service(s)
-          </Nav.Link>
-        </Nav.Item>
+        <LinkContainer to="/professional-service-board-request">
+          <Nav.Item>
+            <Nav.Link href="/professional-service-board-request">
+              Request(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/professional-service-board-offer">
+          <Nav.Item>
+            <Nav.Link href="/professional-service-board-offer">
+              Offer(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/professional-service-board-active-service">
+          <Nav.Item>
+            <Nav.Link href="/professional-service-board-active-service">
+              Active Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
+
+        <LinkContainer to="/professional-service-board-past-service">
+          <Nav.Item>
+            <Nav.Link href="/professional-service-board-past-service">
+              Past Service(s)
+            </Nav.Link>
+          </Nav.Item>
+        </LinkContainer>
       </Nav>
 
       {data.map((data) => (
@@ -42,13 +56,12 @@ function ProfessionalServiceBoardOffer() {
               <Card.Title>Type of Issue</Card.Title>
               <Card.Subtitle>Customer Name</Card.Subtitle>
               <Card.Text>Information</Card.Text>
-              <Button
-                href="/professional-service-board-request-detail"
-                className="btn-info"
-              >
-                Learn More
-              </Button>{" "}
-              <Button className="btn-warning">Cancel Offer</Button>{" "}
+              <LinkContainer to="/professional-service-board-request-detail">
+                <Button className="btn-info">Learn More</Button>
+              </LinkContainer>{" "}
+              <LinkContainer to="">
+                <Button className="btn-warning">Cancel Offer</Button>
+              </LinkContainer>{" "}
             </Card.Body>
 
             <Card.Footer>Location</Card.Footer>

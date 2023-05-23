@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import AuthContext from "../../contexts/AuthContext";
+import { LinkContainer } from "react-router-bootstrap";
 
 function ProfessionalAccount() {
+  const { user } = useContext(AuthContext);
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -55,10 +59,6 @@ function ProfessionalAccount() {
     setForm({ ...form, confirmedPassword: event.target.value });
   }
 
-  console.log(form);
-
-  async function handleSubmit() {}
-
   return (
     <Container className="py-5">
       <h1>ACCOUNT</h1>
@@ -67,9 +67,11 @@ function ProfessionalAccount() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button href="/professional-membership" variant="primary" size="lg">
-          Membership
-        </Button>
+        <LinkContainer to="/professional-membership">
+          <Button className="btn-professional-button" size="lg">
+            Membership
+          </Button>
+        </LinkContainer>
       </div>
 
       <hr />
@@ -88,15 +90,15 @@ function ProfessionalAccount() {
             <Col>
               <Form.Control
                 type="text"
-                placeholder="Enter first name"
-                value={form.firstName}
+                placeholder={user.firstName}
+                value={form.first_name}
                 onChange={handleFirstNameChange}
               />
             </Col>
             <Col>
               <Form.Control
                 type="text"
-                placeholder="Enter last name"
+                placeholder={user.lastName}
                 value={form.last_name}
                 onChange={handleLastNameChange}
               />
@@ -106,7 +108,7 @@ function ProfessionalAccount() {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="text" placeholder="johndoe@gmail.com" disabled />
+          <Form.Control type="text" placeholder={user.email} disabled />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress_1">

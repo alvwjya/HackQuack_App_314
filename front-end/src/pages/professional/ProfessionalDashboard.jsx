@@ -1,42 +1,45 @@
 import React, { useContext } from "react";
 import { Container, Button, Navbar, Nav, Image } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
+import { LinkContainer } from "react-router-bootstrap";
 
 function ProfessionalDashboard() {
   const { user } = useContext(AuthContext);
-
-  console.log(user);
 
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
         <Container>
-          <Navbar.Brand href="/professional-dashboard">
-            <Image
-              src="/favicon.ico"
-              width="30"
-              height="30"
-              class="d-inline-block align-top"
-              alt=""
-            />{" "}
-            HACKQUACK
-          </Navbar.Brand>
-
-          <Nav.Link href="/professional-service-board-request">
-            Service Board
-          </Nav.Link>
-
-          <Navbar.Collapse className="justify-content-end">
-            <Nav.Link href="/professional-account">
-              {user.firstName} {user.lastName}{" "}
+          <LinkContainer to="/professional-account">
+            <Navbar.Brand>
               <Image
-                src="/newlogo.ico"
+                src="/favicon.ico"
                 width="30"
                 height="30"
                 class="d-inline-block align-top"
                 alt=""
-              />
-            </Nav.Link>
+              />{" "}
+              HACKQUACK
+            </Navbar.Brand>
+          </LinkContainer>
+
+          <LinkContainer to="/professional-service-board-request">
+            <Nav.Link>Service Board</Nav.Link>
+          </LinkContainer>
+
+          <Navbar.Collapse className="justify-content-end">
+            <LinkContainer to="/professional-account">
+              <Nav.Link>
+                {user.firstName} {user.lastName}{" "}
+                <Image
+                  src="/newlogo.ico"
+                  width="30"
+                  height="30"
+                  class="d-inline-block align-top"
+                  alt=""
+                />
+              </Nav.Link>
+            </LinkContainer>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -50,24 +53,23 @@ function ProfessionalDashboard() {
         <hr />
 
         <div className="d-grid gap-2">
-          <Button
-            href="/professional-account"
-            className="btn-professional-button"
-            size="lg"
-          >
-            Account
-          </Button>
-          <Button
-            href="/professional-service-board-request"
-            variant="primary"
-            size="lg"
-          >
-            Service Board
-          </Button>
+          <LinkContainer to="/professional-account">
+            <Button className="btn-professional-button" size="lg">
+              Account
+            </Button>
+          </LinkContainer>
 
-          <Button href="/payment-transaction" className="btn-primary" size="lg">
-            Payment Transaction
-          </Button>
+          <LinkContainer to="/professional-service-board-request">
+            <Button className="btn-primary" size="lg">
+              Service Board
+            </Button>
+          </LinkContainer>
+
+          <LinkContainer to="/payment-transaction">
+            <Button className="btn-primary" size="lg">
+              Payment Transaction
+            </Button>
+          </LinkContainer>
         </div>
 
         <hr />
