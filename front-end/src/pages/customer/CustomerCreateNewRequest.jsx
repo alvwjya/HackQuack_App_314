@@ -1,20 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Button, Form } from "react-bootstrap";
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerCreateNewRequest() {
-  const service_type = ["One", "Two", "Three", "Four", "Five"];
+  const API_ENDPOINT = process.env.REACT_APP_API_URL;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const [service_type, setServiceType] = useState([]);
   const [form, setForm] = useState({
     taskTitle: "",
     taskDescription: "",
     serviceType: 0,
   });
 
+  const url = `${API_ENDPOINT}/get-service-types`;
+  useEffect(() => {
+    async function getData() {
+      const res = await axios.get(url);
+      if (res.status === 200) {
+        setServiceType(res.data);
+      }
+    }
+    getData();
+  }, [url]);
+
+  console.log(service_type);
+
   async function handleSubmit() {
-    console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/create-new-request/client`;
+    const url = `${API_ENDPOINT}/client-new-request`;
+    const reqBody = {
+      client_id: user.userId,
+      request_title: form.taskTitle,
+      service_type_id: form.serviceType,
+      description: form.taskDescription,
+    };
+
+    const res = await axios.post(url, reqBody);
+
+    if (res.status === 200) {
+      navigate("/customer-service-board-request");
+    } else {
+      alert(JSON.stringify(res.data));
+    }
   }
 
   function handleTaskTitleChange(event) {
@@ -67,7 +97,7 @@ function CustomerCreateNewRequest() {
           >
             <option value="">Please select</option>
             {service_type.map((item, index) => {
-              return <option value={index}>{item}</option>;
+              return <option value={item.id}>{item.service_type_name}</option>;
             })}
           </Form.Select>
         </Form.Group>
