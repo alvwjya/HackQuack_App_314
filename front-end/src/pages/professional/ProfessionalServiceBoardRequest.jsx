@@ -35,6 +35,21 @@ function ProfessionalServiceBoardRequest() {
   const commisionFee = 5;
 
   useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setUserDetails(res.data.getUserLocation);
+          setGetActive(res.data.getAllActive);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
+
+  useEffect(() => {
     async function getRequests() {
       const url = `${API_ENDPOINT}/professional-view-active-service-requests/${user.userId}`;
       const res = await axios.get(url);
@@ -140,23 +155,25 @@ function ProfessionalServiceBoardRequest() {
         <Row>
           <Col>
             <div class="container py-3">
-              {requests.map((item) => {
+              {requests.map((data) => {
                 return (
                   <Card>
-                    <Card.Header>Service Title</Card.Header>
+                    <Card.Header>{data.request_title}</Card.Header>
                     <Card.Body>
-                      <Card.Title>Type of Issue</Card.Title>
+                      <Card.Title>
+                        Issue Type: {data.service_type_id}
+                      </Card.Title>
                       <Card.Subtitle>Customer Name</Card.Subtitle>
-                      <Card.Text>Information</Card.Text>
+                      <Card.Text>Information: {data.description}</Card.Text>
                       <LinkContainer to="/professional-service-board-request-detail">
                         <Button className="btn-info">Learn More</Button>
                       </LinkContainer>{" "}
                       <LinkContainer to="">
                         <Button className="btn-warning">Decline Request</Button>
                       </LinkContainer>{" "}
-                      <LinkContainer to="">
+                      {/* <LinkContainer to="">
                         <Button className="btn-primary">Offer Service</Button>
-                      </LinkContainer>
+                      </LinkContainer> */}
                     </Card.Body>
                     <Card.Footer>Location</Card.Footer>
                     <Card.Footer>Time</Card.Footer>
