@@ -19,25 +19,33 @@ function CustomerMembership() {
 
   const { user } = useContext(AuthContext);
   const API_ENDPOINT = process.env.REACT_APP_API_URL;
-  const url = `${API_ENDPOINT}/subscribe-memberships/client${user.userId}`;
+  // const url = `${API_ENDPOINT}/subscribe-memberships/client${user.userId}`;
 
   const [getActive, setGetActive] = useState([]);
-  const [getUserDetails, setUserDetails] = useState({});
+  const [userDetails, setUserDetails] = useState({});
+  const getMembershipsUrl = `${API_ENDPOINT}/get-client-memberships/${user.userId}`;
 
   useEffect(() => {
     async function getData() {
-      try {
-        const res = await axios.get(url);
-        if (res.status === 200) {
-          setUserDetails(res.data.getUserLocation);
-          setGetActive(res.data.getAllActive);
-        }
-      } catch (err) {
-        console.log(err);
+      const res = await axios.get(getMembershipsUrl);
+      if (res.status === 200) {
+        setUserDetails(res.data);
+        console.log(res.data)
       }
     }
     getData();
-  }, [url]);
+  }, [getMembershipsUrl]);
+
+  console.log(userDetails);
+
+  async function handleSubscribe(event) {
+    const url = `${API_ENDPOINT}/subscribe-memberships/client`;
+    const body = { client_id: user.userId, cost: membershipAnuallyCost };
+    const res = await axios.post(url, body);
+    if(res.status === 200){
+      console.log("Signed Up")
+    }
+  }
 
   return (
     <div>
@@ -85,17 +93,44 @@ function CustomerMembership() {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicMembershipStartDate">
             <Form.Label>Start Date</Form.Label>
-            <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
+            <Form.Control
+              type="text"
+              placeholder="DD/MM/YYYY"
+              disabled
+              value={
+                Object.keys(userDetails).length === 0
+                  ? "Invalid"
+                  : userDetails.start_date
+              }
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicMembershipEndDate">
             <Form.Label>End Date</Form.Label>
-            <Form.Control type="text" placeholder="DD/MM/YYYY" disabled />
+            <Form.Control
+              type="text"
+              placeholder="DD/MM/YYYY"
+              disabled
+              value={
+                Object.keys(userDetails).length === 0
+                  ? "Invalid"
+                  : userDetails.due_date
+              }
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicMembershipEndDate">
             <Form.Label>Status</Form.Label>
-            <Form.Control type="text" placeholder="Inactive" disabled />
+            <Form.Control
+              type="text"
+              placeholder="Inactive"
+              disabled
+              value={
+                new Date(userDetails.due_date) < new Date()
+                  ? "Inactive"
+                  : userDetails.start_date
+              }
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPrice">
@@ -120,7 +155,11 @@ function CustomerMembership() {
 
         <div className="d-grid gap-2">
           <LinkContainer to="">
-            <Button className="btn-customer-button" size="lg">
+            <Button
+              className="btn-customer-button"
+              size="lg"
+              onClick={handleSubscribe}
+            >
               Sign Up
             </Button>
           </LinkContainer>
