@@ -34,7 +34,9 @@ app.use(
 app.use(require("./controller/updateProfile/ClientUpdate"));
 app.use(require("./controller/updateProfile/ProfessionalUpdate"));
 app.use(require("./controller/authentication/SignIn"));
-app.use(require("./controller/serviceRequest/ClientViewAllRequest"))
+app.use(require("./controller/serviceRequest/ClientViewAllRequest"));
+app.use(require("./controller/manageMemberships/GetClientMemberships"));
+app.use(require("./controller/manageMemberships/GetProfessionalMemberships"));
 
 // Port
 app.listen(port, () => {
