@@ -16,8 +16,6 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function ProfessionalPriceOffer() {
   const { user } = useContext(AuthContext);
 
@@ -33,7 +31,7 @@ function ProfessionalPriceOffer() {
 
   useEffect(() => {
     async function getRequests() {
-      const url = `${API_ENDPOINT}/professional-view-active-service-requests/${user.userId}`;
+      const url = `/professional-view-active-service-requests/${user.userId}`;
       const res = await axios.get(url);
       if (res.status === 200) {
         setRequests(res.data);
@@ -43,7 +41,7 @@ function ProfessionalPriceOffer() {
   });
 
   async function handleAcceptOfferOnClick(event) {
-    const url = `${API_ENDPOINT}/professional-accept-request`;
+    const url = `/professional-accept-request`;
     // console.log(form);
     const postData = await axios.post(url, {
       cost: parseInt(form.cost) + parseInt(commisionFee),

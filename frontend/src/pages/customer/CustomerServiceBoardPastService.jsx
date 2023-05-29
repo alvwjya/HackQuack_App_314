@@ -13,8 +13,6 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerServiceBoardPastService() {
   const { user } = useContext(AuthContext);
   const data = [1, 2, 3, 4, 5];

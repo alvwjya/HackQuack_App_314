@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CustomerCreateNewRequest() {
-  const API_ENDPOINT = process.env.REACT_APP_API_URL;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -18,7 +17,7 @@ function CustomerCreateNewRequest() {
     serviceType: 0,
   });
 
-  const url = `${API_ENDPOINT}/get-service-types`;
+  const url = `/get-service-types`;
   useEffect(() => {
     async function getData() {
       const res = await axios.get(url);
@@ -32,7 +31,7 @@ function CustomerCreateNewRequest() {
   console.log(service_type);
 
   async function handleSubmit() {
-    const url = `${API_ENDPOINT}/client-new-request`;
+    const url = `/client-new-request`;
     const reqBody = {
       client_id: user.userId,
       request_title: form.taskTitle,

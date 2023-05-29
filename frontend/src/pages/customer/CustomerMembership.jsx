@@ -12,18 +12,14 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerMembership() {
   const membershipAnuallyCost = 1000;
 
   const { user } = useContext(AuthContext);
-  const API_ENDPOINT = process.env.REACT_APP_API_URL;
-  // const url = `${API_ENDPOINT}/subscribe-memberships/client${user.userId}`;
 
   const [getActive, setGetActive] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const getMembershipsUrl = `${API_ENDPOINT}/get-client-memberships/${user.userId}`;
+  const getMembershipsUrl = `/get-client-memberships/${user.userId}`;
 
   useEffect(() => {
     async function getData() {
@@ -39,7 +35,7 @@ function CustomerMembership() {
   console.log(userDetails);
 
   async function handleSubscribe(event) {
-    const url = `${API_ENDPOINT}/subscribe-memberships/client`;
+    const url = `/subscribe-memberships/client`;
     const body = { client_id: user.userId, cost: membershipAnuallyCost };
     const res = await axios.post(url, body);
     if(res.status === 200){

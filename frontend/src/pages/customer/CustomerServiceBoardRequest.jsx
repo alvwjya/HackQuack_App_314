@@ -15,8 +15,7 @@ import axios from "axios";
 
 function CustomerServiceBoardRequest() {
   const { user } = useContext(AuthContext);
-  const API_ENDPOINT = process.env.REACT_APP_API_URL;
-  const url = `${API_ENDPOINT}/view-all-active-request/client/${user.userId}`;
+  const url = `/view-all-active-request/client/${user.userId}`;
 
   const [getActive, setGetActive] = useState([]);
   const [getUserDetails, setUserDetails] = useState({});

@@ -4,13 +4,11 @@ import axios from "axios";
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function ProfessionalSignUp() {
   const [serviceTypes, setServiceTypes] = useState([]);
   const navigate = useNavigate();
 
-  const url = `${API_ENDPOINT}/get-service-types`;
+  const url = `/get-service-types`;
 
   useEffect(() => {
     async function fetchData() {
@@ -42,7 +40,7 @@ function ProfessionalSignUp() {
   });
 
   async function handleSubmit() {
-    const url = `${API_ENDPOINT}/signup/professional`;
+    const url = `/signup/professional`;
 
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match");

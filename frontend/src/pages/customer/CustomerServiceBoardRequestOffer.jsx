@@ -13,15 +13,13 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerServiceBoardOffer() {
   const { user } = useContext(AuthContext);
 
   const data = [1, 2, 3, 4, 5];
 
   async function handleAcceptOfferOnClick(event) {
-    const url = `${API_ENDPOINT}/professional-accept-request`
+    const url = `/professional-accept-request`
 
     // const body = {
     //   acceptance:1,

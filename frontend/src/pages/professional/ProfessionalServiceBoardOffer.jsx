@@ -6,8 +6,7 @@ import axios from "axios";
 
 function ProfessionalServiceBoardOffer() {
   const { user } = useContext(AuthContext);
-  const API_ENDPOINT = process.env.REACT_APP_API_URL;
-  const url = `${API_ENDPOINT}/view-all-active-request/client/${user.userId}`;
+  const url = `/view-all-active-request/client/${user.userId}`;
 
   const data = [1, 2, 3, 4, 5];
   return (

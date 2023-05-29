@@ -19,8 +19,7 @@ import axios from "axios";
 
 function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
-  const API_ENDPOINT = process.env.REACT_APP_API_URL;
-  const url = `${API_ENDPOINT}/professional-view-active-service-requests/${user.userId}`;
+  const url = `/professional-view-active-service-requests/${user.userId}`;
 
   const navigate = useNavigate();
 
@@ -60,7 +59,7 @@ function ProfessionalServiceBoardRequest() {
  }
 
   async function handleAcceptOfferOnClick() {
-    const url = `${API_ENDPOINT}/professional-accept-request`;
+    const url = `/professional-accept-request`;
     const reqBody = {
       cost: form.cost,
       acceptance: 1,

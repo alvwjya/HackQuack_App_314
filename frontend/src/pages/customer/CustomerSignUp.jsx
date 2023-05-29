@@ -3,8 +3,6 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { json, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerSignUp() {
   const navigate = useNavigate();
 
@@ -21,8 +19,7 @@ function CustomerSignUp() {
   });
 
   async function handleSubmit() {
-    console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/signup/client`;
+    const url = `/signup/client`;
 
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match!");

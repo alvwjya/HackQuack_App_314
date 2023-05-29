@@ -13,8 +13,6 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function CustomerAccount() {
   const { user } = useContext(AuthContext);
 
@@ -31,8 +29,7 @@ function CustomerAccount() {
   });
 
   async function handleSubmit() {
-    console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/account/customer`;
+    const url = `/account/customer`;
 
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match");

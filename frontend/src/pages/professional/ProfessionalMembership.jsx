@@ -4,14 +4,11 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function ProfessionalMembership() {
   const { user } = useContext(AuthContext);
 
   function handleSignUpMembershipOnClick(event) {
-    console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/subscribe-memberships/professional`;
+    const url = `/subscribe-memberships/professional`;
   }
 
   return (

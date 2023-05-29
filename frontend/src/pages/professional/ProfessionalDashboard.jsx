@@ -4,8 +4,6 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
-
 function ProfessionalDashboard() {
   const { user } = useContext(AuthContext);
 

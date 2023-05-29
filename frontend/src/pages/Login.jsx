@@ -13,7 +13,6 @@ import {
 import axios from "axios";
 import AuthContext from "../contexts/AuthContext";
 
-const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function Login() {
   const { setUser } = useContext(AuthContext);
@@ -25,8 +24,7 @@ function Login() {
   });
 
   async function handleSubmit() {
-    console.log(API_ENDPOINT);
-    const url = `${API_ENDPOINT}/signin`;
+    const url = `/signin`;
 
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match");
