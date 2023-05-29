@@ -3,12 +3,12 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.put("/renew-memberships/client", async function (req, res) {
-  const { client_id } = req.body;
+router.put("/client/:userId", async function (req, res) {
+  const userId = req.params
 
   try {
     const getCurrentDueDate = await prisma.membership.findFirst({
-      where: { client_id: parseInt(client_id) },
+      where: { client_id: parseInt(userId) },
     });
 
     const updateDueDate = new Date(

@@ -4,7 +4,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.post("/signin", async function (req, res) {
+router.post("/", async function (req, res) {
   try {
     const { loginUserType, loginEmail, loginPassword } = req.body;
 

@@ -3,7 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.put("/renew-memberships/professional", async function (req, res) {
+router.put("/professional/:userId", async function (req, res) {
   const { professional_id } = req.body;
 
   try {

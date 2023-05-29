@@ -3,8 +3,8 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.get("/get-professional-memberships/:userId", async function (req, res) {
-  const userId = req.params;
+router.get("/:userId", async function (req, res) {
+  const {userId} = req.params;
   try {
     const getMemberships = await prisma.membership.findFirst({
       where: {

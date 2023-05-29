@@ -3,47 +3,41 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.post("/signup/professional", async function (req, res) {
-  console.log(req.body);
+router.post("/client", async function (req, res) {
   try {
     const {
       first_name,
       last_name,
-      abn,
+      email,
+      phone,
       password,
       suburb,
-      email,
       state,
-      tfn,
       postcode,
-      service_type_id,
     } = req.body;
 
-    const getEMail = await prisma.professional.findMany({
+    const getEmail = await prisma.client.findMany({
       where: {
         email,
       },
     });
-
-    if (getEMail.length !== 0) {
-      return res.status(409).json({ message: "Email already exist" });
+    if(getEmail.length !== 0 ){
+      return res.status(409).json({"message": "Email "})
     }
 
-    const signupProfessional = await prisma.professional.create({
+    const signupClient = await prisma.client.create({
       data: {
         first_name,
         last_name,
         email,
-        abn,
-        tfn,
+        phone,
         password,
         suburb,
         state,
         postcode,
-        service_type: { connect: { id: parseInt(service_type_id) } },
       },
     });
-    res.status(200).json({ signupProfessional });
+    res.status(200).json(signupClient);
   } catch (err) {
     res.status(500).json(err);
   }
