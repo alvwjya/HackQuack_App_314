@@ -6,6 +6,7 @@ const authentication = require("./controller/authentication/index");
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 // ---Routes---
 app.get("/", function (req, res) {

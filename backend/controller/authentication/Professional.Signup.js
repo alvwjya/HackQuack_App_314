@@ -3,7 +3,7 @@ const router = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-router.post("professional", async function (req, res) {
+router.post("/professional", async function (req, res) {
   try {
     const {
       first_name,
@@ -44,6 +44,7 @@ router.post("professional", async function (req, res) {
     });
     res.status(200).json({ signupProfessional });
   } catch (err) {
+    throw (err)
     res.status(500).json(err);
   }
 });
