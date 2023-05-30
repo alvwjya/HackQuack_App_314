@@ -5,7 +5,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.post("/professional-accept-request", async function (req, res) {
+router.post("/new-offer", async function (req, res) {
   try {
     const {
       acceptance,

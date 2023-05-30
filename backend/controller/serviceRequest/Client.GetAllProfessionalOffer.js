@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.get(
-  "/view-all-active-request/client/:userId",
+  "/view-offers/:userId",
   async function (req, res) {
     console.log(req.params)
     try {

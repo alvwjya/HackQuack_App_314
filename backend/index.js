@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
 const authentication = require("./controller/authentication/index");
+const membership = require("./controller/manageMemberships/index");
+const serviceRequest = require("./controller/serviceRequest/index");
+const viewServiceTypes = require("./controller/Servicetypes/index");
+const ratingAndReview = require("./controller/ratingAndReview");
 
 const app = express();
 
@@ -14,6 +18,10 @@ app.get("/", function (req, res) {
 });
 
 app.use("/", authentication);
+app.use("/membership", membership);
+app.use("/service", serviceRequest);
+app.use("/service-types", viewServiceTypes);
+app.use("/rating-review", ratingAndReview);
 
 // Port
 app.listen(port, () => {
