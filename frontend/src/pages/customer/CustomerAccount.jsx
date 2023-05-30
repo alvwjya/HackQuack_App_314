@@ -84,7 +84,7 @@ function CustomerAccount() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -103,7 +103,7 @@ function CustomerAccount() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>

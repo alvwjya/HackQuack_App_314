@@ -1,37 +1,54 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function PaymentMethod() {
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
+  const [cardExpiry, setCardExpiry] = useState({
+    month: "",
+    year: "",
+  });
+
   const [form, setForm] = useState({
     cardNumber: "",
     expiry: "",
     CVV: "",
-    billingEmail: "",
+    ...state,
   });
-
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    const url = `/signup/${form.type}`;
+    try {
+      const data = await axios.post(url, form);
+      if (data.status === 200) {
+        alert("Successfully create account!");
+        navigate("/");
+      }
+    } catch (err) {
+      alert(JSON.stringify(err.message));
+    }
+  }
 
   function handleCardNumberChange(event) {
     setForm({ ...form, cardNumber: event.target.value });
   }
 
-  function handleExpiryChange(event) {
-    setForm({ ...form, expiry: event.target.value });
-  }
+  useEffect(() => {
+    setForm({
+      ...form,
+      expiry: new Date(cardExpiry.year, cardExpiry.month, 0),
+    });
+  }, [cardExpiry]);
 
   function handleCVVChange(event) {
-    setForm({ ...form, expiry: event.target.value });
+    setForm({ ...form, CVV: event.target.value });
   }
-
-  function handleBillingEmailChange(event) {
-    setForm({ ...form, email: event.target.value });
-  }
-
-  console.log(form);
 
   return (
     <Container className="py-5">
-      <div class="container py-3">
+      <div className="container py-3">
         <Card>
           <Card.Body>
             <h1>Add Payment Method</h1>
@@ -52,22 +69,40 @@ function PaymentMethod() {
               <Form.Group className="mb-3" controlId="formBasicCardNumberInfo">
                 <Row>
                   <Col>
-                    <Form.Label>Expiry</Form.Label>
+                    <Row>
+                      <Form.Label>Expiry</Form.Label>
+                      <Col>
+                        <Form.Control
+                          type="text"
+                          maxLength="2"
+                          placeholder="MM"
+                          value={cardExpiry.month}
+                          onChange={(e) =>
+                            setCardExpiry((cardExpiry) => ({
+                              ...cardExpiry,
+                              month: e.target.value,
+                            }))
+                          }
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Control
+                          type="text"
+                          maxLength="4"
+                          placeholder="YYYY"
+                          value={cardExpiry.year}
+                          onChange={(e) =>
+                            setCardExpiry((cardExpiry) => ({
+                              ...cardExpiry,
+                              year: e.target.value,
+                            }))
+                          }
+                        />
+                      </Col>
+                    </Row>
                   </Col>
                   <Col>
                     <Form.Label>CVV</Form.Label>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Form.Control
-                      type="text"
-                      placeholder="MM/YYYY"
-                      value={form.expiry}
-                      onChange={handleExpiryChange}
-                    />
-                  </Col>
-                  <Col>
                     <Form.Control
                       type="text"
                       placeholder="Enter CVV"
@@ -77,25 +112,15 @@ function PaymentMethod() {
                   </Col>
                 </Row>
               </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
-                <Form.Label>Billing Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter billing email"
-                  value={form.billingEmail}
-                  onChange={handleBillingEmailChange}
-                />
-              </Form.Group>
             </Form>
 
             <hr />
 
             <div className="d-grid gap-2">
-              <Button variant="primary" size="lg">
-                Confirm
+              <Button variant="primary" size="lg" onClick={handleSubmit}>
+                Sign Up
               </Button>
-              <Button variant="cancel" size="lg">
+              <Button href="/" className="btn-cancel" size="lg">
                 Cancel
               </Button>
             </div>

@@ -8,7 +8,7 @@ function CustomerRatingAndReview() {
   const service_type = ["One", "Two", "Three", "Four", "Five"];
   return (
     <Container className="py-5">
-      <div class="container py-3">
+      <div className="container py-3">
         <Card>
           <Card.Body>
             <h1>Rating and Review</h1>

@@ -5,7 +5,7 @@ function CustomerServiceBoardRequestOfferDetail() {
   const data = [1, 2, 3, 4, 5];
   return (
     <Container className="py-5">
-      <div class="container py-3">
+      <div className="container py-3">
         <Card>
           <Card.Body>
             <h1>Professional Name</h1>
@@ -27,7 +27,7 @@ function CustomerServiceBoardRequestOfferDetail() {
           <Card.Footer>
             Ratings and Reviews{" "}
             {data.map((data) => (
-              <div class="container py-3">
+              <div className="container py-3">
                 <Card>
                   <Card.Header>Customer name</Card.Header>
                   <Card.Body></Card.Body>

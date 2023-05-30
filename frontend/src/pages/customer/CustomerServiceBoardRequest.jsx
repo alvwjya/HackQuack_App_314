@@ -47,7 +47,7 @@ function CustomerServiceBoardRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -66,7 +66,7 @@ function CustomerServiceBoardRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -111,7 +111,7 @@ function CustomerServiceBoardRequest() {
         </Nav>
 
         {getActive.map((data) => (
-          <div class="container py-3">
+          <div className="container py-3">
             <Card>
               <Card.Header>{data.request_title}</Card.Header>
               <Card.Body>

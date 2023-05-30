@@ -9,7 +9,7 @@ function PaymentTransaction() {
 
       <hr />
       {data.map((data) => (
-        <div class="container py-3">
+        <div className="container py-3">
           <Card>
             <Card.Body>
               <h3>Receipt</h3>

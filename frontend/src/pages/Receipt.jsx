@@ -4,7 +4,7 @@ import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
 function Receipt() {
   return (
     <Container className="py-5">
-      <div class="container py-3">
+      <div className="container py-3">
         <Card>
           <Card.Body>
             <h3>Receipt</h3>

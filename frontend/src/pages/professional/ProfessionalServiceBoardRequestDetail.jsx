@@ -4,7 +4,7 @@ import { Container, Button, Card, Row, Col, Form } from "react-bootstrap";
 function ProfessionalServiceBoardRequestDetail() {
   return (
     <Container className="py-5">
-      <div class="container py-3">
+      <div className="container py-3">
         <Card>
           <Card.Body>
             <h1>Customer Name</h1>

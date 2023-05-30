@@ -16,22 +16,16 @@ function CustomerSignUp() {
     postcode: "",
     password: "",
     confirm_password: "",
+    type: "client",
   });
 
   async function handleSubmit() {
-    const url = `/signup/client`;
-
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match!");
       return;
     }
 
-    const res = await axios.post(url, form);
-    if (res.status === 200) {
-      return navigate("/");
-    } else {
-      return alert(JSON.stringify(res.data));
-    }
+    return navigate("/add-payment-method", { state: form });
   }
 
   function handleFirstNameChange(event) {
@@ -192,12 +186,8 @@ function CustomerSignUp() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button
-          className="btn-customer-button"
-          size="lg"
-          onClick={handleSubmit}
-        >
-          Sign Up
+        <Button onClick={handleSubmit} variant="primary" size="lg">
+          Add Payment Method
         </Button>
         <Button href="/" className="btn-cancel" size="lg">
           Cancel

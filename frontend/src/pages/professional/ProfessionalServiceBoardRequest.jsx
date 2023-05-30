@@ -81,7 +81,7 @@ function ProfessionalServiceBoardRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -100,7 +100,7 @@ function ProfessionalServiceBoardRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -154,7 +154,7 @@ function ProfessionalServiceBoardRequest() {
 
         {getActive.map((data) => {
           return (
-            <div class="container py-3">
+            <div className="container py-3">
               <Card>
                 <Card.Header>Service ID: {data.id}</Card.Header>
                 <Card.Body>
@@ -167,7 +167,7 @@ function ProfessionalServiceBoardRequest() {
                   <LinkContainer to="">
                     <Button className="btn-warning">Decline Request</Button>
                   </LinkContainer>{" "}
-                  <Button className="btn-primary" value={map.id}>
+                  <Button className="btn-primary" value={data.id}>
                     Offer Service
                   </Button>
                 </Card.Body>

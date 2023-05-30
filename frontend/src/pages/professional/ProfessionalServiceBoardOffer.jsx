@@ -19,7 +19,7 @@ function ProfessionalServiceBoardOffer() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -38,7 +38,7 @@ function ProfessionalServiceBoardOffer() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -90,7 +90,7 @@ function ProfessionalServiceBoardOffer() {
         </Nav>
 
         {data.map((data) => (
-          <div class="container py-3">
+          <div className="container py-3">
             <Card>
               <Card.Header>Service Title</Card.Header>
               <Card.Body>
