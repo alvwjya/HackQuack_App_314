@@ -15,27 +15,27 @@ import axios from "axios";
 
 function CustomerServiceBoardRequest() {
   const { user } = useContext(AuthContext);
-  const url = `/service/${user.userId}`;
 
-  const [getActive, setGetActive] = useState([]);
-  const [getUserDetails, setUserDetails] = useState({});
+  const [allRequest, setAllRequest] = useState([]);
 
   async function handleCancelRequestOnClick(event) {}
 
   useEffect(() => {
     async function getData() {
+      const url = `/service/client/all-request/${user.userId}`;
       try {
         const res = await axios.get(url);
         if (res.status === 200) {
-          setUserDetails(res.data.getUserLocation);
-          setGetActive(res.data.getAllActive);
+          setAllRequest(res.data);
         }
       } catch (err) {
         console.log(err);
       }
     }
     getData();
-  }, [url]);
+  }, []);
+
+  console.log(allRequest.length);
 
   return (
     <div>
@@ -47,7 +47,7 @@ function CustomerServiceBoardRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -66,7 +66,7 @@ function CustomerServiceBoardRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -109,29 +109,43 @@ function CustomerServiceBoardRequest() {
             </Nav.Item>
           </LinkContainer>
         </Nav>
+        {allRequest.length === 0 ? (
+          <p>No Request</p>
+        ) : (
+          <>
+            {allRequest.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>
+                    <strong>{data.request_title}</strong>
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      Service Type: {data.service_type.service_type_name}
+                    </Card.Text>
+                    <Card.Text>Information: {data.description}</Card.Text>
 
-        {getActive.map((data) => (
-          <div class="container py-3">
-            <Card>
-              <Card.Header>{data.request_title}</Card.Header>
-              <Card.Body>
-                <Card.Title>Issue Type: {data.service_type_id}</Card.Title>
-                <Card.Text>Information: {data.description}</Card.Text>
-                <LinkContainer to="/customer-service-board-request-offer">
-                  <Button variant="primary">Offer(s)</Button>
-                </LinkContainer>{" "}
-                <LinkContainer to="">
-                  <Button className="btn-warning">Cancel Request</Button>
-                </LinkContainer>
-              </Card.Body>
+                    <Button variant="primary">Offer(s)</Button>
 
-              <Card.Footer>Location: {getUserDetails.suburb}</Card.Footer>
-              <Card.Footer>
-                Time: {new Date(data.request_time).toLocaleDateString()}
-              </Card.Footer>
-            </Card>
-          </div>
-        ))}
+                    <LinkContainer to="">
+                      <Button className="btn-warning">Cancel Request</Button>
+                    </LinkContainer>
+                  </Card.Body>
+
+                  <Card.Footer>Location:{data.client.suburb}</Card.Footer>
+                  <Card.Footer>
+                    Time:{" "}
+                    {`${new Date(
+                      data.request_time
+                    ).toLocaleDateString()} ${new Date(
+                      data.request_time
+                    ).toLocaleTimeString()}`}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

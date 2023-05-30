@@ -61,7 +61,7 @@ function ProfessionalPriceOffer() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -80,7 +80,7 @@ function ProfessionalPriceOffer() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -134,7 +134,7 @@ function ProfessionalPriceOffer() {
 
         <Row>
           <Col>
-            <div class="container py-3">
+            <div className="container py-3">
               {requests.map((item) => {
                 return (
                   <Card>

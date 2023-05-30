@@ -97,7 +97,7 @@ function Login() {
                     id="professional"
                     value="professional"
                     className="btn-professional-button"
-                    checked={form.loginUserType === "customer"}
+                    checked={form.loginUserType === "professional"}
                   >
                     Professional
                   </ToggleButton>

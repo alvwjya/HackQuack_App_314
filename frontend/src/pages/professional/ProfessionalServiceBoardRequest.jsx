@@ -89,7 +89,7 @@ function ProfessionalServiceBoardRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -108,7 +108,7 @@ function ProfessionalServiceBoardRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -246,6 +246,7 @@ function ProfessionalServiceBoardRequest() {
                       </tr>
                     </Table>
 
+<<<<<<< HEAD
                     <div className="d-grid gap-2">
                       <Button
                         className="btn-primary"
@@ -261,6 +262,33 @@ function ProfessionalServiceBoardRequest() {
             )}
           </Row>
         </Container>
+=======
+        {getActive.map((data) => {
+          return (
+            <div className="container py-3">
+              <Card>
+                <Card.Header>Service ID: {data.id}</Card.Header>
+                <Card.Body>
+                  <Card.Title>{data.request_title}</Card.Title>
+                  <Card.Subtitle>Customer Name: {}</Card.Subtitle>
+                  <Card.Text>Information: {data.description}</Card.Text>
+                  <LinkContainer to="/professional-service-board-request-detail">
+                    <Button className="btn-info">Learn More</Button>
+                  </LinkContainer>{" "}
+                  <LinkContainer to="">
+                    <Button className="btn-warning">Decline Request</Button>
+                  </LinkContainer>{" "}
+                  <Button className="btn-primary" value={data.id}>
+                    Offer Service
+                  </Button>
+                </Card.Body>
+                <Card.Footer>Location: {}</Card.Footer>
+                <Card.Footer>Time: {data.request_time}</Card.Footer>
+              </Card>
+            </div>
+          );
+        })}
+>>>>>>> a432f45fdc82f4cc948bac2f5a7940ffe384d703
 
         <hr />
       </Container>

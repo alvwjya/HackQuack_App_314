@@ -70,7 +70,7 @@ function CustomerCreateNewRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -87,7 +87,7 @@ function CustomerCreateNewRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -141,13 +141,13 @@ function CustomerCreateNewRequest() {
           <hr />
 
           <div className="d-grid gap-2">
-            <LinkContainer to="">
+            
               <Button variant="primary" size="lg" onClick={handleSubmit}>
                 Make Request
               </Button>
-            </LinkContainer>
+     
 
-            <LinkContainer to="">
+            <LinkContainer to="/customer-dashboard">
               <Button variant="cancel" size="lg">
                 Cancel
               </Button>
