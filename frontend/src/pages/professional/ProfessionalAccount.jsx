@@ -161,7 +161,7 @@ function ProfessionalAccount() {
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter address"
+              placeholder={user.address}
               value={form.address}
               onChange={handleAddressChange}
             />

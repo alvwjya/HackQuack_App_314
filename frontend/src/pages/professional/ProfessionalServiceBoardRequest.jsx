@@ -53,10 +53,10 @@ function ProfessionalServiceBoardRequest() {
     getData();
   }, [url]);
 
- function handleOfferRequest(event){
-  console.log(event.target.id)
-  setServiceId(event.target.id)
- }
+  function handleOfferRequest(event) {
+    console.log(event.target.id);
+    setServiceId(event.target.id);
+  }
 
   async function handleAcceptOfferOnClick() {
     const url = `/professional-accept-request`;
@@ -66,15 +66,15 @@ function ProfessionalServiceBoardRequest() {
       professional_id: user.userId,
       service_request_id: serviceId,
     };
-    console.log(reqBody)
+    console.log(reqBody);
 
     const res = await axios.post(url, reqBody);
 
     if (res.status === 200) {
-      console.log(res.data)
+      console.log(res.data);
       navigate("/professional-service-board-offer");
     } else {
-      console.log(res.data)
+      console.log(res.data);
     }
   }
 
