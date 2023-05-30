@@ -7,12 +7,7 @@ const router = express.Router();
 
 router.post("/new-offer", async function (req, res) {
   try {
-    const {
-      acceptance,
-      cost,
-      service_request_id,
-      professional_id,
-    } = req.body;
+    const { acceptance, cost, service_request_id, professional_id } = req.body;
 
     const acceptRequest = await prisma.professional_service_request.create({
       data: {
@@ -24,7 +19,7 @@ router.post("/new-offer", async function (req, res) {
     });
     res.json(acceptRequest);
   } catch (err) {
-    throw err;
+    res.status(500).json(err);
   }
 });
 

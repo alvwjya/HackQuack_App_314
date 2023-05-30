@@ -14,6 +14,9 @@ router.post("/client", async function (req, res) {
       suburb,
       state,
       postcode,
+      cardNumber,
+      expiry,
+      CVV,
     } = req.body;
 
     const getEmail = await prisma.client.findMany({
@@ -21,8 +24,8 @@ router.post("/client", async function (req, res) {
         email,
       },
     });
-    if(getEmail.length !== 0 ){
-      return res.status(409).json({"message": "Email "})
+    if (getEmail.length !== 0) {
+      return res.status(409).json({ message: "Email already exist" });
     }
 
     const signupClient = await prisma.client.create({
@@ -35,6 +38,9 @@ router.post("/client", async function (req, res) {
         suburb,
         state,
         postcode,
+        card_number: cardNumber,
+        card_security_num: CVV,
+        card_expiry_date: new Date(expiry),
       },
     });
     res.status(200).json(signupClient);

@@ -4,23 +4,49 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.put("/client/:userId", async function (req, res) {
-  try {
-    const { clientId } = req.params;
-    const { firstName, lastName, email, phone } = req.body;
+  const { id } = req.params.userId;
+  const {
+    first_name,
+    last_name,
+    email,
+    phone,
+    password,
+    suburb,
+    state,
+    postcode,
+    card_number,
+    card_security_num,
+    card_expiry_date,
+  } = req.body;
 
-    const updatedClient = await prisma.client.update({
-      where: { id: parseInt(clientId) },
-      data: {
-        firstName,
-        lastName,
-        email,
-        phone,
-      },
+  try {
+    const existingClient = await prisma.client.findUnique({
+      where: { id: parseInt(id, 10) },
     });
 
-    res.json(updatedClient);
-  } catch (err) {
-    res.status(500).json(err);
+    if (!existingClient) {
+      return res.status(404).json({ error: "Client not found" });
+    }
+
+    const updatedClient = await prisma.client.update({
+      where: { id: parseInt(id) },
+      data: {
+        first_name,
+        last_name,
+        email,
+        phone,
+        password,
+        suburb,
+        state,
+        postcode,
+        card_number,
+        card_security_num,
+        card_expiry_date,
+      },
+    });
+    res.status(200).json(updatedClient);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update the client" });
   }
 });
 

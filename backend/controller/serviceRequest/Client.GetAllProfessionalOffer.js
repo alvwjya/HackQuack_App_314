@@ -36,7 +36,6 @@ router.get(
       res.status(200).json({getAllActive, getUserLocation});
 
     } catch (err) {
-      // throw err;
       res.status(500).json(err);
     }
   }
