@@ -11,10 +11,17 @@ import {
 } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ProfessionalServiceActiveService() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const url = `/${user.userId}`;
+
+  async function handleFinishService(event) {}
+
   const data = [1, 2, 3, 4, 5];
   return (
     <div>
