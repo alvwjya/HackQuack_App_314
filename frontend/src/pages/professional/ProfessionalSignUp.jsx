@@ -8,7 +8,7 @@ function ProfessionalSignUp() {
   const [serviceTypes, setServiceTypes] = useState([]);
   const navigate = useNavigate();
 
-  const url = `/get-service-types`;
+  const url = `/service-types`;
 
   useEffect(() => {
     async function fetchData() {

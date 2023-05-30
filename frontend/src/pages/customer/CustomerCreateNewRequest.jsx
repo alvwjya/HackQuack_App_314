@@ -11,13 +11,7 @@ function CustomerCreateNewRequest() {
   const navigate = useNavigate();
 
   const [service_type, setServiceType] = useState([]);
-  const [form, setForm] = useState({
-    taskTitle: "",
-    taskDescription: "",
-    serviceType: 0,
-  });
-
-  const url = `/get-service-types`;
+  const url = `/service-types`;
   useEffect(() => {
     async function getData() {
       const res = await axios.get(url);
@@ -28,10 +22,14 @@ function CustomerCreateNewRequest() {
     getData();
   }, [url]);
 
-  console.log(service_type);
+  const [form, setForm] = useState({
+    taskTitle: "",
+    taskDescription: "",
+    serviceType: 0,
+  });
 
   async function handleSubmit() {
-    const url = `/client-new-request`;
+    const url = `/service/client/new-request`;
     const reqBody = {
       client_id: user.userId,
       request_title: form.taskTitle,

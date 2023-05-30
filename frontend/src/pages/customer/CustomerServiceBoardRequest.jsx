@@ -15,7 +15,7 @@ import axios from "axios";
 
 function CustomerServiceBoardRequest() {
   const { user } = useContext(AuthContext);
-  const url = `/view-all-active-request/client/${user.userId}`;
+  const url = `/service/${user.userId}`;
 
   const [getActive, setGetActive] = useState([]);
   const [getUserDetails, setUserDetails] = useState({});
@@ -36,8 +36,6 @@ function CustomerServiceBoardRequest() {
     }
     getData();
   }, [url]);
-
-  // console.log(getResult);
 
   return (
     <div>
