@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider } from "react-router-dom";
+import React, { useMemo, useState } from "react";
+import AuthContext from "./contexts/AuthContext";
+import router from "./routes";
+import "./App.css";
+import { USER_TYPE } from "./constants/userTypes";
 
 function App() {
+  /* 
+    Format of user state:
+    {
+      username: String,
+      userType: int (Use USER_TYPE constant),
+      token: String
+    }
+  */
+  const [user, setUser] = useState(null);
+
+  const authContext = useMemo(
+    () => ({
+      user,
+      setUser,
+    }),
+    [user]
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthContext.Provider value={authContext}>
+        <RouterProvider router={router} />
+      </AuthContext.Provider>
     </div>
   );
 }
