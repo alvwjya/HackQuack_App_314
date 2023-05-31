@@ -165,7 +165,7 @@ function ProfessionalServiceBoardRequest() {
             <Col>
               {getActive.map((data) => {
                 return (
-                  <div class="container py-3">
+                  <div className="container py-3">
                     <Card>
                       <Card.Header>Service ID: {data.id}</Card.Header>
                       <Card.Body>
