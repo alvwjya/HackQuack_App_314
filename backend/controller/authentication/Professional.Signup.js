@@ -16,6 +16,9 @@ router.post("/professional", async function (req, res) {
       tfn,
       postcode,
       service_type_id,
+      cardNumber,
+      expiry,
+      CVV,
     } = req.body;
 
     const getEMail = await prisma.professional.findMany({
@@ -24,7 +27,7 @@ router.post("/professional", async function (req, res) {
       },
     });
 
-    if (getEMail.length !== 0) {
+    if (getEMail.length > 0) {
       return res.status(409).json({ message: "Email already exist" });
     }
 
@@ -40,11 +43,13 @@ router.post("/professional", async function (req, res) {
         state,
         postcode,
         service_type: { connect: { id: parseInt(service_type_id) } },
+        card_number: cardNumber,
+        card_security_num: CVV,
+        card_expiry_date: new Date(expiry),
       },
     });
     res.status(200).json({ signupProfessional });
   } catch (err) {
-    throw (err)
     res.status(500).json(err);
   }
 });

@@ -6,7 +6,7 @@ async function main() {
     where: { id: 1 },
     update: {},
     create: {
-      service_type_name: "tree_removal",
+      service_type_name: "Tree removal",
     },
   });
 
@@ -14,7 +14,7 @@ async function main() {
     where: { id: 2 },
     update: {},
     create: {
-      service_type_name: "roof_cleaning",
+      service_type_name: "Roof cleaning",
     },
   });
 
@@ -22,7 +22,7 @@ async function main() {
     where: { id: 3 },
     update: {},
     create: {
-      service_type_name: "fence_installation",
+      service_type_name: "Fence installation",
     },
   });
 
@@ -30,7 +30,7 @@ async function main() {
     where: { id: 4 },
     update: {},
     create: {
-      service_type_name: "oven_repairs",
+      service_type_name: "Oven repairs",
     },
   });
 
@@ -38,7 +38,7 @@ async function main() {
     where: { id: 5 },
     update: {},
     create: {
-      service_type_name: "plumber",
+      service_type_name: "Plumber",
     },
   });
 }
