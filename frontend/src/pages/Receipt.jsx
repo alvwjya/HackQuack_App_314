@@ -11,10 +11,14 @@ function Receipt() {
 
             <hr />
 
+            <Card.Text>
+              Service Type: {data.service_type.service_type_name}
+            </Card.Text>
+
             <Form>
               <Form.Group className="mb-3" controlId="formBasicCardNumber">
                 <Form.Label>Total</Form.Label>
-                <Form.Control type="text" placeholder="AUD" disable />
+                <Form.Control type="text" value="" disable />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicCardNumberInfo">
@@ -28,14 +32,10 @@ function Receipt() {
                 </Row>
                 <Row>
                   <Col>
-                    <Form.Control
-                      type="text"
-                      placeholder="DD/MM/YYYY"
-                      disable
-                    />
+                    <Form.Control type="text" value="" disable />
                   </Col>
                   <Col>
-                    <Form.Control type="text" placeholder="HH : MM" disable />
+                    <Form.Control type="text" value="" disable />
                   </Col>
                 </Row>
               </Form.Group>
