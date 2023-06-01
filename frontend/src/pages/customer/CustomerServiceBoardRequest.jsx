@@ -8,6 +8,9 @@ import {
   Button,
   Row,
   Col,
+  Form,
+  FormGroup,
+  Table,
 } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
@@ -36,11 +39,19 @@ function CustomerServiceBoardRequest() {
     getData();
   }, [url]);
 
-  const [allOffer, setAllOffer] = useState([]);
-
-  async function handleAcceptOfferOnClick(event) {}
+  const [offer, setOffer] = useState(false);
+  const [getAllOffers, setAllOffers] = useState([]);
+  function handleViewAllOffers(event) {
+    console.log(event);
+    setAllOffers(event.currentTarget.value);
+    if (parseInt(getAllOffers) === parseInt(event.currentTarget.value)) {
+    } else {
+    }
+  }
 
   async function handleCancelRequestOnClick(event) {}
+
+  async function handleAcceptOfferOnClick(event) {}
 
   return (
     <div>
@@ -115,41 +126,73 @@ function CustomerServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        {allRequest.length === 0 ? (
-          <p>No Request</p>
-        ) : (
-          <>
-            {allRequest.map((data) => (
-              <div className="container py-3">
-                <Card>
-                  <Card.Header>
-                    <strong>{data.request_title}</strong>
-                  </Card.Header>
-                  <Card.Body>
-                    <Card.Text>
-                      Service Type: {data.service_type.service_type_name}
-                    </Card.Text>
-                    <Card.Text>Information: {data.description}</Card.Text>
-                    <Button variant="primary">Offer(s)</Button>{" "}
-                    <LinkContainer to="">
-                      <Button className="btn-warning">Cancel Request</Button>
-                    </LinkContainer>
-                  </Card.Body>
+        <Container>
+          <Row>
+            <Col>
+              {allRequest.length === 0 ? (
+                <p>No Request</p>
+              ) : (
+                <>
+                  {allRequest.map((data) => (
+                    <div className="container py-3">
+                      <Card>
+                        <Card.Header>Service ID: {data.id}</Card.Header>
+                        <Card.Body>
+                          <Card.Title>{data.request_title}</Card.Title>
+                          <Card.Subtitle>Customer Name: {}</Card.Subtitle>
+                          <br />
+                          <Card.Text>
+                            Service Type: {data.service_type.service_type_name}
+                          </Card.Text>
+                          <Card.Text>Information: {data.description}</Card.Text>
+                          <LinkContainer to="">
+                            <Button className="btn-warning">
+                              Cancel Request
+                            </Button>
+                          </LinkContainer>{" "}
+                          <Button variant="primary">Offer(s)</Button>
+                        </Card.Body>
 
-                  <Card.Footer>Location: {data.client.suburb}</Card.Footer>
-                  <Card.Footer>
-                    Time:{" "}
-                    {`${new Date(
-                      data.request_time
-                    ).toLocaleDateString()} ${new Date(
-                      data.request_time
-                    ).toLocaleTimeString()}`}
-                  </Card.Footer>
-                </Card>
-              </div>
-            ))}
-          </>
-        )}
+                        <Card.Footer>
+                          Location: {data.client.suburb}
+                        </Card.Footer>
+                        <Card.Footer>
+                          Time:{" "}
+                          {`${new Date(
+                            data.request_time
+                          ).toLocaleDateString()} ${new Date(
+                            data.request_time
+                          ).toLocaleTimeString()}`}
+                        </Card.Footer>
+                      </Card>
+                    </div>
+                  ))}
+                </>
+              )}
+            </Col>
+            <Col>
+              <Card>
+                <Card.Header>Professional Name</Card.Header>
+                <Card.Body>
+                  <Card.Text>Information</Card.Text>
+                  <Card.Text>Price: N/A</Card.Text>
+                  <LinkContainer to="/customer-service-board-request-offer-detail">
+                    <Button className="btn-info">Learn more</Button>
+                  </LinkContainer>{" "}
+                  <LinkContainer to="">
+                    <Button className="btn-warning">Decline</Button>
+                  </LinkContainer>{" "}
+                  <LinkContainer to="">
+                    <Button className="btn-primary">Accept</Button>
+                  </LinkContainer>
+                </Card.Body>
+                <Card.Footer>Location</Card.Footer>
+                <Card.Footer>Ratings</Card.Footer>
+                <Card.Footer>Reviews</Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
 
         <hr />
       </Container>

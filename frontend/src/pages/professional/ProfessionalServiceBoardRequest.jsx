@@ -17,29 +17,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const commisionFee = 5;
+
 function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const url = `/service/professional/view-all-offers/${user.userId}`;
-
-  const [getActive, setGetActive] = useState([]);
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await axios.get(url);
-        console.log(res.data);
-        if (res.status === 200) {
-          setGetActive(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getData();
-  }, [url]);
-
-  const [serviceId, setServiceId] = useState(0);
 
   const [offerForm, setOfferForm] = useState(false);
   const [form, setForm] = useState({
@@ -49,8 +33,7 @@ function ProfessionalServiceBoardRequest() {
     service_request_id: 0,
   });
 
-  const commisionFee = 5;
-
+  const [serviceId, setServiceId] = useState(0);
   function handleOffer(event) {
     console.log(event);
     setServiceId(event.currentTarget.value);
@@ -60,6 +43,22 @@ function ProfessionalServiceBoardRequest() {
       setOfferForm(true);
     }
   }
+
+  const [getAllRequests, setAllRequests] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setAllRequests(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
 
   async function handleSendOffer(event) {
     const url = `/service/professional/new-offer`;
@@ -159,40 +158,51 @@ function ProfessionalServiceBoardRequest() {
             </Nav.Item>
           </LinkContainer>
         </Nav>
+
         <Container>
           <Row>
             <Col>
-              {getActive.map((data) => {
-                return (
-                  <div className="container py-3">
-                    <Card>
-                      <Card.Header>Service ID: {data.id}</Card.Header>
-                      <Card.Body>
-                        <Card.Title>{data.request_title}</Card.Title>
-                        <Card.Subtitle>Customer Name: {}</Card.Subtitle>
-                        <Card.Text>Information: {data.description}</Card.Text>
-                        <LinkContainer to="/professional-service-board-request-detail">
-                          <Button className="btn-info">Learn More</Button>
-                        </LinkContainer>{" "}
-                        <LinkContainer to="">
-                          <Button className="btn-warning">
-                            Decline Request
-                          </Button>
-                        </LinkContainer>{" "}
-                        <Button
-                          className="btn-primary"
-                          value={data.id}
-                          onClick={handleOffer}
-                        >
-                          Offer Service
-                        </Button>
-                      </Card.Body>
-                      <Card.Footer>Location: {}</Card.Footer>
-                      <Card.Footer>Time: {data.request_time}</Card.Footer>
-                    </Card>
-                  </div>
-                );
-              })}
+              {getAllRequests.length === 0 ? (
+                <p>No Request</p>
+              ) : (
+                <>
+                  {getAllRequests.map((data) => {
+                    return (
+                      <div className="container py-3">
+                        <Card>
+                          <Card.Header>Service ID: {data.id}</Card.Header>
+                          <Card.Body>
+                            <Card.Title>{data.request_title}</Card.Title>
+                            <Card.Subtitle>Customer Name: {}</Card.Subtitle>
+                            <br />
+                            <Card.Text>Service Type: {}</Card.Text>
+                            <Card.Text>
+                              Information: {data.description}
+                            </Card.Text>
+                            <LinkContainer to="/professional-service-board-request-detail">
+                              <Button className="btn-info">Learn More</Button>
+                            </LinkContainer>{" "}
+                            <LinkContainer to="">
+                              <Button className="btn-warning">
+                                Decline Request
+                              </Button>
+                            </LinkContainer>{" "}
+                            <Button
+                              className="btn-primary"
+                              value={data.id}
+                              onClick={handleOffer}
+                            >
+                              Offer Service
+                            </Button>
+                          </Card.Body>
+                          <Card.Footer>Location: {}</Card.Footer>
+                          <Card.Footer>Time: {data.request_time}</Card.Footer>
+                        </Card>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
             </Col>
             {offerForm && (
               <Col>
@@ -256,7 +266,7 @@ function ProfessionalServiceBoardRequest() {
                       </Button>
                     </div>
                   </FormGroup>
-                </Form>{" "}
+                </Form>
               </Col>
             )}
           </Row>
