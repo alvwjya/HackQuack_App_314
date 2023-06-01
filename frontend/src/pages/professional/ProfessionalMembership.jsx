@@ -9,7 +9,7 @@ const professionalMembershipAnuallyCost = 1000;
 function ProfessionalMembership() {
   const { user } = useContext(AuthContext);
 
-  function handleSignUpMembershipOnClick(event) {
+  function handleSubscribe(event) {
     const url = `/subscribe-memberships/professional`;
   }
 
@@ -84,7 +84,7 @@ function ProfessionalMembership() {
           <LinkContainer to="">
             <Button
               className="btn-professional-button"
-              onClick={handleSignUpMembershipOnClick}
+              onClick={handleSubscribe}
               size="lg"
             >
               Sign Up

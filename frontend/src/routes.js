@@ -13,7 +13,6 @@ import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
 
 import CustomerServiceBoardRequest from "./pages/customer/CustomerServiceBoardRequest";
-import CustomerServiceBoardRequestOffer from "./pages/customer/CustomerServiceBoardRequestOffer";
 import CustomerServiceBoardRequestOfferDetail from "./pages/customer/CustomerServiceBoardRequestOfferDetail";
 
 import CustomerServiceBoardActiveService from "./pages/customer/CustomerServiceBoardActiveService";
@@ -32,7 +31,6 @@ import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
 import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
 import ProfessionalServiceBoardRequestDetail from "./pages/professional/ProfessionalServiceBoardRequestDetail";
-import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
 import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardOffer";
 import ProfessionalServiceBoardActiveService from "./pages/professional/ProfessionalServiceBoardActiveService";
 import ProfessionalServiceBoardPastService from "./pages/professional/ProfessionalServiceBoardPastService";
@@ -121,12 +119,12 @@ const router = createBrowserRouter([
             element: <Receipt />,
           },
           {
-            path: "payment-transaction",
-            element: <PaymentTransaction />,
+            path: "payment-method",
+            element: <PaymentMethod />,
           },
           {
-            path: "add-payment-method",
-            element: <PaymentMethod />,
+            path: "payment-transaction",
+            element: <PaymentTransaction />,
           },
         ],
       },
@@ -157,10 +155,6 @@ const router = createBrowserRouter([
           {
             path: "professional-service-board-request-detail",
             element: <ProfessionalServiceBoardRequestDetail />,
-          },
-          {
-            path: "professional-service-board-request-price-offer",
-            element: <ProfessionalServiceBoardRequestPriceOffer />,
           },
           {
             path: "professional-service-board-offer",
@@ -203,10 +197,6 @@ const router = createBrowserRouter([
           {
             path: "customer-service-board-request",
             element: <CustomerServiceBoardRequest />,
-          },
-          {
-            path: "customer-service-board-request-offer",
-            element: <CustomerServiceBoardRequestOffer />,
           },
           {
             path: "customer-service-board-active-service",

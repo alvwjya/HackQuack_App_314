@@ -173,25 +173,29 @@ function CustomerServiceBoardRequest() {
               )}
             </Col>
             <Col>
-              <Card>
-                <Card.Header>Professional Name</Card.Header>
-                <Card.Body>
-                  <Card.Text>Information</Card.Text>
-                  <Card.Text>Price: N/A</Card.Text>
-                  <LinkContainer to="/customer-service-board-request-offer-detail">
-                    <Button className="btn-info">Learn more</Button>
-                  </LinkContainer>{" "}
-                  <LinkContainer to="">
-                    <Button className="btn-warning">Decline</Button>
-                  </LinkContainer>{" "}
-                  <LinkContainer to="">
-                    <Button className="btn-primary">Accept</Button>
-                  </LinkContainer>
-                </Card.Body>
-                <Card.Footer>Location</Card.Footer>
-                <Card.Footer>Ratings</Card.Footer>
-                <Card.Footer>Reviews</Card.Footer>
-              </Card>
+              <div className="container py-3">
+                <strong>OFFER(S)</strong>
+                <p>Service Request ID: {}</p>
+                <Card>
+                  <Card.Header>Professional Name</Card.Header>
+                  <Card.Body>
+                    <Card.Text>Information</Card.Text>
+                    <Card.Text>Price: N/A</Card.Text>
+                    <LinkContainer to="/customer-service-board-request-offer-detail">
+                      <Button className="btn-info">Learn more</Button>
+                    </LinkContainer>{" "}
+                    <LinkContainer to="">
+                      <Button className="btn-warning">Decline</Button>
+                    </LinkContainer>{" "}
+                    <LinkContainer to="">
+                      <Button className="btn-primary">Accept</Button>
+                    </LinkContainer>
+                  </Card.Body>
+                  <Card.Footer>Location</Card.Footer>
+                  <Card.Footer>Ratings</Card.Footer>
+                  <Card.Footer>Reviews</Card.Footer>
+                </Card>
+              </div>
             </Col>
           </Row>
         </Container>
