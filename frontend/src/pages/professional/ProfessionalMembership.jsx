@@ -4,6 +4,8 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
+const professionalMembershipAnuallyCost = 1000;
+
 function ProfessionalMembership() {
   const { user } = useContext(AuthContext);
 

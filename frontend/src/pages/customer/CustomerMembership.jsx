@@ -12,21 +12,19 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-function CustomerMembership() {
-  const membershipAnuallyCost = 1000;
+const customerMembershipAnuallyCost = 1000;
 
+function CustomerMembership() {
   const { user } = useContext(AuthContext);
 
-  const [getActive, setGetActive] = useState([]);
   const [userDetails, setUserDetails] = useState({});
   const getMembershipsUrl = `/get-client-memberships/${user.userId}`;
-
   useEffect(() => {
     async function getData() {
       const res = await axios.get(getMembershipsUrl);
       if (res.status === 200) {
         setUserDetails(res.data);
-        console.log(res.data)
+        console.log(res.data);
       }
     }
     getData();
@@ -35,11 +33,14 @@ function CustomerMembership() {
   console.log(userDetails);
 
   async function handleSubscribe(event) {
-    const url = `/subscribe-memberships/client`;
-    const body = { client_id: user.userId, cost: membershipAnuallyCost };
+    const url = `/membership/client`;
+    const body = {
+      client_id: user.userId,
+      cost: customerMembershipAnuallyCost,
+    };
     const res = await axios.post(url, body);
-    if(res.status === 200){
-      console.log("Signed Up")
+    if (res.status === 200) {
+      console.log("Signed Up");
     }
   }
 
@@ -134,7 +135,7 @@ function CustomerMembership() {
               <Card.Header>
                 <h4>Customer Membership</h4>
                 <p>billed anually</p>
-                <h2>{membershipAnuallyCost} AUD/year</h2>
+                <h2>{customerMembershipAnuallyCost} AUD/year</h2>
               </Card.Header>
               <Card.Body>
                 <p>&#9989; Unlimited Assistance Callouts</p>
@@ -156,7 +157,7 @@ function CustomerMembership() {
               size="lg"
               onClick={handleSubscribe}
             >
-              Sign Up
+              Sign Up Membership
             </Button>
           </LinkContainer>
 
