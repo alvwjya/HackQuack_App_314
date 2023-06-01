@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import {
   Container,
   Button,
@@ -9,12 +9,35 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function ProfessionalAccount() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  // GET USER-PROFESSIONAL DATA
+  const url = `/user/professional/${user.userId}`;
+  const [professionalData, setProfessionalData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setProfessionalData(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
+
+  // UPDATE USER-PROFESSIONAL DATA
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -136,7 +159,7 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.firstName}
+                  placeholder={professionalData.first_name}
                   value={form.first_name}
                   onChange={handleFirstNameChange}
                 />
@@ -144,7 +167,7 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.lastName}
+                  placeholder={professionalData.last_name}
                   value={form.last_name}
                   onChange={handleLastNameChange}
                 />
@@ -154,14 +177,18 @@ function ProfessionalAccount() {
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="text" placeholder={user.email} disabled />
+            <Form.Control
+              type="text"
+              placeholder={professionalData.email}
+              disabled
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicAddress_1">
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder={user.address}
+              placeholder={professionalData.address}
               value={form.address}
               onChange={handleAddressChange}
             />
@@ -183,7 +210,7 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter suburb"
+                  placeholder={professionalData.suburb}
                   value={form.suburb}
                   onChange={handleSuburbChange}
                 />
@@ -191,7 +218,7 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter state"
+                  placeholder={professionalData.state}
                   value={form.state}
                   onChange={handleStateChange}
                 />
@@ -199,7 +226,7 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter postcode"
+                  placeholder={professionalData.postcode}
                   value={form.postcode}
                   onChange={handlePostcodeChange}
                 />
@@ -209,17 +236,29 @@ function ProfessionalAccount() {
 
           <Form.Group className="mb-3" controlId="formBasicTaxNumber">
             <Form.Label>Tax Number</Form.Label>
-            <Form.Control type="text" placeholder="Enter tax number" disabled />
+            <Form.Control
+              type="text"
+              placeholder={professionalData.tfn}
+              disabled
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicABN">
             <Form.Label>ABN</Form.Label>
-            <Form.Control type="text" placeholder="Enter ABN" disabled />
+            <Form.Control
+              type="text"
+              placeholder={professionalData.abn}
+              disabled
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Service Type</Form.Label>
-            <Form.Control type="text" placeholder="Service Type" disabled />
+            <Form.Control
+              type="text"
+              placeholder={professionalData.service_type_id}
+              disabled
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">

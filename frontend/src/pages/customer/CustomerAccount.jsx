@@ -18,6 +18,7 @@ function CustomerAccount() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // GET USER-CUSTOMER DATA
   const url = `/user/client/${user.userId}`;
   const [customerData, setCustomerData] = useState([]);
   useEffect(() => {
