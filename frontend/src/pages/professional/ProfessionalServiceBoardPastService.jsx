@@ -1,5 +1,14 @@
 import React, { useContext } from "react";
-import { Navbar, Nav, Image, Container, Card, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Image,
+  Container,
+  Card,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +16,9 @@ import axios from "axios";
 
 function ProfessionalServicePastService() {
   const { user } = useContext(AuthContext);
+
+  const url = `/${user.userId}`;
+
   const data = [1, 2, 3, 4, 5];
   return (
     <div>
@@ -45,6 +57,7 @@ function ProfessionalServicePastService() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <Container className="py-5">
         <h1>SERVICE BOARD</h1>
 

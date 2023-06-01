@@ -19,7 +19,6 @@ function CustomerAccount() {
   const navigate = useNavigate();
 
   const url = `/user/client/${user.userId}`;
-
   const [customerData, setCustomerData] = useState([]);
   useEffect(() => {
     async function getData() {
@@ -92,8 +91,6 @@ function CustomerAccount() {
     setForm({ ...form, confirm_password: event.target.value });
   }
 
-  console.log(form);
-
   return (
     <div>
       <Navbar bg="customer-tab" variant="light">
@@ -162,7 +159,7 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.firstName}
+                  placeholder={customerData.first_name}
                   value={form.first_name}
                   onChange={handleFirstNameChange}
                 />
@@ -170,7 +167,7 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.lastName}
+                  placeholder={customerData.last_name}
                   value={form.last_name}
                   onChange={handleLastNameChange}
                 />
@@ -182,7 +179,7 @@ function CustomerAccount() {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="text"
-              placeholder={user.email}
+              placeholder={customerData.email}
               disabled="disabled"
             />
           </Form.Group>
@@ -191,7 +188,7 @@ function CustomerAccount() {
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder={user.address}
+              placeholder={customerData.address}
               value={form.address}
               onChange={handleAddressChange}
             />
@@ -213,7 +210,7 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter suburb"
+                  placeholder={customerData.suburb}
                   value={form.suburb}
                   onChange={handleSuburbChange}
                 />
@@ -221,7 +218,7 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter state"
+                  placeholder={customerData.state}
                   value={form.state}
                   onChange={handleStateChange}
                 />
@@ -229,7 +226,7 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter postcode"
+                  placeholder={customerData.postcode}
                   value={form.postcode}
                   onChange={handlePostcodeChange}
                 />

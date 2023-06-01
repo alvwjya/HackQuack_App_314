@@ -30,8 +30,6 @@ function CustomerMembership() {
     getData();
   }, [getMembershipsUrl]);
 
-  console.log(userDetails);
-
   async function handleSubscribe(event) {
     const url = `/membership/client`;
     const body = {

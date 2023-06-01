@@ -21,8 +21,8 @@ function CustomerServiceBoardRequest() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // GET ALL CURRENT REQUEST(S) FOR A SERVICE OF THE USER
   const url = `/service/client/all-request/${user.userId}`;
-
   const [allRequest, setAllRequest] = useState([]);
   useEffect(() => {
     async function getData() {
@@ -179,8 +179,8 @@ function CustomerServiceBoardRequest() {
                 <Card>
                   <Card.Header>Professional Name</Card.Header>
                   <Card.Body>
-                    <Card.Text>Information</Card.Text>
-                    <Card.Text>Price: N/A</Card.Text>
+                    <Card.Text>Information: {}</Card.Text>
+                    <Card.Text>Price: {}</Card.Text>
                     <LinkContainer to="/customer-service-board-request-offer-detail">
                       <Button className="btn-info">Learn more</Button>
                     </LinkContainer>{" "}
@@ -191,9 +191,9 @@ function CustomerServiceBoardRequest() {
                       <Button className="btn-primary">Accept</Button>
                     </LinkContainer>
                   </Card.Body>
-                  <Card.Footer>Location</Card.Footer>
-                  <Card.Footer>Ratings</Card.Footer>
-                  <Card.Footer>Reviews</Card.Footer>
+                  <Card.Footer>Location: {}</Card.Footer>
+                  <Card.Footer>Ratings: {}</Card.Footer>
+                  <Card.Footer>Reviews: {}</Card.Footer>
                 </Card>
               </div>
             </Col>

@@ -9,19 +9,9 @@ function CustomerServiceBoardRequestOfferDetail() {
         <Card>
           <Card.Body>
             <h1>Professional Name</h1>
-
             <hr />
-            <Form.Group className="mb-3" controlId="formBasicInformation">
-              <Form.Label>Information</Form.Label>
-              <Form.Control type="text" placeholder="Information" disable />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPrice">
-              <Form.Label>Price</Form.Label>
-              <Form.Control type="text" placeholder="AUD" disable />
-            </Form.Group>
-
-            <hr />
+            <Card.Text>Information: {}</Card.Text>
+            <Card.Text>Price: {}</Card.Text>
           </Card.Body>
           <Card.Footer>Location</Card.Footer>
           <Card.Footer>

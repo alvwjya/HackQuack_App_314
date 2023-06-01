@@ -23,16 +23,7 @@ function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const url = `/service/professional/view-all-offers/${user.userId}`;
-
-  const [offerForm, setOfferForm] = useState(false);
-  const [form, setForm] = useState({
-    cost: 0,
-    acceptance: 0,
-    professional_id: user.userId,
-    service_request_id: 0,
-  });
-
+  // PROFESSIONAL OFFER SERVICE
   const [serviceId, setServiceId] = useState(0);
   function handleOffer(event) {
     console.log(event);
@@ -44,22 +35,16 @@ function ProfessionalServiceBoardRequest() {
     }
   }
 
-  const [getAllRequests, setAllRequests] = useState([]);
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await axios.get(url);
-        console.log(res.data);
-        if (res.status === 200) {
-          setAllRequests(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getData();
-  }, [url]);
+  // PROFESSIONAL OFFER SERVICE - FORM - PRICE AND DETAIL
+  const [offerForm, setOfferForm] = useState(false);
+  const [form, setForm] = useState({
+    cost: 0,
+    acceptance: 0,
+    professional_id: user.userId,
+    service_request_id: 0,
+  });
 
+  // PROFESSIONAL OFFER SERVICE - SEND OFFER
   async function handleSendOffer(event) {
     const url = `/service/professional/new-offer`;
     const reqBody = {
@@ -77,6 +62,24 @@ function ProfessionalServiceBoardRequest() {
       alert(JSON.stringify(res.data));
     }
   }
+
+  // GET CURRENTLY REQUEST(S) FOR A SERVICE FROM CUSTOMER USER
+  const url = `/service/professional/view-all-offers/${user.userId}`;
+  const [getAllRequests, setAllRequests] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setAllRequests(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
 
   return (
     <div>
@@ -204,6 +207,7 @@ function ProfessionalServiceBoardRequest() {
                 </>
               )}
             </Col>
+
             {offerForm && (
               <Col>
                 <Form>
