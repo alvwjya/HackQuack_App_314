@@ -11,9 +11,7 @@ function Receipt() {
 
             <hr />
 
-            <Card.Text>
-              Service Type: {data.service_type.service_type_name}
-            </Card.Text>
+            <Card.Text>Service Request ID: {}</Card.Text>
 
             <Form>
               <Form.Group className="mb-3" controlId="formBasicCardNumber">

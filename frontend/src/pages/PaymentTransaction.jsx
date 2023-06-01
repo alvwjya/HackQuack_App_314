@@ -8,50 +8,30 @@ function PaymentTransaction() {
       <h1>PAYMENT TRANSACTION</h1>
 
       <hr />
-      {data.map((data) => (
-        <div className="container py-3">
-          <Card>
-            <Card.Body>
-              <h3>Receipt</h3>
 
-              <hr />
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Payment Time</th>
+            <th>Professional</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        {data.map((data) => (
+          <tbody>
+            <tr>
+              <td>{}</td>
+              <td>{}</td>
+              <td>{}</td>
+              <td>{}</td>
+              <td>{}</td>
+            </tr>
+          </tbody>
+        ))}
+      </table>
 
-              <Form>
-                <Form.Group className="mb-3" controlId="formBasicCardNumber">
-                  <Form.Label>Total</Form.Label>
-                  <Form.Control type="text" placeholder="AUD" disable />
-                </Form.Group>
-
-                <Form.Group
-                  className="mb-3"
-                  controlId="formBasicCardNumberInfo"
-                >
-                  <Row>
-                    <Col>
-                      <Form.Label>Date</Form.Label>
-                    </Col>
-                    <Col>
-                      <Form.Label>Time</Form.Label>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <Form.Control
-                        type="text"
-                        placeholder="DD/MM/YYYY"
-                        disable
-                      />
-                    </Col>
-                    <Col>
-                      <Form.Control type="text" placeholder="HH : MM" disable />
-                    </Col>
-                  </Row>
-                </Form.Group>
-              </Form>
-            </Card.Body>
-          </Card>
-        </div>
-      ))}
       <hr />
     </Container>
   );
