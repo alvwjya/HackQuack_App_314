@@ -51,7 +51,9 @@ function CustomerServiceBoardRequest() {
 
   async function handleCancelRequestOnClick(event) {}
 
-  async function handleAcceptOfferOnClick(event) {}
+  async function handleAcceptOfferOnClick(event) {
+    const url = `/service/professional/new-offer`;
+  }
 
   return (
     <div>
