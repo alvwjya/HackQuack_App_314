@@ -182,7 +182,7 @@ function ProfessionalServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        <Container>
+        <div>
           <Row>
             <Col>
               {getAllRequests.length === 0 ? (
@@ -220,7 +220,7 @@ function ProfessionalServiceBoardRequest() {
                               onClick={handleDeclineRequest}
                             >
                               Decline Request
-                            </Button>
+                            </Button>{" "}
                             <Button
                               className="btn-primary"
                               value={data.id}
@@ -309,7 +309,7 @@ function ProfessionalServiceBoardRequest() {
               </Col>
             )}
           </Row>
-        </Container>
+        </div>
 
         <hr />
       </Container>
