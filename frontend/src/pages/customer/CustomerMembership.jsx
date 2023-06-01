@@ -22,13 +22,15 @@ function CustomerMembership() {
 
   // CUSTOMER - GET MEMBERSHIP DETAIL
   const url = `/membership/client/${user.userId}`;
-  const [userMembershipDetails, setUserMembershipDetails] = useState([]);
+  const [userMembershipDetails, setUserMembershipDetails] = useState({
+    start_date: undefined,
+    due_date: undefined,
+  });
   useEffect(() => {
     async function getData() {
       try {
         const res = await axios.get(url);
-        console.log(res.data);
-        if (res.status === 200) {
+        if (res.data !== null) {
           setUserMembershipDetails(res.data);
         }
       } catch (err) {
@@ -37,8 +39,6 @@ function CustomerMembership() {
     }
     getData();
   }, [url]);
-
-  console.log(userMembershipDetails);
 
   // CUSTOMER - SUBSCRIBE
   async function handleSubscribe(event) {
@@ -123,7 +123,10 @@ function CustomerMembership() {
             <Form.Label>Start Date</Form.Label>
             <Form.Control
               type="text"
-              value={userMembershipDetails.start_date || "Invalid"}
+              value={
+                new Date(userMembershipDetails.start_date).toLocaleString() ||
+                "Invalid"
+              }
               disabled
             />
           </Form.Group>
@@ -132,7 +135,10 @@ function CustomerMembership() {
             <Form.Label>End Date</Form.Label>
             <Form.Control
               type="text"
-              value={userMembershipDetails.due_date || "Invalid"}
+              value={
+                new Date(userMembershipDetails.due_date).toLocaleString() ||
+                "Invalid"
+              }
               disabled
             />
           </Form.Group>
@@ -142,9 +148,9 @@ function CustomerMembership() {
             <Form.Control
               type="text"
               value={
-                new Date(userMembershipDetails.due_date) < new Date()
-                  ? "Inactive"
-                  : userMembershipDetails.start_date
+                new Date(userMembershipDetails.due_date) > new Date()
+                  ? "Active"
+                  : "Inactive"
               }
               disabled
             />

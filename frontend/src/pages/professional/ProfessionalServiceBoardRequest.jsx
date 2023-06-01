@@ -25,15 +25,8 @@ function ProfessionalServiceBoardRequest() {
 
   // PROFESSIONAL OFFER SERVICE
   const [serviceId, setServiceId] = useState(0);
-  function handleOffer(event) {
-    console.log(event);
-    setServiceId(event.currentTarget.value);
-    if (parseInt(serviceId) === parseInt(event.currentTarget.value)) {
-      setOfferForm(!offerForm);
-    } else {
-      setOfferForm(true);
-    }
-  }
+  const [reload, setReload] = useState(false);
+  const [getAllRequests, setAllRequests] = useState([]);
 
   // PROFESSIONAL OFFER SERVICE - FORM - PRICE AND DETAIL
   const [offerForm, setOfferForm] = useState(false);
@@ -43,6 +36,32 @@ function ProfessionalServiceBoardRequest() {
     professional_id: user.userId,
     service_request_id: 0,
   });
+
+  // GET CURRENTLY REQUEST(S) FOR A SERVICE FROM CUSTOMER USER
+
+  useEffect(() => {
+    const url = `/service/professional/view-all-offers/${user.userId}`;
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setAllRequests(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [reload]);
+
+  function handleOffer(event) {
+    setServiceId(event.currentTarget.value);
+    if (parseInt(serviceId) === parseInt(event.currentTarget.value)) {
+      setOfferForm(!offerForm);
+    } else {
+      setOfferForm(true);
+    }
+  }
 
   // PROFESSIONAL OFFER SERVICE - SEND OFFER
   async function handleSendOffer(event) {
@@ -63,23 +82,24 @@ function ProfessionalServiceBoardRequest() {
     }
   }
 
-  // GET CURRENTLY REQUEST(S) FOR A SERVICE FROM CUSTOMER USER
-  const url = `/service/professional/view-all-offers/${user.userId}`;
-  const [getAllRequests, setAllRequests] = useState([]);
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await axios.get(url);
-        console.log(res.data);
-        if (res.status === 200) {
-          setAllRequests(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+  async function handleDeclineRequest(event) {
+    const url = `/service/professional/new-offer`;
+    const reqBody = {
+      acceptance: 0,
+      professional_id: user.userId,
+      service_request_id: parseInt(event.currentTarget.value),
+    };
+
+    const res = await axios.post(url, reqBody);
+
+    if (res.status === 200) {
+      alert("Successfully declined request");
+      setOfferForm(false);
+      setReload(!reload);
+    } else {
+      alert(JSON.stringify(res.data));
     }
-    getData();
-  }, [url]);
+  }
 
   return (
     <div>
@@ -176,20 +196,28 @@ function ProfessionalServiceBoardRequest() {
                           <Card.Header>Service ID: {data.id}</Card.Header>
                           <Card.Body>
                             <Card.Title>{data.request_title}</Card.Title>
-                            <Card.Subtitle>Customer Name: {}</Card.Subtitle>
+                            <Card.Subtitle>
+                              Customer Name: {data.client.first_name}{" "}
+                              {data.client.last_name}
+                            </Card.Subtitle>
                             <br />
-                            <Card.Text>Service Type: {}</Card.Text>
+                            <Card.Text>
+                              Service Type:{" "}
+                              {data.service_type.service_type_name}
+                            </Card.Text>
                             <Card.Text>
                               Information: {data.description}
                             </Card.Text>
                             <LinkContainer to="/professional-service-board-request-detail">
                               <Button className="btn-info">Learn More</Button>
                             </LinkContainer>{" "}
-                            <LinkContainer to="">
-                              <Button className="btn-warning">
-                                Decline Request
-                              </Button>
-                            </LinkContainer>{" "}
+                            <Button
+                              className="btn-warning"
+                              value={data.id}
+                              onClick={handleDeclineRequest}
+                            >
+                              Decline Request
+                            </Button>
                             <Button
                               className="btn-primary"
                               value={data.id}
@@ -198,8 +226,12 @@ function ProfessionalServiceBoardRequest() {
                               Offer Service
                             </Button>
                           </Card.Body>
-                          <Card.Footer>Location: {}</Card.Footer>
-                          <Card.Footer>Time: {data.request_time}</Card.Footer>
+                          <Card.Footer>{`Location: ${data.client.address}, ${data.client.suburb}`}</Card.Footer>
+                          <Card.Footer>{`Time: ${new Date(
+                            data.request_time
+                          ).toLocaleDateString()} ${new Date(
+                            data.request_time
+                          ).toLocaleTimeString()}`}</Card.Footer>
                         </Card>
                       </div>
                     );

@@ -24,6 +24,11 @@ function CustomerServiceBoardRequest() {
   // GET ALL CURRENT REQUEST(S) FOR A SERVICE OF THE USER
   const url = `/service/client/all-request/${user.userId}`;
   const [allRequest, setAllRequest] = useState([]);
+  const [offerForm, setOfferForm] = useState(false);
+  const [serviceId, setServiceId] = useState(0);
+  const [getAllOffer, setGetAllOffer] = useState([]);
+  const [reload, setReload] = useState(false);
+
   useEffect(() => {
     async function getData() {
       try {
@@ -37,19 +42,40 @@ function CustomerServiceBoardRequest() {
       }
     }
     getData();
-  }, [url]);
+  }, [url, reload]);
 
-  const [offer, setOffer] = useState(false);
-  const [getAllOffers, setAllOffers] = useState([]);
-  function handleViewAllOffers(event) {
-    console.log(event);
-    setAllOffers(event.currentTarget.value);
-    if (parseInt(getAllOffers) === parseInt(event.currentTarget.value)) {
+  async function handleViewAllOffers(event) {
+    setServiceId(event.currentTarget.value);
+    if (parseInt(serviceId) === parseInt(event.currentTarget.value)) {
+      setOfferForm(!offerForm);
     } else {
+      try {
+        const { data } = await axios.get(
+          `/service/client/view-offers/${serviceId}`
+        );
+        setGetAllOffer(data);
+        setOfferForm(true);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
     }
   }
 
-  async function handleCancelRequestOnClick(event) {}
+  async function handleCancelRequestOnClick() {
+    try {
+      const res = await axios.delete(
+        `/service/client/cancel-request/${serviceId}`
+      );
+      console.log(res.data);
+      if (res.status === 200) {
+        alert("Successfully cancel request");
+        setReload(!reload);
+        setOfferForm(false);
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  }
 
   async function handleAcceptOfferOnClick(event) {
     const url = `/service/professional/new-offer`;
@@ -141,22 +167,30 @@ function CustomerServiceBoardRequest() {
                         <Card.Header>Service ID: {data.id}</Card.Header>
                         <Card.Body>
                           <Card.Title>{data.request_title}</Card.Title>
-                          <Card.Subtitle>Customer Name: {}</Card.Subtitle>
-                          <br />
                           <Card.Text>
                             Service Type: {data.service_type.service_type_name}
                           </Card.Text>
                           <Card.Text>Information: {data.description}</Card.Text>
                           <LinkContainer to="">
-                            <Button className="btn-warning">
+                            <Button
+                              className="btn-warning"
+                              value={data.id}
+                              onClick={handleCancelRequestOnClick}
+                            >
                               Cancel Request
                             </Button>
                           </LinkContainer>{" "}
-                          <Button variant="primary">Offer(s)</Button>
+                          <Button
+                            variant="primary"
+                            value={data.id}
+                            onClick={handleViewAllOffers}
+                          >
+                            Offer(s)
+                          </Button>
                         </Card.Body>
 
                         <Card.Footer>
-                          Location: {data.client.suburb}
+                          {`Location: ${data.client.address}, ${data.client.suburb}`}
                         </Card.Footer>
                         <Card.Footer>
                           Time:{" "}
@@ -172,31 +206,37 @@ function CustomerServiceBoardRequest() {
                 </>
               )}
             </Col>
-            <Col>
-              <div className="container py-3">
-                <strong>OFFER(S)</strong>
-                <p>Service Request ID: {}</p>
-                <Card>
-                  <Card.Header>Professional Name</Card.Header>
-                  <Card.Body>
-                    <Card.Text>Information: {}</Card.Text>
-                    <Card.Text>Price: {}</Card.Text>
-                    <LinkContainer to="/customer-service-board-request-offer-detail">
-                      <Button className="btn-info">Learn more</Button>
-                    </LinkContainer>{" "}
-                    <LinkContainer to="">
-                      <Button className="btn-warning">Decline</Button>
-                    </LinkContainer>{" "}
-                    <LinkContainer to="">
-                      <Button className="btn-primary">Accept</Button>
-                    </LinkContainer>
-                  </Card.Body>
-                  <Card.Footer>Location: {}</Card.Footer>
-                  <Card.Footer>Ratings: {}</Card.Footer>
-                  <Card.Footer>Reviews: {}</Card.Footer>
-                </Card>
-              </div>
-            </Col>
+            {offerForm && (
+              <Col>
+                {getAllOffer.length === 0 ? (
+                  <p>No Professional Offer</p>
+                ) : (
+                  <div className="container py-3">
+                    <strong>OFFER(S)</strong>
+                    <p>Service Request ID: {}</p>
+                    <Card>
+                      <Card.Header>Professional Name</Card.Header>
+                      <Card.Body>
+                        <Card.Text>Information: {}</Card.Text>
+                        <Card.Text>Price: {}</Card.Text>
+                        <LinkContainer to="/customer-service-board-request-offer-detail">
+                          <Button className="btn-info">Learn more</Button>
+                        </LinkContainer>{" "}
+                        <LinkContainer to="">
+                          <Button className="btn-warning">Decline</Button>
+                        </LinkContainer>{" "}
+                        <LinkContainer to="">
+                          <Button className="btn-primary">Accept</Button>
+                        </LinkContainer>
+                      </Card.Body>
+                      <Card.Footer>Location: {}</Card.Footer>
+                      <Card.Footer>Ratings: {}</Card.Footer>
+                      <Card.Footer>Reviews: {}</Card.Footer>
+                    </Card>
+                  </div>
+                )}
+              </Col>
+            )}
           </Row>
         </Container>
 
