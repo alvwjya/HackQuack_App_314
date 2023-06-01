@@ -17,7 +17,7 @@ router.post("/client", async function (req, res) {
         due_date: new Date(date.setFullYear(date.getFullYear() + 1)),
       },
     });
-    res.status(200).json(subs)
+    res.status(200).json(subs);
   } catch (err) {
     res.status(500).json(err);
   }
