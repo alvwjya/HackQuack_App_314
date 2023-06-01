@@ -38,6 +38,8 @@ function CustomerMembership() {
     getData();
   }, [url]);
 
+  console.log(userMembershipDetails);
+
   // CUSTOMER - SUBSCRIBE
   async function handleSubscribe(event) {
     const url = `/membership/client`;
@@ -121,12 +123,8 @@ function CustomerMembership() {
             <Form.Label>Start Date</Form.Label>
             <Form.Control
               type="text"
+              value={userMembershipDetails.start_date || "Invalid"}
               disabled
-              value={
-                Object.keys(userMembershipDetails).length === 0
-                  ? "Invalid"
-                  : userMembershipDetails.start_date
-              }
             />
           </Form.Group>
 
@@ -134,12 +132,8 @@ function CustomerMembership() {
             <Form.Label>End Date</Form.Label>
             <Form.Control
               type="text"
+              value={userMembershipDetails.due_date || "Invalid"}
               disabled
-              value={
-                Object.keys(userMembershipDetails).length === 0
-                  ? "Invalid"
-                  : userMembershipDetails.due_date
-              }
             />
           </Form.Group>
 
@@ -147,13 +141,12 @@ function CustomerMembership() {
             <Form.Label>Status</Form.Label>
             <Form.Control
               type="text"
-              placeholder=""
-              disabled
               value={
                 new Date(userMembershipDetails.due_date) < new Date()
                   ? "Inactive"
                   : userMembershipDetails.start_date
               }
+              disabled
             />
           </Form.Group>
 
