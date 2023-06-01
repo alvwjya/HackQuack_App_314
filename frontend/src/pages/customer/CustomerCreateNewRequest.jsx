@@ -141,11 +141,9 @@ function CustomerCreateNewRequest() {
           <hr />
 
           <div className="d-grid gap-2">
-            
-              <Button variant="primary" size="lg" onClick={handleSubmit}>
-                Make Request
-              </Button>
-     
+            <Button variant="primary" size="lg" onClick={handleSubmit}>
+              Make Request
+            </Button>
 
             <LinkContainer to="/customer-dashboard">
               <Button variant="cancel" size="lg">

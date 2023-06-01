@@ -18,6 +18,7 @@ function PaymentMethod() {
     CVV: "",
     ...state,
   });
+
   async function handleSubmit() {
     const url = `/signup/${form.type}`;
     try {

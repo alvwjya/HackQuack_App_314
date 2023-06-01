@@ -41,7 +41,7 @@ function ProfessionalSignUp() {
       return;
     }
 
-    return navigate("/add-payment-method", { state: form });
+    return navigate("/payment-method", { state: form });
   }
 
   function handleFirstNameChange(event) {
