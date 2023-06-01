@@ -33,11 +33,9 @@ router.get("/view-offers/:requestId", async function (req, res) {
         };
       })
     );
-    console.log(data);
 
     res.status(200).json(data);
   } catch (err) {
-    throw err;
     res.status(500).json(err);
   }
 });

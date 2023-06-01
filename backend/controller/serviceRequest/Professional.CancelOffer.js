@@ -9,7 +9,7 @@ router.delete("/cancel-offer/:offerId", async function (req, res) {
     const cancelOffer = await prisma.professional_service_request.deleteMany({
       where: {
         id: parseInt(offerId),
-        transaction: null,
+        transaction: undefined,
       },
     });
     res.status(200).json(cancelOffer);

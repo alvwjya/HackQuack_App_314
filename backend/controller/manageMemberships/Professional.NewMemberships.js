@@ -8,7 +8,6 @@ router.post("/professional", async function (req, res) {
     const { professional_id, cost } = req.body;
 
     const date = new Date();
-    console.log();
 
     const subs = await prisma.membership.create({
       data: {

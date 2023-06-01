@@ -10,7 +10,6 @@ router.get("/all-request/:userId", async function (req, res) {
       where: { client: { id: parseInt(userId) }, transaction: undefined },
       include: { service_type: true, client: true },
     });
-    console.log(getAllRequest);
     res.status(200).json(getAllRequest);
   } catch (err) {
     res.status(500).json(err);
