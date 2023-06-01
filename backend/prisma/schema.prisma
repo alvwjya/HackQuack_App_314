@@ -15,6 +15,7 @@ model client {
   phone             String?           @db.VarChar(255)
   password          String?           @db.VarChar(255)
   suburb            String?           @db.VarChar(255)
+  address           String?           @db.VarChar(255)
   state             String?           @db.VarChar(255)
   postcode          String?           @db.VarChar(255)
   card_number       String?           @db.VarChar(255)
