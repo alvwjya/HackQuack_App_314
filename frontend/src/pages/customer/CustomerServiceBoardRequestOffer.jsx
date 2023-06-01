@@ -18,15 +18,11 @@ function CustomerServiceBoardOffer() {
 
   const data = [1, 2, 3, 4, 5];
 
+  const url = `/professional-accept-request`;
+
   async function handleAcceptOfferOnClick(event) {
     const url = `/professional-accept-request`;
 
-    // const body = {
-    //   acceptance:1,
-    //   cost:,
-    //   service_request_id,
-    //   professional_id,
-    // }
     const postData = await axios.post("");
   }
 
@@ -113,8 +109,8 @@ function CustomerServiceBoardOffer() {
                   <LinkContainer to="/customer-service-board-request-offer">
                     <Button variant="primary">Offer(s)</Button>
                   </LinkContainer>{" "}
-                  <LinkContainer to="">
-                    <Button className="btn-warning">Cancel Request</Button>
+                  <LinkContainer>
+                    <Button className="btn-warning"> Cancel Request</Button>
                   </LinkContainer>
                 </Card.Body>
 
