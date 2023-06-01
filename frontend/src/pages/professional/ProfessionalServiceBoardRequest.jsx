@@ -186,7 +186,10 @@ function ProfessionalServiceBoardRequest() {
           <Row>
             <Col>
               {getAllRequests.length === 0 ? (
-                <div>No Request</div>
+                <>
+                  <br />
+                  No Request Available
+                </>
               ) : (
                 <>
                   {getAllRequests.map((data) => {
