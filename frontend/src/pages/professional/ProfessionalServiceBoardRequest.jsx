@@ -24,19 +24,6 @@ function ProfessionalServiceBoardRequest() {
   const url = `/service/professional/view-all-offers/${user.userId}`;
 
   const [getActive, setGetActive] = useState([]);
-
-  const [serviceId, setServiceId] = useState(0);
-  const [offerForm, setOfferForm] = useState(false);
-
-  const [form, setForm] = useState({
-    cost: 0,
-    acceptance: 0,
-    professional_id: user.userId,
-    service_request_id: 0,
-  });
-
-  const commisionFee = 5;
-
   useEffect(() => {
     async function getData() {
       try {
@@ -52,8 +39,20 @@ function ProfessionalServiceBoardRequest() {
     getData();
   }, [url]);
 
+  const [serviceId, setServiceId] = useState(0);
+
+  const [offerForm, setOfferForm] = useState(false);
+  const [form, setForm] = useState({
+    cost: 0,
+    acceptance: 0,
+    professional_id: user.userId,
+    service_request_id: 0,
+  });
+
+  const commisionFee = 5;
+
   function handleOffer(event) {
-    console.log(event)
+    console.log(event);
     setServiceId(event.currentTarget.value);
     if (parseInt(serviceId) === parseInt(event.currentTarget.value)) {
       setOfferForm(!offerForm);

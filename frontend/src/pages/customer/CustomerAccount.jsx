@@ -16,8 +16,25 @@ import axios from "axios";
 
 function CustomerAccount() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const url = `/service/professional/view-all-offers/${user.userId}`;
+  const url = `/user/client/${user.userId}`;
+
+  const [customerData, setCustomerData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setCustomerData(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
 
   const [form, setForm] = useState({
     first_name: "",

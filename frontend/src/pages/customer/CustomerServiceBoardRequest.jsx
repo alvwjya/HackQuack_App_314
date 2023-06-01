@@ -11,20 +11,21 @@ import {
 } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CustomerServiceBoardRequest() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const url = `/service/client/all-request/${user.userId}`;
 
   const [allRequest, setAllRequest] = useState([]);
-
-  async function handleCancelRequestOnClick(event) {}
-
   useEffect(() => {
     async function getData() {
-      const url = `/service/client/all-request/${user.userId}`;
       try {
         const res = await axios.get(url);
+        console.log(res.data);
         if (res.status === 200) {
           setAllRequest(res.data);
         }
@@ -33,9 +34,13 @@ function CustomerServiceBoardRequest() {
       }
     }
     getData();
-  }, []);
+  }, [url]);
 
-  console.log(allRequest.length);
+  const [allOffer, setAllOffer] = useState([]);
+
+  async function handleAcceptOfferOnClick(event) {}
+
+  async function handleCancelRequestOnClick(event) {}
 
   return (
     <div>
@@ -109,6 +114,7 @@ function CustomerServiceBoardRequest() {
             </Nav.Item>
           </LinkContainer>
         </Nav>
+
         {allRequest.length === 0 ? (
           <p>No Request</p>
         ) : (
@@ -124,15 +130,13 @@ function CustomerServiceBoardRequest() {
                       Service Type: {data.service_type.service_type_name}
                     </Card.Text>
                     <Card.Text>Information: {data.description}</Card.Text>
-
-                    <Button variant="primary">Offer(s)</Button>
-
+                    <Button variant="primary">Offer(s)</Button>{" "}
                     <LinkContainer to="">
                       <Button className="btn-warning">Cancel Request</Button>
                     </LinkContainer>
                   </Card.Body>
 
-                  <Card.Footer>Location:{data.client.suburb}</Card.Footer>
+                  <Card.Footer>Location: {data.client.suburb}</Card.Footer>
                   <Card.Footer>
                     Time:{" "}
                     {`${new Date(
