@@ -48,7 +48,6 @@ function Login() {
   }
 
   function handleUserTypeChange(event) {
-    console.log(event);
     setForm({ ...form, loginUserType: event });
   }
 

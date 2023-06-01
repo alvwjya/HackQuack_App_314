@@ -37,13 +37,13 @@ function CustomerAccount() {
   }, [url]);
 
   const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    address: "",
-    suburb: "",
-    state: "",
-    postcode: "",
+    first_name: customerData.first_name,
+    last_name: customerData.last_name,
+    email: customerData.email,
+    address: customerData.address,
+    suburb: customerData.suburb,
+    state: customerData.state,
+    postcode: customerData.postcode,
     password: "",
     confirm_password: "",
   });
