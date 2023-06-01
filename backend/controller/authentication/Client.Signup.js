@@ -11,7 +11,7 @@ router.post("/client", async function (req, res) {
       email,
       phone,
       password,
-      adress,
+      address,
       suburb,
       state,
       postcode,
@@ -19,6 +19,8 @@ router.post("/client", async function (req, res) {
       expiry,
       CVV,
     } = req.body;
+
+    console.log(req.body)
 
     const getEmail = await prisma.client.findMany({
       where: {
@@ -34,7 +36,7 @@ router.post("/client", async function (req, res) {
         first_name,
         last_name,
         email,
-        adress,
+        address,
         phone,
         password,
         suburb,

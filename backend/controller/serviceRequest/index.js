@@ -8,7 +8,8 @@ const professionalGetClientRequest = require("./Professional.GetClientRequest");
 const getAllClientRequests = require("./Client.GetAllRequest");
 const cancelRequest = require("./Client.CancelRequest");
 const professionalGetAllOffer = require("./Professional.GetAllOffer");
-const professionalCancelOffer = require("./Professional.CancelOffer")
+const professionalCancelOffer = require("./Professional.CancelOffer");
+const clientAcceptOffer = require("./Client.AcceptOffer");
 
 router.use("/client", clientNewRequest);
 router.use("/professional", professionalNewOffer);
@@ -17,6 +18,7 @@ router.use("/professional", professionalGetClientRequest);
 router.use("/client", getAllClientRequests);
 router.use("/client", cancelRequest);
 router.use("/professional", professionalGetAllOffer);
-router.use("/professional", professionalCancelOffer)
+router.use("/professional", professionalCancelOffer);
+router.use("/client", clientAcceptOffer);
 
 module.exports = router;

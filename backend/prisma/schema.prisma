@@ -59,7 +59,6 @@ model professional {
   membership                   membership[]
   service_type                 service_type?                  @relation(fields: [service_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "professional_ibfk_1")
   professional_service_request professional_service_request[]
-  transaction                  transaction[]
   failed_update_count          Int                            @default(0)
   failed_update_timestamp      DateTime?                      @default(now())
 
@@ -103,7 +102,6 @@ model service_request {
   professional_service_request professional_service_request[]
   client                       client?                        @relation(fields: [client_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "service_request_ibfk_1")
   service_type                 service_type?                  @relation(fields: [service_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "service_request_ibfk_2")
-  transaction                  transaction[]
 
   @@index([client_id], map: "client_id")
   @@index([service_type_id], map: "service_type_id")
@@ -118,18 +116,10 @@ model service_type {
 
 model transaction {
   id                           Int                           @id @default(autoincrement())
-  transaction_time             DateTime?                     @db.DateTime(0)
-  service_request_id           Int?
-  professional_id              Int?
   professional_request_id      Int?
   rating                       rating[]
-  service_request              service_request?              @relation(fields: [service_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_1")
-  professional                 professional?                 @relation(fields: [professional_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_2")
   professional_service_request professional_service_request? @relation(fields: [professional_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_3")
   payment_time                 DateTime?                     @db.DateTime(0)
-  amount                       Int?
 
-  @@index([professional_id], map: "professional_id")
   @@index([professional_request_id], map: "professional_request_id")
-  @@index([service_request_id], map: "service_request_id")
 }
