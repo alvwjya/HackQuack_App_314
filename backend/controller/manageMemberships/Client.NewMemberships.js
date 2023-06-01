@@ -13,7 +13,7 @@ router.post("/client", async function (req, res) {
       data: {
         cost: parseFloat(cost),
         client: { connect: { id: parseInt(client_id) } },
-        start_date: date,
+        start_date: new Date(),
         due_date: new Date(date.setFullYear(date.getFullYear() + 1)),
       },
     });
