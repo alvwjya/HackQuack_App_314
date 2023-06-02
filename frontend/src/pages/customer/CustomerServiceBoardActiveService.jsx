@@ -117,7 +117,8 @@ function CustomerServiceBoardActive() {
               <div className="container py-3">
                 <Card>
                   <Card.Header>
-                    Type of Issue: {data.service_type.service_type_name}
+                    Type of Issue:{" "}
+                    {data.service_request.service_type.service_type_name}
                   </Card.Header>
 
                   <Card.Body>
@@ -127,21 +128,16 @@ function CustomerServiceBoardActive() {
                     </Card.Title>
                     <Card.Subtitle>
                       {" "}
-                      Customer Name:{" "}
-                      {
-                        data.professional_service_request.service_request.client
-                          .first_name
+                      Customer Name: {
+                        data.service_request.client.first_name
                       }{" "}
-                      {
-                        data.professional_service_request.service_request.client
-                          .last_name
-                      }
+                      {data.service_request.client.last_name}
                     </Card.Subtitle>
                     <Card.Text>Information: {data.description}</Card.Text>
                   </Card.Body>
 
                   <Card.Footer>
-                    {`Location: ${data.client.address}, ${data.client.suburb}`}
+                    {`Location: ${data.service_request.client.address}, ${data.service_request.client.suburb}`}
                   </Card.Footer>
                   <Card.Footer>
                     Time: {new Date(data.request_time).toLocaleString()}
