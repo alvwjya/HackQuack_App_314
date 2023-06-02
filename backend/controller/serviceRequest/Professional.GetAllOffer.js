@@ -10,6 +10,7 @@ router.get("/get-all-offer/:userId", async function (req, res) {
       where: {
         professional: { id: parseInt(userId) },
         OR: [{ transaction: { none: {} } }, { service_request: {} }],
+        acceptance: 1,
       },
       include: {
         service_request: {
