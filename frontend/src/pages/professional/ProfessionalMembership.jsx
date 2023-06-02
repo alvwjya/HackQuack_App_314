@@ -154,6 +154,21 @@ function ProfessionalMembership() {
             />
           </Form.Group>
 
+          {/* HACKQUACK CUSTOMER MEMBERSHIP */}
+          <Form.Group className="mb-3" controlId="formBasicPrice">
+            <Card className="mx-auto" style={{ width: 350 }}>
+              <Card.Header>
+                <h4>Professional Membership</h4>
+                <p>billed anually</p>
+                <h2>{professionalMembershipAnuallyCost} AUD/year</h2>
+              </Card.Header>
+              <Card.Body>
+                <p>&#9989; Became a member of HACKQUACK Tradies Family</p>
+                <p>&#9989; Unlimited Assistance Callouts</p>
+              </Card.Body>
+            </Card>
+          </Form.Group>
+
           <LinkContainer to="/add-payment-method">
             <Button className="primary" size="lg">
               Edit Payment Method

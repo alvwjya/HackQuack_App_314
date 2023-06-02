@@ -163,6 +163,7 @@ function CustomerMembership() {
                 <h2>{customerMembershipAnuallyCost} AUD/year</h2>
               </Card.Header>
               <Card.Body>
+                <p>&#9989; Became a member of HACKQUACK Tradies Family</p>
                 <p>&#9989; Unlimited Assistance Callouts</p>
               </Card.Body>
             </Card>
