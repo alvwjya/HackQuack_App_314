@@ -118,7 +118,7 @@ function ProfessionalServiceBoardOffer() {
         {getAllOffer.length === 0 ? (
           <>
             <br />
-            No Offer
+            No Offer Available
           </>
         ) : (
           <>

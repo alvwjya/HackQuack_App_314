@@ -127,7 +127,7 @@ function ProfessionalServiceActiveService() {
         {getAllServices.length === 0 ? (
           <>
             <br />
-            No Active Service
+            No Active Service Available
           </>
         ) : (
           <>

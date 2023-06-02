@@ -167,7 +167,7 @@ function CustomerServiceBoardRequest() {
               {allRequest.length === 0 ? (
                 <>
                   <br />
-                  No Request
+                  No Request Available
                 </>
               ) : (
                 <>

@@ -109,7 +109,7 @@ function CustomerServiceBoardActive() {
         {getActiveRequest.length === 0 ? (
           <>
             <br />
-            No Active Service
+            No Active Service Available
           </>
         ) : (
           <>
@@ -125,7 +125,18 @@ function CustomerServiceBoardActive() {
                       {" "}
                       Service Title: {data.request_title}
                     </Card.Title>
-                    <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <Card.Subtitle>
+                      {" "}
+                      Customer Name:{" "}
+                      {
+                        data.professional_service_request.service_request.client
+                          .first_name
+                      }{" "}
+                      {
+                        data.professional_service_request.service_request.client
+                          .last_name
+                      }
+                    </Card.Subtitle>
                     <Card.Text>Information: {data.description}</Card.Text>
                   </Card.Body>
 

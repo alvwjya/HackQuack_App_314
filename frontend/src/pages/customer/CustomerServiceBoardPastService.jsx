@@ -110,7 +110,7 @@ function CustomerServiceBoardPastService() {
         {getPastRequest.length === 0 ? (
           <>
             <br />
-            No Past Service
+            No Past Service Available
           </>
         ) : (
           <>
