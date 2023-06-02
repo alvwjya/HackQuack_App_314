@@ -127,6 +127,8 @@ function CustomerServiceBoardPastService() {
                       Service Title: {data.request_title}
                     </Card.Title>
                     <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <br />
+                    <Card.Text>Service Type: {}</Card.Text>
                     <Card.Text>Information: {data.description}</Card.Text>
                     <LinkContainer to="/customer-rating-and-review">
                       <Button variant="primary">Rating and Review</Button>

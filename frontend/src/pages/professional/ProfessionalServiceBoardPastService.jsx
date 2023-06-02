@@ -129,7 +129,8 @@ function ProfessionalServicePastService() {
 
                   <Card.Body>
                     <Card.Title>Service Title: {data.request_title}</Card.Title>
-                    <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <Card.Subtitle>Customer Name</Card.Subtitle>
+                    <br />
                     <Card.Text>Service Type: {}</Card.Text>
                     <Card.Text>Information: {data.description}</Card.Text>
                     <LinkContainer to="/receipt">

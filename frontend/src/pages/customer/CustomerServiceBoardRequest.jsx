@@ -180,7 +180,6 @@ function CustomerServiceBoardRequest() {
                           <Card.Title>
                             Service Title: {data.request_title}
                           </Card.Title>
-                          <Card.Subtitle>Professional Name</Card.Subtitle>
                           <Card.Text>Service Type: {}</Card.Text>
                           <Card.Text>Information: {data.description}</Card.Text>
                           <Button
