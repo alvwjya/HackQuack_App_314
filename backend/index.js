@@ -23,7 +23,7 @@ app.use("/membership", membership);
 app.use("/service", serviceRequest);
 app.use("/service-types", viewServiceTypes);
 app.use("/rating-review", ratingAndReview);
-app.use("/user/", userControl);
+app.use("/user", userControl);
 
 // Port
 app.listen(port, () => {

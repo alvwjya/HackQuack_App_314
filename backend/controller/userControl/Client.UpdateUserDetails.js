@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.put("/client/:userId", async function (req, res) {
-  const { id } = req.params.userId;
+  const id = req.params.userId;
   const {
     first_name,
     last_name,
