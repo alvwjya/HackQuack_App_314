@@ -20,75 +20,59 @@ function ProfessionalAccount() {
   const navigate = useNavigate();
 
   // GET USER-PROFESSIONAL DATA
-  const url = `/user/professional/${user.userId}`;
-  const [professionalData, setProfessionalData] = useState([]);
+  const [professionalData, setProfessionalData] = useState({
+    service_type: { service_type_name: undefined },
+  });
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get(url);
-        console.log(res.data);
-        if (res.status === 200) {
-          setProfessionalData(res.data);
-        }
+        const res = await axios.get(`/user/professional/${user.userId}`);
+        setProfessionalData(res.data);
       } catch (err) {
         console.log(err);
       }
     }
     getData();
-  }, [url]);
-
-  // UPDATE USER-PROFESSIONAL DATA
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-
-    abn: "",
-    tfn: "",
-
-    address: "",
-    suburb: "",
-    state: "",
-    postcode: "",
-
-    service_type_id: 0,
-
-    password: "",
-    confirmedPassword: "",
-  });
+  }, []);
 
   async function handleSubmit() {}
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, first_name: event.target.value });
+    setProfessionalData({
+      ...professionalData,
+      first_name: event.target.value,
+    });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, last_name: event.target.value });
+    setProfessionalData({ ...professionalData, last_name: event.target.value });
   }
 
   function handleAddressChange(event) {
-    setForm({ ...form, address: event.target.value });
+    setProfessionalData({ ...professionalData, address: event.target.value });
   }
 
   function handleSuburbChange(event) {
-    setForm({ ...form, suburb: event.target.value });
+    setProfessionalData({ ...professionalData, suburb: event.target.value });
   }
 
   function handleStateChange(event) {
-    setForm({ ...form, state: event.target.value });
+    setProfessionalData({ ...professionalData, state: event.target.value });
   }
 
   function handlePostcodeChange(event) {
-    setForm({ ...form, postcode: event.target.value });
+    setProfessionalData({ ...professionalData, postcode: event.target.value });
   }
 
   function handlePasswordChange(event) {
-    setForm({ ...form, password: event.target.value });
+    setProfessionalData({ ...professionalData, password: event.target.value });
   }
 
   function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirmedPassword: event.target.value });
+    setProfessionalData({
+      ...professionalData,
+      confirmedPassword: event.target.value,
+    });
   }
 
   return (
@@ -160,7 +144,7 @@ function ProfessionalAccount() {
                 <Form.Control
                   type="text"
                   placeholder={professionalData.first_name}
-                  value={form.first_name}
+                  value={professionalData.first_name}
                   onChange={handleFirstNameChange}
                 />
               </Col>
@@ -168,7 +152,7 @@ function ProfessionalAccount() {
                 <Form.Control
                   type="text"
                   placeholder={professionalData.last_name}
-                  value={form.last_name}
+                  value={professionalData.last_name}
                   onChange={handleLastNameChange}
                 />
               </Col>
@@ -189,7 +173,7 @@ function ProfessionalAccount() {
             <Form.Control
               type="text"
               placeholder={professionalData.address}
-              value={form.address}
+              value={professionalData.address}
               onChange={handleAddressChange}
             />
           </Form.Group>
@@ -211,7 +195,7 @@ function ProfessionalAccount() {
                 <Form.Control
                   type="text"
                   placeholder={professionalData.suburb}
-                  value={form.suburb}
+                  value={professionalData.suburb}
                   onChange={handleSuburbChange}
                 />
               </Col>
@@ -219,7 +203,7 @@ function ProfessionalAccount() {
                 <Form.Control
                   type="text"
                   placeholder={professionalData.state}
-                  value={form.state}
+                  value={professionalData.state}
                   onChange={handleStateChange}
                 />
               </Col>
@@ -227,7 +211,7 @@ function ProfessionalAccount() {
                 <Form.Control
                   type="text"
                   placeholder={professionalData.postcode}
-                  value={form.postcode}
+                  value={professionalData.postcode}
                   onChange={handlePostcodeChange}
                 />
               </Col>
@@ -256,7 +240,7 @@ function ProfessionalAccount() {
             <Form.Label>Service Type</Form.Label>
             <Form.Control
               type="text"
-              placeholder={professionalData.service_type.service_type_name}
+              value={professionalData.service_type.service_type_name}
               disabled
             />
           </Form.Group>
