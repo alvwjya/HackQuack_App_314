@@ -5,11 +5,10 @@ const router = express.Router();
 
 router.put("/finish-service/:serviceId", async function (req, res) {
   try {
-    const serviceId = res.params.serviceId;
+    const serviceId = req.params.serviceId;
     const getFinishService = await prisma.transaction.update({
       where: { id: parseInt(serviceId) },
       data: {
-        finish_status: 1,
         payment_time: new Date(),
       },
     });

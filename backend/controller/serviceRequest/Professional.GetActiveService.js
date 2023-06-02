@@ -9,7 +9,7 @@ router.get("/get-active-service/:userId", async function (req, res) {
     const getActiveService = await prisma.transaction.findMany({
       where: {
         professional_service_request: { professional_id: parseInt(userId) },
-        finish_status: null,
+        payment_time: undefined,
       },
       include: {
         professional_service_request: {

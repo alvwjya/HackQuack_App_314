@@ -11,7 +11,7 @@ router.get("/get-active-request/:userId", async function (req, res) {
           FROM service_request sr
           LEFT JOIN professional_service_request psr ON psr.service_request_id = sr.id
           LEFT JOIN transaction t ON t.professional_request_id = psr.id
-          WHERE t.id IS NOT NULL
+          WHERE t.id IS NOT NULL AND t.payment_time IS NULL
           AND sr.client_id = ${userId};
           `;
 
