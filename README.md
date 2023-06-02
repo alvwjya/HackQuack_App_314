@@ -44,3 +44,5 @@ npm i
 ```
 npm start
 ```
+
+## Deployment Plan
