@@ -13,6 +13,8 @@ const clientAcceptOffer = require("./Client.AcceptOffer");
 const getActiveRequest = require("./Client.GetActiveRequest");
 const getActiveService = require("./Professional.GetActiveService");
 const finishService = require("./Professional.FinishService");
+const clientGetPastService = require("./Client.GetPastService");
+const professionalGetPastService = require("./Professional.GetPastService");
 
 router.use("/client", clientNewRequest);
 router.use("/professional", professionalNewOffer);
@@ -26,5 +28,7 @@ router.use("/client", clientAcceptOffer);
 router.use("/client", getActiveRequest);
 router.use("/professional", getActiveService);
 router.use("/professional", finishService);
+router.use("/client", clientGetPastService);
+router.use("/professional", professionalGetPastService);
 
 module.exports = router;
