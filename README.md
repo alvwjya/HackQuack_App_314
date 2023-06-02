@@ -11,6 +11,8 @@ Instruction - How to instal mysql: https://www.mysql.com/downloads/
 
 ## Instructions - How to run HACKQUACK Tradies App
 
+Download the code or clone the repository (2 repositories prefer, 1 for Front End, 1 for Back End)
+
 Open the code in the Visual Studio Code
 
 Run the Back End
