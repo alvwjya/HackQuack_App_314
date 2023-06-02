@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.get("/get-past-service/:userId", async function (req, res) {
-  console.log("ASA");
   try {
     const userId = req.params.userId;
     const getPastService = await prisma.transaction.findMany({

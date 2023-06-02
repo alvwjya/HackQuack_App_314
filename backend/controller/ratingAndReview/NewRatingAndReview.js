@@ -20,14 +20,8 @@ router.post("/new-rating", async (req, res) => {
         },
       },
     });
-    console.log(
-      `Rating and review submitted by client ${clientId}. ID: ${createdRating.id}`
-    );
-    res
-      .status(200)
-      .json({ message: "Rating and review submitted successfully" });
+    res.status(200).json(createdRating);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Failed to submit rating and review." });
   }
 });
