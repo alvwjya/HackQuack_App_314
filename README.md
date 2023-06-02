@@ -15,11 +15,13 @@ Download the code or clone the repository (2 repositories prefer, 1 for Front En
 
 Open the code in the Visual Studio Code
 
-Run the Back End
+### Run the Back End
 
 ```
 cd backend
 ```
+
+Copy the `.env copy`, and change the variables according to you settings and rename it to `.env`
 
 ```
 npx prisma migrate dev
@@ -37,11 +39,13 @@ npm i
 npm start
 ```
 
-Run the Front End
+### Run the Front End
 
 ```
 cd frontend
 ```
+
+Copy the `.env copy`, and change the variables according to you settings and rename it to `.env`
 
 ```
 npm i
