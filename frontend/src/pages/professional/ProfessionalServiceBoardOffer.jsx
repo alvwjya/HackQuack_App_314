@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navbar, Nav, Image, Container, Card, Button } from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
@@ -6,9 +6,35 @@ import axios from "axios";
 
 function ProfessionalServiceBoardOffer() {
   const { user } = useContext(AuthContext);
-  const url = `/view-all-active-request/client/${user.userId}`;
+  const [getAllOffer, setGetAllOffer] = useState([]);
+  const [reload, setReload] = useState(false);
 
-  const data = [1, 2, 3, 4, 5];
+  useEffect(() => {
+    async function getData() {
+      try {
+        const { data } = await axios.get(
+          `/service/professional/get-all-offer/${user.userId}`
+        );
+        setGetAllOffer(data);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    }
+    getData();
+  }, [reload]);
+
+  async function handleCancelOffer(event) {
+    try {
+      const res = await axios.delete(
+        `/service/professional/cancel-offer/${event.currentTarget.value}`
+      );
+      alert("Successfully cancel offer");
+      setReload(!reload);
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  }
+
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
@@ -19,7 +45,7 @@ function ProfessionalServiceBoardOffer() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -38,7 +64,7 @@ function ProfessionalServiceBoardOffer() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -89,27 +115,49 @@ function ProfessionalServiceBoardOffer() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div class="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Customer Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <LinkContainer to="/professional-service-board-request-detail">
-                  <Button className="btn-info">Learn More</Button>
-                </LinkContainer>{" "}
-                <LinkContainer to="">
-                  <Button className="btn-warning">Cancel Offer</Button>
-                </LinkContainer>{" "}
-              </Card.Body>
+        {getAllOffer.length === 0 ? (
+          <>
+            <br />
+            No Offer Available
+          </>
+        ) : (
+          <>
+            {getAllOffer.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>
+                    Type of Issue:{" "}
+                    {data.service_request.service_type.service_type_name}
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Title>
+                      Service Title: {data.service_request.request_title}
+                    </Card.Title>
+                    <Card.Subtitle>{`Customer Name: ${data.service_request.client.first_name} ${data.service_request.client.last_name}`}</Card.Subtitle>
+                    <Card.Text>
+                      Description: {data.service_request.description}
+                    </Card.Text>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                    <Button
+                      className="btn-warning"
+                      value={data.id}
+                      onClick={handleCancelOffer}
+                    >
+                      Cancel Offer
+                    </Button>
+                  </Card.Body>
+
+                  <Card.Footer>{`Location: ${data.service_request.client.address}, ${data.service_request.client.suburb}`}</Card.Footer>
+                  <Card.Footer>{`Time: ${new Date(
+                    data.service_request.request_time
+                  ).toLocaleDateString()} ${new Date(
+                    data.service_request.request_time
+                  ).toLocaleTimeString()}`}</Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

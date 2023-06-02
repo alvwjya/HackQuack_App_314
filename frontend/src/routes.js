@@ -13,7 +13,6 @@ import CustomerDashboard from "./pages/customer/CustomerDashboard";
 import CustomerCreateNewRequest from "./pages/customer/CustomerCreateNewRequest";
 
 import CustomerServiceBoardRequest from "./pages/customer/CustomerServiceBoardRequest";
-import CustomerServiceBoardRequestOffer from "./pages/customer/CustomerServiceBoardRequestOffer";
 import CustomerServiceBoardRequestOfferDetail from "./pages/customer/CustomerServiceBoardRequestOfferDetail";
 
 import CustomerServiceBoardActiveService from "./pages/customer/CustomerServiceBoardActiveService";
@@ -22,6 +21,8 @@ import CustomerRatingAndReview from "./pages/customer/CustomerRatingAndReview";
 import CustomerServiceBoardPastService from "./pages/customer/CustomerServiceBoardPastService";
 
 import CustomerMembership from "./pages/customer/CustomerMembership";
+
+import CustomerPaymentTransaction from "./pages/customer/CustomerPaymentTransaction";
 
 /*PROFESSIONAL*/
 import ProfessionalAccount from "./pages/professional/ProfessionalAccount";
@@ -32,18 +33,19 @@ import ProfessionalDashboard from "./pages/professional/ProfessionalDashboard";
 
 import ProfessionalServiceBoardRequest from "./pages/professional/ProfessionalServiceBoardRequest";
 import ProfessionalServiceBoardRequestDetail from "./pages/professional/ProfessionalServiceBoardRequestDetail";
-import ProfessionalServiceBoardRequestPriceOffer from "./pages/professional/ProfessionalServiceBoardRequestPriceOffer";
 import ProfessionalServiceBoardOffer from "./pages/professional/ProfessionalServiceBoardOffer";
 import ProfessionalServiceBoardActiveService from "./pages/professional/ProfessionalServiceBoardActiveService";
 import ProfessionalServiceBoardPastService from "./pages/professional/ProfessionalServiceBoardPastService";
 
 import ProfessionalMembership from "./pages/professional/ProfessionalMembership";
 
+import ProfessionalPaymentTransaction from "./pages/professional/ProfessionalPaymentTransaction";
+
 /*HACKQUACK*/
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import PaymentMethod from "./pages/PaymentMethod";
-import PaymentTransaction from "./pages/PaymentTransaction";
+
 import Receipt from "./pages/Receipt";
 
 const AuthorizedRoute = ({ userTypes }) => {
@@ -121,11 +123,7 @@ const router = createBrowserRouter([
             element: <Receipt />,
           },
           {
-            path: "payment-transaction",
-            element: <PaymentTransaction />,
-          },
-          {
-            path: "add-payment-method",
+            path: "payment-method",
             element: <PaymentMethod />,
           },
         ],
@@ -159,10 +157,6 @@ const router = createBrowserRouter([
             element: <ProfessionalServiceBoardRequestDetail />,
           },
           {
-            path: "professional-service-board-request-price-offer",
-            element: <ProfessionalServiceBoardRequestPriceOffer />,
-          },
-          {
             path: "professional-service-board-offer",
             element: <ProfessionalServiceBoardOffer />,
           },
@@ -173,6 +167,10 @@ const router = createBrowserRouter([
           {
             path: "professional-service-board-past-service",
             element: <ProfessionalServiceBoardPastService />,
+          },
+          {
+            path: "professional-payment-transaction",
+            element: <ProfessionalPaymentTransaction />,
           },
         ],
       },
@@ -205,10 +203,6 @@ const router = createBrowserRouter([
             element: <CustomerServiceBoardRequest />,
           },
           {
-            path: "customer-service-board-request-offer",
-            element: <CustomerServiceBoardRequestOffer />,
-          },
-          {
             path: "customer-service-board-active-service",
             element: <CustomerServiceBoardActiveService />,
           },
@@ -223,6 +217,10 @@ const router = createBrowserRouter([
           {
             path: "customer-rating-and-review",
             element: <CustomerRatingAndReview />,
+          },
+          {
+            path: "customer-payment-transaction",
+            element: <CustomerPaymentTransaction />,
           },
         ],
       },

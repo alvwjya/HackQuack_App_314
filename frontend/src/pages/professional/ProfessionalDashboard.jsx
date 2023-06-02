@@ -17,7 +17,7 @@ function ProfessionalDashboard() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -36,7 +36,7 @@ function ProfessionalDashboard() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -66,7 +66,7 @@ function ProfessionalDashboard() {
             </Button>
           </LinkContainer>
 
-          <LinkContainer to="/payment-transaction">
+          <LinkContainer to="/professional-payment-transaction">
             <Button className="btn-primary" size="lg">
               Payment Transaction
             </Button>

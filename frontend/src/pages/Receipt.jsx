@@ -4,17 +4,19 @@ import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
 function Receipt() {
   return (
     <Container className="py-5">
-      <div class="container py-3">
+      <div className="container py-3">
         <Card>
           <Card.Body>
             <h3>Receipt</h3>
 
             <hr />
 
+            <Card.Text>Service Request ID: {}</Card.Text>
+
             <Form>
               <Form.Group className="mb-3" controlId="formBasicCardNumber">
                 <Form.Label>Total</Form.Label>
-                <Form.Control type="text" placeholder="AUD" disable />
+                <Form.Control type="text" value="" disable />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicCardNumberInfo">
@@ -28,14 +30,10 @@ function Receipt() {
                 </Row>
                 <Row>
                   <Col>
-                    <Form.Control
-                      type="text"
-                      placeholder="DD/MM/YYYY"
-                      disable
-                    />
+                    <Form.Control type="text" value="" disable />
                   </Col>
                   <Col>
-                    <Form.Control type="text" placeholder="HH : MM" disable />
+                    <Form.Control type="text" value="" disable />
                   </Col>
                 </Row>
               </Form.Group>

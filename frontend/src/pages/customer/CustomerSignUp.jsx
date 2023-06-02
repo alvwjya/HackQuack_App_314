@@ -11,27 +11,21 @@ function CustomerSignUp() {
     last_name: "",
     email: "",
     address: "",
+    phone: "",
     suburb: "",
     state: "",
     postcode: "",
     password: "",
     confirm_password: "",
+    type: "client",
   });
 
   async function handleSubmit() {
-    const url = `/signup/client`;
-
     if (form.password !== form.confirm_password) {
-      console.log("Password and confirm password don't match!");
+      alert("Password and confirm password don't match!");
       return;
     }
-
-    const res = await axios.post(url, form);
-    if (res.status === 200) {
-      return navigate("/");
-    } else {
-      return alert(JSON.stringify(res.data));
-    }
+    return navigate("/payment-method", { state: form });
   }
 
   function handleFirstNameChange(event) {
@@ -48,6 +42,10 @@ function CustomerSignUp() {
 
   function handleAddressChange(event) {
     setForm({ ...form, address: event.target.value });
+  }
+
+  function handlePhoneChange(event) {
+    setForm({ ...form, phone: event.target.value });
   }
 
   function handleSuburbChange(event) {
@@ -115,6 +113,16 @@ function CustomerSignUp() {
             placeholder="Enter email"
             value={form.email}
             onChange={handleEmailChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPhone">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter phone number"
+            value={form.phone}
+            onChange={handlePhoneChange}
           />
         </Form.Group>
 
@@ -192,12 +200,8 @@ function CustomerSignUp() {
       <hr />
 
       <div className="d-grid gap-2">
-        <Button
-          className="btn-customer-button"
-          size="lg"
-          onClick={handleSubmit}
-        >
-          Sign Up
+        <Button onClick={handleSubmit} variant="primary" size="lg">
+          Add Payment Method
         </Button>
         <Button href="/" className="btn-cancel" size="lg">
           Cancel

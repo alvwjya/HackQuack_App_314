@@ -1,21 +1,48 @@
-import React, { useContext } from "react";
-import {
-  Navbar,
-  Nav,
-  Image,
-  Container,
-  Card,
-  Button,
-  Row,
-  Col,
-} from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
+import React, { useState, useContext, useEffect } from "react";
+import { Navbar, Nav, Image, Container, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ProfessionalServiceActiveService() {
   const { user } = useContext(AuthContext);
-  const data = [1, 2, 3, 4, 5];
+  const navigate = useNavigate();
+
+  const [reload, setReload] = useState(false);
+
+  // GET ALL ACTIVE SERVICES
+  const [getAllServices, setAllServices] = useState([]);
+  useEffect(() => {
+    const url = `/service/professional/get-active-service/${user.userId}`;
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setAllServices(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [reload]);
+
+  console.log(getAllServices);
+
+  async function handleFinishService(event) {
+    const res = await axios.put(
+      `service/professional/finish-service/${event.currentTarget.value}`
+    );
+
+    if (res.status === 200) {
+      setReload(!reload);
+    } else {
+      alert(JSON.stringify(res.data));
+    }
+  }
+
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
@@ -26,7 +53,7 @@ function ProfessionalServiceActiveService() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -45,7 +72,7 @@ function ProfessionalServiceActiveService() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -97,22 +124,77 @@ function ProfessionalServiceActiveService() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div class="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Customer Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <Button className="btn-primary">Finish Service</Button>
-              </Card.Body>
+        {getAllServices.length === 0 ? (
+          <>
+            <br />
+            No Active Service Available
+          </>
+        ) : (
+          <>
+            {getAllServices.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>Offer ID: {data.id}</Card.Header>
+                  <Card.Header>
+                    Service ID:{" "}
+                    {data.professional_service_request.service_request.id}
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Title>
+                      {
+                        data.professional_service_request.service_request
+                          .request_title
+                      }
+                    </Card.Title>
+                    <Card.Subtitle>
+                      Customer Name:{" "}
+                      {
+                        data.professional_service_request.service_request.client
+                          .first_name
+                      }{" "}
+                      {
+                        data.professional_service_request.service_request.client
+                          .last_name
+                      }
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Text>
+                      Service Type:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .service_type.service_type_name
+                      }
+                    </Card.Text>
+                    <Card.Text>
+                      Information:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .description
+                      }
+                    </Card.Text>
+                    <Button
+                      variant="primary"
+                      value={data.id}
+                      onClick={handleFinishService}
+                    >
+                      Finish Service
+                    </Button>
+                  </Card.Body>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                  <Card.Footer>
+                    {`Location: ${data.professional_service_request.service_request.client.address}, ${data.professional_service_request.service_request.client.suburb}`}
+                  </Card.Footer>
+                  <Card.Footer>
+                    Time:{" "}
+                    {new Date(
+                      data.professional_service_request.service_request.request_time
+                    ).toLocaleString()}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

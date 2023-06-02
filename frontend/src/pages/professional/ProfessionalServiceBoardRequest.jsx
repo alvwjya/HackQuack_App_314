@@ -12,21 +12,38 @@ import {
   FormGroup,
   Table,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const commisionFee = 5;
+
 function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
-  const url = `/professional-view-active-service-requests/${user.userId}`;
-
   const navigate = useNavigate();
 
-  const [getActive, setGetActive] = useState([]);
-  const [getUserDetails, setUserDetails] = useState({});
-  const [serviceId, setServiceId] = useState(0);
+  // GET CURRENTLY REQUEST(S) FOR A SERVICE FROM CUSTOMER USER
+  const [reload, setReload] = useState(false);
+  const [getAllRequests, setAllRequests] = useState([]);
+  useEffect(() => {
+    const url = `/service/professional/view-all-offers/${user.userId}`;
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setAllRequests(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [reload]);
 
+  // PROFESSIONAL OFFER SERVICE - FORM - PRICE AND DETAIL
+  const [offerForm, setOfferForm] = useState(false);
   const [form, setForm] = useState({
     cost: 0,
     acceptance: 0,
@@ -34,47 +51,52 @@ function ProfessionalServiceBoardRequest() {
     service_request_id: 0,
   });
 
-  const [requests, setRequests] = useState([]);
-  const commisionFee = 5;
-
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await axios.get(url);
-        console.log(res.data);
-        if (res.status === 200) {
-          // setUserDetails(res.data.getUserLocation);
-          setGetActive(res.data);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+  // PROFESSIONAL OFFER SERVICE
+  const [serviceId, setServiceId] = useState(0);
+  function handleOffer(event) {
+    setServiceId(event.currentTarget.value);
+    if (parseInt(serviceId) === parseInt(event.currentTarget.value)) {
+      setOfferForm(!offerForm);
+    } else {
+      setOfferForm(true);
     }
-    getData();
-  }, [url]);
+  }
 
- function handleOfferRequest(event){
-  console.log(event.target.id)
-  setServiceId(event.target.id)
- }
-
-  async function handleAcceptOfferOnClick() {
-    const url = `/professional-accept-request`;
+  // PROFESSIONAL OFFER SERVICE - SEND OFFER
+  async function handleSendOffer(event) {
+    const url = `/service/professional/new-offer`;
     const reqBody = {
       cost: form.cost,
       acceptance: 1,
       professional_id: user.userId,
       service_request_id: serviceId,
     };
-    console.log(reqBody)
 
     const res = await axios.post(url, reqBody);
 
     if (res.status === 200) {
-      console.log(res.data)
       navigate("/professional-service-board-offer");
     } else {
-      console.log(res.data)
+      alert(JSON.stringify(res.data));
+    }
+  }
+
+  async function handleDeclineRequest(event) {
+    const url = `/service/professional/new-offer`;
+    const reqBody = {
+      acceptance: 0,
+      professional_id: user.userId,
+      service_request_id: parseInt(event.currentTarget.value),
+    };
+
+    const res = await axios.post(url, reqBody);
+
+    if (res.status === 200) {
+      alert("Successfully declined request");
+      setOfferForm(false);
+      setReload(!reload);
+    } else {
+      alert(JSON.stringify(res.data));
     }
   }
 
@@ -88,7 +110,7 @@ function ProfessionalServiceBoardRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -107,7 +129,7 @@ function ProfessionalServiceBoardRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -159,44 +181,72 @@ function ProfessionalServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        {getActive.map((data) => {
-          return (
-            <Row>
-              <Col>
-                <div class="container py-3">
-                  <Card>
-                    <Card.Header>{data.request_title}</Card.Header>
-                    <Card.Body>
-                      <Card.Title>
-                        Issue Type: {data.service_type_id}
-                      </Card.Title>
-                      <Card.Subtitle>Customer Name</Card.Subtitle>
-                      <Card.Text>Information: {data.description}</Card.Text>
-                      <LinkContainer to="/professional-service-board-request-detail">
-                        <Button className="btn-info">Learn More</Button>
-                      </LinkContainer>{" "}
-                      <LinkContainer to="">
-                        <Button className="btn-warning">Decline Request</Button>
-                      </LinkContainer>{" "}
-                      <LinkContainer to="">
-                        <Button
-                          id={data.id}
-                          className="btn-primary"
-                          onClick={handleOfferRequest}
-                        >
-                          Offer Service
-                        </Button>
-                      </LinkContainer>
-                    </Card.Body>
-                    <Card.Footer>Location</Card.Footer>
-                    <Card.Footer>Time</Card.Footer>
-                  </Card>
-                </div>
-              </Col>
+        <div>
+          <Row>
+            <Col>
+              {getAllRequests.length === 0 ? (
+                <>
+                  <br />
+                  No Request Available
+                </>
+              ) : (
+                <>
+                  {getAllRequests.map((data) => {
+                    return (
+                      <div className="container py-3">
+                        <Card>
+                          <Card.Header>Service ID: {data.id}</Card.Header>
+                          <Card.Body>
+                            <Card.Title>{data.request_title}</Card.Title>
+                            <Card.Subtitle>
+                              Customer Name: {data.client.first_name}{" "}
+                              {data.client.last_name}
+                            </Card.Subtitle>
+                            <br />
+                            <Card.Text>
+                              Service Type:{" "}
+                              {data.service_type.service_type_name}
+                            </Card.Text>
+                            <Card.Text>
+                              Information: {data.description}
+                            </Card.Text>
+                            <Button
+                              className="btn-warning"
+                              value={data.id}
+                              onClick={handleDeclineRequest}
+                            >
+                              Decline Request
+                            </Button>{" "}
+                            <Button
+                              className="btn-primary"
+                              value={data.id}
+                              onClick={handleOffer}
+                            >
+                              Offer Service
+                            </Button>
+                          </Card.Body>
+                          <Card.Footer>{`Location: ${data.client.address}, ${data.client.suburb}`}</Card.Footer>
+                          <Card.Footer>{`Time: ${new Date(
+                            data.request_time
+                          ).toLocaleDateString()} ${new Date(
+                            data.request_time
+                          ).toLocaleTimeString()}`}</Card.Footer>
+                        </Card>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </Col>
+
+            {offerForm && (
               <Col>
                 <Form>
                   <FormGroup className="py-3" controlId="formPriceOffer">
-                    <Form.Label>PRICE AND DETAIL</Form.Label>
+                    <Form.Label>
+                      <strong>PRICE AND DETAIL</strong>
+                    </Form.Label>
+                    <p>Service Request ID: {serviceId}</p>
                     <Table>
                       <tr>
                         <td>
@@ -204,7 +254,7 @@ function ProfessionalServiceBoardRequest() {
                         </td>
                         <td>
                           <Form.Control
-                            type="text"
+                            type="number"
                             placeholder="Enter price"
                             value={form.cost}
                             onChange={(e) =>
@@ -245,17 +295,17 @@ function ProfessionalServiceBoardRequest() {
                       <Button
                         className="btn-primary"
                         size="lg"
-                        onClick={handleAcceptOfferOnClick}
+                        onClick={handleSendOffer}
                       >
                         Send Offer
                       </Button>
                     </div>
                   </FormGroup>
-                </Form>{" "}
+                </Form>
               </Col>
-            </Row>
-          );
-        })}
+            )}
+          </Row>
+        </div>
 
         <hr />
       </Container>

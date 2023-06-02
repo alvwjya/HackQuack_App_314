@@ -8,38 +8,68 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const customerMembershipAnuallyCost = 1000;
+
 function CustomerMembership() {
-  const membershipAnuallyCost = 1000;
-
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const [getActive, setGetActive] = useState([]);
-  const [userDetails, setUserDetails] = useState({});
-  const getMembershipsUrl = `/get-client-memberships/${user.userId}`;
-
+  // CUSTOMER - GET MEMBERSHIP DETAIL
+  const url = `/membership/client/${user.userId}`;
+  const [userMembershipDetails, setUserMembershipDetails] = useState({
+    start_date: undefined,
+    due_date: undefined,
+  });
   useEffect(() => {
     async function getData() {
-      const res = await axios.get(getMembershipsUrl);
-      if (res.status === 200) {
-        setUserDetails(res.data);
-        console.log(res.data)
+      try {
+        const res = await axios.get(url);
+        if (res.data !== null) {
+          setUserMembershipDetails(res.data);
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
     getData();
-  }, [getMembershipsUrl]);
+  }, [url]);
 
-  console.log(userDetails);
-
+  // CUSTOMER - SUBSCRIBE
   async function handleSubscribe(event) {
-    const url = `/subscribe-memberships/client`;
-    const body = { client_id: user.userId, cost: membershipAnuallyCost };
-    const res = await axios.post(url, body);
-    if(res.status === 200){
-      console.log("Signed Up")
+    const url = `/membership/client`;
+    const reqBody = {
+      cost: customerMembershipAnuallyCost,
+      client_id: user.userId,
+    };
+
+    const res = await axios.post(url, reqBody);
+
+    if (res.status === 200) {
+      alert("Successfully subscribe to membership!");
+    } else {
+      alert(JSON.stringify(res.data));
+    }
+  }
+
+  // CUSTOMER - UNSUBSCRIBE
+  async function handleUnsubscribe(event) {
+    const url = `/membership/client/${user.userId}`;
+    const reqBody = {
+      client_id: user.userId,
+    };
+
+    const res = await axios.delete(url, reqBody);
+
+    if (res.status === 200) {
+      alert("Successfully unsubscribe to membership!");
+    } else {
+      alert(JSON.stringify(res.data));
     }
   }
 
@@ -53,7 +83,7 @@ function CustomerMembership() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -72,7 +102,7 @@ function CustomerMembership() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -91,13 +121,11 @@ function CustomerMembership() {
             <Form.Label>Start Date</Form.Label>
             <Form.Control
               type="text"
-              placeholder="DD/MM/YYYY"
-              disabled
               value={
-                Object.keys(userDetails).length === 0
-                  ? "Invalid"
-                  : userDetails.start_date
+                new Date(userMembershipDetails.start_date).toLocaleString() ||
+                "Invalid"
               }
+              disabled
             />
           </Form.Group>
 
@@ -105,13 +133,11 @@ function CustomerMembership() {
             <Form.Label>End Date</Form.Label>
             <Form.Control
               type="text"
-              placeholder="DD/MM/YYYY"
-              disabled
               value={
-                Object.keys(userDetails).length === 0
-                  ? "Invalid"
-                  : userDetails.due_date
+                new Date(userMembershipDetails.due_date).toLocaleString() ||
+                "Invalid"
               }
+              disabled
             />
           </Form.Group>
 
@@ -119,49 +145,51 @@ function CustomerMembership() {
             <Form.Label>Status</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Inactive"
-              disabled
               value={
-                new Date(userDetails.due_date) < new Date()
-                  ? "Inactive"
-                  : userDetails.start_date
+                new Date(userMembershipDetails.due_date) > new Date()
+                  ? "Active"
+                  : "Inactive"
               }
+              disabled
             />
           </Form.Group>
 
+          {/* HACKQUACK CUSTOMER MEMBERSHIP */}
           <Form.Group className="mb-3" controlId="formBasicPrice">
             <Card className="mx-auto" style={{ width: 350 }}>
               <Card.Header>
                 <h4>Customer Membership</h4>
                 <p>billed anually</p>
-                <h2>{membershipAnuallyCost} AUD/year</h2>
+                <h2>{customerMembershipAnuallyCost} AUD/year</h2>
               </Card.Header>
               <Card.Body>
+                <p>&#9989; Became a member of HACKQUACK Tradies Family</p>
                 <p>&#9989; Unlimited Assistance Callouts</p>
               </Card.Body>
             </Card>
           </Form.Group>
 
-          <Button href="/add-payment-method" variant="primary" size="lg">
-            Edit Payment Method
-          </Button>
+          <LinkContainer to="/payment-method">
+            <Button class="btn-primary" size="lg">
+              Edit Payment Method
+            </Button>
+          </LinkContainer>
         </Form>
 
         <hr />
 
+        {/* BUTTON */}
         <div className="d-grid gap-2">
-          <LinkContainer to="">
-            <Button
-              className="btn-customer-button"
-              size="lg"
-              onClick={handleSubscribe}
-            >
-              Sign Up
-            </Button>
-          </LinkContainer>
+          <Button
+            className="btn-customer-button"
+            size="lg"
+            onClick={handleSubscribe}
+          >
+            Subscribe Membership
+          </Button>
 
-          <Button className="btn-cancel" size="lg">
-            Cancel Membership
+          <Button className="btn-cancel" size="lg" onClick={handleUnsubscribe}>
+            Unsubscribe Membership
           </Button>
         </div>
       </Container>

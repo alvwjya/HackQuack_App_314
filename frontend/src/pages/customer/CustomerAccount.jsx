@@ -9,70 +9,82 @@ import {
   Col,
   Image,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CustomerAccount() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    address: "",
-    suburb: "",
-    state: "",
-    postcode: "",
-    password: "",
-    confirm_password: "",
-  });
+  // GET USER-CUSTOMER DATA
+  const url = `/user/client/${user.userId}`;
+  const [customerData, setCustomerData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setCustomerData(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [url]);
 
   async function handleSubmit() {
-    const url = `/account/customer`;
-
-    if (form.password !== form.confirm_password) {
-      console.log("Password and confirm password don't match");
-      return;
+    try {
+      const url = `/user/client/${user.userId}`;
+      const res = await axios.put(url, customerData);
+      if (res.status === 200) {
+        return alert("Successful");
+      }
+      return alert("Something wrong");
+    } catch (err) {
+      alert(JSON.stringify(err));
     }
-
-    const res = await axios.post(url, form);
-    console.log(res);
   }
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, first_name: event.target.value });
+    setCustomerData({ ...customerData, first_name: event.target.value });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, last_name: event.target.value });
+    setCustomerData({ ...customerData, last_name: event.target.value });
   }
 
   function handleAddressChange(event) {
-    setForm({ ...form, address: event.target.value });
+    setCustomerData({ ...customerData, address: event.target.value });
+  }
+
+  function handlePhoneChange(event) {
+    setCustomerData({ ...customerData, phone: event.target.value });
   }
 
   function handleSuburbChange(event) {
-    setForm({ ...form, suburb: event.target.value });
+    setCustomerData({ ...customerData, suburb: event.target.value });
   }
 
   function handleStateChange(event) {
-    setForm({ ...form, state: event.target.value });
+    setCustomerData({ ...customerData, state: event.target.value });
   }
 
   function handlePostcodeChange(event) {
-    setForm({ ...form, postcode: event.target.value });
+    setCustomerData({ ...customerData, postcode: event.target.value });
   }
 
   function handlePasswordChange(event) {
-    setForm({ ...form, password: event.target.value });
+    setCustomerData({ ...customerData, password: event.target.value });
   }
 
   function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirm_password: event.target.value });
+    setCustomerData({ ...customerData, confirm_password: event.target.value });
   }
-
-  console.log(form);
 
   return (
     <div>
@@ -84,7 +96,7 @@ function CustomerAccount() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -103,7 +115,7 @@ function CustomerAccount() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -142,16 +154,14 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.firstName}
-                  value={form.first_name}
+                  value={customerData.first_name}
                   onChange={handleFirstNameChange}
                 />
               </Col>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.lastName}
-                  value={form.last_name}
+                  value={customerData.last_name}
                   onChange={handleLastNameChange}
                 />
               </Col>
@@ -162,7 +172,7 @@ function CustomerAccount() {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="text"
-              placeholder={user.email}
+              value={customerData.email}
               disabled="disabled"
             />
           </Form.Group>
@@ -171,9 +181,17 @@ function CustomerAccount() {
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder={user.address}
-              value={form.address}
+              value={customerData.address}
               onChange={handleAddressChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicAddress_1">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              type="text"
+              value={customerData.phone}
+              onChange={handlePhoneChange}
             />
           </Form.Group>
 
@@ -193,48 +211,25 @@ function CustomerAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter suburb"
-                  value={form.suburb}
+                  value={customerData.suburb}
                   onChange={handleSuburbChange}
                 />
               </Col>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter state"
-                  value={form.state}
+                  value={customerData.state}
                   onChange={handleStateChange}
                 />
               </Col>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter postcode"
-                  value={form.postcode}
+                  value={customerData.postcode}
                   onChange={handlePostcodeChange}
                 />
               </Col>
             </Row>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={form.password}
-              onChange={handlePasswordChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter confirm Password"
-              value={form.confirm_password}
-              onChange={handleConfirmedPasswordChange}
-            />
           </Form.Group>
         </Form>
 

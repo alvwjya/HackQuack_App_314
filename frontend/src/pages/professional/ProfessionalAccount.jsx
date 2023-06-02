@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import {
   Container,
   Button,
@@ -9,64 +9,81 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import axios from "axios";
 
 function ProfessionalAccount() {
   const { user } = useContext(AuthContext);
+  const [reload, setReload] = useState(false);
 
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-
-    abn: "",
-    tfn: "",
-
-    address: "",
-    suburb: "",
-    state: "",
-    postcode: "",
-
-    service_type_id: 0,
-
-    password: "",
-    confirmedPassword: "",
+  // GET USER-PROFESSIONAL DATA
+  const url = `/user/professional/${user.userId}`;
+  const [professionalData, setProfessionalData] = useState({
+    service_type: { service_type_name: undefined },
   });
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setProfessionalData(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [reload]);
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    try {
+      const url = `/user/professional/${user.userId}`;
+      const res = await axios.put(url, professionalData);
+      if (res.status === 200) {
+        setReload(!reload);
+        return alert("Successful");
+      }
+      return alert("Something wrong");
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
+  }
 
   function handleFirstNameChange(event) {
-    setForm({ ...form, first_name: event.target.value });
+    setProfessionalData({
+      ...professionalData,
+      first_name: event.target.value,
+    });
   }
 
   function handleLastNameChange(event) {
-    setForm({ ...form, last_name: event.target.value });
+    setProfessionalData({ ...professionalData, last_name: event.target.value });
   }
 
   function handleAddressChange(event) {
-    setForm({ ...form, address: event.target.value });
+    setProfessionalData({ ...professionalData, address: event.target.value });
   }
 
   function handleSuburbChange(event) {
-    setForm({ ...form, suburb: event.target.value });
+    setProfessionalData({ ...professionalData, suburb: event.target.value });
   }
 
   function handleStateChange(event) {
-    setForm({ ...form, state: event.target.value });
+    setProfessionalData({ ...professionalData, state: event.target.value });
   }
 
   function handlePostcodeChange(event) {
-    setForm({ ...form, postcode: event.target.value });
+    setProfessionalData({ ...professionalData, postcode: event.target.value });
   }
 
-  function handlePasswordChange(event) {
-    setForm({ ...form, password: event.target.value });
-  }
 
-  function handleConfirmedPasswordChange(event) {
-    setForm({ ...form, confirmedPassword: event.target.value });
-  }
+
+
+  console.log(professionalData)
+
 
   return (
     <div>
@@ -78,7 +95,7 @@ function ProfessionalAccount() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -97,7 +114,7 @@ function ProfessionalAccount() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -136,16 +153,14 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.firstName}
-                  value={form.first_name}
+                  value={professionalData.first_name}
                   onChange={handleFirstNameChange}
                 />
               </Col>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={user.lastName}
-                  value={form.last_name}
+                  value={professionalData.last_name}
                   onChange={handleLastNameChange}
                 />
               </Col>
@@ -154,15 +169,14 @@ function ProfessionalAccount() {
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="text" placeholder={user.email} disabled />
+            <Form.Control type="text" value={professionalData.email} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicAddress_1">
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter address"
-              value={form.address}
+              value={professionalData.address}
               onChange={handleAddressChange}
             />
           </Form.Group>
@@ -183,24 +197,21 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter suburb"
-                  value={form.suburb}
+                  value={professionalData.suburb}
                   onChange={handleSuburbChange}
                 />
               </Col>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter state"
-                  value={form.state}
+                  value={professionalData.state}
                   onChange={handleStateChange}
                 />
               </Col>
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder="Enter postcode"
-                  value={form.postcode}
+                  value={professionalData.postcode}
                   onChange={handlePostcodeChange}
                 />
               </Col>
@@ -209,36 +220,20 @@ function ProfessionalAccount() {
 
           <Form.Group className="mb-3" controlId="formBasicTaxNumber">
             <Form.Label>Tax Number</Form.Label>
-            <Form.Control type="text" placeholder="Enter tax number" disabled />
+            <Form.Control type="text" value={professionalData.tfn} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicABN">
             <Form.Label>ABN</Form.Label>
-            <Form.Control type="text" placeholder="Enter ABN" disabled />
+            <Form.Control type="text" value={professionalData.abn} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Service Type</Form.Label>
-            <Form.Control type="text" placeholder="Service Type" disabled />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
             <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={form.password}
-              onChange={handlePasswordChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter confirm Password"
-              value={form.confirmedPassword}
-              onChange={handleConfirmedPasswordChange}
+              type="text"
+              value={professionalData.service_type.service_type_name}
+              disabled
             />
           </Form.Group>
         </Form>
@@ -246,7 +241,7 @@ function ProfessionalAccount() {
         <hr />
 
         <div className="d-grid gap-2">
-          <Button variant="primary" size="lg">
+          <Button variant="primary" size="lg" onClick={handleSubmit}>
             Save
           </Button>
           <Button variant="cancel" size="lg">

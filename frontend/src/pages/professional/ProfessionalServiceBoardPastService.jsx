@@ -1,13 +1,39 @@
-import React, { useContext } from "react";
-import { Navbar, Nav, Image, Container, Card, Button } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Navbar,
+  Nav,
+  Image,
+  Container,
+  Card,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
 import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 
 function ProfessionalServicePastService() {
   const { user } = useContext(AuthContext);
-  const data = [1, 2, 3, 4, 5];
+
+  const [getPastRequest, setGetPastRequest] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const { data } = await axios.get(
+          `/service/professional/get-past-service/${user.userId}`
+        );
+        setGetPastRequest(data);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    }
+    getData();
+  }, []);
+
+  console.log(getPastRequest);
+
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
@@ -18,7 +44,7 @@ function ProfessionalServicePastService() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -37,7 +63,7 @@ function ProfessionalServicePastService() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -45,6 +71,7 @@ function ProfessionalServicePastService() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <Container className="py-5">
         <h1>SERVICE BOARD</h1>
 
@@ -88,24 +115,63 @@ function ProfessionalServicePastService() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div class="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Customer Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <LinkContainer to="/receipt">
-                  <Button className="btn-primary">Receipt</Button>
-                </LinkContainer>
-              </Card.Body>
+        {getPastRequest.length === 0 ? (
+          <>
+            <br />
+            No Past Service Available
+          </>
+        ) : (
+          <>
+            {getPastRequest.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>Service ID: {data.id}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>
+                      {" "}
+                      Service Title:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .request_title
+                      }
+                    </Card.Title>
+                    <Card.Subtitle>
+                      Professional Name:{" "}
+                      {
+                        data.professional_service_request.professional
+                          .first_name
+                      }{" "}
+                      {data.professional_service_request.professional.last_name}
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Text>
+                      Service Type:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .service_type.service_type_name
+                      }
+                    </Card.Text>
+                    <Card.Text>
+                      Information:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .description
+                      }
+                    </Card.Text>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                    <LinkContainer to="/receipt">
+                      <Button variant="primary">Receipt</Button>
+                    </LinkContainer>
+                  </Card.Body>
+
+                  <Card.Footer>
+                    Time: {new Date(data.professional_service_request.service_request.request_time).toLocaleString()}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

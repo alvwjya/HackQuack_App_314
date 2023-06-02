@@ -9,13 +9,36 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function CustomerServiceBoardPastService() {
   const { user } = useContext(AuthContext);
-  const data = [1, 2, 3, 4, 5];
+  const navigate = useNavigate();
+
+  const [getPastRequest, setGetPastRequest] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const { data } = await axios.get(
+          `/service/client/get-past-service/${user.userId}`
+        );
+        setGetPastRequest(data);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    }
+    getData();
+  }, []);
+
+  async function handleSubmit(event) {
+    return navigate("/customer-rating-and-review", {
+      state: JSON.parse(event.target.value),
+    });
+  }
 
   async function handleRatingAndReviewOnClick(event) {}
 
@@ -29,7 +52,7 @@ function CustomerServiceBoardPastService() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -48,7 +71,7 @@ function CustomerServiceBoardPastService() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -91,27 +114,72 @@ function CustomerServiceBoardPastService() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div class="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Professional Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <LinkContainer to="/customer-rating-and-review">
-                  <Button variant="primary">Rating and Review</Button>
-                </LinkContainer>{" "}
-                <LinkContainer to="/receipt">
-                  <Button variant="primary">Receipt</Button>
-                </LinkContainer>
-              </Card.Body>
+        {getPastRequest.length === 0 ? (
+          <>
+            <br />
+            No Past Service Available
+          </>
+        ) : (
+          <>
+            {getPastRequest.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>Service ID: {data.id}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>
+                      {" "}
+                      Service Title:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .request_title
+                      }
+                    </Card.Title>
+                    <Card.Subtitle>
+                      Professional Name:{" "}
+                      {
+                        data.professional_service_request.professional
+                          .first_name
+                      }{" "}
+                      {data.professional_service_request.professional.last_name}
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Text>
+                      Service Type:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .service_type.service_type_name
+                      }
+                    </Card.Text>
+                    <Card.Text>
+                      Information:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .description
+                      }
+                    </Card.Text>
+                    <Button
+                      onClick={handleSubmit}
+                      value={JSON.stringify(data)}
+                      variant="primary"
+                    >
+                      Rating and Review
+                    </Button>{" "}
+                    <LinkContainer to="/receipt">
+                      <Button variant="primary">Receipt</Button>
+                    </LinkContainer>
+                  </Card.Body>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                  <Card.Footer>
+                    Time:{" "}
+                    {new Date(
+                      data.professional_service_request.service_request.request_time
+                    ).toLocaleString()}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

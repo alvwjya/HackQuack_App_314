@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import AuthContext from "../contexts/AuthContext";
 
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 function Login() {
   const { setUser } = useContext(AuthContext);
@@ -24,12 +25,8 @@ function Login() {
   });
 
   async function handleSubmit() {
-    const url = `/signin`;
-
-    if (form.password !== form.confirm_password) {
-      console.log("Password and confirm password don't match");
-      return;
-    }
+    console.log(API_ENDPOINT);
+    const url = `${API_ENDPOINT}/signin`;
 
     const res = await axios.post(url, form);
 
@@ -46,7 +43,6 @@ function Login() {
   }
 
   function handleUserTypeChange(event) {
-    console.log(event);
     setForm({ ...form, loginUserType: event });
   }
 
@@ -56,17 +52,6 @@ function Login() {
 
   function handlePasswordChange(event) {
     setForm({ ...form, loginPassword: event.target.value });
-  }
-
-  //To swap the customer and proffesional button colors
-  function colorChanger(params) {
-
-    if (1===1) {
-
-      
-      return;
-    }
-
   }
 
   return (
@@ -92,14 +77,13 @@ function Login() {
                   type="radio"
                   name="options"
                   defaultValue={"customer"}
-                  onChange={[handleUserTypeChange, colorChanger]}
+                  onChange={handleUserTypeChange}
                 >
                   <ToggleButton
-                    className="btn-customer-button"
                     id="customer"
                     value="customer"
                     checked={form.loginUserType === "customer"}
-                    
+                    className="btn-customer-button"
                   >
                     Customer
                   </ToggleButton>
@@ -107,8 +91,7 @@ function Login() {
                     id="professional"
                     value="professional"
                     className="btn-professional-button"
-                    checked={form.loginUserType === "customer"}
-                    
+                    checked={form.loginUserType === "professional"}
                   >
                     Professional
                   </ToggleButton>
@@ -143,7 +126,7 @@ function Login() {
               <hr />
 
               <div className="d-grid gap-2">
-                <Button onClick={handleSubmit}>Login </Button>
+                <Button onClick={handleSubmit}>Login</Button>
               </div>
 
               <div className="py-2 d-flex justify-content-center">

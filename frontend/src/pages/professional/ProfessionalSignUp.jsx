@@ -8,15 +8,14 @@ function ProfessionalSignUp() {
   const [serviceTypes, setServiceTypes] = useState([]);
   const navigate = useNavigate();
 
-  const url = `/get-service-types`;
-
   useEffect(() => {
+    const url = `/service-types`;
     async function fetchData() {
       const res = await axios.get(url);
       setServiceTypes(res.data);
     }
     fetchData();
-  }, [url]);
+  }, []);
 
   const service_type = serviceTypes;
 
@@ -27,32 +26,23 @@ function ProfessionalSignUp() {
 
     abn: "",
     tfn: "",
-
     address: "",
     suburb: "",
     state: "",
     postcode: "",
-
     service_type_id: 0,
-
     password: "",
     confirm_password: "",
+    type: "professional",
   });
 
   async function handleSubmit() {
-    const url = `/signup/professional`;
-
     if (form.password !== form.confirm_password) {
       console.log("Password and confirm password don't match");
       return;
     }
 
-    const res = await axios.post(url, form);
-    if (res.status === 200) {
-      return navigate("/");
-    } else {
-      return alert(JSON.stringify(res.data));
-    }
+    return navigate("/payment-method", { state: form });
   }
 
   function handleFirstNameChange(event) {
@@ -77,6 +67,10 @@ function ProfessionalSignUp() {
 
   function handleAddressChange(event) {
     setForm({ ...form, address: event.target.value });
+  }
+
+  function handlePhoneChange(event) {
+    setForm({ ...form, phone: event.target.value });
   }
 
   function handleSuburbChange(event) {
@@ -126,6 +120,7 @@ function ProfessionalSignUp() {
                 placeholder="Enter first name"
                 value={form.first_name}
                 onChange={handleFirstNameChange}
+                required
               />
             </Col>
             <Col>
@@ -134,6 +129,7 @@ function ProfessionalSignUp() {
                 placeholder="Enter last name"
                 value={form.last_name}
                 onChange={handleLastNameChange}
+                required
               />
             </Col>
           </Row>
@@ -142,10 +138,21 @@ function ProfessionalSignUp() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
-            type="text"
+            type="email"
             placeholder="Enter email"
             value={form.email}
             onChange={handleEmailChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPhone">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter phone number"
+            value={form.phone}
+            onChange={handlePhoneChange}
           />
         </Form.Group>
 
@@ -156,6 +163,7 @@ function ProfessionalSignUp() {
             placeholder="Enter tax number"
             value={form.tfn}
             onChange={handleTaxNumber}
+            required
           />
         </Form.Group>
 
@@ -166,6 +174,7 @@ function ProfessionalSignUp() {
             placeholder="Enter ABN"
             value={form.abn}
             onChange={handleABN}
+            required
           />
         </Form.Group>
 
@@ -176,6 +185,7 @@ function ProfessionalSignUp() {
             placeholder="Enter address"
             value={form.address}
             onChange={handleAddressChange}
+            required
           />
         </Form.Group>
 
@@ -198,6 +208,7 @@ function ProfessionalSignUp() {
                 placeholder="Enter suburb"
                 value={form.suburb}
                 onChange={handleSuburbChange}
+                required
               />
             </Col>
             <Col>
@@ -206,6 +217,7 @@ function ProfessionalSignUp() {
                 placeholder="Enter state"
                 value={form.state}
                 onChange={handleStateChange}
+                required
               />
             </Col>
             <Col>
@@ -214,6 +226,7 @@ function ProfessionalSignUp() {
                 placeholder="Enter postcode"
                 value={form.postcode}
                 onChange={handlePostcodeChange}
+                required
               />
             </Col>
           </Row>
@@ -225,10 +238,15 @@ function ProfessionalSignUp() {
             aria-label="selectServiceType"
             value={form.serviceType}
             onChange={handleServiceTypeChange}
+            required
           >
             <option>Please select</option>
-            {service_type.map((item, index) => {
-              return <option value={item.id}>{item.service_type_name}</option>;
+            {service_type.map((item) => {
+              return (
+                <option key={item.id} value={item.id}>
+                  {item.service_type_name}
+                </option>
+              );
             })}
           </Form.Select>
         </Form.Group>
@@ -240,6 +258,7 @@ function ProfessionalSignUp() {
             placeholder="Enter password"
             value={form.password}
             onChange={handlePasswordChange}
+            required
           />
         </Form.Group>
 
@@ -250,24 +269,18 @@ function ProfessionalSignUp() {
             placeholder="Enter confirm Password"
             value={form.confirm_password}
             onChange={handleConfirmedPasswordChange}
+            required
           />
         </Form.Group>
-
-        <Button href="/add-payment-method" variant="primary" size="lg">
-          Add Payment Method
-        </Button>
       </Form>
 
       <hr />
 
       <div className="d-grid gap-2">
-        <Button
-          className="btn-professional-button"
-          size="lg"
-          onClick={handleSubmit}
-        >
-          Sign Up
+        <Button onClick={handleSubmit} variant="primary" size="lg">
+          Add Payment Method
         </Button>
+
         <Button href="/" className="btn-cancel" size="lg">
           Cancel
         </Button>

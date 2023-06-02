@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Navbar, Container, Button, Image } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 function CustomerDashboard() {
   const { user } = useContext(AuthContext);
-
+console.log(user)
   return (
     <div>
       <Navbar bg="customer-tab" variant="light">
@@ -16,7 +20,7 @@ function CustomerDashboard() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -33,7 +37,7 @@ function CustomerDashboard() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -70,7 +74,7 @@ function CustomerDashboard() {
             </Button>
           </LinkContainer>
 
-          <LinkContainer to="/payment-transaction">
+          <LinkContainer to="/customer-payment-transaction">
             <Button className="btn-primary" size="lg">
               Payment Transaction
             </Button>

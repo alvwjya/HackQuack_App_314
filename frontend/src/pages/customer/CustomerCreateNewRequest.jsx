@@ -11,13 +11,7 @@ function CustomerCreateNewRequest() {
   const navigate = useNavigate();
 
   const [service_type, setServiceType] = useState([]);
-  const [form, setForm] = useState({
-    taskTitle: "",
-    taskDescription: "",
-    serviceType: 0,
-  });
-
-  const url = `/get-service-types`;
+  const url = `/service-types`;
   useEffect(() => {
     async function getData() {
       const res = await axios.get(url);
@@ -28,10 +22,14 @@ function CustomerCreateNewRequest() {
     getData();
   }, [url]);
 
-  console.log(service_type);
+  const [form, setForm] = useState({
+    taskTitle: "",
+    taskDescription: "",
+    serviceType: 0,
+  });
 
   async function handleSubmit() {
-    const url = `/client-new-request`;
+    const url = `/service/client/new-request`;
     const reqBody = {
       client_id: user.userId,
       request_title: form.taskTitle,
@@ -72,7 +70,7 @@ function CustomerCreateNewRequest() {
                 src="/favicon.ico"
                 width="30"
                 height="30"
-                class="d-inline-block align-top"
+                className="d-inline-block align-top"
                 alt=""
               />{" "}
               HACKQUACK
@@ -89,7 +87,7 @@ function CustomerCreateNewRequest() {
                   src="/newlogo.ico"
                   width="30"
                   height="30"
-                  class="d-inline-block align-top"
+                  className="d-inline-block align-top"
                   alt=""
                 />
               </Nav.Link>
@@ -143,13 +141,11 @@ function CustomerCreateNewRequest() {
           <hr />
 
           <div className="d-grid gap-2">
-            <LinkContainer to="">
-              <Button variant="primary" size="lg" onClick={handleSubmit}>
-                Make Request
-              </Button>
-            </LinkContainer>
+            <Button variant="primary" size="lg" onClick={handleSubmit}>
+              Make Request
+            </Button>
 
-            <LinkContainer to="">
+            <LinkContainer to="/customer-dashboard">
               <Button variant="cancel" size="lg">
                 Cancel
               </Button>
