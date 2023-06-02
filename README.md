@@ -3,7 +3,7 @@
 
 ## Requirement
 
-```node.js```
+```node.js v18.12.0 (LTS)```
 
 ```mysql```
 
