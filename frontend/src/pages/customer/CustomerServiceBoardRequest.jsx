@@ -181,14 +181,13 @@ function CustomerServiceBoardRequest() {
                             Service Type: {data.service_type.service_type_name}
                           </Card.Text>
                           <Card.Text>Information: {data.description}</Card.Text>
-
                           <Button
                             className="btn-warning"
                             value={data.id}
                             onClick={handleCancelRequestOnClick}
                           >
                             Cancel Request
-                          </Button>
+                          </Button>{" "}
                           <Button
                             variant="primary"
                             value={data.id}
