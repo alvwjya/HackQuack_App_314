@@ -14,3 +14,15 @@ Open the code in the Visual Studio Code
 ```
 cd backend
 ```
+
+```
+npx prisma migrate dev
+```
+
+```
+npm i
+```
+
+```
+npm start
+```
