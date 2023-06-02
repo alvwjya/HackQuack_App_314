@@ -35,7 +35,13 @@ function ProfessionalAccount() {
     getData();
   }, []);
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    const url = `/account/professional`;
+
+    const res = await axios.post(url, professionalData);
+
+    console.log(res);
+  }
 
   function handleFirstNameChange(event) {
     setProfessionalData({

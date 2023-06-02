@@ -40,12 +40,8 @@ function CustomerAccount() {
   async function handleSubmit() {
     const url = `/account/customer`;
 
-    if (customerData.password !== customerData.confirm_password) {
-      alert("Password and confirm password don't match");
-      return;
-    }
-
     const res = await axios.post(url, customerData);
+
     console.log(res);
   }
 
