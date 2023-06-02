@@ -3,10 +3,10 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.get("/get-past-service/:userId", async function (req, res) {
+router.get("/client/:userId", async function (req, res) {
   try {
     const userId = req.params.userId;
-    const getPastService = await prisma.transaction.findMany({
+    const getTransaction = await prisma.transaction.findMany({
       where: {
         professional_service_request: {
           service_request: { client_id: parseInt(userId) },
@@ -18,17 +18,19 @@ router.get("/get-past-service/:userId", async function (req, res) {
       include: {
         professional_service_request: {
           select: {
-            service_request: {
-              select: { service_type: true, client: true, description: true },
-            },
             professional: true,
+            cost: true,
+            service_request: {
+              include: {
+                client: true,
+              },
+            },
           },
         },
       },
     });
-    res.status(200).json(getPastService);
+    res.status(200).json(getTransaction);
   } catch (err) {
-    throw err;
     res.status(500).json(err);
   }
 });

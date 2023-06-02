@@ -5,18 +5,17 @@ const router = express.Router();
 
 // Route for submitting a rating and review
 router.post("/new-rating", async (req, res) => {
-  const { clientId, transactionId, rating, review } = req.body;
-
+  const { client_id, transaction_id, rating, review } = req.body;
   try {
     const createdRating = await prisma.rating.create({
       data: {
         rating: rating,
         review: review,
         client: {
-          connect: { id: parseInt(clientId) },
+          connect: { id: parseInt(client_id) },
         },
         transaction: {
-          connect: { id: parseInt(transactionId) },
+          connect: { id: parseInt(transaction_id) },
         },
       },
     });

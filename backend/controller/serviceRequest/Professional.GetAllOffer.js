@@ -25,7 +25,6 @@ router.get("/get-all-offer/:userId", async function (req, res) {
     });
     res.status(200).json(getAllOffer);
   } catch (err) {
-    throw err;
     res.status(500).json(err);
   }
 });
