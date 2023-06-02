@@ -12,12 +12,11 @@ import {
 import { LinkContainer } from "react-router-bootstrap";
 
 import AuthContext from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ProfessionalAccount() {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [reload, setReload] = useState(false);
 
   // GET USER-PROFESSIONAL DATA
   const url = `/user/professional/${user.userId}`;
@@ -37,14 +36,20 @@ function ProfessionalAccount() {
       }
     }
     getData();
-  }, [url]);
+  }, [reload]);
 
   async function handleSubmit() {
-    const url = `/account/professional`;
-
-    const res = await axios.post(url, professionalData);
-
-    console.log(res);
+    try {
+      const url = `/user/professional/${user.userId}`;
+      const res = await axios.put(url, professionalData);
+      if (res.status === 200) {
+        setReload(!reload);
+        return alert("Successful");
+      }
+      return alert("Something wrong");
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
   }
 
   function handleFirstNameChange(event) {
@@ -74,16 +79,11 @@ function ProfessionalAccount() {
     setProfessionalData({ ...professionalData, postcode: event.target.value });
   }
 
-  function handlePasswordChange(event) {
-    setProfessionalData({ ...professionalData, password: event.target.value });
-  }
 
-  function handleConfirmedPasswordChange(event) {
-    setProfessionalData({
-      ...professionalData,
-      confirmedPassword: event.target.value,
-    });
-  }
+
+
+  console.log(professionalData)
+
 
   return (
     <div>

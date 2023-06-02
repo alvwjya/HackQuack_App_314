@@ -22,7 +22,7 @@ function ProfessionalServicePastService() {
     async function getData() {
       try {
         const { data } = await axios.get(
-          `/service/client/get-past-service/${user.userId}`
+          `/service/professional/get-past-service/${user.userId}`
         );
         setGetPastRequest(data);
       } catch (err) {
@@ -126,20 +126,46 @@ function ProfessionalServicePastService() {
               <div className="container py-3">
                 <Card>
                   <Card.Header>Service ID: {data.id}</Card.Header>
-
                   <Card.Body>
-                    <Card.Title>Service Title: {data.request_title}</Card.Title>
-                    <Card.Subtitle>Customer Name</Card.Subtitle>
+                    <Card.Title>
+                      {" "}
+                      Service Title:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .request_title
+                      }
+                    </Card.Title>
+                    <Card.Subtitle>
+                      Professional Name:{" "}
+                      {
+                        data.professional_service_request.professional
+                          .first_name
+                      }{" "}
+                      {data.professional_service_request.professional.last_name}
+                    </Card.Subtitle>
                     <br />
-                    <Card.Text>Service Type: {}</Card.Text>
-                    <Card.Text>Information: {data.description}</Card.Text>
+                    <Card.Text>
+                      Service Type:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .service_type.service_type_name
+                      }
+                    </Card.Text>
+                    <Card.Text>
+                      Information:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .description
+                      }
+                    </Card.Text>
+
                     <LinkContainer to="/receipt">
-                      <Button className="btn-primary">Receipt</Button>
+                      <Button variant="primary">Receipt</Button>
                     </LinkContainer>
                   </Card.Body>
 
                   <Card.Footer>
-                    Time: {new Date(data.request_time).toLocaleString()}
+                    Time: {new Date(data.professional_service_request.service_request.request_time).toLocaleString()}
                   </Card.Footer>
                 </Card>
               </div>

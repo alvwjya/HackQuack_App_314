@@ -157,7 +157,6 @@ function CustomerServiceBoardPastService() {
                           .description
                       }
                     </Card.Text>
-
                     <Button
                       onClick={handleSubmit}
                       value={JSON.stringify(data)}
@@ -165,14 +164,16 @@ function CustomerServiceBoardPastService() {
                     >
                       Rating and Review
                     </Button>{" "}
-
                     <LinkContainer to="/receipt">
                       <Button variant="primary">Receipt</Button>
                     </LinkContainer>
                   </Card.Body>
 
                   <Card.Footer>
-                    Time: {new Date(data.request_time).toLocaleString()}
+                    Time:{" "}
+                    {new Date(
+                      data.professional_service_request.service_request.request_time
+                    ).toLocaleString()}
                   </Card.Footer>
                 </Card>
               </div>

@@ -38,11 +38,16 @@ function CustomerAccount() {
   }, [url]);
 
   async function handleSubmit() {
-    const url = `/account/customer`;
-
-    const res = await axios.post(url, customerData);
-
-    console.log(res);
+    try {
+      const url = `/user/client/${user.userId}`;
+      const res = await axios.put(url, customerData);
+      if (res.status === 200) {
+        return alert("Successful");
+      }
+      return alert("Something wrong");
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
   }
 
   function handleFirstNameChange(event) {
