@@ -1,4 +1,4 @@
-# HACK QUACK TRADIES APP
+# HACKQUACK TRADIES APP
 ## CSIT314 - Software Development Methodologies
 
 ## Requirement
