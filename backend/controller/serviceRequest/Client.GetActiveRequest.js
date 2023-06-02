@@ -23,8 +23,7 @@ router.get("/get-active-request/:userId", async function (req, res) {
         });
         return {
           ...item,
-          client: getMoreInfo.client,
-          service_type: getMoreInfo.service_type,
+          service_request:getMoreInfo
         };
       })
     );
