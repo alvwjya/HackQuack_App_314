@@ -30,7 +30,7 @@ router.post("/", async function (req, res) {
           userId: signinCustomer.id,
           userType: 0,
           firstName: signinCustomer.first_name,
-          lastname: signinCustomer.last_name,
+          lastName: signinCustomer.last_name,
         });
     }
 

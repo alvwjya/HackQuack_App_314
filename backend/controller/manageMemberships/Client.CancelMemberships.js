@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.delete("/client/:userId", async function (req, res) {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const deleteClientMemberships = await prisma.membership.deleteMany({
       where: {
         client: { id: parseInt(userId) },

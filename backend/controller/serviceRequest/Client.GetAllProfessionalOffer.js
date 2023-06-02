@@ -3,43 +3,43 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const router = express.Router();
 
-router.get(
-  "/view-offers/:userId",
-  async function (req, res) {
-    console.log(req.params)
-    try {
-      const {userId} = req.params;
-      console.log(userId)
-      const getAllActive = await prisma.service_request.findMany({
-        where: {
-          client_id: parseInt(userId),
-          professional_service_request: {
-            none: {
-              transaction: {
-                some: {
-                  professional_id: {
-                    not: null,
-                  },
-                },
+router.get("/view-offers/:requestId", async function (req, res) {
+  try {
+    const { requestId } = req.params;
+    const getAllActive = await prisma.professional_service_request.findMany({
+      where: {
+        service_request: { id: parseInt(requestId) },
+        acceptance: 1,
+      },
+      include: { professional: true },
+    });
+
+    const data = await Promise.all(
+      getAllActive.map(async (item) => {
+        const getProfessionalRating = await prisma.rating.findMany({
+          where: {
+            transaction: {
+              professional_service_request: {
+                professional_id: item.professional_id,
               },
             },
           },
-        },
-      });
-
-      const getUserLocation = await prisma.client.findUnique({
-        where:{
-          id:parseInt(userId)
-        }
+        });
+        const sum = getProfessionalRating.reduce(
+          (partialSum, a) => partialSum + a,
+          0
+        );
+        return {
+          ...item,
+          professional_rating: sum / getProfessionalRating.length || 0,
+        };
       })
-  
-      res.status(200).json({getAllActive, getUserLocation});
+    );
 
-    } catch (err) {
-      // throw err;
-      res.status(500).json(err);
-    }
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json(err);
   }
-);
+});
 
 module.exports = router;

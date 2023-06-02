@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const getProfessionalRating = require("./GetProfessionalRating");
 const newRatingAndReview = require("./NewRatingAndReview");
+const getRatingAndReview = require("./GetRatingReview");
 
-router.use("/", getProfessionalRating);
 router.use("/", newRatingAndReview);
+router.use("/", getRatingAndReview);
 
 module.exports = router;

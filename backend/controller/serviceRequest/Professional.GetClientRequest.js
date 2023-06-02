@@ -24,6 +24,7 @@ router.get("/view-all-offers/:professional_id", async function (req, res) {
           id: getProfessionalServiceTypeId.service_type_id,
         },
       },
+      include: { client: true, service_type: true },
     });
 
     res.json(viewAllActiveRequest);

@@ -6,6 +6,8 @@ const membership = require("./controller/manageMemberships/index");
 const serviceRequest = require("./controller/serviceRequest/index");
 const viewServiceTypes = require("./controller/Servicetypes/index");
 const ratingAndReview = require("./controller/ratingAndReview");
+const userControl = require("./controller/userControl/index");
+const transaction = require("./controller/transaction/index");
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.use("/membership", membership);
 app.use("/service", serviceRequest);
 app.use("/service-types", viewServiceTypes);
 app.use("/rating-review", ratingAndReview);
+app.use("/user", userControl);
+app.use("/transaction", transaction);
 
 // Port
 app.listen(port, () => {

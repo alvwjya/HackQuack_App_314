@@ -4,14 +4,13 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 router.get("/professional/:userId", async function (req, res) {
-  const userId = req.params.userId;
   try {
-    const getMemberships = await prisma.membership.findFirst({
-      where: {
-        professional_id: parseInt(userId),
-      },
+    const userId = req.params.userId;
+    const getProfessionalDetails = await prisma.professional.findUnique({
+      where: { id: parseInt(userId) },
+      include: { service_type: true },
     });
-    res.status(200).json(getMemberships);
+    res.status(200).json(getProfessionalDetails);
   } catch (err) {
     res.status(500).json(err);
   }
