@@ -115,40 +115,49 @@ function ProfessionalServiceBoardOffer() {
           </LinkContainer>
         </Nav>
 
-        {getAllOffer.map((data) => (
-          <div className="container py-3">
-            <Card>
-              <Card.Header>
-                Type of Issue:{" "}
-                {data.service_request.service_type.service_type_name}
-              </Card.Header>
-              <Card.Body>
-                <Card.Title>
-                  Service Title: {data.service_request.request_title}
-                </Card.Title>
-                <Card.Subtitle>{`Customer Name: ${data.service_request.client.first_name} ${data.service_request.client.last_name}`}</Card.Subtitle>
-                <Card.Text>
-                  Description: {data.service_request.description}
-                </Card.Text>
+        {getAllOffer.length === 0 ? (
+          <>
+            <br />
+            No Offer
+          </>
+        ) : (
+          <>
+            {getAllOffer.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>
+                    Type of Issue:{" "}
+                    {data.service_request.service_type.service_type_name}
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Title>
+                      Service Title: {data.service_request.request_title}
+                    </Card.Title>
+                    <Card.Subtitle>{`Customer Name: ${data.service_request.client.first_name} ${data.service_request.client.last_name}`}</Card.Subtitle>
+                    <Card.Text>
+                      Description: {data.service_request.description}
+                    </Card.Text>
 
-                <Button
-                  className="btn-warning"
-                  value={data.id}
-                  onClick={handleCancelOffer}
-                >
-                  Cancel Offer
-                </Button>
-              </Card.Body>
+                    <Button
+                      className="btn-warning"
+                      value={data.id}
+                      onClick={handleCancelOffer}
+                    >
+                      Cancel Offer
+                    </Button>
+                  </Card.Body>
 
-              <Card.Footer>{`Location: ${data.service_request.client.address}, ${data.service_request.client.suburb}`}</Card.Footer>
-              <Card.Footer>{`Time: ${new Date(
-                data.service_request.request_time
-              ).toLocaleDateString()} ${new Date(
-                data.service_request.request_time
-              ).toLocaleTimeString()}`}</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                  <Card.Footer>{`Location: ${data.service_request.client.address}, ${data.service_request.client.suburb}`}</Card.Footer>
+                  <Card.Footer>{`Time: ${new Date(
+                    data.service_request.request_time
+                  ).toLocaleDateString()} ${new Date(
+                    data.service_request.request_time
+                  ).toLocaleTimeString()}`}</Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

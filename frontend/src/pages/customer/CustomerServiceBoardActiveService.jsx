@@ -109,29 +109,37 @@ function CustomerServiceBoardActive() {
         {getActiveRequest.length === 0 ? (
           <>
             <br />
-            No Request
+            No Active Service
           </>
         ) : (
-          <></>
-        )}
-        {getActiveRequest.map((data) => (
-          <div className="container py-3">
-            <Card>
-              <Card.Header>
-                Type of Issue: {data.service_type.service_type_name}
-              </Card.Header>
+          <>
+            {getActiveRequest.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>
+                    Type of Issue: {data.service_type.service_type_name}
+                  </Card.Header>
 
-              <Card.Body>
-                <Card.Title> Service Title: {data.request_title}</Card.Title>
-                <Card.Subtitle>Professional Name</Card.Subtitle>
-                <Card.Text>Information: {data.description}</Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                Time: {new Date(data.request_time).toLocaleString()}
-              </Card.Footer>
-            </Card>
-          </div>
-        ))}
+                  <Card.Body>
+                    <Card.Title>
+                      {" "}
+                      Service Title: {data.request_title}
+                    </Card.Title>
+                    <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <Card.Text>Information: {data.description}</Card.Text>
+                  </Card.Body>
+
+                  <Card.Footer>
+                    {`Location: ${data.client.address}, ${data.client.suburb}`}
+                  </Card.Footer>
+                  <Card.Footer>
+                    Time: {new Date(data.request_time).toLocaleString()}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

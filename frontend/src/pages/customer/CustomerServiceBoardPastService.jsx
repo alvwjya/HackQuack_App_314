@@ -15,7 +15,23 @@ import axios from "axios";
 
 function CustomerServiceBoardPastService() {
   const { user } = useContext(AuthContext);
-  const data = [1, 2, 3, 4, 5];
+
+  const [getPastRequest, setGetPastRequest] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const { data } = await axios.get(
+          `/service/client/get-past-service/${user.userId}`
+        );
+        setGetPastRequest(data);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    }
+    getData();
+  }, []);
+
+  console.log(getPastRequest);
 
   async function handleRatingAndReviewOnClick(event) {}
 
@@ -91,27 +107,46 @@ function CustomerServiceBoardPastService() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div className="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Professional Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <LinkContainer to="/customer-rating-and-review">
-                  <Button variant="primary">Rating and Review</Button>
-                </LinkContainer>{" "}
-                <LinkContainer to="/receipt">
-                  <Button variant="primary">Receipt</Button>
-                </LinkContainer>
-              </Card.Body>
+        {getPastRequest.length === 0 ? (
+          <>
+            <br />
+            No Past Service
+          </>
+        ) : (
+          <>
+            {getPastRequest.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>
+                    Type of Issue: {data.service_type.service_type_name}
+                  </Card.Header>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                  <Card.Body>
+                    <Card.Title>
+                      {" "}
+                      Service Title: {data.request_title}
+                    </Card.Title>
+                    <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <Card.Text>Information: {data.description}</Card.Text>
+                    <LinkContainer to="/customer-rating-and-review">
+                      <Button variant="primary">Rating and Review</Button>
+                    </LinkContainer>{" "}
+                    <LinkContainer to="/receipt">
+                      <Button variant="primary">Receipt</Button>
+                    </LinkContainer>
+                  </Card.Body>
+
+                  <Card.Footer>
+                    {`Location: ${data.client.address}, ${data.client.suburb}`}
+                  </Card.Footer>
+                  <Card.Footer>
+                    Time: {new Date(data.request_time).toLocaleString()}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>
