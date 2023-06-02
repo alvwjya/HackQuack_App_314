@@ -52,7 +52,6 @@ function CustomerMembership() {
 
     if (res.status === 200) {
       alert("Successfully subscribe to membership!");
-      navigate("/customer-dashboard");
     } else {
       alert(JSON.stringify(res.data));
     }
@@ -69,7 +68,6 @@ function CustomerMembership() {
 
     if (res.status === 200) {
       alert("Successfully unsubscribe to membership!");
-      navigate("/customer-dashboard");
     } else {
       alert(JSON.stringify(res.data));
     }

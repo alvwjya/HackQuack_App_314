@@ -41,11 +41,10 @@ function CustomerAccount() {
     last_name: customerData.last_name,
     email: customerData.email,
     address: customerData.address,
+    phone: customerData.phone,
     suburb: customerData.suburb,
     state: customerData.state,
     postcode: customerData.postcode,
-    password: "",
-    confirm_password: "",
   });
 
   async function handleSubmit() {
@@ -70,6 +69,10 @@ function CustomerAccount() {
 
   function handleAddressChange(event) {
     setForm({ ...form, address: event.target.value });
+  }
+
+  function handlePhoneChange(event) {
+    setForm({ ...form, phone: event.target.value });
   }
 
   function handleSuburbChange(event) {
@@ -195,6 +198,16 @@ function CustomerAccount() {
             />
           </Form.Group>
 
+          <Form.Group className="mb-3" controlId="formBasicAddress_1">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder={customerData.phone}
+              value={form.phone}
+              onChange={handlePhoneChange}
+            />
+          </Form.Group>
+
           <Form.Group className="mb-3" controlId="formBasicAddress_2">
             <Row>
               <Col>
@@ -233,26 +246,6 @@ function CustomerAccount() {
                 />
               </Col>
             </Row>
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={form.password}
-              onChange={handlePasswordChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter confirm Password"
-              value={form.confirm_password}
-              onChange={handleConfirmedPasswordChange}
-            />
           </Form.Group>
         </Form>
 

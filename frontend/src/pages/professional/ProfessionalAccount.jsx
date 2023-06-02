@@ -260,26 +260,6 @@ function ProfessionalAccount() {
               disabled
             />
           </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={form.password}
-              onChange={handlePasswordChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter confirm Password"
-              value={form.confirmedPassword}
-              onChange={handleConfirmedPasswordChange}
-            />
-          </Form.Group>
         </Form>
 
         <hr />
