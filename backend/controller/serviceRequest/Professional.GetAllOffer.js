@@ -9,16 +9,23 @@ router.get("/get-all-offer/:userId", async function (req, res) {
     const getAllOffer = await prisma.professional_service_request.findMany({
       where: {
         professional: { id: parseInt(userId) },
-        acceptance: 1,
-        transaction: undefined,
+        OR: [{ transaction: { none: {} } }, { service_request: {} }],
       },
       include: {
-        service_request: { select: { service_type: true, client:true, request_title:true, request_time:true, description:true } },
-        
+        service_request: {
+          select: {
+            service_type: true,
+            client: true,
+            request_title: true,
+            request_time: true,
+            description: true,
+          },
+        },
       },
     });
     res.status(200).json(getAllOffer);
   } catch (err) {
+    throw err;
     res.status(500).json(err);
   }
 });
