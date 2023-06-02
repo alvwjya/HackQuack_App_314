@@ -11,6 +11,7 @@ function CustomerSignUp() {
     last_name: "",
     email: "",
     address: "",
+    phone: "",
     suburb: "",
     state: "",
     postcode: "",
@@ -21,7 +22,7 @@ function CustomerSignUp() {
 
   async function handleSubmit() {
     if (form.password !== form.confirm_password) {
-      console.log("Password and confirm password don't match!");
+      alert("Password and confirm password don't match!");
       return;
     }
     return navigate("/payment-method", { state: form });
@@ -41,6 +42,10 @@ function CustomerSignUp() {
 
   function handleAddressChange(event) {
     setForm({ ...form, address: event.target.value });
+  }
+
+  function handlePhoneChange(event) {
+    setForm({ ...form, phone: event.target.value });
   }
 
   function handleSuburbChange(event) {
@@ -108,6 +113,16 @@ function CustomerSignUp() {
             placeholder="Enter email"
             value={form.email}
             onChange={handleEmailChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPhone">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter phone number"
+            value={form.phone}
+            onChange={handlePhoneChange}
           />
         </Form.Group>
 
