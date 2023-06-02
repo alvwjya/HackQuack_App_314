@@ -38,7 +38,7 @@ npm start
 Run the Front End
 
 ```
-cd front end
+cd frontend
 ```
 
 ```
