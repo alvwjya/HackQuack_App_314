@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Navbar,
   Nav,
@@ -6,11 +6,15 @@ import {
   Container,
   Card,
   Button,
+  Form,
   Row,
   Col,
+  FormGroup,
+  Table,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -18,11 +22,38 @@ function ProfessionalServiceActiveService() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const url = `/${user.userId}`;
+  const [reload, setReload] = useState(false);
 
-  async function handleFinishService(event) {}
+  // GET ALL ACTIVE SERVICES
+  const [getAllServices, setAllServices] = useState([]);
+  useEffect(() => {
+    const url = `/service/professional/view-all-offers/${user.userId}`;
+    async function getData() {
+      try {
+        const res = await axios.get(url);
+        if (res.status === 200) {
+          setAllServices(res.data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getData();
+  }, [reload]);
 
-  const data = [1, 2, 3, 4, 5];
+  async function handleFinishService(event) {
+    const url = `/service/professional/`;
+    const reqBody = {};
+
+    const res = await axios.post(url, reqBody);
+
+    if (res.status === 200) {
+      navigate("/professional-service-board-past-service");
+    } else {
+      alert(JSON.stringify(res.data));
+    }
+  }
+
   return (
     <div>
       <Navbar bg="professional-tab" variant="light">
@@ -104,22 +135,53 @@ function ProfessionalServiceActiveService() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
-          <div className="container py-3">
-            <Card>
-              <Card.Header>Service Title</Card.Header>
-              <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
-                <Card.Subtitle>Customer Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
-                <Button className="btn-primary">Finish Service</Button>
-              </Card.Body>
+        {getAllServices.length === 0 ? (
+          <>
+            <br />
+            No Active Service
+          </>
+        ) : (
+          <>
+            {getAllServices.map((data) => (
+              <div className="container py-3">
+                <Card>
+                  <Card.Header>Service ID: {data.id}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>{data.request_title}</Card.Title>
+                    <Card.Subtitle>
+                      Customer Name: {data.client.first_name}{" "}
+                      {data.client.last_name}
+                    </Card.Subtitle>
+                    <br />
+                    <Card.Text>
+                      Service Type: {data.service_type.service_type_name}
+                    </Card.Text>
+                    <Card.Text>Information: {data.description}</Card.Text>
+                    <Button
+                      variant="primary"
+                      value={data.id}
+                      onClick={handleFinishService}
+                    >
+                      Finish Service
+                    </Button>
+                  </Card.Body>
 
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
-            </Card>
-          </div>
-        ))}
+                  <Card.Footer>
+                    {`Location: ${data.client.address}, ${data.client.suburb}`}
+                  </Card.Footer>
+                  <Card.Footer>
+                    Time:{" "}
+                    {`${new Date(
+                      data.request_time
+                    ).toLocaleDateString()} ${new Date(
+                      data.request_time
+                    ).toLocaleTimeString()}`}
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </>
+        )}
 
         <hr />
       </Container>

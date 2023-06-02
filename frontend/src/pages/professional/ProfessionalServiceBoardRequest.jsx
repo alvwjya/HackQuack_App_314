@@ -12,8 +12,9 @@ import {
   FormGroup,
   Table,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -23,22 +24,9 @@ function ProfessionalServiceBoardRequest() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // PROFESSIONAL OFFER SERVICE
-  const [serviceId, setServiceId] = useState(0);
+  // GET CURRENTLY REQUEST(S) FOR A SERVICE FROM CUSTOMER USER
   const [reload, setReload] = useState(false);
   const [getAllRequests, setAllRequests] = useState([]);
-
-  // PROFESSIONAL OFFER SERVICE - FORM - PRICE AND DETAIL
-  const [offerForm, setOfferForm] = useState(false);
-  const [form, setForm] = useState({
-    cost: 0,
-    acceptance: 0,
-    professional_id: user.userId,
-    service_request_id: 0,
-  });
-
-  // GET CURRENTLY REQUEST(S) FOR A SERVICE FROM CUSTOMER USER
-
   useEffect(() => {
     const url = `/service/professional/view-all-offers/${user.userId}`;
     async function getData() {
@@ -54,6 +42,17 @@ function ProfessionalServiceBoardRequest() {
     getData();
   }, [reload]);
 
+  // PROFESSIONAL OFFER SERVICE - FORM - PRICE AND DETAIL
+  const [offerForm, setOfferForm] = useState(false);
+  const [form, setForm] = useState({
+    cost: 0,
+    acceptance: 0,
+    professional_id: user.userId,
+    service_request_id: 0,
+  });
+
+  // PROFESSIONAL OFFER SERVICE
+  const [serviceId, setServiceId] = useState(0);
   function handleOffer(event) {
     setServiceId(event.currentTarget.value);
     if (parseInt(serviceId) === parseInt(event.currentTarget.value)) {

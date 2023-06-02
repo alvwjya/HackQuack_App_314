@@ -154,11 +154,14 @@ function CustomerServiceBoardRequest() {
           </LinkContainer>
         </Nav>
 
-        <Container>
+        <div>
           <Row>
             <Col>
               {allRequest.length === 0 ? (
-                <p>No Request</p>
+                <>
+                  <br />
+                  No Request
+                </>
               ) : (
                 <>
                   {allRequest.map((data) => (
@@ -209,7 +212,10 @@ function CustomerServiceBoardRequest() {
             {offerForm && (
               <Col>
                 {getAllOffer.length === 0 ? (
-                  <p>No Professional Offer</p>
+                  <>
+                    <br />
+                    No Professional Offer
+                  </>
                 ) : (
                   <div className="container py-3">
                     <strong>OFFER(S)</strong>
@@ -238,7 +244,7 @@ function CustomerServiceBoardRequest() {
               </Col>
             )}
           </Row>
-        </Container>
+        </div>
 
         <hr />
       </Container>
