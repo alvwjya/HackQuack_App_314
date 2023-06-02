@@ -9,8 +9,9 @@ import {
   Col,
   Image,
 } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 

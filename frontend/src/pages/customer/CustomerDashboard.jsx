@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Nav, Navbar, Container, Button, Image } from "react-bootstrap";
-import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
+
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 function CustomerDashboard() {
   const { user } = useContext(AuthContext);
-
+console.log(user)
   return (
     <div>
       <Navbar bg="customer-tab" variant="light">
