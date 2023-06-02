@@ -11,12 +11,28 @@
 
 Open the code in the Visual Studio Code
 
+Run the Back End
+
 ```
 cd backend
 ```
 
 ```
 npx prisma migrate dev
+```
+
+```
+npm i
+```
+
+```
+npm start
+```
+
+Run the Front End
+
+```
+cd front end
 ```
 
 ```
