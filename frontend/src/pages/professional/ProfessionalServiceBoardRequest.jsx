@@ -210,9 +210,6 @@ function ProfessionalServiceBoardRequest() {
                             <Card.Text>
                               Information: {data.description}
                             </Card.Text>
-                            <LinkContainer to="/professional-service-board-request-detail">
-                              <Button className="btn-info">Learn More</Button>
-                            </LinkContainer>{" "}
                             <Button
                               className="btn-warning"
                               value={data.id}

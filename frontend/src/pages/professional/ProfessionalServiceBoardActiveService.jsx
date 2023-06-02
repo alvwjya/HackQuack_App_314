@@ -1,17 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Navbar,
-  Nav,
-  Image,
-  Container,
-  Card,
-  Button,
-  Form,
-  Row,
-  Col,
-  FormGroup,
-  Table,
-} from "react-bootstrap";
+import { Navbar, Nav, Image, Container, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import AuthContext from "../../contexts/AuthContext";
@@ -27,7 +15,7 @@ function ProfessionalServiceActiveService() {
   // GET ALL ACTIVE SERVICES
   const [getAllServices, setAllServices] = useState([]);
   useEffect(() => {
-    const url = `/service/professional/view-all-offers/${user.userId}`;
+    const url = `/service/professional/get-active-service/${user.userId}`;
     async function getData() {
       try {
         const res = await axios.get(url);
@@ -41,14 +29,15 @@ function ProfessionalServiceActiveService() {
     getData();
   }, [reload]);
 
-  async function handleFinishService(event) {
-    const url = `/service/professional/`;
-    const reqBody = {};
+  console.log(getAllServices);
 
-    const res = await axios.post(url, reqBody);
+  async function handleFinishService(event) {
+    const res = await axios.put(
+      `service/professional/finish-service/${event.currentTarget.value}`
+    );
 
     if (res.status === 200) {
-      navigate("/professional-service-board-past-service");
+      setReload(!reload);
     } else {
       alert(JSON.stringify(res.data));
     }
@@ -145,18 +134,44 @@ function ProfessionalServiceActiveService() {
             {getAllServices.map((data) => (
               <div className="container py-3">
                 <Card>
-                  <Card.Header>Service ID: {data.id}</Card.Header>
+                  <Card.Header>Offer ID: {data.id}</Card.Header>
+                  <Card.Header>
+                    Service ID:{" "}
+                    {data.professional_service_request.service_request.id}
+                  </Card.Header>
                   <Card.Body>
-                    <Card.Title>{data.request_title}</Card.Title>
+                    <Card.Title>
+                      {
+                        data.professional_service_request.service_request
+                          .request_title
+                      }
+                    </Card.Title>
                     <Card.Subtitle>
-                      Customer Name: {data.client.first_name}{" "}
-                      {data.client.last_name}
+                      Customer Name:{" "}
+                      {
+                        data.professional_service_request.service_request.client
+                          .first_name
+                      }{" "}
+                      {
+                        data.professional_service_request.service_request.client
+                          .last_name
+                      }
                     </Card.Subtitle>
                     <br />
                     <Card.Text>
-                      Service Type: {data.service_type.service_type_name}
+                      Service Type:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .service_type.service_type_name
+                      }
                     </Card.Text>
-                    <Card.Text>Information: {data.description}</Card.Text>
+                    <Card.Text>
+                      Information:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .description
+                      }
+                    </Card.Text>
                     <Button
                       variant="primary"
                       value={data.id}
@@ -167,15 +182,13 @@ function ProfessionalServiceActiveService() {
                   </Card.Body>
 
                   <Card.Footer>
-                    {`Location: ${data.client.address}, ${data.client.suburb}`}
+                    {`Location: ${data.professional_service_request.service_request.client.address}, ${data.professional_service_request.service_request.client.suburb}`}
                   </Card.Footer>
                   <Card.Footer>
                     Time:{" "}
-                    {`${new Date(
-                      data.request_time
-                    ).toLocaleDateString()} ${new Date(
-                      data.request_time
-                    ).toLocaleTimeString()}`}
+                    {new Date(
+                      data.professional_service_request.service_request.request_time
+                    ).toLocaleString()}
                   </Card.Footer>
                 </Card>
               </div>
