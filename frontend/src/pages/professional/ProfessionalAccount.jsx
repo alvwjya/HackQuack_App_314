@@ -20,20 +20,24 @@ function ProfessionalAccount() {
   const navigate = useNavigate();
 
   // GET USER-PROFESSIONAL DATA
+  const url = `/user/professional/${user.userId}`;
   const [professionalData, setProfessionalData] = useState({
     service_type: { service_type_name: undefined },
   });
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get(`/user/professional/${user.userId}`);
-        setProfessionalData(res.data);
+        const res = await axios.get(url);
+        console.log(res.data);
+        if (res.status === 200) {
+          setProfessionalData(res.data);
+        }
       } catch (err) {
         console.log(err);
       }
     }
     getData();
-  }, []);
+  }, [url]);
 
   async function handleSubmit() {
     const url = `/account/professional`;
@@ -149,7 +153,6 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={professionalData.first_name}
                   value={professionalData.first_name}
                   onChange={handleFirstNameChange}
                 />
@@ -157,7 +160,6 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={professionalData.last_name}
                   value={professionalData.last_name}
                   onChange={handleLastNameChange}
                 />
@@ -167,18 +169,13 @@ function ProfessionalAccount() {
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder={professionalData.email}
-              disabled
-            />
+            <Form.Control type="text" value={professionalData.email} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicAddress_1">
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder={professionalData.address}
               value={professionalData.address}
               onChange={handleAddressChange}
             />
@@ -200,7 +197,6 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={professionalData.suburb}
                   value={professionalData.suburb}
                   onChange={handleSuburbChange}
                 />
@@ -208,7 +204,6 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={professionalData.state}
                   value={professionalData.state}
                   onChange={handleStateChange}
                 />
@@ -216,7 +211,6 @@ function ProfessionalAccount() {
               <Col>
                 <Form.Control
                   type="text"
-                  placeholder={professionalData.postcode}
                   value={professionalData.postcode}
                   onChange={handlePostcodeChange}
                 />
@@ -226,20 +220,12 @@ function ProfessionalAccount() {
 
           <Form.Group className="mb-3" controlId="formBasicTaxNumber">
             <Form.Label>Tax Number</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder={professionalData.tfn}
-              disabled
-            />
+            <Form.Control type="text" value={professionalData.tfn} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicABN">
             <Form.Label>ABN</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder={professionalData.abn}
-              disabled
-            />
+            <Form.Control type="text" value={professionalData.abn} disabled />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -255,7 +241,7 @@ function ProfessionalAccount() {
         <hr />
 
         <div className="d-grid gap-2">
-          <Button variant="primary" size="lg">
+          <Button variant="primary" size="lg" onClick={handleSubmit}>
             Save
           </Button>
           <Button variant="cancel" size="lg">
