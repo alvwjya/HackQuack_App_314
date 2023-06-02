@@ -20,8 +20,6 @@ router.post("/client", async function (req, res) {
       CVV,
     } = req.body;
 
-    console.log(req.body)
-
     const getEmail = await prisma.client.findMany({
       where: {
         email,

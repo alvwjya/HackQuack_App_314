@@ -10,6 +10,7 @@ const cancelRequest = require("./Client.CancelRequest");
 const professionalGetAllOffer = require("./Professional.GetAllOffer");
 const professionalCancelOffer = require("./Professional.CancelOffer");
 const clientAcceptOffer = require("./Client.AcceptOffer");
+const getActiveRequest = require("./Client.GetActiveRequest");
 
 router.use("/client", clientNewRequest);
 router.use("/professional", professionalNewOffer);
@@ -20,5 +21,6 @@ router.use("/client", cancelRequest);
 router.use("/professional", professionalGetAllOffer);
 router.use("/professional", professionalCancelOffer);
 router.use("/client", clientAcceptOffer);
+router.use("/client", getActiveRequest);
 
 module.exports = router;

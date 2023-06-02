@@ -19,7 +19,9 @@ router.get("/view-offers/:requestId", async function (req, res) {
         const getProfessionalRating = await prisma.rating.findMany({
           where: {
             transaction: {
-              professional: { id: parseInt(item.professional_id) },
+              professional_service_request: {
+                professional_id: item.professional_id,
+              },
             },
           },
         });

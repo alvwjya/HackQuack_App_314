@@ -11,12 +11,10 @@ router.post("/accept-offer/:offerId", async function (req, res) {
     });
     const acceptOffer = await prisma.transaction.create({
       data: {
-        professional_id:parseInt(getRequestId.professional_id),
-        service_request_id: parseInt(getRequestId.service_request_id),
         professional_request_id: parseInt(offerId),
       },
     });
-    res.status(200).json(acceptOffer)
+    res.status(200).json(acceptOffer);
     console.log(acceptOffer);
   } catch (err) {
     res.status(500).json(err);

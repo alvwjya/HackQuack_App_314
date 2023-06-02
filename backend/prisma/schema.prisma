@@ -116,10 +116,11 @@ model service_type {
 
 model transaction {
   id                           Int                           @id @default(autoincrement())
+  payment_time                 DateTime?                     @db.DateTime(0)
+  finish_status                Int?
   professional_request_id      Int?
   rating                       rating[]
   professional_service_request professional_service_request? @relation(fields: [professional_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "transaction_ibfk_3")
-  payment_time                 DateTime?                     @db.DateTime(0)
 
   @@index([professional_request_id], map: "professional_request_id")
 }
