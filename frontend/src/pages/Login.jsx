@@ -28,11 +28,6 @@ function Login() {
     console.log(API_ENDPOINT);
     const url = `${API_ENDPOINT}/signin`;
 
-    if (form.password !== form.confirm_password) {
-      console.log("Password and confirm password don't match");
-      return;
-    }
-
     const res = await axios.post(url, form);
 
     if (res.status === 200) {
