@@ -13,10 +13,26 @@ import AuthContext from "../../contexts/AuthContext";
 import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
-
 function CustomerServiceBoardActive() {
   const { user } = useContext(AuthContext);
-  const data = [1, 2, 3, 4, 5];
+  const [getActiveRequest, setGetActiveRequest] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const { data } = await axios.get(
+          `/service/client/get-active-request/${user.userId}`
+        );
+        setGetActiveRequest(data);
+      } catch (err) {
+        alert(JSON.stringify(err));
+      }
+    }
+    getData();
+  }, []);
+
+  console.log(getActiveRequest);
+
   return (
     <div>
       <Navbar bg="customer-tab" variant="light">
@@ -90,19 +106,19 @@ function CustomerServiceBoardActive() {
           </LinkContainer>
         </Nav>
 
-        {data.map((data) => (
+        {getActiveRequest.map((data) => (
           <div className="container py-3">
             <Card>
-              <Card.Header>Service Title</Card.Header>
+              <Card.Header>
+                Type of Issue: {data.service_type.service_type_name}
+              </Card.Header>
 
               <Card.Body>
-                <Card.Title>Type of Issue</Card.Title>
+                <Card.Title> Service Title: {data.request_title}</Card.Title>
                 <Card.Subtitle>Professional Name</Card.Subtitle>
-                <Card.Text>Information</Card.Text>
+                <Card.Text>Information: {data.description}</Card.Text>
               </Card.Body>
-
-              <Card.Footer>Location</Card.Footer>
-              <Card.Footer>Time</Card.Footer>
+              <Card.Footer>Time: {new Date(data.request_time).toLocaleString()}</Card.Footer>
             </Card>
           </div>
         ))}

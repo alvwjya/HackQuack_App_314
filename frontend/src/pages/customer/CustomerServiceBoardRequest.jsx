@@ -33,7 +33,6 @@ function CustomerServiceBoardRequest() {
     async function getData() {
       try {
         const res = await axios.get(url);
-        console.log(res.data);
         if (res.status === 200) {
           setAllRequest(res.data);
         }
@@ -51,7 +50,7 @@ function CustomerServiceBoardRequest() {
     } else {
       try {
         const { data } = await axios.get(
-          `/service/client/view-offers/${serviceId}`
+          `/service/client/view-offers/${event.currentTarget.value}`
         );
         setGetAllOffer(data);
         setOfferForm(true);
@@ -61,12 +60,11 @@ function CustomerServiceBoardRequest() {
     }
   }
 
-  async function handleCancelRequestOnClick() {
+  async function handleCancelRequestOnClick(event) {
     try {
       const res = await axios.delete(
-        `/service/client/cancel-request/${serviceId}`
+        `/service/client/cancel-request/${event.currentTarget.value}`
       );
-      console.log(res.data);
       if (res.status === 200) {
         alert("Successfully cancel request");
         setReload(!reload);
@@ -78,7 +76,16 @@ function CustomerServiceBoardRequest() {
   }
 
   async function handleAcceptOfferOnClick(event) {
-    const url = `/service/professional/new-offer`;
+    try {
+      const res = await axios.post(
+        `/service/client/accept-offer/${event.currentTarget.value}`
+      );
+      if (res.status === 200) {
+        alert("Successfully accept offer");
+      }
+    } catch (err) {
+      alert(JSON.stringify(err));
+    }
   }
 
   return (
@@ -174,15 +181,14 @@ function CustomerServiceBoardRequest() {
                             Service Type: {data.service_type.service_type_name}
                           </Card.Text>
                           <Card.Text>Information: {data.description}</Card.Text>
-                          <LinkContainer to="">
-                            <Button
-                              className="btn-warning"
-                              value={data.id}
-                              onClick={handleCancelRequestOnClick}
-                            >
-                              Cancel Request
-                            </Button>
-                          </LinkContainer>{" "}
+
+                          <Button
+                            className="btn-warning"
+                            value={data.id}
+                            onClick={handleCancelRequestOnClick}
+                          >
+                            Cancel Request
+                          </Button>
                           <Button
                             variant="primary"
                             value={data.id}
@@ -217,29 +223,36 @@ function CustomerServiceBoardRequest() {
                     No Professional Offer
                   </>
                 ) : (
-                  <div className="container py-3">
-                    <strong>OFFER(S)</strong>
-                    <p>Service Request ID: {}</p>
-                    <Card>
-                      <Card.Header>Professional Name</Card.Header>
-                      <Card.Body>
-                        <Card.Text>Information: {}</Card.Text>
-                        <Card.Text>Price: {}</Card.Text>
-                        <LinkContainer to="/customer-service-board-request-offer-detail">
-                          <Button className="btn-info">Learn more</Button>
-                        </LinkContainer>{" "}
-                        <LinkContainer to="">
-                          <Button className="btn-warning">Decline</Button>
-                        </LinkContainer>{" "}
-                        <LinkContainer to="">
-                          <Button className="btn-primary">Accept</Button>
-                        </LinkContainer>
-                      </Card.Body>
-                      <Card.Footer>Location: {}</Card.Footer>
-                      <Card.Footer>Ratings: {}</Card.Footer>
-                      <Card.Footer>Reviews: {}</Card.Footer>
-                    </Card>
-                  </div>
+                  <>
+                    <div className="container py-3">
+                      <strong>OFFER(S)</strong>
+                      <p>Service Request ID: {serviceId}</p>
+                      {getAllOffer.map((item) => {
+                        return (
+                          <Card>
+                            <Card.Header>
+                              Professional Name: {item.professional.first_name}{" "}
+                              {item.professional.last_name}
+                            </Card.Header>
+                            <Card.Body>
+                              <Card.Text>Price: {item.cost} AUD</Card.Text>
+                              <Button
+                                className="btn-primary"
+                                value={item.id}
+                                onClick={handleAcceptOfferOnClick}
+                              >
+                                Accept
+                              </Button>
+                            </Card.Body>
+
+                            <Card.Footer>
+                              Ratings: {item.professional_rating}/5
+                            </Card.Footer>
+                          </Card>
+                        );
+                      })}
+                    </div>
+                  </>
                 )}
               </Col>
             )}
