@@ -23,6 +23,7 @@ function ProfessionalSignUp() {
     first_name: "",
     last_name: "",
     email: "",
+
     abn: "",
     tfn: "",
     address: "",
@@ -66,6 +67,10 @@ function ProfessionalSignUp() {
 
   function handleAddressChange(event) {
     setForm({ ...form, address: event.target.value });
+  }
+
+  function handlePhoneChange(event) {
+    setForm({ ...form, phone: event.target.value });
   }
 
   function handleSuburbChange(event) {
@@ -138,6 +143,16 @@ function ProfessionalSignUp() {
             value={form.email}
             onChange={handleEmailChange}
             required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPhone">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter phone number"
+            value={form.phone}
+            onChange={handlePhoneChange}
           />
         </Form.Group>
 
