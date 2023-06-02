@@ -256,7 +256,7 @@ function ProfessionalAccount() {
             <Form.Label>Service Type</Form.Label>
             <Form.Control
               type="text"
-              placeholder={professionalData.service_type_id}
+              placeholder={professionalData.service_type.service_type_name}
               disabled
             />
           </Form.Group>
