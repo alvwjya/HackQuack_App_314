@@ -106,6 +106,14 @@ function CustomerServiceBoardActive() {
           </LinkContainer>
         </Nav>
 
+        {getActiveRequest.length === 0 ? (
+          <>
+            <br />
+            No Request
+          </>
+        ) : (
+          <></>
+        )}
         {getActiveRequest.map((data) => (
           <div className="container py-3">
             <Card>
@@ -118,7 +126,9 @@ function CustomerServiceBoardActive() {
                 <Card.Subtitle>Professional Name</Card.Subtitle>
                 <Card.Text>Information: {data.description}</Card.Text>
               </Card.Body>
-              <Card.Footer>Time: {new Date(data.request_time).toLocaleString()}</Card.Footer>
+              <Card.Footer>
+                Time: {new Date(data.request_time).toLocaleString()}
+              </Card.Footer>
             </Card>
           </div>
         ))}
