@@ -175,11 +175,13 @@ function CustomerServiceBoardRequest() {
                     <div className="container py-3">
                       <Card>
                         <Card.Header>Service ID: {data.id}</Card.Header>
+
                         <Card.Body>
-                          <Card.Title>{data.request_title}</Card.Title>
-                          <Card.Text>
-                            Service Type: {data.service_type.service_type_name}
-                          </Card.Text>
+                          <Card.Title>
+                            Service Title: {data.request_title}
+                          </Card.Title>
+                          <Card.Subtitle>Professional Name</Card.Subtitle>
+                          <Card.Text>Service Type: {}</Card.Text>
                           <Card.Text>Information: {data.description}</Card.Text>
                           <Button
                             className="btn-warning"

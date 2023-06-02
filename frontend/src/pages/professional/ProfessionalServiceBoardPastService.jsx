@@ -128,21 +128,15 @@ function ProfessionalServicePastService() {
                   <Card.Header>Service ID: {data.id}</Card.Header>
 
                   <Card.Body>
-                    <Card.Title>
-                      {" "}
-                      Service Title: {data.request_title}
-                    </Card.Title>
+                    <Card.Title>Service Title: {data.request_title}</Card.Title>
                     <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <Card.Text>Service Type: {}</Card.Text>
                     <Card.Text>Information: {data.description}</Card.Text>
-                    <LinkContainer to="/receipt">
-                      <Button variant="primary">Receipt</Button>
-                    </LinkContainer>
                     <LinkContainer to="/receipt">
                       <Button className="btn-primary">Receipt</Button>
                     </LinkContainer>
                   </Card.Body>
 
-                  
                   <Card.Footer>
                     Time: {new Date(data.request_time).toLocaleString()}
                   </Card.Footer>
