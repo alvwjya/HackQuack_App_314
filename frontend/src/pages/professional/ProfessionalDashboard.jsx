@@ -66,7 +66,7 @@ function ProfessionalDashboard() {
             </Button>
           </LinkContainer>
 
-          <LinkContainer to="/payment-transaction">
+          <LinkContainer to="/professional-payment-transaction">
             <Button className="btn-primary" size="lg">
               Payment Transaction
             </Button>

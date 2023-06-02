@@ -34,7 +34,11 @@ function CustomerServiceBoardPastService() {
     getData();
   }, []);
 
-  console.log(getPastRequest);
+  async function handleSubmit(event) {
+    return navigate("/customer-rating-and-review", {
+      state: JSON.parse(event.target.value),
+    });
+  }
 
   async function handleRatingAndReviewOnClick(event) {}
 
@@ -124,15 +128,44 @@ function CustomerServiceBoardPastService() {
                   <Card.Body>
                     <Card.Title>
                       {" "}
-                      Service Title: {data.request_title}
+                      Service Title:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .request_title
+                      }
                     </Card.Title>
-                    <Card.Subtitle>Professional Name</Card.Subtitle>
+                    <Card.Subtitle>
+                      Professional Name:{" "}
+                      {
+                        data.professional_service_request.professional
+                          .first_name
+                      }{" "}
+                      {data.professional_service_request.professional.last_name}
+                    </Card.Subtitle>
                     <br />
-                    <Card.Text>Service Type: {}</Card.Text>
-                    <Card.Text>Information: {data.description}</Card.Text>
-                    <LinkContainer to="/customer-rating-and-review">
-                      <Button variant="primary">Rating and Review</Button>
-                    </LinkContainer>{" "}
+                    <Card.Text>
+                      Service Type:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .service_type.service_type_name
+                      }
+                    </Card.Text>
+                    <Card.Text>
+                      Information:{" "}
+                      {
+                        data.professional_service_request.service_request
+                          .description
+                      }
+                    </Card.Text>
+
+                    <Button
+                      onClick={handleSubmit}
+                      value={JSON.stringify(data)}
+                      variant="primary"
+                    >
+                      Rating and Review
+                    </Button>{" "}
+
                     <LinkContainer to="/receipt">
                       <Button variant="primary">Receipt</Button>
                     </LinkContainer>

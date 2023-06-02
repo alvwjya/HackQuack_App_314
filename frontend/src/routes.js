@@ -22,6 +22,8 @@ import CustomerServiceBoardPastService from "./pages/customer/CustomerServiceBoa
 
 import CustomerMembership from "./pages/customer/CustomerMembership";
 
+import CustomerPaymentTransaction from "./pages/customer/CustomerPaymentTransaction";
+
 /*PROFESSIONAL*/
 import ProfessionalAccount from "./pages/professional/ProfessionalAccount";
 
@@ -37,11 +39,13 @@ import ProfessionalServiceBoardPastService from "./pages/professional/Profession
 
 import ProfessionalMembership from "./pages/professional/ProfessionalMembership";
 
+import ProfessionalPaymentTransaction from "./pages/professional/ProfessionalPaymentTransaction";
+
 /*HACKQUACK*/
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import PaymentMethod from "./pages/PaymentMethod";
-import PaymentTransaction from "./pages/PaymentTransaction";
+
 import Receipt from "./pages/Receipt";
 
 const AuthorizedRoute = ({ userTypes }) => {
@@ -122,10 +126,6 @@ const router = createBrowserRouter([
             path: "payment-method",
             element: <PaymentMethod />,
           },
-          {
-            path: "payment-transaction",
-            element: <PaymentTransaction />,
-          },
         ],
       },
 
@@ -167,6 +167,10 @@ const router = createBrowserRouter([
           {
             path: "professional-service-board-past-service",
             element: <ProfessionalServiceBoardPastService />,
+          },
+          {
+            path: "professional-payment-transaction",
+            element: <ProfessionalPaymentTransaction />,
           },
         ],
       },
@@ -213,6 +217,10 @@ const router = createBrowserRouter([
           {
             path: "customer-rating-and-review",
             element: <CustomerRatingAndReview />,
+          },
+          {
+            path: "customer-payment-transaction",
+            element: <CustomerPaymentTransaction />,
           },
         ],
       },

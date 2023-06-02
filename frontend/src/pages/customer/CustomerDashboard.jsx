@@ -74,7 +74,7 @@ console.log(user)
             </Button>
           </LinkContainer>
 
-          <LinkContainer to="/payment-transaction">
+          <LinkContainer to="/customer-payment-transaction">
             <Button className="btn-primary" size="lg">
               Payment Transaction
             </Button>
