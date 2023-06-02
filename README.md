@@ -4,6 +4,7 @@
 ## Requirement
 
 ```node.js v18.12.0 (LTS)```
+https://nodejs.org/en/blog/release/v18.12.0
 
 ```mysql```
 
