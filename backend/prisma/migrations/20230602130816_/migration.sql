@@ -7,6 +7,7 @@ CREATE TABLE `client` (
     `phone` VARCHAR(255) NULL,
     `password` VARCHAR(255) NULL,
     `suburb` VARCHAR(255) NULL,
+    `address` VARCHAR(255) NULL,
     `state` VARCHAR(255) NULL,
     `postcode` VARCHAR(255) NULL,
     `card_number` VARCHAR(255) NULL,
@@ -38,6 +39,7 @@ CREATE TABLE `professional` (
     `email` VARCHAR(255) NULL,
     `abn` VARCHAR(255) NULL,
     `password` VARCHAR(255) NULL,
+    `address` VARCHAR(255) NULL,
     `suburb` VARCHAR(255) NULL,
     `tfn` VARCHAR(255) NULL,
     `state` VARCHAR(255) NULL,
@@ -104,25 +106,10 @@ CREATE TABLE `service_type` (
 -- CreateTable
 CREATE TABLE `transaction` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `transaction_time` DATETIME(0) NULL,
-    `service_request_id` INTEGER NULL,
-    `professional_id` INTEGER NULL,
+    `payment_time` DATETIME(0) NULL,
     `professional_request_id` INTEGER NULL,
 
-    INDEX `professional_id`(`professional_id`),
     INDEX `professional_request_id`(`professional_request_id`),
-    INDEX `service_request_id`(`service_request_id`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `payment` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `payment_time` DATETIME(0) NULL,
-    `amount` INTEGER NULL,
-    `transaction_id` INTEGER NULL,
-
-    INDEX `transaction_id`(`transaction_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -154,13 +141,4 @@ ALTER TABLE `service_request` ADD CONSTRAINT `service_request_ibfk_1` FOREIGN KE
 ALTER TABLE `service_request` ADD CONSTRAINT `service_request_ibfk_2` FOREIGN KEY (`service_type_id`) REFERENCES `service_type`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE `transaction` ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `service_request`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE `transaction` ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`professional_id`) REFERENCES `professional`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
 ALTER TABLE `transaction` ADD CONSTRAINT `transaction_ibfk_3` FOREIGN KEY (`professional_request_id`) REFERENCES `professional_service_request`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE `payment` ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transaction`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

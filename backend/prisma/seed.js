@@ -41,6 +41,54 @@ async function main() {
       service_type_name: "Plumber",
     },
   });
+
+  async function seedClient() {
+    for (let i = 0; i < 50; i++) {
+      const user = {
+        first_name: `customer ${i + 1}`,
+        last_name: `customer ${i + 1}`,
+        email: `customer${i + 1}@mail.com`,
+        phone: "1234",
+        password: "1234",
+        suburb: `Address${i + 1}`,
+        address: `Keiraville`,
+        state: `NSW`,
+        postcode: `2500`,
+        card_number: `${i + 1}`,
+        card_security_num: `${i + 1}`,
+        card_expiry_date: new Date("2022-03-25"),
+      };
+
+      await prisma.client.create({ data: user });
+    }
+  }
+
+  await seedClient();
+
+  async function seedProfessional() {
+    for (let i = 0; i < 50; i++) {
+      const user = {
+        first_name: `professional ${i + 1}`,
+        last_name: `professional ${i + 1}`,
+        email: `professional ${i + 1}`,
+        abn: `ABN ${i + 1}`,
+        password: `1234`,
+        address: `address ${i + 1}`,
+        suburb: `Keiraville ${i + 1}`,
+        tfn: `TFN${i + 1}`,
+        state: `NSW`,
+        postcode: `250${i + 1}`,
+        card_number: `Card Num ${i + 1}`,
+        card_security_num: `professional ${i + 1}`,
+        card_expiry_date: new Date("2022-03-25"),
+        service_type_id: 1,
+      };
+
+      await prisma.professional.create({ data: user });
+    }
+  }
+
+  await seedProfessional();
 }
 
 main()
